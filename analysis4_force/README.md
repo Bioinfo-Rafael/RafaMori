@@ -80,3 +80,9 @@ python -m unittest discover -s analysis4_force/tests -v
 ## 既存log限定の指標と文献調査
 
 [調査・計算方針](outputs/reports/log_only_research_plan_ja.md) と [両側仕事の結果](outputs/reports/two_sided_contact_summary_ja.md) を参照。追加DFTなしで、共通C–N区間の原子仕事 `−∫F_i·dr_i` をアミン側・反対側・残りに分割し、接触方向の射影仕事も別に保存する。21指標×3区間×2通りのアミンH×2障壁を記録する。比率は補足、主図15はkcal/molの仕事と各系の障壁。全原子仕事と区間エネルギー上昇、区間前後を含む全障壁の収支をテストする。
+
+## 全原子・全接触の対照比較
+
+`python analysis4_force/contact_specificity.py` で、全57原子・全1596原子対について同じ区間の原子仕事、2原子仕事和、射影仕事、平均射影力を計算する。対照は共有結合グラフ・4 Å接触条件から抽出し、分子内/分子間を分け、距離・化学種・原子共有・1–4対除外の感度比較を行う。42個の対応が一意なサイトのみ系間相関に使い、アルキル基上の対称Hは分子内順位には含めるが系間相関から除く。条件は `config/contact_specificity.yaml`。通常の全解析にも組み込んだ。
+
+[結果と制限](outputs/reports/contact_specificity_summary_ja.md)、`contact_controls_*.csv`、図20〜22を参照。

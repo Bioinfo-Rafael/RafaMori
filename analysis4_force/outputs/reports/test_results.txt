@@ -7,6 +7,11 @@ test_four_oriented_logs_and_ts (test_analysis4.Analysis4Tests.test_four_oriented
 test_invalid_lys_is_rejected (test_analysis4.Analysis4Tests.test_invalid_lys_is_rejected) ... ok
 test_original_hashes_and_compressed_roundtrip (test_analysis4.Analysis4Tests.test_original_hashes_and_compressed_roundtrip) ... ok
 test_stationary_audit_verifies_matched_lys (test_analysis4.Analysis4Tests.test_stationary_audit_verifies_matched_lys) ... ok
+test_common_correlations_use_four_eligible_corresponding_sites (test_contact_specificity.SpecificityTests.test_common_correlations_use_four_eligible_corresponding_sites) ... ok
+test_complete_atom_pair_accounting_and_site_mapping (test_contact_specificity.SpecificityTests.test_complete_atom_pair_accounting_and_site_mapping) ... ok
+test_rankings_and_disjoint_counterexamples (test_contact_specificity.SpecificityTests.test_rankings_and_disjoint_counterexamples) ... ok
+test_scan_calibration_retains_all_label_permutations (test_contact_specificity.SpecificityTests.test_scan_calibration_retains_all_label_permutations) ... ok
+test_selected_pair_and_atom_values_match_existing_analysis (test_contact_specificity.SpecificityTests.test_selected_pair_and_atom_values_match_existing_analysis) ... ok
 test_all_correlations_retained_and_uncentered (test_two_sided_contacts.TwoSidedTests.test_all_correlations_retained_and_uncentered) ... ok
 test_atomic_partition_and_full_barrier_accounting (test_two_sided_contacts.TwoSidedTests.test_atomic_partition_and_full_barrier_accounting) ... ok
 test_fixed_window_coverage_and_ratios (test_two_sided_contacts.TwoSidedTests.test_fixed_window_coverage_and_ratios) ... ok
@@ -16,6 +21,6 @@ test_projection_sign_and_rigid_rotation (test_two_sided_contacts.TwoSidedTests.t
 test_same_ortho_site_and_different_elements (test_two_sided_contacts.TwoSidedTests.test_same_ortho_site_and_different_elements) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 1.014s
+Ran 21 tests in 4.164s
 
 OK

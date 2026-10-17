@@ -55,6 +55,51 @@
     "sha256": "815d0167378d2699fe52d5bfc8345650638a211a82ac661d968f9c7a86ed4703"
   },
   {
+    "path": "csv/contact_controls_atoms.csv",
+    "bytes": 69956,
+    "sha256": "f8389da82fd849f418f8e7dbaa646a807ef22aae27cc8a3857380835003e0770"
+  },
+  {
+    "path": "csv/contact_controls_correlations.csv",
+    "bytes": 570434,
+    "sha256": "8c858e9caa8099cf11ee078aa0cca8a1cf693908ed7f8e130d2ea99dd71cf2ca"
+  },
+  {
+    "path": "csv/contact_controls_counterexamples.csv",
+    "bytes": 336296,
+    "sha256": "4fba364de50dcb54717b7cb0a7b02769f4be3787456fbf20dce8586bd8bcebdb"
+  },
+  {
+    "path": "csv/contact_controls_covalent_edges.csv",
+    "bytes": 6755,
+    "sha256": "84df8ef33c75babedddbb4a14875ee95c204ec6f3344c431d43b480266e51e6c"
+  },
+  {
+    "path": "csv/contact_controls_label_permutations.csv",
+    "bytes": 37478,
+    "sha256": "1ff21b879c281f7de94c2f6c781d2912e396d86b255e63dc5eb8c1182567d2d8"
+  },
+  {
+    "path": "csv/contact_controls_mapping.csv",
+    "bytes": 7946,
+    "sha256": "d5f8f935e757207a8460c36db77ad6d743b4824a3c5efd8eec8156ce6c737c7e"
+  },
+  {
+    "path": "csv/contact_controls_pairs.csv",
+    "bytes": 4092248,
+    "sha256": "88278421edb0f28625e4b7ef8f489158fab8059e8631986071615c0d01b4b5c9"
+  },
+  {
+    "path": "csv/contact_controls_specificity.csv",
+    "bytes": 42950,
+    "sha256": "2e6431a146f582b12aac0ba780e761917111d6188d4379046b6b10495b2039c0"
+  },
+  {
+    "path": "csv/contact_controls_within_ranks.csv",
+    "bytes": 98574,
+    "sha256": "2077cfe9b185d9643d259dd3f0a04a0db62bb84f0a32da3235315d088ad3be7c"
+  },
+  {
     "path": "csv/descriptive_correlations.csv",
     "bytes": 5703,
     "sha256": "a6f308fe78c10e8dfd48e53ffa4dceb5e78c6df2539698b9db5e7da2844930c0"
@@ -390,6 +435,21 @@
     "sha256": "1a3ba8cfb348f5cddc29a70dba828116ac24f89237d2eae97e8e8faa002d13c8"
   },
   {
+    "path": "figures/20_all_atom_work_controls.png",
+    "bytes": 253452,
+    "sha256": "5dd85ba26cfeda8900165e9c2d2c36c5a3750f602545156205ddea5a1b293e57"
+  },
+  {
+    "path": "figures/21_contact_strength_controls.png",
+    "bytes": 229418,
+    "sha256": "4f966dd03727fa195ff25c269c53755d4eb3dfdf9b38d8d302b9ba1598bd4137"
+  },
+  {
+    "path": "figures/22_contact_correlation_specificity.png",
+    "bytes": 155644,
+    "sha256": "3bd758c5e7991a0dadf9812e6fcc1e2bdcccce862b444addd9aa7dc877bde1df"
+  },
+  {
     "path": "oriented_logs/MoriPF_oriented.log",
     "bytes": 486929,
     "sha256": "1ede8b9f29401175978ba54a3b5a4933c1f15f6c49d4a148340d5022d9f1e624"
@@ -410,14 +470,19 @@
     "sha256": "b7e0e1f22aa176199ad682c5c25f33afa5a45763c88662a9b3a8ff37d4746301"
   },
   {
+    "path": "reports/contact_specificity_summary_ja.md",
+    "bytes": 30199,
+    "sha256": "2274d0a33470c4b038db01a78bb0970b295c2afab6d53f227aef591945849824"
+  },
+  {
     "path": "reports/execution.json",
     "bytes": 882,
     "sha256": "d2297607140f4269369f51435328bc9f538db5fc870b24a2d244b62645d9d60e"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",
-    "bytes": 12196,
-    "sha256": "01bd0306a9a2a61cfea65b9759b98544864453217a895e0bf822bd7b9fad5ae5"
+    "bytes": 12467,
+    "sha256": "b70eacb865a5dc3d46e3213425149ac282a5d0e8c08e23bd90c663717a86eb2f"
   },
   {
     "path": "reports/orientation_audit.json",
@@ -431,17 +496,17 @@
   },
   {
     "path": "reports/summary_ja.md",
-    "bytes": 13468,
-    "sha256": "5081c72aa3e66585023ac26dfb7b07dec317ea0ac567566a01cd392eafa2d925"
+    "bytes": 13754,
+    "sha256": "351ad919e6ea7236fbae5f023b8e2453baa1ff5316f7fb06c30b4c4dc2a2ab90"
   },
   {
     "path": "reports/test_results.txt",
-    "bytes": 2107,
-    "sha256": "9fbfe5733e50b06f894c4025f51d2e0d5a79cde63940975346a11802320c6407"
+    "bytes": 2902,
+    "sha256": "daff095a5e758b42ed7e5e8f5372832f154c614bc0eddf9e3b6fe65789b2560d"
   },
   {
     "path": "reports/two_sided_contact_summary_ja.md",
-    "bytes": 23359,
-    "sha256": "7c6e9be714617603f5c55a001e5d5f5c0b56db9d75301f68d5213b89030de8dc"
+    "bytes": 23660,
+    "sha256": "39ac73303c64a807b137b7b26dce1e2816efb1b0b559c81c7656e3c7a1466de4"
   }
 ]

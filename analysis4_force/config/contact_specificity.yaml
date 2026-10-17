@@ -1,0 +1,11 @@
+# Controls selected by geometry/topology, not by barrier correlations.
+# Exploratory extension after observing the original four-system correlations.
+contact_cutoff_A: 4.0
+matched_mean_distance_tolerance_A: 0.75
+minimum_graph_separation: 3
+covalent_radius_scale: 1.20
+covalent_radii_A: {1: 0.31, 6: 0.76, 7: 0.71, 8: 0.66, 9: 0.57}
+# All three windows are inherited from two_sided_contacts.yaml.
+# Work keeps its sign for correlation; absolute work ranks its magnitude.
+pair_metrics: [pair_atomic_work_kcal_mol, radial_work_kcal_mol, mean_abs_projection_mEh_bohr]
+atom_metrics: [atomic_work_kcal_mol, mean_force_mEh_bohr]
