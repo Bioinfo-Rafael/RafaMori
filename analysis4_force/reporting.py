@@ -96,6 +96,8 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
 
 ## 仮説に対する解釈
 
+反対側ortho位置のH/F···Oまで含む追加定量化は、[両側接触・力と障壁の探索summary](two_sided_contact_summary_ja.md)を参照。従来の `interference_F` は最も近いFを選ぶ指標で、RAFA15の反対側H56···O21を表していないため、新解析では同じ環位置のF/Hを対応させた。以下はH···F単独の指標についての解釈であり、両側を組み合わせた仮説を否定するものではない。
+
 **今回の結果は、ortho Fによる近接配置の形成とは整合するが、F···H接触だけで4系の障壁差を説明することはできない。**
 
 - RAFA14（ortho Fなし）は最短F···Hが{values.loc['RAFA14','TS_nearest_FH_A']:.2f} Åと遠く、MoriPFより相対電子障壁が{values.loc['RAFA14','relative_electronic_barrier_kcal_mol']:.2f} kcal/mol高い。この2系の対比は提案された仮説と整合する。

@@ -68,3 +68,11 @@ python -m unittest discover -s analysis4_force/tests -v
 ```
 
 圧縮原本の一致、4系の方向・TS、新Lysの条件一致と不整合入力の拒否、絶対障壁・MoriPF差・共通項相殺、仕事の加法性、微分と極値、断片和、全接触と固定ペアを検証する。
+
+## 両側ortho接触の追加探索
+
+`two_sided_contacts.py` はC24上のF/H–アミンHと、C25上のF/H–O21を対応づける。旧 `interference_F` 指標はF限定なので、RAFA15のH56–O21はこの追加解析で扱う。主区間は全系共通のC–N=2.50→2.10 Å。3区間×アミンHの2選択について、12種類の指標と電子／RRHO Gibbs障壁の相関を全て保存する。系間差はMoriPF基準。
+
+`two_sided_atom_mapping.csv`、`two_sided_force_profiles.csv`、`two_sided_window_metrics.csv`、`two_sided_correlations.csv` と図14–16、[追加summary](outputs/reports/two_sided_contact_summary_ja.md)を生成する。主指標の射影力比と、探索上高相関だった全原子力ノルム比を区別する。力は全相互作用の合計であり、F/H···Oの独立した引力・斥力ではない。
+
+通常の `run_analysis.py` から自動実行される。既存の4系結果から追加部分だけ再計算する場合は `python analysis4_force/two_sided_contacts.py`。

@@ -210,6 +210,26 @@
     "sha256": "4e9e80c91fa149547754f71618a91aba2894a3bb003238282a4aed380c292d22"
   },
   {
+    "path": "csv/two_sided_atom_mapping.csv",
+    "bytes": 264,
+    "sha256": "dde42db063cdafeaced2440a85aa7b61897750e07ee0e2db3ee9e258af72554d"
+  },
+  {
+    "path": "csv/two_sided_correlations.csv",
+    "bytes": 31357,
+    "sha256": "1c4d1cee5ce4d1d6e363c506421f8c689b31f5b896875fcc879c83e08be6c90f"
+  },
+  {
+    "path": "csv/two_sided_force_profiles.csv",
+    "bytes": 223026,
+    "sha256": "0f5e8d2793382caffc8ef744cbc2a926e222f756bcca481fddb79f1d845d4a85"
+  },
+  {
+    "path": "csv/two_sided_window_metrics.csv",
+    "bytes": 18243,
+    "sha256": "b15d35a12b224680ce134a2b386c434c3cc7625390a4d07328918559df28f464"
+  },
+  {
     "path": "figures/01_MoriPF_energy_force_kappa.png",
     "bytes": 212600,
     "sha256": "e7aa2618df502d0648a8825ac4f59bd7d6ebdb08e54aedfa8e47777604a1e484"
@@ -345,6 +365,21 @@
     "sha256": "8428c7bf7c450405062e8cef4b55d7885a13dae08221ab55e331f128a935228e"
   },
   {
+    "path": "figures/14_two_sided_contacts.png",
+    "bytes": 325327,
+    "sha256": "3a860c35939ebeb667c9b191f1cee845c52c3f179b13fb9f8420e6c03eb9ba73"
+  },
+  {
+    "path": "figures/15_two_sided_barrier_correlations.png",
+    "bytes": 122469,
+    "sha256": "7df83b1aca3b5453ad36eaa0ca87f95c0517f948897557da05e07ac357636519"
+  },
+  {
+    "path": "figures/16_two_sided_sensitivity.png",
+    "bytes": 99907,
+    "sha256": "102f5ff0a7e636a4a1241a6b3d4f5c6f234cf3ae552ccb34ffa8358408a5c614"
+  },
+  {
     "path": "oriented_logs/MoriPF_oriented.log",
     "bytes": 486929,
     "sha256": "1ede8b9f29401175978ba54a3b5a4933c1f15f6c49d4a148340d5022d9f1e624"
@@ -381,12 +416,17 @@
   },
   {
     "path": "reports/summary_ja.md",
-    "bytes": 14183,
-    "sha256": "df435d62c7ac4d4895e69e731037bdd4dbaa056bb7b60cf82fa0cf568c35f4f7"
+    "bytes": 14656,
+    "sha256": "ddd042770cc30772a45077026f21f6763283582066c405145dd06df5f0b3402c"
   },
   {
     "path": "reports/test_results.txt",
-    "bytes": 1103,
-    "sha256": "cd18ae951ae3528c8eb5f94b8c65584c3b7a04e10f0f5b8d316abf153c58a46f"
+    "bytes": 1970,
+    "sha256": "b79a015f5224b8e7e595d5171e4112b1c6a9d7598b7d879b3e31e1b57da61e57"
+  },
+  {
+    "path": "reports/two_sided_contact_summary_ja.md",
+    "bytes": 12713,
+    "sha256": "f11c4b634a3f6f82ea9771617348e0fc849a55d54b67f489a6595b963b6985c3"
   }
 ]

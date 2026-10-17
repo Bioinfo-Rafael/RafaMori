@@ -214,6 +214,8 @@ def main():
     from reporting import create_extra_figures,write_report
     create_extra_figures(summary,energy,pd.DataFrame(contacts),pd.DataFrame(corrected),fig,config)
     write_report(summary,energy,orientation,stationary_rows,pd.DataFrame(endpoint_rows),vsummary,warnings,reports,config)
+    from two_sided_contacts import main as analyze_two_sided
+    analyze_two_sided()
     (reports/'execution.json').write_text(json.dumps(dict(warnings=warnings,python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,systems=list(records),reference_system=config['reference_system'],Lys_sha256=lys['sha256'],Lys_method_basis=lys['method_basis'],Lys_solvent=lys['solvent']),indent=2)+'\n')
     manifest_path=reports/'output_manifest.json'
     manifest=[dict(path=str(p.relative_to(out)),bytes=p.stat().st_size,sha256=sha256(p)) for p in sorted(out.rglob('*')) if p.is_file() and p!=manifest_path]

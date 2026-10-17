@@ -1,0 +1,25 @@
+# Fixed before examining descriptor/barrier correlations.
+reference_system: MoriPF
+near_ring_C: 24
+opposite_ring_C: 25
+opposite_O: 21
+primary_window: common_CN_2.50_to_2.10
+windows:
+  common_CN_2.50_to_2.10: [2.50, 2.10]
+  sensitivity_CN_2.55_to_2.10: [2.55, 2.10]
+  sensitivity_CN_2.40_to_2.15: [2.40, 2.15]
+primary_descriptor: opposite_projected_magnitude_share
+# All listed descriptors are reported, regardless of their correlation.
+correlation_descriptors:
+  - opposite_projected_magnitude_share
+  - opposite_atomic_force_share
+  - selected_atomic_force_share
+  - selected_atomic_work_kcal_mol
+  - pair_diagnostic_work_kcal_mol
+  - near_mean_abs_projected_force_mEh_bohr
+  - opposite_mean_abs_projected_force_mEh_bohr
+  - near_mean_signed_projected_force_mEh_bohr
+  - opposite_mean_signed_projected_force_mEh_bohr
+  - opposite_TS_distance_A
+  - opposite_TS_CXO_angle_deg
+  - near_TS_distance_A

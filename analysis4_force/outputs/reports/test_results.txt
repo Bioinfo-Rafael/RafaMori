@@ -7,8 +7,14 @@ test_four_oriented_logs_and_ts (test_analysis4.Analysis4Tests.test_four_oriented
 test_invalid_lys_is_rejected (test_analysis4.Analysis4Tests.test_invalid_lys_is_rejected) ... ok
 test_original_hashes_and_compressed_roundtrip (test_analysis4.Analysis4Tests.test_original_hashes_and_compressed_roundtrip) ... ok
 test_stationary_audit_verifies_matched_lys (test_analysis4.Analysis4Tests.test_stationary_audit_verifies_matched_lys) ... ok
+test_all_correlations_retained_and_rebasing_invariant (test_two_sided_contacts.TwoSidedTests.test_all_correlations_retained_and_rebasing_invariant) ... ok
+test_fixed_window_coverage_and_ratios (test_two_sided_contacts.TwoSidedTests.test_fixed_window_coverage_and_ratios) ... ok
+test_integrated_all_atom_work_matches_energy_change (test_two_sided_contacts.TwoSidedTests.test_integrated_all_atom_work_matches_energy_change) ... ok
+test_primary_near_projection_matches_existing_force_calculation (test_two_sided_contacts.TwoSidedTests.test_primary_near_projection_matches_existing_force_calculation) ... ok
+test_projection_sign_and_rigid_rotation (test_two_sided_contacts.TwoSidedTests.test_projection_sign_and_rigid_rotation) ... ok
+test_same_ortho_site_and_different_elements (test_two_sided_contacts.TwoSidedTests.test_same_ortho_site_and_different_elements) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.873s
+Ran 15 tests in 0.986s
 
 OK

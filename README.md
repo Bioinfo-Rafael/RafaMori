@@ -4,6 +4,8 @@ GaussianのIRC（固有反応座標）計算ログから、フッ素置換位置
 
 **最新の結果：[4系解析の日本語summary](analysis4_force/outputs/reports/summary_ja.md)**
 
+**両側の接触の定量化：[F···Hと反対側F/H···Oの力・障壁との対応](analysis4_force/outputs/reports/two_sided_contact_summary_ja.md)**。反対側原子力の割合に障壁との記述相関（電子障壁r≈0.958）が見られましたが、接触方向の射影力の比率は弱い対応でした。4系を使った探索結果であり、ペア相互作用エネルギーや独立した予測モデルではありません。
+
 ## 今回の比較でわかったこと
 
 2026年10月17日に受領した `完成.zip` の16ログ（4系×IRC・反応物・生成物・TS）と、同じ計算条件で再計算された `LYS (1).LOG`（保存名 `Lys.log`）を解析しました。比較基準は **MoriPF＝0** です。
