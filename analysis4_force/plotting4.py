@@ -36,7 +36,7 @@ def energy_force_kappa(system: str, profile: pd.DataFrame, landmarks, spline, re
     y_raw = (profile.E_raw_hartree - reactant_energy) * conversion
     axes[0].plot(x, y_raw, "o-", ms=2.5, lw=.7, color=color, alpha=.45, label="Actual IRC points")
     axes[0].plot(dense, (spline(dense) - reactant_energy) * conversion, color=color, lw=1.7, label="Smoothing spline")
-    axes[0].set_ylabel("V(R) − ETS (kcal/mol)")
+    axes[0].set_ylabel("ΔE(R) from separated reactants (kcal/mol)")
     axes[1].plot(x, profile.F_raw_kcal_mol_per_R, "o-", ms=2.2, lw=.6, color=color, alpha=.3, label="Raw finite difference")
     axes[1].plot(dense, -spline.derivative(1)(dense) * conversion, color=color, lw=1.7, label="Smooth F(R)")
     axes[1].set_ylabel("F(R) (kcal mol⁻¹ R⁻¹)")
@@ -70,12 +70,12 @@ def energy_force_kappa_comparison(profiles: dict, landmarks: dict, splines: dict
     for ax in axes:
         ax.axvline(0, color="black", ls="--", lw=.9, alpha=.75)
         ax.grid(alpha=.2); ax.legend(fontsize=8)
-    axes[0].set_ylabel("ΔE(R) − ΔE‡(MoriPF) (kcal/mol)")
+    axes[0].set_ylabel("ΔE(R) from separated reactants (kcal/mol)")
     axes[1].set_ylabel("F(R) (kcal mol⁻¹ R⁻¹)")
     axes[2].axhline(0, color="grey", lw=.7)
     axes[2].set_ylabel("κ = d²E/dR² (kcal mol⁻¹ R⁻²)")
     axes[2].set_xlabel("IRC coordinate R")
-    fig.suptitle("Four systems: electronic profile relative to MoriPF barrier; F and κ")
+    fig.suptitle("Four systems: separated-reactant electronic profiles; F and κ")
     fig.tight_layout(); fig.savefig(path, dpi=190); plt.close(fig)
 
 

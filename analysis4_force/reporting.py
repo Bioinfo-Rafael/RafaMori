@@ -15,12 +15,12 @@ def markdown(df, columns=None):
 
 
 def create_extra_figures(summary,energy,contacts,corrected,figdir,config):
-    reference=config["reference_system"]
+    (figdir/'02_relative_barriers.png').unlink(missing_ok=True)
     fig,axes=plt.subplots(1,3,figsize=(14,4.7))
-    for ax,col,title in zip(axes,['relative_electronic_barrier_kcal_mol','relative_RRHO_G_barrier_kcal_mol','relative_alpha_to_TS_kcal_mol'],[f'Relative electronic barrier ({reference}=0)',f'Relative RRHO Gibbs barrier ({reference}=0)',f'Change in alpha-to-TS work ({reference}=0)']):
+    for ax,col,title in zip(axes,['absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol','alpha_to_TS_kcal_mol'],['Electronic barrier ΔE‡','RRHO Gibbs barrier ΔG‡','Work from alpha to TS']):
         bars=ax.bar(summary.system,summary[col],color=[SYSTEM_COLORS[s] for s in summary.system]);ax.bar_label(bars,fmt='%.2f',padding=3);ax.set(title=title,ylabel='kcal/mol');ax.axhline(0,color='black',lw=.7);ax.margins(y=.22)
-    fig.suptitle(f'All differences relative to {reference}; matched substrate + Lys reference\nRAFA15 RRHO values are provisional (small imaginary reactant mode)',fontsize=11)
-    fig.tight_layout();fig.savefig(figdir/'02_relative_barriers.png',dpi=190);plt.close(fig)
+    fig.suptitle('Barriers from each separated substrate + Lys; no inter-system centering\nRAFA15 RRHO values are provisional (small imaginary reactant mode)',fontsize=11)
+    fig.tight_layout();fig.savefig(figdir/'02_barriers_and_work.png',dpi=190);plt.close(fig)
     fig,axes=plt.subplots(1,2,figsize=(11,4.8))
     for ax,col,title in zip(axes,['absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol'],['Electronic barrier from separated reactants','RRHO Gibbs barrier from separated reactants']):
         bars=ax.bar(summary.system,summary[col],color=[SYSTEM_COLORS[s] for s in summary.system])
@@ -42,9 +42,9 @@ def create_extra_figures(summary,energy,contacts,corrected,figdir,config):
     for s,g in contacts[contacts.selected_at_TS].groupby('system',sort=False):
         axes[0].plot(g.CN_A,g.FH_A,color=SYSTEM_COLORS[s],label=s)
         row=summary[summary.system==s].iloc[0]
-        axes[1].scatter(row.TS_nearest_FH_A,row.relative_electronic_barrier_kcal_mol,color=SYSTEM_COLORS[s]);axes[1].annotate(s,(row.TS_nearest_FH_A,row.relative_electronic_barrier_kcal_mol),xytext=(5,5),textcoords='offset points')
+        axes[1].scatter(row.TS_nearest_FH_A,row.absolute_electronic_barrier_kcal_mol,color=SYSTEM_COLORS[s]);axes[1].annotate(s,(row.TS_nearest_FH_A,row.absolute_electronic_barrier_kcal_mol),xytext=(5,5),textcoords='offset points')
     axes[0].set(xlabel='Reaction C-N distance (Å)',ylabel='Fixed F...H distance (Å)',title='Common chemical progress coordinate');axes[0].legend()
-    axes[1].set(xlabel='TS nearest amine-H...F distance (Å)',ylabel=f'Electronic barrier relative to {reference} (kcal/mol)',title='Four systems: descriptive comparison only');axes[1].margins(.25)
+    axes[1].set(xlabel='TS nearest amine-H...F distance (Å)',ylabel='Electronic barrier ΔE‡ (kcal/mol)',title='Four systems: descriptive comparison only');axes[1].margins(.25)
     fig.tight_layout();fig.savefig(figdir/'12_contact_vs_progress_and_barrier.png',dpi=190);plt.close(fig)
     fig,axes=plt.subplots(2,2,figsize=(12,8),sharex=True)
     for ax,(target,group) in zip(axes.flat,corrected.groupby('target',sort=False)):
@@ -54,14 +54,13 @@ def create_extra_figures(summary,energy,contacts,corrected,figdir,config):
 
 
 def write_report(summary,energy,orientation,stationary,endpoints,validation,warnings,reports,config):
-    display=summary[['system','ortho_F_count','relative_electronic_barrier_kcal_mol','relative_RRHO_G_barrier_kcal_mol','TS_nearest_FH_A','TS_NHF_angle_deg','alpha_to_TS_kcal_mol']].copy()
-    display.columns=['系','ortho F数','相対ΔE‡ / kcal mol−1','相対ΔG‡（RRHO）','TS F···H / Å','TS N–H···F / °','α→TS / kcal mol−1']
+    display=summary[['system','ortho_F_count','absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol','TS_nearest_FH_A','TS_NHF_angle_deg','alpha_to_TS_kcal_mol']].copy()
+    display.columns=['系','ortho F数','ΔE‡ / kcal mol−1','ΔG‡（RRHO）','TS F···H / Å','TS N–H···F / °','α→TS / kcal mol−1']
     absolute=energy[['system','absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol','electronic_reaction_energy_kcal_mol','RRHO_G_reaction_energy_kcal_mol']].copy()
     absolute.columns=['系','ΔE‡','ΔG‡（RRHO）','ΔE反応','ΔG反応（RRHO）']
-    work=energy[['system','separated_reactants_to_alpha_kcal_mol','alpha_to_TS_kcal_mol','relative_preparation_component_kcal_mol','relative_alpha_to_TS_kcal_mol']].copy()
+    work=energy[['system','separated_reactants_to_alpha_kcal_mol','alpha_to_TS_kcal_mol','absolute_electronic_barrier_kcal_mol']].copy()
     lys=next(r for r in stationary if r['system']=='Lys')
-    reference=config['reference_system']
-    order=' < '.join(energy.sort_values('relative_electronic_barrier_kcal_mol').system)
+    order=' < '.join(energy.sort_values('absolute_electronic_barrier_kcal_mol').system)
     values=summary.set_index('system')
     energies=energy.set_index('system')
     corr=pd.read_csv(reports.parent/'csv/descriptive_correlations.csv')
@@ -76,13 +75,13 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
 
 ## 数値結果
 
-電子エネルギーによる相対障壁の低い順は **{order}**。系間比較はすべて **{reference}＝0** とする。新しいLysは分子側と計算条件が一致するため、分離反応物（分子＋Lys）基準の絶対障壁も算出した。以下のΔΔ値はMoriPFとの差、Δ値は分離反応物との差を表す。
+電子障壁の低い順は **{order}**。各系の分離反応物（基質＋Lys）を基準とする障壁そのものを表示する。MoriPFを引く系間のゼロ合わせは行わない。生の全電子エネルギー（Hartree）も `energy_comparison.csv` に保持するが、組成の異なる系の全電子エネルギーの大小を反応性とは解釈しない。
 
 {markdown(display)}
 
-相対障壁の定義：`ΔΔE‡(i) = [E_TS(i) − E_substrate(i)] − [E_TS({reference}) − E_substrate({reference})]`。表のTS接触は各系でTSにおける最短のF···H（アミンNに結合した2つのHを対象）を選び、その同じ原子対をIRC全体で追跡した値。Fの位置はフェニル環C23をipsoとして結合グラフから判定した。
+表の接触はTSで最短のF···Hを選び、その原子対をIRC全体で追跡した値。F位置はフェニル環C23をipsoとして判定した。
 
-![相対障壁](../figures/02_relative_barriers.png)
+![障壁と仕事](../figures/02_barriers_and_work.png)
 
 分離反応物基準の障壁・反応エネルギー（すべてkcal/mol）：
 
@@ -96,16 +95,14 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
 
 ## 仮説に対する解釈
 
-反対側ortho位置のH/F···Oまで含む追加定量化は、[両側接触・力と障壁の探索summary](two_sided_contact_summary_ja.md)を参照。従来の `interference_F` は最も近いFを選ぶ指標で、RAFA15の反対側H56···O21を表していないため、新解析では同じ環位置のF/Hを対応させた。以下はH···F単独の指標についての解釈であり、両側を組み合わせた仮説を否定するものではない。
+追加DFTなしの計算方針は [文献調査とlog限定の評価案](log_only_research_plan_ja.md) を参照。反対側ortho位置のH/F···Oまで含む追加定量化は、[両側接触・力と障壁の探索summary](two_sided_contact_summary_ja.md)を参照。従来の `interference_F` は最も近いFを選ぶ指標で、RAFA15の反対側H56···O21を表していないため、新解析では同じ環位置のF/Hを対応させた。以下はH···F単独の指標についての解釈であり、両側を組み合わせた仮説を否定するものではない。
 
 **今回の結果は、ortho Fによる近接配置の形成とは整合するが、F···H接触だけで4系の障壁差を説明することはできない。**
 
-- RAFA14（ortho Fなし）は最短F···Hが{values.loc['RAFA14','TS_nearest_FH_A']:.2f} Åと遠く、MoriPFより相対電子障壁が{values.loc['RAFA14','relative_electronic_barrier_kcal_mol']:.2f} kcal/mol高い。この2系の対比は提案された仮説と整合する。
-- MoriPFとRAFA16はともに約2.35 Å、N–H···F角約120°の近接配置を持つ。RAFA16の相対障壁はMoriPFより約0.76 kcal/mol高いが、他のF置換や電子効果との切り分けはできない。
-- **RAFA15が単純な説明への反例になる。** 最短F···Hは{values.loc['RAFA15','TS_nearest_FH_A']:.2f} Å、角度は{values.loc['RAFA15','TS_NHF_angle_deg']:.1f}°で、MoriPF/RAFA16より遠く、直線からも外れる。それでも相対電子障壁はMoriPFより{abs(values.loc['RAFA15','relative_electronic_barrier_kcal_mol']):.2f} kcal/mol低い。最も短い接触やortho Fの個数だけでは順位を説明できない。
-- RAFA15は反応物基準では低障壁でも、α→TSの仕事は約2.58 kcal/molで4系中最大。この区間の仕事を全活性化障壁と同一視すると逆の結論になる。反応物基準・配座・経路全体を合わせて見る必要がある。
-
-MoriPF基準でRAFA15の全電子障壁は{abs(values.loc['RAFA15','relative_electronic_barrier_kcal_mol']):.2f} kcal/mol低い一方、α→TSの仕事は{energies.loc['RAFA15','relative_alpha_to_TS_kcal_mol']:.2f} kcal/mol大きい。分離反応物からαまでのエネルギー差はMoriPFより{abs(energies.loc['RAFA15','relative_preparation_component_kcal_mol']):.2f} kcal/mol低く、この差が全障壁に寄与している。ただしこの区間には分子間会合や配座変化が含まれ、H···F安定化だけには分解できない。MoriPFとRAFA14–16は組成が異なるので、生のTSエネルギーや分子単体エネルギーをそのまま差し引いた比較は行わない。
+- RAFA14（ortho Fなし）の最短F···Hは{values.loc['RAFA14','TS_nearest_FH_A']:.2f} Å、電子障壁は{values.loc['RAFA14','absolute_electronic_barrier_kcal_mol']:.2f} kcal/mol。
+- MoriPFとRAFA16は約2.35 Å、N–H···F角約120°の近接配置を持ち、電子障壁はそれぞれ{values.loc['MoriPF','absolute_electronic_barrier_kcal_mol']:.2f}、{values.loc['RAFA16','absolute_electronic_barrier_kcal_mol']:.2f} kcal/mol。
+- RAFA15は最短F···Hが{values.loc['RAFA15','TS_nearest_FH_A']:.2f} Å、角度{values.loc['RAFA15','TS_NHF_angle_deg']:.1f}°でも、電子障壁は{values.loc['RAFA15','absolute_electronic_barrier_kcal_mol']:.2f} kcal/molと最も低い。接触の短さだけでは順位を説明できない。
+- RAFA15のα→TS仕事は{energies.loc['RAFA15','alpha_to_TS_kcal_mol']:.2f} kcal/molと最大。分離反応物→αは{energies.loc['RAFA15','separated_reactants_to_alpha_kcal_mol']:.2f} kcal/mol。この区間には会合・配座変化が含まれ、特定の接触の安定化には分解できない。
 
 ortho Fの有無、F···H距離、N–H···F角度と障壁を合わせて評価する。短い接触や大きな相関係数だけでは、水素結合・安定化エネルギー・因果関係の証明にならない。F置換に伴う電子効果、分子の配向、立体効果、他の接触も同時に変わる。また、MoriPFはF数自体がRAFA14–16と異なるため、位置だけを比較する対照ではない。
 
@@ -121,11 +118,11 @@ ortho Fの有無、F···H距離、N–H···F角度と障壁を合わせて�
 
 **反応力定数は参照論文の `κ = d²E/dR² = −dF/dR` を図に使用する。旧解析のκは逆符号だった。** CSVには論文規約を `kappa_paper_*` として保存し、旧規約の列も比較用に保持する。
 
-`α→TS = E_TS − E(α)` は各IRC内部の遷移前半の仕事であり、分離反応物からの全障壁ではない。`IRC_left_to_alpha` は計算済み左端からαまでの区間で、系によってIRCの到達範囲が異なる。これをそのまま全構造準備コストの順位として扱わない。分離反応物からαまでの系間差は `relative_preparation_component_kcal_mol` に別途記録した。
+`α→TS = E_TS − E(α)` は各IRC内部の遷移前半の仕事であり、分離反応物からの全障壁ではない。`IRC_left_to_alpha` は計算済み左端からαまでの区間で、系によってIRCの到達範囲が異なる。これをそのまま全構造準備コストの順位として扱わない。分離反応物からαまでの値は `separated_reactants_to_alpha_kcal_mol` に保存する。
 
 {markdown(work)}
 
-上の `relative_*` 列はMoriPFとの差。比較図のエネルギー軸は各系で分離反応物を差し引いた後、MoriPFの電子障壁を引き、MoriPFのTSを0とする。各系単独の形状診断図だけはその系のTS＝0を使う。
+比較図・個別系の図ともに `ΔE(R) = E(R) − E_substrate − E_Lys` を使い、TSの高さはその系の電子障壁を表す。
 
 ![反応力](../figures/01_four_systems_energy_force_kappa.png)
 
@@ -149,7 +146,7 @@ TSは対応するfreqログの実座標・電子エネルギーを使用した�
 
 分子側の反応物・TS・生成物と新しいLysはすべてM06-2X/6-311++G(d,p)、SMD水。Lysはopt/freq正常終了、13原子・33振動モード・虚振動0個。組成、電荷、計算レベル、温度・圧力、熱化学の有無を確認してから絶対障壁を計算する。旧Lysに由来する異条件の算術値と警告は今回の出力から削除した。
 
-ΔG‡はGaussian標準RRHO値による298.15 K・1 atmのモデル値であり、1 M標準状態補正や低振動数の準調和補正はしていない。1 atmから1 Mへの補正を行う場合、会合型反応の絶対値が変わるが、同一分子数変化のMoriPF基準の系間差では共通項は相殺する。低振動数・配座差の誤差は残る。RAFA15反応物には−5.4036 cm⁻¹の小さな虚振動があり、この系のRRHO値は暫定としてフラグを残している。
+ΔG‡はGaussian標準RRHO値による298.15 K・1 atmのモデル値であり、1 M標準状態補正や低振動数の準調和補正はしていない。1 atmから1 Mへの補正を行う場合、会合型反応の絶対値が変わるが、同一分子数変化の系間比較では共通項は相殺する。低振動数・配座差の誤差は残る。RAFA15反応物には−5.4036 cm⁻¹の小さな虚振動があり、この系のRRHO値は暫定としてフラグを残している。
 
 `absolute_barrier_valid` は計算条件・組成が整合した算術値であることを示す。全反応物が厳密な極小であることや実験速度の再現を保証するフラグではない。別列 `reactant_minimum_verified` と `RRHO_G_provisional` を参照する。単一の与えられた配座・経路についての比較なので、速度定数や実験的反応性の順位は確定しない。
 

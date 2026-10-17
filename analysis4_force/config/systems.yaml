@@ -1,4 +1,3 @@
-reference_system: MoriPF
 systems:
   MoriPF:
     irc: IRC/MORIPF_IRC1.LOG

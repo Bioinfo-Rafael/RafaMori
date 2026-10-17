@@ -53,7 +53,8 @@ def calculate_profiles(system,frame,cfg):
     for choice,h in zip(['primary','alternative_amine_H'],ordered):
         qnear,Qnear,Anear=pair_projection(xyz,forces,near,h,velocity)
         subset=sorted({near,h,opp,o});assert len(subset)==4
-        df=pd.DataFrame(dict(system=system,H_choice=choice,R=r,CN_A=np.linalg.norm(xyz[:,19]-xyz[:,n],axis=1),
+        energies=frame.groupby('signed_irc_coordinate').energy_hartree.first().reindex(r).to_numpy()
+        df=pd.DataFrame(dict(system=system,H_choice=choice,R=r,E_hartree=energies,CN_A=np.linalg.norm(xyz[:,19]-xyz[:,n],axis=1),
             near_atom=near+1,amine_H=h+1,opposite_atom=opp+1,opposite_O=o+1,
             near_distance_A=qnear,opposite_distance_A=qopp,
             near_NHX_angle_deg=angle(xyz[:,n],xyz[:,h],xyz[:,near]),
@@ -64,6 +65,11 @@ def calculate_profiles(system,frame,cfg):
             near_atomic_force_magnitude_sum=norm[:,[near,h]].sum(axis=1),
             opposite_atomic_force_magnitude_sum=norm[:,[opp,o]].sum(axis=1),
             selected_atomic_force_magnitude_sum=norm[:,subset].sum(axis=1),all_atomic_force_magnitude_sum=norm.sum(axis=1),
+            near_X_atomic_C_hartree_R=atomic_C[:,near],amine_H_atomic_C_hartree_R=atomic_C[:,h],
+            opposite_X_atomic_C_hartree_R=atomic_C[:,opp],opposite_O_atomic_C_hartree_R=atomic_C[:,o],
+            near_atomic_C_hartree_R=atomic_C[:,[near,h]].sum(axis=1),
+            opposite_atomic_C_hartree_R=atomic_C[:,[opp,o]].sum(axis=1),
+            remaining_atomic_C_hartree_R=atomic_C[:,[i for i in range(len(z)) if i not in subset]].sum(axis=1),
             selected_atomic_C_hartree_R=atomic_C[:,subset].sum(axis=1),all_atomic_C_hartree_R=atomic_C.sum(axis=1)))
         frames.append(df)
     return pd.concat(frames,ignore_index=True),audit
@@ -91,7 +97,13 @@ def window_metrics(profile,cfg,energy):
             nearatomic=average('near_atomic_force_magnitude_sum');oppatomic=average('opposite_atomic_force_magnitude_sum')
             selectedatom=average('selected_atomic_force_magnitude_sum');allatom=average('all_atomic_force_magnitude_sum')
             costnear=-integral('near_force_motion_hartree_R')*KCAL;costopp=-integral('opposite_force_motion_hartree_R')*KCAL
-            results.append(dict(system=system,reference_system=cfg['reference_system'],window=window,H_choice=choice,R_start=r0,R_end=r1,CN_start_A=start,CN_end_A=end,
+            e0=float(np.interp(r0,g.R,g.E_hartree));e1=float(np.interp(r1,g.R,g.E_hartree))
+            results.append(dict(
+                entry_energy_kcal_mol=(e0-energy.loc[system,'separated_reactants_E_hartree'])*KCAL,
+                window_energy_rise_kcal_mol=(e1-e0)*KCAL,
+                after_window_to_TS_kcal_mol=(energy.loc[system,'TS_E_hartree']-e1)*KCAL,
+                work_energy_residual_kcal_mol=-integral('all_atomic_C_hartree_R')*KCAL-(e1-e0)*KCAL,
+                system=system,window=window,H_choice=choice,R_start=r0,R_end=r1,CN_start_A=start,CN_end_A=end,
                 near_X_mean_force_mEh_bohr=average('near_X_force_magnitude')*1000,amine_H_mean_force_mEh_bohr=average('amine_H_force_magnitude')*1000,
                 opposite_X_mean_force_mEh_bohr=average('opposite_X_force_magnitude')*1000,opposite_O_mean_force_mEh_bohr=average('opposite_O_force_magnitude')*1000,
                 near_mean_abs_projected_force_mEh_bohr=nearabs*1000,opposite_mean_abs_projected_force_mEh_bohr=oppabs*1000,
@@ -101,25 +113,23 @@ def window_metrics(profile,cfg,energy):
                 opposite_atomic_force_share=oppatomic/(nearatomic+oppatomic),selected_atomic_force_share=selectedatom/allatom,
                 near_pair_diagnostic_work_kcal_mol=costnear,opposite_pair_diagnostic_work_kcal_mol=costopp,
                 pair_diagnostic_work_kcal_mol=costnear+costopp,
+                **{name+'_atomic_work_kcal_mol':-integral(name+'_atomic_C_hartree_R')*KCAL for name in ['near_X','amine_H','opposite_X','opposite_O','near','opposite','remaining']},
                 selected_atomic_work_kcal_mol=-integral('selected_atomic_C_hartree_R')*KCAL,
                 all_atomic_work_kcal_mol=-integral('all_atomic_C_hartree_R')*KCAL,
                 near_TS_distance_A=ts.near_distance_A,opposite_TS_distance_A=ts.opposite_distance_A,opposite_TS_CXO_angle_deg=ts.opposite_CXO_angle_deg,
-                relative_electronic_barrier_kcal_mol=energy.loc[system,'relative_electronic_barrier_kcal_mol'],
-                relative_RRHO_G_barrier_kcal_mol=energy.loc[system,'relative_RRHO_G_barrier_kcal_mol']))
+                absolute_electronic_barrier_kcal_mol=energy.loc[system,'absolute_electronic_barrier_kcal_mol'],
+                absolute_RRHO_G_barrier_kcal_mol=energy.loc[system,'absolute_RRHO_G_barrier_kcal_mol']))
     metrics=pd.DataFrame(results)
-    for _,idx in metrics.groupby(['window','H_choice']).groups.items():
-        ref=metrics.loc[idx];ref=ref[ref.system==cfg['reference_system']].iloc[0]
-        for name in cfg['correlation_descriptors']:metrics.loc[idx,name+'_minus_MoriPF']=metrics.loc[idx,name]-ref[name]
     return metrics
 
 
 def correlations(metrics,cfg):
     rows=[]
     for (window,choice),g in metrics.groupby(['window','H_choice'],sort=False):
-        for metric,target in itertools.product(cfg['correlation_descriptors'],['relative_electronic_barrier_kcal_mol','relative_RRHO_G_barrier_kcal_mol']):
+        for metric,target in itertools.product(cfg['correlation_descriptors'],['absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol']):
             x=g[metric].to_numpy();y=g[target].to_numpy()
             r=float(pearsonr(x,y).statistic);rho=float(spearmanr(x,y).statistic)
-            # Rebase x and y with an intercept; centering at MoriPF is not a zero-intercept fit.
+            # Fit the uncentered descriptor and barrier with an intercept.
             loo=[];rleave=[]
             for i in range(4):
                 mask=np.arange(4)!=i

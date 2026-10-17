@@ -1,5 +1,6 @@
-# Fixed before examining descriptor/barrier correlations.
-reference_system: MoriPF
+# Original windows/12 descriptors fixed in the earlier exploratory analysis.
+# Seven atomic-work and two radial-work components added for log-only dimensional proxies.
+# This extension is exploratory, not a preregistration or independent validation.
 near_ring_C: 24
 opposite_ring_C: 25
 opposite_O: 21
@@ -23,3 +24,12 @@ correlation_descriptors:
   - opposite_TS_distance_A
   - opposite_TS_CXO_angle_deg
   - near_TS_distance_A
+  - near_X_atomic_work_kcal_mol
+  - amine_H_atomic_work_kcal_mol
+  - opposite_X_atomic_work_kcal_mol
+  - opposite_O_atomic_work_kcal_mol
+  - near_atomic_work_kcal_mol
+  - opposite_atomic_work_kcal_mol
+  - remaining_atomic_work_kcal_mol
+  - near_pair_diagnostic_work_kcal_mol
+  - opposite_pair_diagnostic_work_kcal_mol

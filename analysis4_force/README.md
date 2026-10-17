@@ -34,11 +34,11 @@
 
 反応物分子＋Lysの組成・電荷がTS・生成物に一致し、計算条件・温度・圧力が一致することを検証する。新しいLysはM06-2X/6-311++G(d,p)・SMD水のopt/freq正常終了、33モード・虚振動なし。`energetics.py` で参照条件の不整合や熱化学の欠落を拒否する。
 
-分離反応物基準の `ΔE‡ = E_TS − E_substrate − E_Lys`、`ΔG‡ = G_TS − G_substrate − G_Lys` と、生成物の反応エネルギーを計算する。系間差はすべて `config/systems.yaml` の **MoriPF** を基準にする。`MoriPF_baseline_differences.csv` にTSの距離・角度・α→TS仕事のMoriPFとの差も保存する。
+分離反応物基準の `ΔE‡ = E_TS − E_substrate − E_Lys`、`ΔG‡ = G_TS − G_substrate − G_Lys` と、生成物の反応エネルギーを計算する。各系の値をそのまま表示する。MoriPFを引く系間のゼロ合わせとそのCSVは廃止した。全電子エネルギー（Hartree）も保存する。
 
 Gibbs値は298.15 K・1 atmのRRHOモデルで、1 Mや準調和への補正は行わない。RAFA15の微小虚振動は `RRHO_G_provisional=true` として残す。`absolute_barrier_valid` は条件・組成が整合した算術値のフラグであり、反応物の厳密な極小確認は `reactant_minimum_verified` に分ける。
 
-4系比較エネルギー図では、各系の分離反応物基準の電子エネルギーからMoriPFの電子障壁を引き、MoriPFのTSを0とする。個別系の形状診断図では引き続き各TS＝0を使用し、系間の相対障壁とは区別する。反応力は定数オフセットに依存しない。
+4系比較・個別系のエネルギー図ともに各系の分離反応物基準のΔE(R)を使い、TSの高さはその系のΔE‡を表す。反応力は定数オフセットに依存しない。数値平滑化でTS値を一時的に引く処理は丸め誤差対策で、表示のゼロ合わせではない。
 
 IRC左端からTSへの障壁・αまでの仕事は計算範囲に依存する。分離反応物基準の相対障壁やα→TSの仕事とは別々に保存する。生成物optはIRC末端と直接接続せず、エネルギー差と原子番号を固定したRMSDを監査する。
 
@@ -50,7 +50,7 @@ IRC左端からTSへの障壁・αまでの仕事は計算範囲に依存する�
 | `outputs/reports/stationary_point_audit.json` | 全opt/freqの条件、エネルギー、周波数、抽出行番号 |
 | `outputs/reports/orientation_audit.json` | 符号、C–N距離、除外点、TS対応の検証 |
 | `outputs/csv/system_summary.csv` | 4系の比較表 |
-| `outputs/csv/energy_comparison.csv` | 絶対・MoriPF基準の相対障壁、反応エネルギー、区間の仕事 |
+| `outputs/csv/energy_comparison.csv` | 各系の障壁、反応エネルギー、区間の仕事、生のHartree値 |
 | `outputs/csv/all_NH_F_contacts.csv` | 全アミンH×Fの距離・角度 |
 | `outputs/csv/descriptive_correlations.csv` | 距離・符号付き微分・反応力の領域別相関 |
 | `outputs/csv/fluorine_positions.csv` | Fの原子番号とortho/meta/paraの対応 |
@@ -71,8 +71,12 @@ python -m unittest discover -s analysis4_force/tests -v
 
 ## 両側ortho接触の追加探索
 
-`two_sided_contacts.py` はC24上のF/H–アミンHと、C25上のF/H–O21を対応づける。旧 `interference_F` 指標はF限定なので、RAFA15のH56–O21はこの追加解析で扱う。主区間は全系共通のC–N=2.50→2.10 Å。3区間×アミンHの2選択について、12種類の指標と電子／RRHO Gibbs障壁の相関を全て保存する。系間差はMoriPF基準。
+`two_sided_contacts.py` はC24上のF/H–アミンHと、C25上のF/H–O21を対応づける。旧 `interference_F` 指標はF限定なので、RAFA15のH56–O21はこの追加解析で扱う。主区間は全系共通のC–N=2.50→2.10 Å。3区間×アミンHの2選択について、21種類の指標と電子／RRHO Gibbs障壁の相関を全て保存する。各系の実値を使い、MoriPFとの差へ変換しない。
 
 `two_sided_atom_mapping.csv`、`two_sided_force_profiles.csv`、`two_sided_window_metrics.csv`、`two_sided_correlations.csv` と図14–16、[追加summary](outputs/reports/two_sided_contact_summary_ja.md)を生成する。主指標の射影力比と、探索上高相関だった全原子力ノルム比を区別する。力は全相互作用の合計であり、F/H···Oの独立した引力・斥力ではない。
 
 通常の `run_analysis.py` から自動実行される。既存の4系結果から追加部分だけ再計算する場合は `python analysis4_force/two_sided_contacts.py`。
+
+## 既存log限定の指標と文献調査
+
+[調査・計算方針](outputs/reports/log_only_research_plan_ja.md) と [両側仕事の結果](outputs/reports/two_sided_contact_summary_ja.md) を参照。追加DFTなしで、共通C–N区間の原子仕事 `−∫F_i·dr_i` をアミン側・反対側・残りに分割し、接触方向の射影仕事も別に保存する。21指標×3区間×2通りのアミンH×2障壁を記録する。比率は補足、主図15はkcal/molの仕事と各系の障壁。全原子仕事と区間エネルギー上昇、区間前後を含む全障壁の収支をテストする。

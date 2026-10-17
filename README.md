@@ -4,18 +4,20 @@ GaussianのIRC（固有反応座標）計算ログから、フッ素置換位置
 
 **最新の結果：[4系解析の日本語summary](analysis4_force/outputs/reports/summary_ja.md)**
 
-**両側の接触の定量化：[F···Hと反対側F/H···Oの力・障壁との対応](analysis4_force/outputs/reports/two_sided_contact_summary_ja.md)**。反対側原子力の割合に障壁との記述相関（電子障壁r≈0.958）が見られましたが、接触方向の射影力の比率は弱い対応でした。4系を使った探索結果であり、ペア相互作用エネルギーや独立した予測モデルではありません。
+**追加DFTなしの文献調査・方針：[logだけで評価する量と今回の結果](analysis4_force/outputs/reports/log_only_research_plan_ja.md)**
+
+**両側の定量化：[原子仕事・接触方向の射影仕事と障壁](analysis4_force/outputs/reports/two_sided_contact_summary_ja.md)**。図15は横軸を仕事（kcal/mol）、縦軸を各系の障壁へ変更。反対側原子仕事と電子障壁にr≈−0.965の対応がありますが、O21の応答が主成分で、ペア結合エネルギーではありません。
 
 ## 今回の比較でわかったこと
 
-2026年10月17日に受領した `完成.zip` の16ログ（4系×IRC・反応物・生成物・TS）と、同じ計算条件で再計算された `LYS (1).LOG`（保存名 `Lys.log`）を解析しました。比較基準は **MoriPF＝0** です。
+2026年10月17日に受領した `完成.zip` の16ログ（4系×IRC・反応物・生成物・TS）と、同じ計算条件で再計算された `LYS (1).LOG`（保存名 `Lys.log`）を解析しました。各系の分離反応物（基質＋Lys）を基準とする **ΔE‡・ΔG‡そのもの** を表示します。MoriPFを引くゼロ合わせは行いません。
 
-| 分子系 | ortho F数 | ΔΔE‡：MoriPFとの差 | ΔΔG‡：MoriPFとの差 | ΔG‡：分子＋Lys基準 |
-|---|---:|---:|---:|---:|
-| MoriPF | 2 | 0.000 | 0.000 | 14.083 |
-| RAFA14 | 0 | +1.818 | +1.845 | 15.928 |
-| RAFA15 | 1 | −3.245 | −5.141 | 8.943 |
-| RAFA16 | 2 | +0.763 | +0.940 | 15.023 |
+| 分子系 | ortho F数 | ΔE‡ | ΔG‡（RRHO） |
+|---|---:|---:|---:|
+| MoriPF | 2 | −1.342 | 14.083 |
+| RAFA14 | 0 | 0.476 | 15.928 |
+| RAFA15 | 1 | −4.587 | 8.943 |
+| RAFA16 | 2 | −0.579 | 15.023 |
 
 エネルギー単位はkcal/mol。ΔEは電子エネルギー、ΔGは298.15 K・1 atmのGaussian RRHO値です。RAFA15の反応物には微小虚振動があるため、この系のRRHO値は暫定として扱います。
 
@@ -23,7 +25,7 @@ ortho FのないRAFA14はMoriPFより高障壁ですが、RAFA15はMoriPFよりH
 
 新しいLysはM06-2X/6-311++G(d,p)・SMD水のopt/freqで、正常終了・虚振動なしです。今回は分子＋Lysを基準とする絶対電子障壁・Gibbs障壁も計算しています。電子障壁が負の系もありますが、分離反応物基準の値であり、無障壁反応を意味しません。全系でGibbs障壁は正です。配座・標準状態・生成物対応の制限はsummaryに記載しています。
 
-![相対障壁](analysis4_force/outputs/figures/02_relative_barriers.png)
+![障壁と区間仕事](analysis4_force/outputs/figures/02_barriers_and_work.png)
 
 ## ディレクトリ構成
 

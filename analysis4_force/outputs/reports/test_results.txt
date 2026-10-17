@@ -1,13 +1,14 @@
-test_absolute_energies_and_baseline (test_analysis4.Analysis4Tests.test_absolute_energies_and_baseline) ... ok
+test_absolute_energies_and_uncentered_profiles (test_analysis4.Analysis4Tests.test_absolute_energies_and_uncentered_profiles) ... ok
 test_all_contacts_and_fixed_selection (test_analysis4.Analysis4Tests.test_all_contacts_and_fixed_selection) ... ok
 test_analytic_derivatives_and_extrema (test_analysis4.Analysis4Tests.test_analytic_derivatives_and_extrema) ... ok
-test_barrier_cancellation_and_closure (test_analysis4.Analysis4Tests.test_barrier_cancellation_and_closure) ... ok
+test_barrier_and_work_closure (test_analysis4.Analysis4Tests.test_barrier_and_work_closure) ... ok
 test_force_motion_partition (test_analysis4.Analysis4Tests.test_force_motion_partition) ... ok
 test_four_oriented_logs_and_ts (test_analysis4.Analysis4Tests.test_four_oriented_logs_and_ts) ... ok
 test_invalid_lys_is_rejected (test_analysis4.Analysis4Tests.test_invalid_lys_is_rejected) ... ok
 test_original_hashes_and_compressed_roundtrip (test_analysis4.Analysis4Tests.test_original_hashes_and_compressed_roundtrip) ... ok
 test_stationary_audit_verifies_matched_lys (test_analysis4.Analysis4Tests.test_stationary_audit_verifies_matched_lys) ... ok
-test_all_correlations_retained_and_rebasing_invariant (test_two_sided_contacts.TwoSidedTests.test_all_correlations_retained_and_rebasing_invariant) ... ok
+test_all_correlations_retained_and_uncentered (test_two_sided_contacts.TwoSidedTests.test_all_correlations_retained_and_uncentered) ... ok
+test_atomic_partition_and_full_barrier_accounting (test_two_sided_contacts.TwoSidedTests.test_atomic_partition_and_full_barrier_accounting) ... ok
 test_fixed_window_coverage_and_ratios (test_two_sided_contacts.TwoSidedTests.test_fixed_window_coverage_and_ratios) ... ok
 test_integrated_all_atom_work_matches_energy_change (test_two_sided_contacts.TwoSidedTests.test_integrated_all_atom_work_matches_energy_change) ... ok
 test_primary_near_projection_matches_existing_force_calculation (test_two_sided_contacts.TwoSidedTests.test_primary_near_projection_matches_existing_force_calculation) ... ok
@@ -15,6 +16,6 @@ test_projection_sign_and_rigid_rotation (test_two_sided_contacts.TwoSidedTests.t
 test_same_ortho_site_and_different_elements (test_two_sided_contacts.TwoSidedTests.test_same_ortho_site_and_different_elements) ... ok
 
 ----------------------------------------------------------------------
-Ran 15 tests in 0.986s
+Ran 16 tests in 1.014s
 
 OK

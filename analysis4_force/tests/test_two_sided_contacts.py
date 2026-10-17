@@ -1,5 +1,5 @@
 """Scientific checks for ortho-site assignment, ratio and work diagnostics."""
-import sys,unittest
+import sys,unittest,yaml
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -31,8 +31,7 @@ class TwoSidedTests(unittest.TestCase):
             top=row.opposite_X_mean_force_mEh_bohr+row.opposite_O_mean_force_mEh_bohr
             bottom=top+row.near_X_mean_force_mEh_bohr+row.amine_H_mean_force_mEh_bohr
             self.assertAlmostEqual(row.opposite_atomic_force_share,top/bottom,places=11)
-        baseline=m[m.system=='MoriPF'].filter(regex='_minus_MoriPF$')
-        np.testing.assert_allclose(baseline,0,atol=1e-12)
+        self.assertFalse(any(c.endswith('_minus_MoriPF') for c in m.columns))
     def test_integrated_all_atom_work_matches_energy_change(self):
         m=pd.read_csv(CSV/'two_sided_window_metrics.csv')
         for system,g in m.groupby('system'):
@@ -40,14 +39,23 @@ class TwoSidedTests(unittest.TestCase):
             for row in g.itertuples():
                 de=(np.interp(row.R_end,profile.R,profile.E_raw_hartree)-np.interp(row.R_start,profile.R,profile.E_raw_hartree))*627.509474
                 self.assertLess(abs(row.all_atomic_work_kcal_mol-de)/abs(de),.002)
-    def test_all_correlations_retained_and_rebasing_invariant(self):
+    def test_all_correlations_retained_and_uncentered(self):
         m=pd.read_csv(CSV/'two_sided_window_metrics.csv');c=pd.read_csv(CSV/'two_sided_correlations.csv')
-        self.assertEqual(len(c),3*2*12*2)
+        cfg=yaml.safe_load((ROOT/'analysis4_force/config/two_sided_contacts.yaml').read_text())
+        self.assertEqual(len(c),3*2*len(cfg['correlation_descriptors'])*2)
         self.assertTrue(c.exploratory_only.all());self.assertFalse(c.independent_validation.any())
         for row in c.itertuples():
             g=m[(m.window==row.window)&(m.H_choice==row.H_choice)]
-            r=pearsonr(g[row.descriptor+'_minus_MoriPF'],g[row.target]).statistic
+            r=pearsonr(g[row.descriptor],g[row.target]).statistic
             self.assertAlmostEqual(r,row.pearson_r,places=10)
+    def test_atomic_partition_and_full_barrier_accounting(self):
+        m=pd.read_csv(CSV/'two_sided_window_metrics.csv')
+        np.testing.assert_allclose(m.near_atomic_work_kcal_mol+m.opposite_atomic_work_kcal_mol+m.remaining_atomic_work_kcal_mol,m.all_atomic_work_kcal_mol,atol=1e-12)
+        np.testing.assert_allclose(m.near_X_atomic_work_kcal_mol+m.amine_H_atomic_work_kcal_mol,m.near_atomic_work_kcal_mol,atol=1e-12)
+        np.testing.assert_allclose(m.opposite_X_atomic_work_kcal_mol+m.opposite_O_atomic_work_kcal_mol,m.opposite_atomic_work_kcal_mol,atol=1e-12)
+        np.testing.assert_allclose(m.entry_energy_kcal_mol+m.window_energy_rise_kcal_mol+m.after_window_to_TS_kcal_mol,m.absolute_electronic_barrier_kcal_mol,atol=1e-8)
+        self.assertLess(m.work_energy_residual_kcal_mol.abs().max(),.004)
+
     def test_primary_near_projection_matches_existing_force_calculation(self):
         p=pd.read_csv(CSV/'two_sided_force_profiles.csv');old=pd.read_csv(CSV/'force_motion_alignment.csv')
         for system in ['MoriPF','RAFA15','RAFA16']:

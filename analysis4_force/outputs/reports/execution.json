@@ -15,7 +15,7 @@
     "RAFA15",
     "RAFA16"
   ],
-  "reference_system": "MoriPF",
+  "energy_reference": "each separated substrate + Lys",
   "Lys_sha256": "e45311fb7d928e273a0145408d260a147db2d1c74b2aaa6f214eae105483b72b",
   "Lys_method_basis": "M062X/6-311++G(D,P)",
   "Lys_solvent": "SMD(water)"

@@ -128,7 +128,7 @@ def main():
         ac,validation,fragment,alignment=analyze_force_motion(system,frame,profile,atom_map,targets,baseconfig['force_motion'],KCAL)
         ac.to_csv(csv/f'atomic_contribution_{system}.csv.gz',index=False,compression={'method':'gzip','mtime':0})
         validations.append(validation);fragments_all.append(fragment);alignments.append(alignment)
-        plots.energy_force_kappa(system,profile,landmark,spline,ts['energy_hartree'],KCAL,fig/f'01_{system}_energy_force_kappa.png')
+        plots.energy_force_kappa(system,profile,landmark,spline,reactant['energy_hartree']+lys['energy_hartree'],KCAL,fig/f'01_{system}_energy_force_kappa.png')
         plots.target_geometry(system,frame,atom_map,targets,landmark,fig/f'04_{system}_geometry.png')
         plots.geometry_context(system,geo,landmark,atom_map,targets,fig/f'05_{system}_geometry_context.png')
         plots.atomic_force_context(system,atomic,landmark,atom_map,targets,fig/f'06_{system}_atomic_force.png')
@@ -168,18 +168,11 @@ def main():
             dipoles.append(dict(system=system,R=row.signed_irc_coordinate,dipole_magnitude_debye=float(np.linalg.norm(v)) if v is not None else np.nan))
         print(f'{system}: {len(profile)} points; C-N {audit["reactant_side_CN_A"]:.3f} -> {audit["product_side_CN_A"]:.3f} A',flush=True)
     table(orientation,csv/'orientation_audit.csv');(reports/'orientation_audit.json').write_text(json.dumps(orientation,indent=2)+'\n')
-    energy=pd.DataFrame(energy_rows);ref=energy[energy.system==config['reference_system']].iloc[0]
-    for src,dst in [('TS_minus_substrate_E_hartree','relative_electronic_barrier_kcal_mol'),('TS_minus_substrate_G_hartree','relative_RRHO_G_barrier_kcal_mol'),('product_minus_substrate_E_hartree','relative_reaction_energy_kcal_mol'),('alpha_minus_substrate_E_hartree','relative_preparation_component_kcal_mol')]:
-        energy[dst]=(energy[src]-ref[src])*KCAL
-    energy['relative_RRHO_G_reaction_energy_kcal_mol']=energy.RRHO_G_reaction_energy_kcal_mol-ref.RRHO_G_reaction_energy_kcal_mol
-    energy['relative_alpha_to_TS_kcal_mol']=energy.alpha_to_TS_kcal_mol-ref.alpha_to_TS_kcal_mol
-    energy['reference_system']=config['reference_system'];energy.to_csv(csv/'energy_comparison.csv',index=False)
-    summary=pd.DataFrame(summary_rows).merge(energy[['system','reference_system','absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol','relative_electronic_barrier_kcal_mol','relative_RRHO_G_barrier_kcal_mol','IRC_left_to_TS_kcal_mol','alpha_to_TS_kcal_mol','relative_alpha_to_TS_kcal_mol','RRHO_G_provisional']],on='system');summary.to_csv(csv/'system_summary.csv',index=False)
-    baseline=summary.set_index('system').loc[config['reference_system']]
-    deltas=summary[['system','reference_system']].copy()
-    for field in ('TS_CN_A','TS_nearest_FH_A','TS_NHF_angle_deg','alpha_to_TS_kcal_mol'):
-        deltas[field+'_minus_reference']=summary[field]-baseline[field]
-    deltas.to_csv(csv/'MoriPF_baseline_differences.csv',index=False)
+    energy=pd.DataFrame(energy_rows)
+    energy.to_csv(csv/'energy_comparison.csv',index=False)
+    summary=pd.DataFrame(summary_rows).merge(energy[['system','absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol','IRC_left_to_TS_kcal_mol','alpha_to_TS_kcal_mol','RRHO_G_provisional']],on='system');summary.to_csv(csv/'system_summary.csv',index=False)
+    # Retire the prior inter-system centering output when regenerating in place.
+    (csv/'MoriPF_baseline_differences.csv').unlink(missing_ok=True)
     table(endpoint_rows,csv/'endpoint_correspondence.csv');table(geometry_rows,csv/'geometry_population_summary.csv')
     table(contacts,csv/'all_NH_F_contacts.csv');table(correlations,csv/'descriptive_correlations.csv');table(sensitivity,csv/'smoothing_sensitivity.csv')
     com=table(com_rows,csv/'COM_distances.csv');align=pd.concat(alignments,ignore_index=True)
@@ -200,10 +193,8 @@ def main():
     fragment=pd.concat(fragments_all,ignore_index=True);fragment.to_csv(csv/'fragment_contributions.csv',index=False);align.to_csv(csv/'force_motion_alignment.csv',index=False)
     dipole=table(dipoles,csv/'dipoles.csv')
     for system,stationary in records.items():
-        profiles[system]['reference_system']=config['reference_system']
-        profiles[system]['E_relative_reference_barrier_kcal_mol']=profiles[system].E_relative_separated_reactants_kcal_mol-ref.absolute_electronic_barrier_kcal_mol
         profiles[system].to_csv(csv/f'reaction_force_{system}.csv',index=False)
-        offset=stationary['reactant']['energy_hartree']+lys['energy_hartree']+ref.absolute_electronic_barrier_kcal_mol/KCAL
+        offset=stationary['reactant']['energy_hartree']+lys['energy_hartree']
         energies_for_plot[system]={'reactant':SimpleNamespace(energy_hartree=offset)}
     plots.energy_force_kappa_comparison(profiles,marks,splines,energies_for_plot,KCAL,fig/'01_four_systems_energy_force_kappa.png')
     plots.target_geometry_comparison(frames,atom_map,targets,marks,fig/'04_four_systems_geometry.png')
@@ -216,7 +207,7 @@ def main():
     write_report(summary,energy,orientation,stationary_rows,pd.DataFrame(endpoint_rows),vsummary,warnings,reports,config)
     from two_sided_contacts import main as analyze_two_sided
     analyze_two_sided()
-    (reports/'execution.json').write_text(json.dumps(dict(warnings=warnings,python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,systems=list(records),reference_system=config['reference_system'],Lys_sha256=lys['sha256'],Lys_method_basis=lys['method_basis'],Lys_solvent=lys['solvent']),indent=2)+'\n')
+    (reports/'execution.json').write_text(json.dumps(dict(warnings=warnings,python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,systems=list(records),energy_reference='each separated substrate + Lys',Lys_sha256=lys['sha256'],Lys_method_basis=lys['method_basis'],Lys_solvent=lys['solvent']),indent=2)+'\n')
     manifest_path=reports/'output_manifest.json'
     manifest=[dict(path=str(p.relative_to(out)),bytes=p.stat().st_size,sha256=sha256(p)) for p in sorted(out.rglob('*')) if p.is_file() and p!=manifest_path]
     manifest_path.write_text(json.dumps(manifest,indent=2)+'\n')
