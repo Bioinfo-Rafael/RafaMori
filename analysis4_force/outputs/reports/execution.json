@@ -1,8 +1,6 @@
 {
   "warnings": [
     "RAFA15 reactant: imaginary frequencies [-5.4036] cm^-1; minimum not fully verified",
-    "Lys calculation level differs: absolute substrate+Lys barriers are invalid; common-Lys-cancelled differences are reported instead.",
-    "Lys has no frequency/thermochemistry: absolute Gibbs barriers unavailable.",
     "MoriPF: omitted 1 unconverged terminal point(s); no extrapolated coordinates used",
     "RAFA15: omitted 1 unconverged terminal point(s); no extrapolated coordinates used",
     "RAFA15: supplied optimized product is higher than the IRC product-side endpoint; conformer/path correspondence needs checking",
@@ -16,5 +14,9 @@
     "RAFA14",
     "RAFA15",
     "RAFA16"
-  ]
+  ],
+  "reference_system": "MoriPF",
+  "Lys_sha256": "e45311fb7d928e273a0145408d260a147db2d1c74b2aaa6f214eae105483b72b",
+  "Lys_method_basis": "M062X/6-311++G(D,P)",
+  "Lys_solvent": "SMD(water)"
 }

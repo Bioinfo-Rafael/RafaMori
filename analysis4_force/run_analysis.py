@@ -16,6 +16,7 @@ from numerics4 import reaction_force_profile
 from geometry_context import analyze_geometry_context,analyze_atomic_forces
 from force_motion import analyze_force_motion
 import plotting4 as plots
+from energetics import energy_terms, validate_reference
 
 KCAL=627.509474
 
@@ -74,6 +75,7 @@ def main():
             if not record['normal_termination']:warnings.append(f'{system} {role}: normal termination missing')
             if role!='ts' and record['imaginary_frequencies']:warnings.append(f"{system} {role}: imaginary frequencies {record['imaginary_frequencies']} cm^-1; minimum not fully verified")
             if role=='ts' and len(record['imaginary_frequencies'])!=1:raise ValueError(f'{system}: expected one imaginary TS frequency')
+        validate_reference(records[system]['reactant'],records[system]['ts'],records[system]['product'],lys)
         mapping,fragments,hs,fp=mapping_from_ts(system,records[system]['ts'],spec['reaction_N'])
         atom_map[system]=atom_map.alias.map(mapping);targets['fragments'][system]=fragments;fpositions+=fp;h_atoms[system]=hs
         for row in atom_map.itertuples():
@@ -82,8 +84,6 @@ def main():
     (HERE/'config/analysis_targets.yaml').write_text(yaml.safe_dump(targets,sort_keys=False))
     table(fpositions,csv/'fluorine_positions.csv');table(stationary_rows,csv/'stationary_point_audit.csv')
     (reports/'stationary_point_audit.json').write_text(json.dumps(stationary_rows,indent=2)+'\n')
-    if lys['method_basis']!='M062X/6-311++G(D,P)' or lys['solvent']!='SMD(water)':warnings.append('Lys calculation level differs: absolute substrate+Lys barriers are invalid; common-Lys-cancelled differences are reported instead.')
-    if lys['frequency_count']==0:warnings.append('Lys has no frequency/thermochemistry: absolute Gibbs barriers unavailable.')
     frames={};profiles={};marks={};splines={};orientation=[];energy_rows=[];endpoint_rows=[];geometry_rows=[];dipoles=[]
     validations=[];fragments_all=[];alignments=[];contacts=[];correlations=[];summary_rows=[];sensitivity=[];com_rows=[]
     energies_for_plot={}
@@ -97,6 +97,7 @@ def main():
         if audit['excluded_unconverged_points']:warnings.append(f"{system}: omitted {len(audit['excluded_unconverged_points'])} unconverged terminal point(s); no extrapolated coordinates used")
         point=frame[['signed_irc_coordinate','path_number','point_number']].drop_duplicates().sort_values('signed_irc_coordinate')
         profile,landmark,spline=reaction_force_profile(frame,KCAL,4001,None)
+        profile['E_relative_separated_reactants_kcal_mol']=(profile.E_raw_hartree-reactant['energy_hartree']-lys['energy_hartree'])*KCAL
         profiles[system]=profile;marks[system]=landmark;splines[system]=spline
         profile.to_csv(csv/f'reaction_force_{system}.csv',index=False)
         frame.to_csv(csv/f'parsed_oriented_{system}.csv.gz',index=False,compression={'method':'gzip','mtime':0})
@@ -108,13 +109,7 @@ def main():
         hi=frame[frame.signed_irc_coordinate==frame.signed_irc_coordinate.max()].sort_values('atom_number')
         _,prod_rmsd=aligned(product['xyz'],hi[['x','y','z']].to_numpy())
         ealpha=float(spline(landmark.alpha_continuous));eleft=float(lo.energy_hartree.iloc[0])
-        e=dict(system=system,TS_E_hartree=ts['energy_hartree'],substrate_E_hartree=reactant['energy_hartree'],product_E_hartree=product['energy_hartree'],
-               TS_minus_substrate_E_hartree=ts['energy_hartree']-reactant['energy_hartree'],product_minus_substrate_E_hartree=product['energy_hartree']-reactant['energy_hartree'],
-               TS_minus_substrate_G_hartree=ts['G_hartree']-reactant['G_hartree'],
-               mixed_level_barrier_INVALID_kcal_mol=(ts['energy_hartree']-reactant['energy_hartree']-lys['energy_hartree'])*KCAL,
-               absolute_barrier_valid=False,IRC_left_to_TS_kcal_mol=(ts['energy_hartree']-eleft)*KCAL,
-               IRC_left_to_alpha_kcal_mol=(ealpha-eleft)*KCAL,alpha_to_TS_kcal_mol=(ts['energy_hartree']-ealpha)*KCAL,
-               alpha_minus_substrate_E_hartree=ealpha-reactant['energy_hartree'])
+        e=dict(system=system,**energy_terms(reactant,ts,product,lys,ealpha,eleft))
         energy_rows.append(e)
         composition=reactant['composition'].copy()
         for z,count in lys['composition'].items():composition[z]=composition.get(z,0)+count
@@ -176,8 +171,15 @@ def main():
     energy=pd.DataFrame(energy_rows);ref=energy[energy.system==config['reference_system']].iloc[0]
     for src,dst in [('TS_minus_substrate_E_hartree','relative_electronic_barrier_kcal_mol'),('TS_minus_substrate_G_hartree','relative_RRHO_G_barrier_kcal_mol'),('product_minus_substrate_E_hartree','relative_reaction_energy_kcal_mol'),('alpha_minus_substrate_E_hartree','relative_preparation_component_kcal_mol')]:
         energy[dst]=(energy[src]-ref[src])*KCAL
+    energy['relative_RRHO_G_reaction_energy_kcal_mol']=energy.RRHO_G_reaction_energy_kcal_mol-ref.RRHO_G_reaction_energy_kcal_mol
+    energy['relative_alpha_to_TS_kcal_mol']=energy.alpha_to_TS_kcal_mol-ref.alpha_to_TS_kcal_mol
     energy['reference_system']=config['reference_system'];energy.to_csv(csv/'energy_comparison.csv',index=False)
-    summary=pd.DataFrame(summary_rows).merge(energy[['system','relative_electronic_barrier_kcal_mol','relative_RRHO_G_barrier_kcal_mol','IRC_left_to_TS_kcal_mol','alpha_to_TS_kcal_mol']],on='system');summary.to_csv(csv/'system_summary.csv',index=False)
+    summary=pd.DataFrame(summary_rows).merge(energy[['system','reference_system','absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol','relative_electronic_barrier_kcal_mol','relative_RRHO_G_barrier_kcal_mol','IRC_left_to_TS_kcal_mol','alpha_to_TS_kcal_mol','relative_alpha_to_TS_kcal_mol','RRHO_G_provisional']],on='system');summary.to_csv(csv/'system_summary.csv',index=False)
+    baseline=summary.set_index('system').loc[config['reference_system']]
+    deltas=summary[['system','reference_system']].copy()
+    for field in ('TS_CN_A','TS_nearest_FH_A','TS_NHF_angle_deg','alpha_to_TS_kcal_mol'):
+        deltas[field+'_minus_reference']=summary[field]-baseline[field]
+    deltas.to_csv(csv/'MoriPF_baseline_differences.csv',index=False)
     table(endpoint_rows,csv/'endpoint_correspondence.csv');table(geometry_rows,csv/'geometry_population_summary.csv')
     table(contacts,csv/'all_NH_F_contacts.csv');table(correlations,csv/'descriptive_correlations.csv');table(sensitivity,csv/'smoothing_sensitivity.csv')
     com=table(com_rows,csv/'COM_distances.csv');align=pd.concat(alignments,ignore_index=True)
@@ -197,6 +199,12 @@ def main():
         if row['pearson_r']<.95 or row['normalized_RMSE']>.1:warnings.append(f"{row['system']}: force-motion reconstruction deviates substantially; inspect validation before interpreting fragment contributions")
     fragment=pd.concat(fragments_all,ignore_index=True);fragment.to_csv(csv/'fragment_contributions.csv',index=False);align.to_csv(csv/'force_motion_alignment.csv',index=False)
     dipole=table(dipoles,csv/'dipoles.csv')
+    for system,stationary in records.items():
+        profiles[system]['reference_system']=config['reference_system']
+        profiles[system]['E_relative_reference_barrier_kcal_mol']=profiles[system].E_relative_separated_reactants_kcal_mol-ref.absolute_electronic_barrier_kcal_mol
+        profiles[system].to_csv(csv/f'reaction_force_{system}.csv',index=False)
+        offset=stationary['reactant']['energy_hartree']+lys['energy_hartree']+ref.absolute_electronic_barrier_kcal_mol/KCAL
+        energies_for_plot[system]={'reactant':SimpleNamespace(energy_hartree=offset)}
     plots.energy_force_kappa_comparison(profiles,marks,splines,energies_for_plot,KCAL,fig/'01_four_systems_energy_force_kappa.png')
     plots.target_geometry_comparison(frames,atom_map,targets,marks,fig/'04_four_systems_geometry.png')
     plots.atomic_force_motion_validation(validation,marks,fig/'08_force_motion_validation.png')
@@ -204,9 +212,9 @@ def main():
     plots.force_motion_alignment_plot(align,marks,atom_map,targets,fig/'10_force_motion_alignment.png')
     plots.dipole_comparison(dipole,marks,fig/'07_dipoles.png')
     from reporting import create_extra_figures,write_report
-    create_extra_figures(summary,energy,pd.DataFrame(contacts),pd.DataFrame(corrected),fig)
+    create_extra_figures(summary,energy,pd.DataFrame(contacts),pd.DataFrame(corrected),fig,config)
     write_report(summary,energy,orientation,stationary_rows,pd.DataFrame(endpoint_rows),vsummary,warnings,reports,config)
-    (reports/'execution.json').write_text(json.dumps(dict(warnings=warnings,python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,systems=list(records)),indent=2)+'\n')
+    (reports/'execution.json').write_text(json.dumps(dict(warnings=warnings,python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,systems=list(records),reference_system=config['reference_system'],Lys_sha256=lys['sha256'],Lys_method_basis=lys['method_basis'],Lys_solvent=lys['solvent']),indent=2)+'\n')
     manifest_path=reports/'output_manifest.json'
     manifest=[dict(path=str(p.relative_to(out)),bytes=p.stat().st_size,sha256=sha256(p)) for p in sorted(out.rglob('*')) if p.is_file() and p!=manifest_path]
     manifest_path.write_text(json.dumps(manifest,indent=2)+'\n')

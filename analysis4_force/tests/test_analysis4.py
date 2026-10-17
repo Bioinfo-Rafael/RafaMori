@@ -8,6 +8,7 @@ sys.path[:0]=[str(ROOT/'base_analysis/src'),str(ROOT/'analysis2_force/src'),str(
 from parse_gaussian_irc import parse_log
 from inputs import parse_stationary
 from numerics4 import reaction_force_profile
+from energetics import validate_reference
 
 class Analysis4Tests(unittest.TestCase):
     def test_original_hashes_and_compressed_roundtrip(self):
@@ -28,27 +29,64 @@ class Analysis4Tests(unittest.TestCase):
             self.assertEqual(len(ts),57)
             self.assertLess(abs(row.TS_energy_difference_kcal_mol),.001)
             self.assertLess(row.TS_midpoint_alignment_RMSD_A,.001)
-    def test_stationary_audit_catches_wrong_lys_level(self):
+    def test_stationary_audit_verifies_matched_lys(self):
         a=json.loads((OUT/'reports/stationary_point_audit.json').read_text())
         lys=next(r for r in a if r['system']=='Lys')
-        self.assertEqual(lys['method_basis'],'B3LYP/6-311+G(2D,P)')
-        self.assertEqual(lys['frequency_count'],0)
-        self.assertIsNone(lys['G_hartree'])
+        self.assertEqual(lys['method_basis'],'M062X/6-311++G(D,P)')
+        self.assertEqual(lys['solvent'],'SMD(water)')
+        self.assertEqual(lys['frequency_count'],33)
+        self.assertEqual(lys['imaginary_frequencies'],[])
+        self.assertTrue(lys['normal_termination'])
+        self.assertAlmostEqual(lys['energy_hartree'],-174.451556589,places=9)
+        self.assertAlmostEqual(lys['G_hartree'],-174.357693,places=6)
         for row in a:
             if row['role']=='ts':
                 self.assertEqual(len(row['imaginary_frequencies']),1)
                 self.assertEqual(row['frequency_count'],165)
                 self.assertEqual(row['method_basis'],'M062X/6-311++G(D,P)')
     def test_barrier_cancellation_and_closure(self):
-        e=pd.read_csv(CSV/'energy_comparison.csv').set_index('system');ref=e.loc['RAFA16']
+        e=pd.read_csv(CSV/'energy_comparison.csv').set_index('system');ref=e.loc['MoriPF']
         for _,row in e.iterrows():
-            self.assertFalse(row.absolute_barrier_valid)
+            self.assertTrue(row.absolute_barrier_valid)
+            self.assertEqual(row.reference_system,"MoriPF")
             self.assertAlmostEqual(row.IRC_left_to_alpha_kcal_mol+row.alpha_to_TS_kcal_mol,row.IRC_left_to_TS_kcal_mol,places=9)
             for common_lys in [-174.4,-174.6]:
                 barrier=(row.TS_E_hartree-row.substrate_E_hartree-common_lys)-(ref.TS_E_hartree-ref.substrate_E_hartree-common_lys)
                 self.assertAlmostEqual(barrier*627.509474,row.relative_electronic_barrier_kcal_mol,places=8)
             dW2=row.alpha_to_TS_kcal_mol-ref.alpha_to_TS_kcal_mol
             self.assertAlmostEqual(row.relative_preparation_component_kcal_mol+dW2,row.relative_electronic_barrier_kcal_mol,places=8)
+    def test_invalid_lys_is_rejected(self):
+        rows=json.loads((OUT/'reports/stationary_point_audit.json').read_text())
+        records={r['role']:r for r in rows if r['system']=='MoriPF'}
+        lys=next(r for r in rows if r['system']=='Lys')
+        for field,value in [('method_basis','B3LYP/6-311+G(2D,P)'),('solvent','PCM(water)'),('G_hartree',None),('normal_termination',False),('temperature_K',310),('frequency_count',0),('imaginary_frequencies',[-12.0])]:
+            bad=dict(lys);bad[field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):
+                validate_reference(records['reactant'],records['ts'],records['product'],bad)
+    def test_absolute_energies_and_baseline(self):
+        rows=json.loads((OUT/'reports/stationary_point_audit.json').read_text())
+        lys=next(r for r in rows if r['system']=='Lys')
+        energy=pd.read_csv(CSV/'energy_comparison.csv').set_index('system')
+        self.assertNotIn('mixed_level_barrier_INVALID_kcal_mol',energy.columns)
+        for system,row in energy.iterrows():
+            records={r['role']:r for r in rows if r['system']==system}
+            for key,prefix in [('energy_hartree','electronic'),('G_hartree','RRHO_G')]:
+                expected=(records['ts'][key]-records['reactant'][key]-lys[key])*627.509474
+                self.assertAlmostEqual(row[f'absolute_{prefix}_barrier_kcal_mol'],expected,places=8)
+                expected_rxn=(records['product'][key]-records['reactant'][key]-lys[key])*627.509474
+                self.assertAlmostEqual(row[f'{prefix}_reaction_energy_kcal_mol'],expected_rxn,places=8)
+            self.assertAlmostEqual(row.separated_reactants_to_alpha_kcal_mol+row.alpha_to_TS_kcal_mol,row.absolute_electronic_barrier_kcal_mol,places=8)
+            for column in ('relative_electronic_barrier_kcal_mol','relative_RRHO_G_barrier_kcal_mol','relative_alpha_to_TS_kcal_mol','relative_preparation_component_kcal_mol'):
+                self.assertAlmostEqual(energy.loc['MoriPF',column],0,places=12)
+            self.assertEqual(bool(row.RRHO_G_provisional),system=='RAFA15')
+            profile=pd.read_csv(CSV/f'reaction_force_{system}.csv')
+            self.assertTrue((profile.reference_system=='MoriPF').all())
+            ts=profile.loc[profile.R.abs().idxmin()]
+            self.assertAlmostEqual(ts.E_relative_reference_barrier_kcal_mol,row.relative_electronic_barrier_kcal_mol,places=8)
+            self.assertAlmostEqual(ts.E_relative_separated_reactants_kcal_mol,row.absolute_electronic_barrier_kcal_mol,places=8)
+        deltas=pd.read_csv(CSV/'MoriPF_baseline_differences.csv').set_index('system')
+        self.assertTrue((deltas.reference_system=='MoriPF').all())
+        np.testing.assert_allclose(deltas.loc['MoriPF'].drop('reference_system').astype(float),0,atol=1e-12)
     def test_analytic_derivatives_and_extrema(self):
         for path in CSV.glob('parsed_oriented_*.csv.gz'):
             f=pd.read_csv(path);p,m,s=reaction_force_profile(f,627.509474,4001,None)

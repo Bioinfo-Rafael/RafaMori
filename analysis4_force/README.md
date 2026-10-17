@@ -5,7 +5,7 @@
 ## 入力と再現性
 
 - `../data/completed_20261017/manifest.json` に原本のファイル名、サイズ、SHA-256を保存。
-- 17ログを個別にgzip圧縮し、Gitに保存。展開後のバイト列をハッシュで照合する。
+- 新しい `LYS (1).LOG` は `Lys.log` として旧ファイルを置換。manifestに元ファイル名を記録。17ログを個別にgzip圧縮し、Gitに保存。展開後のバイト列をハッシュで照合する。
 - `config/systems.yaml` は4系のIRC・反応物・生成物・TSと求核Nの対応。
 - `config/atom_map.csv` と `analysis_targets.yaml` はTS構造から再生成。反応C20、O19、O21、フェニル環C23–C28という共有骨格の番号は入力に基づく前提で、元素と環の結合性を検査する。
 - アミンNの共有結合Hを2個抽出。全Fとの組合せを保存し、TSで最短のF···Hペアを図示対象として固定する。途中で最短ペアを切り替えない。
@@ -32,7 +32,13 @@
 
 ## エネルギーの基準
 
-反応物分子＋Lysの組成がTS・生成物に一致することを検証する。Lysの計算条件が異なるため、絶対障壁を有効値として出力しない。共通Lys項を相殺した相対電子障壁（RAFA16基準）を使用する。相対RRHO Gibbs障壁も同様だが、RAFA15反応物の微小虚振動や低周波・配座の影響を含む暫定値。
+反応物分子＋Lysの組成・電荷がTS・生成物に一致し、計算条件・温度・圧力が一致することを検証する。新しいLysはM06-2X/6-311++G(d,p)・SMD水のopt/freq正常終了、33モード・虚振動なし。`energetics.py` で参照条件の不整合や熱化学の欠落を拒否する。
+
+分離反応物基準の `ΔE‡ = E_TS − E_substrate − E_Lys`、`ΔG‡ = G_TS − G_substrate − G_Lys` と、生成物の反応エネルギーを計算する。系間差はすべて `config/systems.yaml` の **MoriPF** を基準にする。`MoriPF_baseline_differences.csv` にTSの距離・角度・α→TS仕事のMoriPFとの差も保存する。
+
+Gibbs値は298.15 K・1 atmのRRHOモデルで、1 Mや準調和への補正は行わない。RAFA15の微小虚振動は `RRHO_G_provisional=true` として残す。`absolute_barrier_valid` は条件・組成が整合した算術値のフラグであり、反応物の厳密な極小確認は `reactant_minimum_verified` に分ける。
+
+4系比較エネルギー図では、各系の分離反応物基準の電子エネルギーからMoriPFの電子障壁を引き、MoriPFのTSを0とする。個別系の形状診断図では引き続き各TS＝0を使用し、系間の相対障壁とは区別する。反応力は定数オフセットに依存しない。
 
 IRC左端からTSへの障壁・αまでの仕事は計算範囲に依存する。分離反応物基準の相対障壁やα→TSの仕事とは別々に保存する。生成物optはIRC末端と直接接続せず、エネルギー差と原子番号を固定したRMSDを監査する。
 
@@ -44,7 +50,7 @@ IRC左端からTSへの障壁・αまでの仕事は計算範囲に依存する�
 | `outputs/reports/stationary_point_audit.json` | 全opt/freqの条件、エネルギー、周波数、抽出行番号 |
 | `outputs/reports/orientation_audit.json` | 符号、C–N距離、除外点、TS対応の検証 |
 | `outputs/csv/system_summary.csv` | 4系の比較表 |
-| `outputs/csv/energy_comparison.csv` | 相対障壁、区間の仕事、混合レベルの無効算術値 |
+| `outputs/csv/energy_comparison.csv` | 絶対・MoriPF基準の相対障壁、反応エネルギー、区間の仕事 |
 | `outputs/csv/all_NH_F_contacts.csv` | 全アミンH×Fの距離・角度 |
 | `outputs/csv/descriptive_correlations.csv` | 距離・符号付き微分・反応力の領域別相関 |
 | `outputs/csv/fluorine_positions.csv` | Fの原子番号とortho/meta/paraの対応 |
@@ -61,4 +67,4 @@ IRC左端からTSへの障壁・αまでの仕事は計算範囲に依存する�
 python -m unittest discover -s analysis4_force/tests -v
 ```
 
-圧縮原本の一致、4系の方向・TS、Lys条件不一致の検出、共通項相殺、仕事の加法性、微分と極値、断片和、全接触と固定ペアを検証する。
+圧縮原本の一致、4系の方向・TS、新Lysの条件一致と不整合入力の拒否、絶対障壁・MoriPF差・共通項相殺、仕事の加法性、微分と極値、断片和、全接触と固定ペアを検証する。

@@ -70,12 +70,12 @@ def energy_force_kappa_comparison(profiles: dict, landmarks: dict, splines: dict
     for ax in axes:
         ax.axvline(0, color="black", ls="--", lw=.9, alpha=.75)
         ax.grid(alpha=.2); ax.legend(fontsize=8)
-    axes[0].set_ylabel("V(R) − ETS (kcal/mol)")
+    axes[0].set_ylabel("ΔE(R) − ΔE‡(MoriPF) (kcal/mol)")
     axes[1].set_ylabel("F(R) (kcal mol⁻¹ R⁻¹)")
     axes[2].axhline(0, color="grey", lw=.7)
     axes[2].set_ylabel("κ = d²E/dR² (kcal mol⁻¹ R⁻²)")
     axes[2].set_xlabel("IRC coordinate R")
-    fig.suptitle("Energy, Reaction Force, and Reaction Force Constant: four systems")
+    fig.suptitle("Four systems: electronic profile relative to MoriPF barrier; F and κ")
     fig.tight_layout(); fig.savefig(path, dpi=190); plt.close(fig)
 
 

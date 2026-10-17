@@ -1,4 +1,4 @@
-reference_system: RAFA16
+reference_system: MoriPF
 systems:
   MoriPF:
     irc: IRC/MORIPF_IRC1.LOG
