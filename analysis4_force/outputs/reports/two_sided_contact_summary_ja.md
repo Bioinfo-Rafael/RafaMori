@@ -1,5 +1,7 @@
 # 既存logによる両側接触・原子仕事と活性化障壁
 
+[図の見方・用語・全図の説明](figure_guide_ja.md)。各図の軸、点・線・色の意味はこちらでも確認できます。
+
 ## 結論と今回の変更
 
 **他の接触との比較を追加した：[分子内順位・対照による特異性検証](contact_specificity_summary_ja.md)。反対側の応答は局所的に大きいが、同等以上に相関する対照も存在し、以下の高相関だけで指定接触の特異性は示せない。**
@@ -19,24 +21,33 @@
 
 ![原子仕事と障壁](../figures/15_two_sided_barrier_correlations.png)
 
-| descriptor | target | pearson_r | spearman_r | LOO_prediction_RMSE_kcal_mol |
+<!-- figure-explanation:start -->
+**図15の読み方 — 両側の原子に割り当てた仕事と、活性化障壁の関係**
+
+1点が1つの分子系。左列の横軸はアミン側XとアミンHの仕事の合計、右列は反対側XとO21の仕事の合計（kcal/mol）。どちらもC–N 2.50→2.10 Åの間で−∫Fᵢ·drᵢを計算した。上段の縦軸はΔE‡、下段はΔG‡（kcal/mol）。点の色は分子系、rはPearson相関、Spearmanは順位相関を表す。
+
+右列は、仕事が大きい系ほど障壁が低いという負の相関を示す。ただし横軸は経路の一部分の仕事で、縦軸は分離反応物からTSまでの全障壁。仕事の大きさをそのまま接触の安定化エネルギーには読み替えられない。この図だけでは、他の接触より特別な相関かどうかは分からない。
+<!-- figure-explanation:end -->
+
+
+| 評価量 | 対象 | Pearson相関 r | 順位相関 | 1系除外予測の誤差（kcal/mol） |
 | --- | --- | --- | --- | --- |
-| near_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.837 | -0.200 | 5.044 |
-| near_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.886 | -0.200 | 6.230 |
-| opposite_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965 | -0.800 | 0.746 |
-| opposite_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.976 | -0.800 | 1.437 |
-| near_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185 | 0.200 | 3.795 |
-| near_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.286 | 0.200 | 5.284 |
-| opposite_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.967 | -0.800 | 1.220 |
-| opposite_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.943 | -0.800 | 2.559 |
+| アミン側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.837 | -0.200 | 5.044 |
+| アミン側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.886 | -0.200 | 6.230 |
+| 反対側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965 | -0.800 | 0.746 |
+| 反対側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.976 | -0.800 | 1.437 |
+| アミン側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185 | 0.200 | 3.795 |
+| アミン側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.286 | 0.200 | 5.284 |
+| 反対側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.967 | -0.800 | 1.220 |
+| 反対側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.943 | -0.800 | 2.559 |
 
-反対側原子仕事は電子障壁とr≈−0.965、Gibbs障壁とr≈−0.976。RAFA15の仕事が大きいほど障壁が低いという**逆向きの対応**であり、「反発コストが低いので速い」とは読めない。RAFA15では反対側仕事の約98%がO21由来で、H56単独の仕事は小さい。
+反対側2原子の仕事の合計と障壁の相関は、ΔE‡でr≈−0.965、ΔG‡でr≈−0.976となった。4系の中でRAFA15はこの仕事が最も大きく、障壁は最も低い。つまり、**仕事が大きい系ほど障壁が低いという負の相関**であり、「反発が小さいため障壁が低い」と直接説明する値ではない。RAFA15では反対側仕事の約98%がO21由来で、H56単独の仕事は小さい。
 
-相関の良さは指標を物理的な相互作用量に変えない。両側を別々に示し、相関が弱い側も残す。選択4原子の合計仕事、O21単独、残りの全原子も保存し、特定の接触ではなく反応中心全体の変化で説明できないかを確認する。
+相関が強くても、この値を接触の相互作用エネルギーとみなすことはできない。アミン側と反対側は分けて表示し、相関の弱い結果も含めて比較する。選択4原子の合計仕事、O21単独、残りの全原子も保存し、特定の接触ではなく反応中心全体の変化で説明できないかを確認する。
 
 ## 原子の対応
 
-| system | near_ring_C | near_atom | near_element | primary_amine_H | alternative_amine_H | opposite_ring_C | opposite_atom | opposite_element | opposite_O |
+| 分子系 | アミン側の環C番号 | アミン側X番号 | アミン側Xの元素 | 選択アミンH番号 | もう一方のアミンH | 反対側の環C番号 | 反対側X番号 | 反対側Xの元素 | クマリンO番号 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | MoriPF | 24 | 33 | F | 46 | 47 | 25 | 29 | F | 21 |
 | RAFA14 | 24 | 57 | H | 44 | 45 | 25 | 56 | H | 21 |
@@ -45,7 +56,7 @@
 
 C24上のX=F/Hと選択アミンHをアミン側、C25上のX=F/HとO21を反対側とする。RAFA15の反対側はベンゼン環H56···O21。RAFA14のアミン側はH57···H44でありF···Hではない。アミンHはTSでC24置換原子に近い方を固定し、もう一方も感度解析する。
 
-| system | near_TS_distance_A | opposite_TS_distance_A | opposite_TS_CXO_angle_deg |
+| 分子系 | TSのアミン側距離（Å） | TSの反対側距離（Å） | TSのC–X···O角（度） |
 | --- | --- | --- | --- |
 | MoriPF | 2.358 | 2.973 | 77.568 |
 | RAFA14 | 2.358 | 2.807 | 87.127 |
@@ -62,9 +73,9 @@ W_g = −∫[R(c=2.50) → R(c=2.10)] Σ(i∈g) C_i(R) dR
 W_near + W_opposite + W_remaining = W_all ≈ E(end) − E(start)
 ```
 
-座標はBohr、力はHartree/Bohrとして積分し、kcal/molに変換した。全57原子をTSへ剛体重ね合わせし、力ベクトルも同じ回転を施した。原子別配分はこの座標系・経路に依存し、独立した原子の状態関数ではない。全系の和と電子エネルギー差の一致を数値検証する。既存区間の仕事であり、分離反応物→TSの全障壁を分解したものではない。ΔG‡との比較も電子仕事の相関であって自由エネルギー分解ではない。
+座標はBohr、力はHartree/Bohrとして積分し、kcal/molに変換した。全57原子をTSへ剛体重ね合わせし、力ベクトルも同じ回転を施した。原子別配分はこの座標系・経路に依存し、独立した原子の状態関数ではない。全原子の仕事の合計と電子エネルギー差の一致を数値検証する。既存区間の仕事であり、分離反応物→TSの全障壁を分解したものではない。ΔG‡との比較も電子仕事の相関であって自由エネルギー分解ではない。
 
-| system | near_X_atomic_work_kcal_mol | amine_H_atomic_work_kcal_mol | opposite_X_atomic_work_kcal_mol | opposite_O_atomic_work_kcal_mol | remaining_atomic_work_kcal_mol | all_atomic_work_kcal_mol |
+| 分子系 | アミン側Xの仕事（kcal/mol） | 選択アミンHの仕事（kcal/mol） | 反対側Xの仕事（kcal/mol） | O21の仕事（kcal/mol） | 残り53原子の仕事（kcal/mol） | 全57原子の仕事（kcal/mol） |
 | --- | --- | --- | --- | --- | --- | --- |
 | MoriPF | 0.016 | 0.069 | 0.013 | 0.030 | 2.238 | 2.366 |
 | RAFA14 | 0.004 | 0.095 | 0.003 | 0.024 | 3.020 | 3.145 |
@@ -72,6 +83,15 @@ W_near + W_opposite + W_remaining = W_all ≈ E(end) − E(start)
 | RAFA16 | 0.021 | 0.075 | 0.019 | 0.036 | 2.477 | 2.627 |
 
 ![原子別・全体の仕事](../figures/19_atomic_work_partition.png)
+
+<!-- figure-explanation:start -->
+**図19の読み方 — どの原子が仕事の合計を占めているか**
+
+横軸は4系、縦軸は共通区間C–N 2.50→2.10 Åの仕事（kcal/mol）。左では、アミン側X、アミンH、反対側X、O21の4原子を別々の棒にした。左図の色は原子の役割を表す。右ではアミン側2原子、反対側2原子、残り53原子の仕事を積み上げ、黒い短線で全57原子の合計を示す。
+
+RAFA15の反対側の仕事の大部分はHではなくO21に割り当てられる。また、選んだ4原子だけで全区間のエネルギー変化を担っているわけではない。積み上げ棒は原子ごとの配分であり、接触ごとの相互作用エネルギーの内訳ではない。
+<!-- figure-explanation:end -->
+
 
 反応物側のIRCはエネルギー上昇方向なので、W>0を「その接触が反発している」と解釈しない。他の原子・結合・電子の応答が各原子力に含まれる。O21が主成分なら「反対側Oを含む構造変化のコスト」と表現する。全体との和が合うことは数値検証であり、H···Oの因果証明ではない。
 
@@ -82,14 +102,14 @@ W_near + W_opposite + W_remaining = W_all ≈ E(end) − E(start)
       + [E(c=2.10) − E(c=2.50)] + [E_TS − E(c=2.10)]
 ```
 
-| system | entry_energy_kcal_mol | window_energy_rise_kcal_mol | after_window_to_TS_kcal_mol | absolute_electronic_barrier_kcal_mol | work_energy_residual_kcal_mol |
+| 分子系 | 区間入口のエネルギー（kcal/mol） | 区間内の上昇（kcal/mol） | 区間後からTSの上昇（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 仕事とエネルギー差のずれ（kcal/mol） |
 | --- | --- | --- | --- | --- | --- |
 | MoriPF | -3.791 | 2.367 | 0.082 | -1.342 | -0.001 |
 | RAFA14 | -2.913 | 3.148 | 0.242 | 0.476 | -0.003 |
 | RAFA15 | -9.019 | 4.031 | 0.401 | -4.587 | -0.002 |
 | RAFA16 | -3.326 | 2.628 | 0.120 | -0.579 | -0.001 |
 
-RAFA15は共通区間のエネルギー上昇が約4.031 kcal/molと大きい一方、その区間に入る時点のエネルギーが約−9.019 kcal/molと低い。したがって共通区間の仕事が大きくても全障壁は低くなれる。入口の値は会合・配座変化などを含む総エネルギーであり、特定のH···O安定化エネルギーではない。入口値と障壁の相関は上式を共有するため、独立した予測証拠に使わない。
+RAFA15は共通区間のエネルギー上昇が約4.031 kcal/molと大きい一方、その区間に入る時点のエネルギーが約−9.019 kcal/molと低い。したがって共通区間の仕事が大きくても、分離反応物から測った障壁は低くなる。入口の値は会合・配座変化などを含む総エネルギーであり、特定のH···O安定化エネルギーではない。入口値と障壁の相関は上式を共有するため、独立した予測証拠に使わない。
 
 ## 接触方向に限定した補助指標
 
@@ -100,15 +120,33 @@ W_radial,ab = −∫ Q_ab d r_ab
 
 力を接触軸へ射影し、その距離変化に沿って積分する。単位はkcal/mol。共通C–N区間内での動きを評価するad hocな診断値で、単独ペアのポテンシャルではなく、全原子仕事に足してはいけない。Q>0は開く向き、Q<0は閉じる向き。全系の反対側平均Qは負であり、F···O固有の反発をこの符号から判定しない。
 
-反対側の射影仕事は電子障壁とr≈−0.967（3区間で約−0.959〜−0.969）、アミン側は主区間でr≈−0.185。反対側の量は約−0.0016〜0.0091 kcal/molにすぎず、数kcal/molの全障壁差をこの値の大きさで説明しているわけではない。微小な構造・力の応答を拾う候補であり、原子仕事とは別定義である。反対側の定義はアミンHの選択に依存しないため、Hを替えて一致すること自体は独立の感度検証ではない。
+反対側の接触方向の仕事は電子障壁とr≈−0.967（3区間で約−0.959〜−0.969）、アミン側は主区間でr≈−0.185。反対側の量は約−0.0016〜0.0091 kcal/molにすぎず、数kcal/molの全障壁差をこの値の大きさで説明しているわけではない。微小な構造・力の応答を拾う候補であり、原子仕事とは別定義である。反対側の定義はアミンHの選択に依存しないため、Hを替えて一致すること自体は独立の感度検証ではない。
 
 ![接触方向の仕事](../figures/18_radial_work_barrier_correlations.png)
 
+<!-- figure-explanation:start -->
+**図18の読み方 — 接触方向に限って計算した仕事と、障壁の関係**
+
+1点が1系。左列はアミン側、右列は反対側の接触について、接触方向の力Qを距離変化に沿って積分した−∫Q dq（kcal/mol）を横軸に取る。上段はΔE‡、下段はΔG‡。集計区間はC–N 2.50→2.10 Å。
+
+図15が2原子の全方向の力と移動を足した量なのに対し、図18は2原子を結ぶ方向の成分だけを使う。両者は別の量で、足し合わせない。反対側には負の相関があるが、横軸の値は0.01 kcal/mol未満であり、数kcal/molの障壁差をそのまま説明するエネルギーではない。
+<!-- figure-explanation:end -->
+
+
 ![接触距離と射影力](../figures/14_two_sided_contacts.png)
+
+<!-- figure-explanation:start -->
+**図14の読み方 — 同じortho位置で、両側の距離と接触方向の力を比べる**
+
+左列はアミン側の環置換原子X（FまたはH）···アミンH、右列は反対側のX···O21。上段は距離（Å）、下段は接触方向の力Q=½(F_b−F_a)·e_ab（mEh/Bohr）。横軸はC–N距離で、左から右へ短くなり、右向きが反応の進行方向。表示範囲はおおむね2.55→2.10 Å。線の色は4つの分子系。
+
+Q<0は距離を縮める向き、Q>0は開く向きの成分。ただしQは原子に働く合計の力から作る値であり、その2原子の間だけの引力・斥力ではない。RAFA14の左列はH···Hで、F···Hではない。
+<!-- figure-explanation:end -->
+
 
 平均力（mEh/Bohr）：
 
-| system | near_X_mean_force_mEh_bohr | amine_H_mean_force_mEh_bohr | opposite_X_mean_force_mEh_bohr | opposite_O_mean_force_mEh_bohr | near_mean_signed_projected_force_mEh_bohr | opposite_mean_signed_projected_force_mEh_bohr |
+| 分子系 | アミン側Xの平均力（mEh/Bohr） | 選択アミンHの平均力（mEh/Bohr） | 反対側Xの平均力（mEh/Bohr） | O21の平均力（mEh/Bohr） | アミン側の平均Q（mEh/Bohr） | 反対側の平均Q（mEh/Bohr） |
 | --- | --- | --- | --- | --- | --- | --- |
 | MoriPF | 0.370 | 0.239 | 0.331 | 0.518 | -0.046 | -0.111 |
 | RAFA14 | 0.058 | 0.315 | 0.048 | 0.510 | 0.039 | -0.182 |
@@ -128,119 +166,137 @@ RAFA15の反対側原子力の大きさは約97%がO21に由来する。この�
 
 ![元の無次元比率](../figures/17_dimensionless_share_supplement.png)
 
+<!-- figure-explanation:start -->
+**図17の読み方 — 以前使っていた力の比率と、障壁の関係を残した補足図**
+
+1点が1系、縦軸はΔE‡（kcal/mol）。左の横軸は両側の接触方向の力の大きさの合計に対する、反対側の割合。右は選択4原子の力ベクトルの長さの合計に対する、反対側2原子の割合。比率は0〜1の無次元値で、MoriPFとの差や百分率ではない。
+
+右図には高い相関があるが、分母や原子の選び方に依存する。比較の履歴を残す補足図であり、現在の主な評価には単位のある仕事と、他の接触との比較を用いる。
+<!-- figure-explanation:end -->
+
+
 ## 全指標と感度
 
-元の12指標に、今回7つの原子仕事成分と両側の射影仕事2成分を追加した。新指標はユーザーのlog限定・有次元指標の要望を受けた探索的追加であり、事前登録や独立検証ではない。全21指標×3区間×2通りのアミンH×2種類の障壁を保存する。区間を変えて最も高い相関だけを選ばない。
+元の12指標に、今回7つの原子仕事成分と両側の接触方向の仕事2成分を追加した。新指標は既存ログから単位のある量を評価するために追加した探索的な指標であり、事前登録や独立検証ではない。全21指標×3区間×2通りのアミンH×2種類の障壁を保存する。区間を変えて最も高い相関だけを選ばない。
 
-| descriptor | target | pearson_r | spearman_r | LOO_prediction_RMSE_kcal_mol |
+| 評価量 | 対象 | Pearson相関 r | 順位相関 | 1系除外予測の誤差（kcal/mol） |
 | --- | --- | --- | --- | --- |
-| opposite_projected_magnitude_share | absolute_electronic_barrier_kcal_mol | -0.393 | -0.400 | 3.427 |
-| opposite_projected_magnitude_share | absolute_RRHO_G_barrier_kcal_mol | -0.485 | -0.400 | 4.679 |
-| opposite_atomic_force_share | absolute_electronic_barrier_kcal_mol | 0.958 | 1.000 | 1.410 |
-| opposite_atomic_force_share | absolute_RRHO_G_barrier_kcal_mol | 0.922 | 1.000 | 2.761 |
-| selected_atomic_force_share | absolute_electronic_barrier_kcal_mol | -0.632 | -0.400 | 3.158 |
-| selected_atomic_force_share | absolute_RRHO_G_barrier_kcal_mol | -0.553 | -0.400 | 5.625 |
-| selected_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.937 | -0.800 | 1.648 |
-| selected_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.961 | -0.800 | 2.990 |
-| pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.807 | -0.400 | 3.981 |
-| pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.866 | -0.400 | 4.882 |
-| near_mean_abs_projected_force_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.932 | -0.800 | 1.559 |
-| near_mean_abs_projected_force_mEh_bohr | absolute_RRHO_G_barrier_kcal_mol | -0.939 | -0.800 | 2.693 |
-| opposite_mean_abs_projected_force_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.881 | -0.200 | 6.981 |
-| opposite_mean_abs_projected_force_mEh_bohr | absolute_RRHO_G_barrier_kcal_mol | -0.927 | -0.200 | 7.866 |
-| near_mean_signed_projected_force_mEh_bohr | absolute_electronic_barrier_kcal_mol | 0.831 | 0.800 | 3.136 |
-| near_mean_signed_projected_force_mEh_bohr | absolute_RRHO_G_barrier_kcal_mol | 0.776 | 0.800 | 5.347 |
-| opposite_mean_signed_projected_force_mEh_bohr | absolute_electronic_barrier_kcal_mol | 0.873 | 0.200 | 6.377 |
-| opposite_mean_signed_projected_force_mEh_bohr | absolute_RRHO_G_barrier_kcal_mol | 0.920 | 0.200 | 7.261 |
-| opposite_TS_distance_A | absolute_electronic_barrier_kcal_mol | 0.439 | 0.400 | 3.493 |
-| opposite_TS_distance_A | absolute_RRHO_G_barrier_kcal_mol | 0.533 | 0.400 | 4.715 |
-| opposite_TS_CXO_angle_deg | absolute_electronic_barrier_kcal_mol | -0.475 | -0.200 | 3.571 |
-| opposite_TS_CXO_angle_deg | absolute_RRHO_G_barrier_kcal_mol | -0.568 | -0.200 | 4.782 |
-| near_TS_distance_A | absolute_electronic_barrier_kcal_mol | -0.937 | -0.400 | 3.717 |
-| near_TS_distance_A | absolute_RRHO_G_barrier_kcal_mol | -0.970 | -0.400 | 3.108 |
-| near_X_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.957 | -0.800 | 1.167 |
-| near_X_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.945 | -0.800 | 2.380 |
-| amine_H_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.349 | -0.200 | 3.595 |
-| amine_H_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.448 | -0.200 | 4.912 |
-| opposite_X_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.332 | 0.400 | 3.400 |
-| opposite_X_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | 0.421 | 0.400 | 4.683 |
-| opposite_O_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.954 | -0.800 | 2.980 |
-| opposite_O_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.977 | -0.800 | 1.469 |
-| near_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.837 | -0.200 | 5.044 |
-| near_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.886 | -0.200 | 6.230 |
-| opposite_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965 | -0.800 | 0.746 |
-| opposite_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.976 | -0.800 | 1.437 |
-| remaining_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.656 | -0.200 | 3.946 |
-| remaining_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.733 | -0.200 | 5.094 |
-| near_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185 | 0.200 | 3.795 |
-| near_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.286 | 0.200 | 5.284 |
-| opposite_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.967 | -0.800 | 1.220 |
-| opposite_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.943 | -0.800 | 2.559 |
+| 反対側の接触方向の力の割合 | 電子障壁 ΔE‡（kcal/mol） | -0.393 | -0.400 | 3.427 |
+| 反対側の接触方向の力の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.485 | -0.400 | 4.679 |
+| 反対側2原子の力の割合 | 電子障壁 ΔE‡（kcal/mol） | 0.958 | 1.000 | 1.410 |
+| 反対側2原子の力の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.922 | 1.000 | 2.761 |
+| 全原子の力に対する選択4原子の割合 | 電子障壁 ΔE‡（kcal/mol） | -0.632 | -0.400 | 3.158 |
+| 全原子の力に対する選択4原子の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.553 | -0.400 | 5.625 |
+| 選択4原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.937 | -0.800 | 1.648 |
+| 選択4原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.961 | -0.800 | 2.990 |
+| 両側の接触方向の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.807 | -0.400 | 3.981 |
+| 両側の接触方向の仕事の合計（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.866 | -0.400 | 4.882 |
+| アミン側のQの平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.932 | -0.800 | 1.559 |
+| アミン側のQの平均絶対値（mEh/Bohr） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.939 | -0.800 | 2.693 |
+| 反対側のQの平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.881 | -0.200 | 6.981 |
+| 反対側のQの平均絶対値（mEh/Bohr） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.927 | -0.200 | 7.866 |
+| アミン側の平均Q（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | 0.831 | 0.800 | 3.136 |
+| アミン側の平均Q（mEh/Bohr） | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.776 | 0.800 | 5.347 |
+| 反対側の平均Q（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | 0.873 | 0.200 | 6.377 |
+| 反対側の平均Q（mEh/Bohr） | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.920 | 0.200 | 7.261 |
+| TSの反対側距離（Å） | 電子障壁 ΔE‡（kcal/mol） | 0.439 | 0.400 | 3.493 |
+| TSの反対側距離（Å） | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.533 | 0.400 | 4.715 |
+| TSのC–X···O角（度） | 電子障壁 ΔE‡（kcal/mol） | -0.475 | -0.200 | 3.571 |
+| TSのC–X···O角（度） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.568 | -0.200 | 4.782 |
+| TSのアミン側距離（Å） | 電子障壁 ΔE‡（kcal/mol） | -0.937 | -0.400 | 3.717 |
+| TSのアミン側距離（Å） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.970 | -0.400 | 3.108 |
+| アミン側Xの仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.957 | -0.800 | 1.167 |
+| アミン側Xの仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.945 | -0.800 | 2.380 |
+| 選択アミンHの仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.349 | -0.200 | 3.595 |
+| 選択アミンHの仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.448 | -0.200 | 4.912 |
+| 反対側Xの仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.332 | 0.400 | 3.400 |
+| 反対側Xの仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.421 | 0.400 | 4.683 |
+| O21の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.954 | -0.800 | 2.980 |
+| O21の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.977 | -0.800 | 1.469 |
+| アミン側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.837 | -0.200 | 5.044 |
+| アミン側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.886 | -0.200 | 6.230 |
+| 反対側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965 | -0.800 | 0.746 |
+| 反対側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.976 | -0.800 | 1.437 |
+| 残り53原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.656 | -0.200 | 3.946 |
+| 残り53原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.733 | -0.200 | 5.094 |
+| アミン側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185 | 0.200 | 3.795 |
+| アミン側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.286 | 0.200 | 5.284 |
+| 反対側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.967 | -0.800 | 1.220 |
+| 反対側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.943 | -0.800 | 2.559 |
 
 ![感度](../figures/16_two_sided_sensitivity.png)
 
-| window | H_choice | descriptor | target | pearson_r | spearman_r |
+<!-- figure-explanation:start -->
+**図16の読み方 — 集計する区間やアミンHを変えても相関が保たれるか**
+
+左はΔE‡、右はΔG‡とのPearson相関r。横軸の6条件は、3つのC–N距離区間と、2通りのアミンHの選び方の組合せ。丸はアミン側の原子仕事、四角は反対側の原子仕事、三角は以前の原子力の比率。ここでは色と記号は分子系ではなく指標を区別する。
+
+rが+1または−1に近いほど直線的な対応が強く、0に近いほど弱い。線が平らなら条件を変えても相関があまり変わらない。ただし反対側の仕事の定義にはアミンHが含まれないため、Hを替えて同じ値になること自体は新しい検証ではない。
+<!-- figure-explanation:end -->
+
+
+| 集計区間（C–N距離） | アミンHの選び方 | 評価量 | 対象 | Pearson相関 r | 順位相関 |
 | --- | --- | --- | --- | --- | --- |
-| common_CN_2.50_to_2.10 | primary | opposite_atomic_force_share | absolute_electronic_barrier_kcal_mol | 0.958 | 1.000 |
-| common_CN_2.50_to_2.10 | primary | opposite_atomic_force_share | absolute_RRHO_G_barrier_kcal_mol | 0.922 | 1.000 |
-| common_CN_2.50_to_2.10 | primary | near_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.837 | -0.200 |
-| common_CN_2.50_to_2.10 | primary | near_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.886 | -0.200 |
-| common_CN_2.50_to_2.10 | primary | opposite_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965 | -0.800 |
-| common_CN_2.50_to_2.10 | primary | opposite_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.976 | -0.800 |
-| common_CN_2.50_to_2.10 | primary | near_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185 | 0.200 |
-| common_CN_2.50_to_2.10 | primary | near_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.286 | 0.200 |
-| common_CN_2.50_to_2.10 | primary | opposite_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.967 | -0.800 |
-| common_CN_2.50_to_2.10 | primary | opposite_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.943 | -0.800 |
-| sensitivity_CN_2.55_to_2.10 | primary | opposite_atomic_force_share | absolute_electronic_barrier_kcal_mol | 0.985 | 1.000 |
-| sensitivity_CN_2.55_to_2.10 | primary | opposite_atomic_force_share | absolute_RRHO_G_barrier_kcal_mol | 0.966 | 1.000 |
-| sensitivity_CN_2.55_to_2.10 | primary | near_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.865 | -0.400 |
-| sensitivity_CN_2.55_to_2.10 | primary | near_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.908 | -0.400 |
-| sensitivity_CN_2.55_to_2.10 | primary | opposite_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.967 | -0.800 |
-| sensitivity_CN_2.55_to_2.10 | primary | opposite_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.974 | -0.800 |
-| sensitivity_CN_2.55_to_2.10 | primary | near_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.182 | 0.200 |
-| sensitivity_CN_2.55_to_2.10 | primary | near_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.283 | 0.200 |
-| sensitivity_CN_2.55_to_2.10 | primary | opposite_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.960 | -0.800 |
-| sensitivity_CN_2.55_to_2.10 | primary | opposite_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.933 | -0.800 |
-| sensitivity_CN_2.40_to_2.15 | primary | opposite_atomic_force_share | absolute_electronic_barrier_kcal_mol | 0.760 | 1.000 |
-| sensitivity_CN_2.40_to_2.15 | primary | opposite_atomic_force_share | absolute_RRHO_G_barrier_kcal_mol | 0.685 | 1.000 |
-| sensitivity_CN_2.40_to_2.15 | primary | near_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.805 | -0.200 |
-| sensitivity_CN_2.40_to_2.15 | primary | near_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.862 | -0.200 |
-| sensitivity_CN_2.40_to_2.15 | primary | opposite_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.959 | -0.800 |
-| sensitivity_CN_2.40_to_2.15 | primary | opposite_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.976 | -0.800 |
-| sensitivity_CN_2.40_to_2.15 | primary | near_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.166 | 0.200 |
-| sensitivity_CN_2.40_to_2.15 | primary | near_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.268 | 0.200 |
-| sensitivity_CN_2.40_to_2.15 | primary | opposite_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.969 | -0.800 |
-| sensitivity_CN_2.40_to_2.15 | primary | opposite_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.947 | -0.800 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | opposite_atomic_force_share | absolute_electronic_barrier_kcal_mol | 0.993 | 1.000 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | opposite_atomic_force_share | absolute_RRHO_G_barrier_kcal_mol | 0.983 | 1.000 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | near_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.915 | -0.400 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | near_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.946 | -0.400 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | opposite_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965 | -0.800 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | opposite_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.976 | -0.800 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | near_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.214 | 0.200 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | near_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | 0.115 | 0.200 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | opposite_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.967 | -0.800 |
-| common_CN_2.50_to_2.10 | alternative_amine_H | opposite_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.943 | -0.800 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | opposite_atomic_force_share | absolute_electronic_barrier_kcal_mol | 0.982 | 1.000 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | opposite_atomic_force_share | absolute_RRHO_G_barrier_kcal_mol | 0.989 | 1.000 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | near_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.925 | -0.400 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | near_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.953 | -0.400 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | opposite_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.967 | -0.800 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | opposite_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.974 | -0.800 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | near_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.122 | 0.200 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | near_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | 0.020 | 0.200 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | opposite_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.960 | -0.800 |
-| sensitivity_CN_2.55_to_2.10 | alternative_amine_H | opposite_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.933 | -0.800 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | opposite_atomic_force_share | absolute_electronic_barrier_kcal_mol | 0.866 | 1.000 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | opposite_atomic_force_share | absolute_RRHO_G_barrier_kcal_mol | 0.807 | 1.000 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | near_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.896 | -0.400 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | near_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.932 | -0.400 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | opposite_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.959 | -0.800 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | opposite_atomic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.976 | -0.800 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | near_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.387 | 0.200 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | near_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | 0.294 | 0.200 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | opposite_pair_diagnostic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.969 | -0.800 |
-| sensitivity_CN_2.40_to_2.15 | alternative_amine_H | opposite_pair_diagnostic_work_kcal_mol | absolute_RRHO_G_barrier_kcal_mol | -0.947 | -0.800 |
+| 2.50→2.10 Å | TSで近いアミンH | 反対側2原子の力の割合 | 電子障壁 ΔE‡（kcal/mol） | 0.958 | 1.000 |
+| 2.50→2.10 Å | TSで近いアミンH | 反対側2原子の力の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.922 | 1.000 |
+| 2.50→2.10 Å | TSで近いアミンH | アミン側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.837 | -0.200 |
+| 2.50→2.10 Å | TSで近いアミンH | アミン側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.886 | -0.200 |
+| 2.50→2.10 Å | TSで近いアミンH | 反対側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965 | -0.800 |
+| 2.50→2.10 Å | TSで近いアミンH | 反対側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.976 | -0.800 |
+| 2.50→2.10 Å | TSで近いアミンH | アミン側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185 | 0.200 |
+| 2.50→2.10 Å | TSで近いアミンH | アミン側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.286 | 0.200 |
+| 2.50→2.10 Å | TSで近いアミンH | 反対側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.967 | -0.800 |
+| 2.50→2.10 Å | TSで近いアミンH | 反対側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.943 | -0.800 |
+| 2.55→2.10 Å | TSで近いアミンH | 反対側2原子の力の割合 | 電子障壁 ΔE‡（kcal/mol） | 0.985 | 1.000 |
+| 2.55→2.10 Å | TSで近いアミンH | 反対側2原子の力の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.966 | 1.000 |
+| 2.55→2.10 Å | TSで近いアミンH | アミン側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.865 | -0.400 |
+| 2.55→2.10 Å | TSで近いアミンH | アミン側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.908 | -0.400 |
+| 2.55→2.10 Å | TSで近いアミンH | 反対側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.967 | -0.800 |
+| 2.55→2.10 Å | TSで近いアミンH | 反対側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.974 | -0.800 |
+| 2.55→2.10 Å | TSで近いアミンH | アミン側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.182 | 0.200 |
+| 2.55→2.10 Å | TSで近いアミンH | アミン側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.283 | 0.200 |
+| 2.55→2.10 Å | TSで近いアミンH | 反対側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.960 | -0.800 |
+| 2.55→2.10 Å | TSで近いアミンH | 反対側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.933 | -0.800 |
+| 2.40→2.15 Å | TSで近いアミンH | 反対側2原子の力の割合 | 電子障壁 ΔE‡（kcal/mol） | 0.760 | 1.000 |
+| 2.40→2.15 Å | TSで近いアミンH | 反対側2原子の力の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.685 | 1.000 |
+| 2.40→2.15 Å | TSで近いアミンH | アミン側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.805 | -0.200 |
+| 2.40→2.15 Å | TSで近いアミンH | アミン側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.862 | -0.200 |
+| 2.40→2.15 Å | TSで近いアミンH | 反対側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.959 | -0.800 |
+| 2.40→2.15 Å | TSで近いアミンH | 反対側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.976 | -0.800 |
+| 2.40→2.15 Å | TSで近いアミンH | アミン側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.166 | 0.200 |
+| 2.40→2.15 Å | TSで近いアミンH | アミン側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.268 | 0.200 |
+| 2.40→2.15 Å | TSで近いアミンH | 反対側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.969 | -0.800 |
+| 2.40→2.15 Å | TSで近いアミンH | 反対側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.947 | -0.800 |
+| 2.50→2.10 Å | もう一方のアミンH | 反対側2原子の力の割合 | 電子障壁 ΔE‡（kcal/mol） | 0.993 | 1.000 |
+| 2.50→2.10 Å | もう一方のアミンH | 反対側2原子の力の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.983 | 1.000 |
+| 2.50→2.10 Å | もう一方のアミンH | アミン側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.915 | -0.400 |
+| 2.50→2.10 Å | もう一方のアミンH | アミン側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.946 | -0.400 |
+| 2.50→2.10 Å | もう一方のアミンH | 反対側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965 | -0.800 |
+| 2.50→2.10 Å | もう一方のアミンH | 反対側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.976 | -0.800 |
+| 2.50→2.10 Å | もう一方のアミンH | アミン側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.214 | 0.200 |
+| 2.50→2.10 Å | もう一方のアミンH | アミン側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.115 | 0.200 |
+| 2.50→2.10 Å | もう一方のアミンH | 反対側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.967 | -0.800 |
+| 2.50→2.10 Å | もう一方のアミンH | 反対側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.943 | -0.800 |
+| 2.55→2.10 Å | もう一方のアミンH | 反対側2原子の力の割合 | 電子障壁 ΔE‡（kcal/mol） | 0.982 | 1.000 |
+| 2.55→2.10 Å | もう一方のアミンH | 反対側2原子の力の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.989 | 1.000 |
+| 2.55→2.10 Å | もう一方のアミンH | アミン側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.925 | -0.400 |
+| 2.55→2.10 Å | もう一方のアミンH | アミン側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.953 | -0.400 |
+| 2.55→2.10 Å | もう一方のアミンH | 反対側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.967 | -0.800 |
+| 2.55→2.10 Å | もう一方のアミンH | 反対側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.974 | -0.800 |
+| 2.55→2.10 Å | もう一方のアミンH | アミン側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.122 | 0.200 |
+| 2.55→2.10 Å | もう一方のアミンH | アミン側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.020 | 0.200 |
+| 2.55→2.10 Å | もう一方のアミンH | 反対側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.960 | -0.800 |
+| 2.55→2.10 Å | もう一方のアミンH | 反対側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.933 | -0.800 |
+| 2.40→2.15 Å | もう一方のアミンH | 反対側2原子の力の割合 | 電子障壁 ΔE‡（kcal/mol） | 0.866 | 1.000 |
+| 2.40→2.15 Å | もう一方のアミンH | 反対側2原子の力の割合 | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.807 | 1.000 |
+| 2.40→2.15 Å | もう一方のアミンH | アミン側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.896 | -0.400 |
+| 2.40→2.15 Å | もう一方のアミンH | アミン側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.932 | -0.400 |
+| 2.40→2.15 Å | もう一方のアミンH | 反対側2原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.959 | -0.800 |
+| 2.40→2.15 Å | もう一方のアミンH | 反対側2原子の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.976 | -0.800 |
+| 2.40→2.15 Å | もう一方のアミンH | アミン側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.387 | 0.200 |
+| 2.40→2.15 Å | もう一方のアミンH | アミン側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | 0.294 | 0.200 |
+| 2.40→2.15 Å | もう一方のアミンH | 反対側の接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.969 | -0.800 |
+| 2.40→2.15 Å | もう一方のアミンH | 反対側の接触方向の仕事（kcal/mol） | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.947 | -0.800 |
 
 4系しかないため、相関係数・順位と1系除外予測は記述的診断。複数指標を同じ4系で探索した交差検証は独立検証ではない。比率や線形結合の係数を障壁に合わせて最適化しない。RAFA15のRRHO Gibbs障壁は反応物の微小虚振動のため暫定。
 

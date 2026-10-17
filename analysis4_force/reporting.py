@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from plotting4 import SYSTEM_COLORS
+from figure_explanations import write_annotated_report
 
 
 def markdown(df, columns=None):
@@ -65,7 +66,7 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
     energies=energy.set_index('system')
     corr=pd.read_csv(reports.parent/'csv/descriptive_correlations.csv')
     transition_corr=corr[(corr.region=='transition')&(corr.x=='FH_A')&(corr.y=='CN_A')][['system','n','pearson_r','spearman_r']]
-    text=f'''# 4分子系のIRC・Reaction Force解析 summary
+    text=f'''# 4分子系のIRC・反応力解析：結果と解釈
 
 実行日：2026-10-17（JST）。入力：完成.zip内の16ログと、同条件で再計算された `LYS (1).LOG`（保存名 `Lys.log`）。旧結果を上書き更新。既存の2系解析から独立した4系解析。
 
@@ -97,7 +98,7 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
 
 **最新の対照検証：[分子内の強さ順位と、他の接触の相関](contact_specificity_summary_ja.md)。指定接触は局所応答として目立つ場合があるが、障壁と相関する接触は他にもあり、特異的な機構の証拠としては不十分。**
 
-追加DFTなしの計算方針は [文献調査とlog限定の評価案](log_only_research_plan_ja.md) を参照。反対側ortho位置のH/F···Oまで含む追加定量化は、[両側接触・力と障壁の探索summary](two_sided_contact_summary_ja.md)を参照。従来の `interference_F` は最も近いFを選ぶ指標で、RAFA15の反対側H56···O21を表していないため、新解析では同じ環位置のF/Hを対応させた。以下はH···F単独の指標についての解釈であり、両側を組み合わせた仮説を否定するものではない。
+追加DFTなしの計算方針は [文献調査とlog限定の評価案](log_only_research_plan_ja.md) を参照。反対側ortho位置のH/F···Oまで含む追加定量化は、[両側接触・力と障壁の解析結果](two_sided_contact_summary_ja.md)を参照。従来の `interference_F` は最も近いFを選ぶ指標で、RAFA15の反対側H56···O21を表していないため、新解析では同じ環位置のF/Hを対応させた。以下はH···F単独の指標についての解釈であり、両側を組み合わせた仮説を否定するものではない。
 
 **今回の結果は、ortho Fによる近接配置の形成とは整合するが、F···H接触だけで4系の障壁差を説明することはできない。**
 
@@ -162,10 +163,12 @@ TSは対応するfreqログの実座標・電子エネルギーを使用した�
 
 `Σ F_i · dr_i/dR` とエネルギー由来反応力の一致を確認する診断。原子・断片の寄与や2原子の力射影は、H···F相互作用エネルギーの一意な分解ではない。平滑化への依存は `smoothing_sensitivity.csv` に記録した。
 
-## 次に確認したい点
+## 既存ログだけで次に確認できる点
 
-- RAFA15反応物の微小虚振動を解消し、各系の配座探索とIRCからの生成物最適化で比較条件をそろえる。
-- F···Hの安定化を直接論じるには、電子密度指標（NCI/QTAIM等）や適切なエネルギー分解・配座対照を追加する。これらは今回未計算。
+- 原子の仕事を経路に沿って積み上げた曲線と、接触距離・角度・環の回転を比べ、RAFA15のO21で仕事が増える位置を調べる。
+- 点を間引く、積分方法や座標の重ね合わせ方を変える、といった確認により、小さな仕事の値と順位がどの程度変わるかを調べる。
+
+追加DFTを伴う配座探索やエネルギー分解は、現在の作業範囲に含めない。微小虚振動など、既存ログだけでは解消できない点は結果の制限として残す。
 
 ## 実行時の警告
 
@@ -178,6 +181,6 @@ TSは対応するfreqログの実座標・電子エネルギーを使用した�
 
 ## 再現方法
 
-ルートで `python -m pip install -r requirements.txt`、続いて `python analysis4_force/run_analysis.py`。圧縮原本は自動展開し、manifestのSHA-256と照合する。原子対応表・全数値・図・このsummaryはスクリプトから生成する。
+ルートで `python -m pip install -r requirements.txt`、続いて `python analysis4_force/run_analysis.py`。圧縮原本は自動展開し、manifestのSHA-256と照合する。原子対応表・全数値・図・この結果報告はスクリプトから生成する。
 '''
-    (reports/'summary_ja.md').write_text(text)
+    write_annotated_report(reports/'summary_ja.md',text)

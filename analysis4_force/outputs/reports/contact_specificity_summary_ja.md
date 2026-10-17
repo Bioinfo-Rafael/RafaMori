@@ -1,37 +1,41 @@
-# 分子内順位と、他の原子・接触を対照にした特異性検証
+# 着目した接触は、他の原子・接触と比べて特徴的か
 
-追加DFTなし。2026-10-17。全57原子と全1596原子対を計算し、幾何・結合関係で対照を選んだ。障壁は各系のΔE‡・ΔG‡そのもの。MoriPFとの差やpercentage pointsは用いない。
+[図の見方・用語・全図の説明](figure_guide_ja.md)。各図の軸、点・線・色の意味はこちらでも確認できます。
+
+解析日：2026-10-17。追加のDFT計算は行わず、既存ログから各系の全57原子と1596原子対について指標を計算した。比較対象は、原子間距離と結合のつながりを基に選んだ。障壁は各系のΔE‡・ΔG‡そのもの。MoriPFとの差やpercentage pointsは用いない。
 
 ## 結論
 
-**反対側H/F···Oは、近い種類・距離の接触の中で応答が大きい。ただし、障壁に相関する接触がこれだけという結果ではない。アミン側は「大きさ」と「相関」を同時に満たす根拠が弱い。**
+**反対側のH/F···Oは、原子の種類と距離が似た接触と比べると、接触方向の力・仕事が大きい。一方、障壁との相関が同じくらい強い接触は他にもある。アミン側については、「他の接触より値が大きく、障壁との相関も強い」という結果は得られていない。**
 
-元の図15で示した反対側2原子の仕事和（電子障壁r≈−0.965）は、同じ分類で4系に共通する対照96個中、18個が同等以上の|r|を持つ。H/F···O/Nかつ平均距離差±0.75 Åに絞っても、対照6個中1個が上回る。前の高相関だけでは特異性を示せなかった。
+元の図15で示した反対側2原子の仕事の合計（電子障壁r≈−0.965）は、同じ分類で4系に共通する対照96個中、18個が同等以上の|r|を持つ。H/F···O/Nかつ平均距離差±0.75 Åに絞っても、対照6個中1個が上回る。図15の高い相関だけでは、着目した接触に特有の関係とはいえない。
 
-接触方向の射影仕事（電子障壁r≈−0.967）では、同分類の対照96個中34個が同等以上の|r|を持つ。化学種・距離を絞っても対照6個中4個。したがってこの指標でも「ここだけ相関する」とはいえない。
+接触方向の仕事（電子障壁r≈−0.967）では、同分類の対照96個中34個が同等以上の|r|を持つ。化学種・距離を絞っても対照6個中4個。したがってこの指標でも「ここだけ相関する」とはいえない。
 
-一方、**RAFA15の反対側H56···O21は、化学種・距離を近づけた13候補の中で射影仕事・平均射影力とも1位**。同じ対照定義でMoriPFは2位、RAFA14は3位、RAFA16は2位であり、局所応答としては目立つ。2原子の仕事和では4系とも4/13位。指定接触を研究対象にする根拠は残るが、因果や唯一性は未確定。
+一方、**RAFA15の反対側H56···O21は、原子の種類と平均距離を絞った13候補の中で接触方向の仕事・接触方向の力の平均絶対値とも1位**。同じ対照定義でMoriPFは2位、RAFA14は3位、RAFA16は2位であり、この比較では値が大きい側に位置する。ただし、2原子の仕事を合計した値の順位は4系とも13候補中4位である。反対側の接触に注目する理由にはなるが、この接触が障壁を下げる原因だとはまだ特定できない。
 
-| system | pool | value | magnitude_rank | n_controls |
+下表の計算値は、反対側の接触方向の仕事（kcal/mol）。集計区間はC–N 2.50→2.10 Åで、順位は仕事の絶対値が大きい順に付けた。
+
+| 分子系 | 比較対象の条件 | 計算値 | 大きさの順位 | 比較対象数（指定対象を除く） |
 | --- | --- | --- | --- | --- |
-| MoriPF | same_category | 0.00283647 | 12 | 151 |
-| MoriPF | distance_and_chemistry | 0.00283647 | 2 | 12 |
-| RAFA14 | same_category | -0.00162221 | 17 | 151 |
-| RAFA14 | distance_and_chemistry | -0.00162221 | 3 | 12 |
-| RAFA15 | same_category | 0.00908524 | 5 | 168 |
-| RAFA15 | distance_and_chemistry | 0.00908524 | 1 | 12 |
-| RAFA16 | same_category | 0.00311402 | 12 | 152 |
-| RAFA16 | distance_and_chemistry | 0.00311402 | 2 | 12 |
+| MoriPF | 分子内／分子間の区分が同じ | 0.00283647 | 12 | 151 |
+| MoriPF | 原子の種類と平均距離を限定 | 0.00283647 | 2 | 12 |
+| RAFA14 | 分子内／分子間の区分が同じ | -0.00162221 | 17 | 151 |
+| RAFA14 | 原子の種類と平均距離を限定 | -0.00162221 | 3 | 12 |
+| RAFA15 | 分子内／分子間の区分が同じ | 0.00908524 | 5 | 168 |
+| RAFA15 | 原子の種類と平均距離を限定 | 0.00908524 | 1 | 12 |
+| RAFA16 | 分子内／分子間の区分が同じ | 0.00311402 | 12 | 152 |
+| RAFA16 | 原子の種類と平均距離を限定 | 0.00311402 | 2 | 12 |
 
-「強さと相関の両方で全4系の対象を上回る」対照は、反対側の2原子仕事和には存在しなかった。射影仕事には広い対照でC20···C24が1件あり（r≈−0.995）、H/F···O/Nに限定すると0件。これは指標・対照の選択により結論が変わることを示す。C20···C24は1–4のC···Cなので、同じ化学相互作用とは主張せず、1–4対を除いた感度比較も残した。
+「強さと相関の両方で全4系の対象を上回る」対照は、反対側の2原子の仕事の合計には存在しなかった。接触方向の仕事には広い対照でC20···C24が1件あり（r≈−0.995）、H/F···O/Nに限定すると0件。これは指標・対照の選択により結論が変わることを示す。C20···C24は1–4のC···Cなので、同じ化学相互作用とは主張せず、1–4対を除いた感度比較も残した。
 
 ## 今回の問い
 
 「指定した接触に相関がある」だけでなく、(1) 同じ系の他の原子・接触より応答が大きいか、(2) 他の接触には同様の障壁相関がないか、(3) 指定原子を共有しない対照でも同じ結果が出ないか、を確認する。
 
-全原子や共有結合より最大であることは機構上の必要条件ではない。一方、同じ定義・近い距離・同じ分子内/分子間分類の対照でも平凡なら、「この接触だけが特別に強い」という説明は支持されない。本解析は全原子力からの間接量の比較であり、真のペア結合強度の順位ではない。
+反応を促進する接触が、共有結合を含むすべての原子対の中で最大の値を取る必要はない。ただし、種類や距離の似た接触と比べても値が大きくなければ、「この接触が特に強い」という説明の根拠にはならない。ここで比較しているのは、各原子に働く合計の力から作った間接指標であり、2原子間の結合の強さそのものではない。
 
-## 対照の固定ルール
+## 比較対象の選び方
 
 - 反応C–N距離の3区間は従来と同じ。主区間2.50→2.10 Å、感度区間2.55→2.10、2.40→2.15 Å。
 - 最も反応物側の構造で共有結合グラフを推定。距離が共有結合半径和×1.2未満を結合とし、反応で形成中のC–Nは元の分子間の対として扱う。
@@ -44,209 +48,236 @@
 - 同一分子内の強さ順位は対称Hも含む全原子対。系間の相関は番号だけでは対応させず、共通骨格、環上の置換位置、求核剤の対応位置を使用する。アルキル基上の複数Hは一意な化学的対応を仮定せず系間相関から除外した。原子対応と共有結合グラフをCSVで公開する。
 - 系間比較では同じ対が**全4系で**接触条件を満たすものだけを採用。距離マッチも全4系で満たす。障壁値から対照を選ばない。
 
-## 全原子内で指定原子はどこに位置するか
+## 着目した原子の仕事は、全57原子の中でどのくらい大きいか
 
-仕事の符号を保って保存し、大きさの順位は絶対値で比較。rank=1が最大、対照数56に対象1原子を加えて全57原子。
+下表の計算値は原子ごとの仕事（kcal/mol）で、正負の符号をそのまま示す。順位は絶対値が大きい順に付け、1位を最大とする。比較対象の56原子に、着目した1原子を加えた全57原子での順位である。
 
-| system | target | value | magnitude_rank | n_controls |
+| 分子系 | 対象 | 計算値 | 大きさの順位 | 比較対象数（指定対象を除く） |
 | --- | --- | --- | --- | --- |
-| MoriPF | X24 | 0.0156109 | 18 | 56 |
-| MoriPF | NH_near | 0.0690206 | 8 | 56 |
-| MoriPF | X25 | 0.012798 | 20 | 56 |
-| MoriPF | core21 | 0.0298387 | 12 | 56 |
-| RAFA14 | X24 | 0.00381192 | 33 | 56 |
-| RAFA14 | NH_near | 0.0945811 | 8 | 56 |
-| RAFA14 | X25 | 0.00314581 | 34 | 56 |
-| RAFA14 | core21 | 0.0239114 | 17 | 56 |
-| RAFA15 | X24 | 0.0427993 | 12 | 56 |
-| RAFA15 | NH_near | 0.0978649 | 10 | 56 |
-| RAFA15 | X25 | 0.00290557 | 30 | 56 |
-| RAFA15 | core21 | 0.137244 | 9 | 56 |
-| RAFA16 | X24 | 0.0207225 | 16 | 56 |
-| RAFA16 | NH_near | 0.0749908 | 8 | 56 |
-| RAFA16 | X25 | 0.0187642 | 18 | 56 |
-| RAFA16 | core21 | 0.0356022 | 12 | 56 |
+| MoriPF | X24（アミン側F/H） | 0.0156109 | 18 | 56 |
+| MoriPF | NH_near（選択アミンH） | 0.0690206 | 8 | 56 |
+| MoriPF | X25（反対側F/H） | 0.012798 | 20 | 56 |
+| MoriPF | O21 | 0.0298387 | 12 | 56 |
+| RAFA14 | X24（アミン側F/H） | 0.00381192 | 33 | 56 |
+| RAFA14 | NH_near（選択アミンH） | 0.0945811 | 8 | 56 |
+| RAFA14 | X25（反対側F/H） | 0.00314581 | 34 | 56 |
+| RAFA14 | O21 | 0.0239114 | 17 | 56 |
+| RAFA15 | X24（アミン側F/H） | 0.0427993 | 12 | 56 |
+| RAFA15 | NH_near（選択アミンH） | 0.0978649 | 10 | 56 |
+| RAFA15 | X25（反対側F/H） | 0.00290557 | 30 | 56 |
+| RAFA15 | O21 | 0.137244 | 9 | 56 |
+| RAFA16 | X24（アミン側F/H） | 0.0207225 | 16 | 56 |
+| RAFA16 | NH_near（選択アミンH） | 0.0749908 | 8 | 56 |
+| RAFA16 | X25（反対側F/H） | 0.0187642 | 18 | 56 |
+| RAFA16 | O21 | 0.0356022 | 12 | 56 |
 
 ![全原子の順位](../figures/20_all_atom_work_controls.png)
 
+<!-- figure-explanation:start -->
+**図20の読み方 — 指定した4原子の仕事は、全57原子の中で何番目に大きいか**
+
+各小図が1系。1点が1原子で、横軸は仕事の絶対値が大きい順の順位（1位が最大）、縦軸は仕事の絶対値（kcal/mol、対数目盛）。灰色の点が全57原子で、着目する4原子を色付きで重ねる。赤=X24（アミン側F/H）、橙=NH_near（選択アミンH）、緑=X25（反対側F/H）、青=core21（O21）。ここでの色は分子系の色ではない。
+
+左上にあるほど仕事が大きい。RAFA15ではO21が9位、反対側H56が30位で、H56自体が最大の寄与を持つわけではない。これは原子の順位であって、H56···O21という原子対の順位ではない。
+<!-- figure-explanation:end -->
+
+
 ## 同じ系の他の接触に比べて強いか
 
-`radial_work_kcal_mol`は接触方向の仕事診断、`mean_abs_projection_mEh_bohr`は接触方向の力の平均絶対値。強さのrankは大きい順、比較総数はn_controls+1。少数の順位差を精密な結合強度差とは読まない。
+下表では、①2原子の仕事の合計、②接触方向の仕事、③接触方向の力の平均絶対値を比較する。①と②の単位はkcal/mol、③はmEh/Bohr。順位は各指標の絶対値が大きい順で、比較する総数は「比較対象数＋着目した接触1個」となる。この順位を、結合エネルギーの順位とは解釈しない。
 
-| system | target | pool | metric | value | magnitude_rank | n_controls |
+| 分子系 | 対象 | 比較対象の条件 | 評価量 | 計算値 | 大きさの順位 | 比較対象数（指定対象を除く） |
 | --- | --- | --- | --- | --- | --- | --- |
-| MoriPF | opposite_contact | same_category | pair_atomic_work_kcal_mol | 0.0426367 | 26 | 151 |
-| MoriPF | opposite_contact | same_category | radial_work_kcal_mol | 0.00283647 | 12 | 151 |
-| MoriPF | opposite_contact | same_category | mean_abs_projection_mEh_bohr | 0.119227 | 14 | 151 |
-| MoriPF | opposite_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | 0.0426367 | 4 | 12 |
-| MoriPF | opposite_contact | distance_and_chemistry | radial_work_kcal_mol | 0.00283647 | 2 | 12 |
-| MoriPF | opposite_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | 0.119227 | 2 | 12 |
-| MoriPF | amine_contact | same_category | pair_atomic_work_kcal_mol | 0.0846315 | 39 | 53 |
-| MoriPF | amine_contact | same_category | radial_work_kcal_mol | -0.00490808 | 44 | 53 |
-| MoriPF | amine_contact | same_category | mean_abs_projection_mEh_bohr | 0.0456488 | 48 | 53 |
-| MoriPF | amine_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | 0.0846315 | 3 | 7 |
-| MoriPF | amine_contact | distance_and_chemistry | radial_work_kcal_mol | -0.00490808 | 6 | 7 |
-| MoriPF | amine_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | 0.0456488 | 6 | 7 |
-| RAFA14 | opposite_contact | same_category | pair_atomic_work_kcal_mol | 0.0270572 | 42 | 151 |
-| RAFA14 | opposite_contact | same_category | radial_work_kcal_mol | -0.00162221 | 17 | 151 |
-| RAFA14 | opposite_contact | same_category | mean_abs_projection_mEh_bohr | 0.182389 | 14 | 151 |
-| RAFA14 | opposite_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | 0.0270572 | 4 | 12 |
-| RAFA14 | opposite_contact | distance_and_chemistry | radial_work_kcal_mol | -0.00162221 | 3 | 12 |
-| RAFA14 | opposite_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | 0.182389 | 3 | 12 |
-| RAFA14 | amine_contact | same_category | pair_atomic_work_kcal_mol | 0.098393 | 42 | 51 |
-| RAFA14 | amine_contact | same_category | radial_work_kcal_mol | 0.00299599 | 44 | 51 |
-| RAFA14 | amine_contact | same_category | mean_abs_projection_mEh_bohr | 0.0385756 | 48 | 51 |
-| RAFA14 | amine_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | 0.098393 | 4 | 7 |
-| RAFA14 | amine_contact | distance_and_chemistry | radial_work_kcal_mol | 0.00299599 | 5 | 7 |
-| RAFA14 | amine_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | 0.0385756 | 7 | 7 |
-| RAFA15 | opposite_contact | same_category | pair_atomic_work_kcal_mol | 0.14015 | 26 | 168 |
-| RAFA15 | opposite_contact | same_category | radial_work_kcal_mol | 0.00908524 | 5 | 168 |
-| RAFA15 | opposite_contact | same_category | mean_abs_projection_mEh_bohr | 0.513777 | 3 | 168 |
-| RAFA15 | opposite_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | 0.14015 | 4 | 12 |
-| RAFA15 | opposite_contact | distance_and_chemistry | radial_work_kcal_mol | 0.00908524 | 1 | 12 |
-| RAFA15 | opposite_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | 0.513777 | 1 | 12 |
-| RAFA15 | amine_contact | same_category | pair_atomic_work_kcal_mol | 0.140664 | 39 | 48 |
-| RAFA15 | amine_contact | same_category | radial_work_kcal_mol | 0.00152599 | 47 | 48 |
-| RAFA15 | amine_contact | same_category | mean_abs_projection_mEh_bohr | 0.0967671 | 43 | 48 |
-| RAFA15 | amine_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | 0.140664 | 7 | 8 |
-| RAFA15 | amine_contact | distance_and_chemistry | radial_work_kcal_mol | 0.00152599 | 9 | 8 |
-| RAFA15 | amine_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | 0.0967671 | 7 | 8 |
-| RAFA16 | opposite_contact | same_category | pair_atomic_work_kcal_mol | 0.0543665 | 25 | 152 |
-| RAFA16 | opposite_contact | same_category | radial_work_kcal_mol | 0.00311402 | 12 | 152 |
-| RAFA16 | opposite_contact | same_category | mean_abs_projection_mEh_bohr | 0.129816 | 16 | 152 |
-| RAFA16 | opposite_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | 0.0543665 | 4 | 12 |
-| RAFA16 | opposite_contact | distance_and_chemistry | radial_work_kcal_mol | 0.00311402 | 2 | 12 |
-| RAFA16 | opposite_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | 0.129816 | 2 | 12 |
-| RAFA16 | amine_contact | same_category | pair_atomic_work_kcal_mol | 0.0957133 | 39 | 53 |
-| RAFA16 | amine_contact | same_category | radial_work_kcal_mol | -0.00664926 | 43 | 53 |
-| RAFA16 | amine_contact | same_category | mean_abs_projection_mEh_bohr | 0.0597148 | 48 | 53 |
-| RAFA16 | amine_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | 0.0957133 | 3 | 7 |
-| RAFA16 | amine_contact | distance_and_chemistry | radial_work_kcal_mol | -0.00664926 | 6 | 7 |
-| RAFA16 | amine_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | 0.0597148 | 6 | 7 |
+| MoriPF | 反対側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 0.0426367 | 26 | 151 |
+| MoriPF | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 0.00283647 | 12 | 151 |
+| MoriPF | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 0.119227 | 14 | 151 |
+| MoriPF | 反対側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 0.0426367 | 4 | 12 |
+| MoriPF | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | 0.00283647 | 2 | 12 |
+| MoriPF | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 0.119227 | 2 | 12 |
+| MoriPF | アミン側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 0.0846315 | 39 | 53 |
+| MoriPF | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | -0.00490808 | 44 | 53 |
+| MoriPF | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 0.0456488 | 48 | 53 |
+| MoriPF | アミン側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 0.0846315 | 3 | 7 |
+| MoriPF | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | -0.00490808 | 6 | 7 |
+| MoriPF | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 0.0456488 | 6 | 7 |
+| RAFA14 | 反対側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 0.0270572 | 42 | 151 |
+| RAFA14 | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | -0.00162221 | 17 | 151 |
+| RAFA14 | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 0.182389 | 14 | 151 |
+| RAFA14 | 反対側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 0.0270572 | 4 | 12 |
+| RAFA14 | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | -0.00162221 | 3 | 12 |
+| RAFA14 | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 0.182389 | 3 | 12 |
+| RAFA14 | アミン側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 0.098393 | 42 | 51 |
+| RAFA14 | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 0.00299599 | 44 | 51 |
+| RAFA14 | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 0.0385756 | 48 | 51 |
+| RAFA14 | アミン側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 0.098393 | 4 | 7 |
+| RAFA14 | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | 0.00299599 | 5 | 7 |
+| RAFA14 | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 0.0385756 | 7 | 7 |
+| RAFA15 | 反対側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 0.14015 | 26 | 168 |
+| RAFA15 | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 0.00908524 | 5 | 168 |
+| RAFA15 | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 0.513777 | 3 | 168 |
+| RAFA15 | 反対側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 0.14015 | 4 | 12 |
+| RAFA15 | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | 0.00908524 | 1 | 12 |
+| RAFA15 | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 0.513777 | 1 | 12 |
+| RAFA15 | アミン側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 0.140664 | 39 | 48 |
+| RAFA15 | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 0.00152599 | 47 | 48 |
+| RAFA15 | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 0.0967671 | 43 | 48 |
+| RAFA15 | アミン側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 0.140664 | 7 | 8 |
+| RAFA15 | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | 0.00152599 | 9 | 8 |
+| RAFA15 | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 0.0967671 | 7 | 8 |
+| RAFA16 | 反対側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 0.0543665 | 25 | 152 |
+| RAFA16 | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 0.00311402 | 12 | 152 |
+| RAFA16 | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 0.129816 | 16 | 152 |
+| RAFA16 | 反対側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 0.0543665 | 4 | 12 |
+| RAFA16 | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | 0.00311402 | 2 | 12 |
+| RAFA16 | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 0.129816 | 2 | 12 |
+| RAFA16 | アミン側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 0.0957133 | 39 | 53 |
+| RAFA16 | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | -0.00664926 | 43 | 53 |
+| RAFA16 | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 0.0597148 | 48 | 53 |
+| RAFA16 | アミン側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 0.0957133 | 3 | 7 |
+| RAFA16 | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | -0.00664926 | 6 | 7 |
+| RAFA16 | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 0.0597148 | 6 | 7 |
 
 ![接触の強さ分布](../figures/21_contact_strength_controls.png)
+
+<!-- figure-explanation:start -->
+**図21の読み方 — 指定した接触の力・仕事を、同じ系の他の接触と比べる**
+
+上段はアミン側の分子間接触、下段は反対側の分子内接触。左列は接触方向の仕事の絶対値（kcal/mol）、右列は接触方向の力の平均絶対値（mEh/Bohr）。横軸は分子系、縦軸は対数目盛。箱は比較対象の接触の分布、色付きの丸は指定接触。橙の横線は中央値、箱は25〜75パーセンタイル、ひげは第1四分位数−1.5×四分位範囲から第3四分位数＋1.5×四分位範囲までに入る最小・最大の値、外の灰色点はその範囲外の値で、計算失敗を意味しない。
+
+rank 5/169なら、指定接触を含む169候補中で5番目に大きい。丸が箱より上にあるほど多くの接触より値が大きい。この図は広い比較対象を使っており、本文の「種類・距離を絞ると13候補中1位」とは母集団が異なる。どちらも力・仕事の指標の順位で、厳密な結合強度の順位ではない。
+<!-- figure-explanation:end -->
+
 
 ## この接触だけが障壁に相関するか
 
 主区間、電子障壁についての結果。相関は符号を保つ。対照との相関順位は|r|で比較し、正/負いずれも強い対応として数える。`controls_at_least_as_correlated`は対象以上の|r|を持つ対照数。`stronger_in_all_four`は全4系で対象以上の大きさを持つ対照数。最後の列は両条件を同時に満たす対照数。
 
-| window | target | pool | metric | barrier | target_pearson_r | target_spearman_r | n_common_controls | controls_at_least_as_correlated | abs_correlation_rank | stronger_in_all_four | stronger_and_at_least_as_correlated |
+| 集計区間（C–N距離） | 対象 | 比較対象の条件 | 評価量 | 障壁の種類 | 指定接触の相関 r | 指定接触の順位相関 | 4系共通の比較対象数 | 同等以上の相関を示す比較対象数 | 相関の強さの順位 | 4系すべてで値が同等以上 | 値と相関がともに同等以上の数 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| common_CN_2.50_to_2.10 | amine_contact | same_category | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185312 | 0.2 | 28 | 28 | 29 | 23 | 23 |
-| common_CN_2.50_to_2.10 | amine_contact | distance_matched | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185312 | 0.2 | 11 | 11 | 12 | 10 | 10 |
-| common_CN_2.50_to_2.10 | amine_contact | shared_anchor | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185312 | 0.2 | 6 | 6 | 7 | 5 | 5 |
-| common_CN_2.50_to_2.10 | amine_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185312 | 0.2 | 20 | 20 | 21 | 18 | 18 |
-| common_CN_2.50_to_2.10 | amine_contact | chemically_related | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185312 | 0.2 | 5 | 5 | 6 | 4 | 4 |
-| common_CN_2.50_to_2.10 | amine_contact | distance_and_chemistry | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185312 | 0.2 | 1 | 1 | 2 | 1 | 1 |
-| common_CN_2.50_to_2.10 | amine_contact | exclude_1_4 | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.185312 | 0.2 | 28 | 28 | 29 | 23 | 23 |
-| common_CN_2.50_to_2.10 | opposite_contact | same_category | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.966567 | -0.8 | 96 | 34 | 35 | 4 | 1 |
-| common_CN_2.50_to_2.10 | opposite_contact | distance_matched | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.966567 | -0.8 | 56 | 26 | 27 | 3 | 1 |
-| common_CN_2.50_to_2.10 | opposite_contact | shared_anchor | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.966567 | -0.8 | 7 | 1 | 2 | 0 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.966567 | -0.8 | 84 | 33 | 34 | 3 | 1 |
-| common_CN_2.50_to_2.10 | opposite_contact | chemically_related | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.966567 | -0.8 | 8 | 5 | 6 | 0 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | distance_and_chemistry | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.966567 | -0.8 | 6 | 4 | 5 | 0 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | exclude_1_4 | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.966567 | -0.8 | 21 | 9 | 10 | 2 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185312 | 0.2 | 28 | 28 | 29 | 23 | 23 |
+| 2.50→2.10 Å | アミン側の接触 | さらに平均距離が近い | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185312 | 0.2 | 11 | 11 | 12 | 10 | 10 |
+| 2.50→2.10 Å | アミン側の接触 | O21または選択アミンHを共有 | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185312 | 0.2 | 6 | 6 | 7 | 5 | 5 |
+| 2.50→2.10 Å | アミン側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185312 | 0.2 | 20 | 20 | 21 | 18 | 18 |
+| 2.50→2.10 Å | アミン側の接触 | 原子の種類を限定 | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185312 | 0.2 | 5 | 5 | 6 | 4 | 4 |
+| 2.50→2.10 Å | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185312 | 0.2 | 1 | 1 | 2 | 1 | 1 |
+| 2.50→2.10 Å | アミン側の接触 | 1–4対も除外 | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.185312 | 0.2 | 28 | 28 | 29 | 23 | 23 |
+| 2.50→2.10 Å | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.966567 | -0.8 | 96 | 34 | 35 | 4 | 1 |
+| 2.50→2.10 Å | 反対側の接触 | さらに平均距離が近い | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.966567 | -0.8 | 56 | 26 | 27 | 3 | 1 |
+| 2.50→2.10 Å | 反対側の接触 | O21または選択アミンHを共有 | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.966567 | -0.8 | 7 | 1 | 2 | 0 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.966567 | -0.8 | 84 | 33 | 34 | 3 | 1 |
+| 2.50→2.10 Å | 反対側の接触 | 原子の種類を限定 | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.966567 | -0.8 | 8 | 5 | 6 | 0 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.966567 | -0.8 | 6 | 4 | 5 | 0 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 1–4対も除外 | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.966567 | -0.8 | 21 | 9 | 10 | 2 | 0 |
 
-元の図15の「2原子の仕事和」でも同じ対照比較を行った。これは指定した2原子の仕事の和であり、2原子間の力ではない：
+元の図15の「2原子の仕事の合計」でも同じ対照比較を行った。これは指定した2原子の仕事の和であり、2原子間の力ではない：
 
-| window | target | pool | metric | barrier | target_pearson_r | target_spearman_r | n_common_controls | controls_at_least_as_correlated | abs_correlation_rank | stronger_in_all_four | stronger_and_at_least_as_correlated |
+| 集計区間（C–N距離） | 対象 | 比較対象の条件 | 評価量 | 障壁の種類 | 指定接触の相関 r | 指定接触の順位相関 | 4系共通の比較対象数 | 同等以上の相関を示す比較対象数 | 相関の強さの順位 | 4系すべてで値が同等以上 | 値と相関がともに同等以上の数 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| common_CN_2.50_to_2.10 | amine_contact | same_category | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.836934 | -0.2 | 28 | 3 | 4 | 26 | 3 |
-| common_CN_2.50_to_2.10 | amine_contact | distance_matched | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.836934 | -0.2 | 11 | 0 | 1 | 11 | 0 |
-| common_CN_2.50_to_2.10 | amine_contact | shared_anchor | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.836934 | -0.2 | 6 | 1 | 2 | 4 | 1 |
-| common_CN_2.50_to_2.10 | amine_contact | disjoint | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.836934 | -0.2 | 20 | 1 | 2 | 20 | 1 |
-| common_CN_2.50_to_2.10 | amine_contact | chemically_related | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.836934 | -0.2 | 5 | 3 | 4 | 5 | 3 |
-| common_CN_2.50_to_2.10 | amine_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.836934 | -0.2 | 1 | 0 | 1 | 1 | 0 |
-| common_CN_2.50_to_2.10 | amine_contact | exclude_1_4 | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.836934 | -0.2 | 28 | 3 | 4 | 26 | 3 |
-| common_CN_2.50_to_2.10 | opposite_contact | same_category | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965135 | -0.8 | 96 | 18 | 19 | 21 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | distance_matched | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965135 | -0.8 | 56 | 12 | 13 | 12 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | shared_anchor | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965135 | -0.8 | 7 | 0 | 1 | 3 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965135 | -0.8 | 84 | 18 | 19 | 16 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | chemically_related | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965135 | -0.8 | 8 | 1 | 2 | 3 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | distance_and_chemistry | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965135 | -0.8 | 6 | 1 | 2 | 3 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | exclude_1_4 | pair_atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.965135 | -0.8 | 21 | 3 | 4 | 4 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.836934 | -0.2 | 28 | 3 | 4 | 26 | 3 |
+| 2.50→2.10 Å | アミン側の接触 | さらに平均距離が近い | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.836934 | -0.2 | 11 | 0 | 1 | 11 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | O21または選択アミンHを共有 | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.836934 | -0.2 | 6 | 1 | 2 | 4 | 1 |
+| 2.50→2.10 Å | アミン側の接触 | 指定した2原子を含まない | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.836934 | -0.2 | 20 | 1 | 2 | 20 | 1 |
+| 2.50→2.10 Å | アミン側の接触 | 原子の種類を限定 | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.836934 | -0.2 | 5 | 3 | 4 | 5 | 3 |
+| 2.50→2.10 Å | アミン側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.836934 | -0.2 | 1 | 0 | 1 | 1 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | 1–4対も除外 | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.836934 | -0.2 | 28 | 3 | 4 | 26 | 3 |
+| 2.50→2.10 Å | 反対側の接触 | 分子内／分子間の区分が同じ | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965135 | -0.8 | 96 | 18 | 19 | 21 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | さらに平均距離が近い | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965135 | -0.8 | 56 | 12 | 13 | 12 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | O21または選択アミンHを共有 | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965135 | -0.8 | 7 | 0 | 1 | 3 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965135 | -0.8 | 84 | 18 | 19 | 16 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 原子の種類を限定 | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965135 | -0.8 | 8 | 1 | 2 | 3 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 原子の種類と平均距離を限定 | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965135 | -0.8 | 6 | 1 | 2 | 3 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 1–4対も除外 | 2原子の仕事の合計（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.965135 | -0.8 | 21 | 3 | 4 | 4 | 0 |
 
-アミン側の平均射影力は電子障壁との|r|順位が同分類で1位だが、各分子内での大きさは下位である。相関順位だけで強い接触と呼べない例になる。
+アミン側の接触方向の力の平均絶対値は電子障壁との|r|順位が同分類で1位だが、各分子内での大きさは下位である。相関順位だけで強い接触と呼べない例になる。
 
 同じ比較を力の平均絶対値で行った結果：
 
-| window | target | pool | metric | barrier | target_pearson_r | target_spearman_r | n_common_controls | controls_at_least_as_correlated | abs_correlation_rank | stronger_in_all_four | stronger_and_at_least_as_correlated |
+| 集計区間（C–N距離） | 対象 | 比較対象の条件 | 評価量 | 障壁の種類 | 指定接触の相関 r | 指定接触の順位相関 | 4系共通の比較対象数 | 同等以上の相関を示す比較対象数 | 相関の強さの順位 | 4系すべてで値が同等以上 | 値と相関がともに同等以上の数 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| common_CN_2.50_to_2.10 | amine_contact | same_category | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.932259 | -0.8 | 28 | 0 | 1 | 25 | 0 |
-| common_CN_2.50_to_2.10 | amine_contact | distance_matched | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.932259 | -0.8 | 11 | 0 | 1 | 11 | 0 |
-| common_CN_2.50_to_2.10 | amine_contact | shared_anchor | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.932259 | -0.8 | 6 | 0 | 1 | 5 | 0 |
-| common_CN_2.50_to_2.10 | amine_contact | disjoint | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.932259 | -0.8 | 20 | 0 | 1 | 19 | 0 |
-| common_CN_2.50_to_2.10 | amine_contact | chemically_related | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.932259 | -0.8 | 5 | 0 | 1 | 4 | 0 |
-| common_CN_2.50_to_2.10 | amine_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.932259 | -0.8 | 1 | 0 | 1 | 1 | 0 |
-| common_CN_2.50_to_2.10 | amine_contact | exclude_1_4 | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.932259 | -0.8 | 28 | 0 | 1 | 25 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | same_category | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.881125 | -0.2 | 96 | 44 | 45 | 2 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | distance_matched | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.881125 | -0.2 | 56 | 29 | 30 | 1 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | shared_anchor | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.881125 | -0.2 | 7 | 4 | 5 | 0 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.881125 | -0.2 | 84 | 40 | 41 | 1 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | chemically_related | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.881125 | -0.2 | 8 | 4 | 5 | 0 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | distance_and_chemistry | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.881125 | -0.2 | 6 | 2 | 3 | 0 | 0 |
-| common_CN_2.50_to_2.10 | opposite_contact | exclude_1_4 | mean_abs_projection_mEh_bohr | absolute_electronic_barrier_kcal_mol | -0.881125 | -0.2 | 21 | 12 | 13 | 2 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.932259 | -0.8 | 28 | 0 | 1 | 25 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | さらに平均距離が近い | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.932259 | -0.8 | 11 | 0 | 1 | 11 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | O21または選択アミンHを共有 | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.932259 | -0.8 | 6 | 0 | 1 | 5 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | 指定した2原子を含まない | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.932259 | -0.8 | 20 | 0 | 1 | 19 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | 原子の種類を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.932259 | -0.8 | 5 | 0 | 1 | 4 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.932259 | -0.8 | 1 | 0 | 1 | 1 | 0 |
+| 2.50→2.10 Å | アミン側の接触 | 1–4対も除外 | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.932259 | -0.8 | 28 | 0 | 1 | 25 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.881125 | -0.2 | 96 | 44 | 45 | 2 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | さらに平均距離が近い | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.881125 | -0.2 | 56 | 29 | 30 | 1 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | O21または選択アミンHを共有 | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.881125 | -0.2 | 7 | 4 | 5 | 0 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.881125 | -0.2 | 84 | 40 | 41 | 1 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 原子の種類を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.881125 | -0.2 | 8 | 4 | 5 | 0 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 原子の種類と平均距離を限定 | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.881125 | -0.2 | 6 | 2 | 3 | 0 | 0 |
+| 2.50→2.10 Å | 反対側の接触 | 1–4対も除外 | 接触方向の力の平均絶対値（mEh/Bohr） | 電子障壁 ΔE‡（kcal/mol） | -0.881125 | -0.2 | 21 | 12 | 13 | 2 | 0 |
 
 ![強さと相関の同時比較](../figures/22_contact_correlation_specificity.png)
+
+<!-- figure-explanation:start -->
+**図22の読み方 — 接触の値の大きさと、障壁との相関を同時に比べる**
+
+**1点が1つの原子対であり、分子系やIRCの1点ではない。** 4系すべてで対応を付けられ、接触条件を満たした原子対だけを示す。左は分子間、右は基質分子内。横軸は、その原子対の接触方向の仕事の絶対値を4系で集めた中央値（kcal/mol、対数目盛）。縦軸は、その原子対について4系の仕事とΔE‡から求めたPearson相関r。灰色が比較候補、赤が指定接触。
+
+右ほど仕事の値が大きく、上端・下端に近いほど障壁との直線的な対応が強い。下側は負の相関なので「弱い相関」ではない。右図の赤点は比較的大きな仕事と強い負の相関を持つが、灰色点にも|r|が大きいものが多数ある。この図は「指定した接触だけが相関するか」を調べるもので、接触の実際の引力・斥力を描いたものではない。
+<!-- figure-explanation:end -->
+
 
 ### 指定した2原子をどちらも含まない対照の具体例
 
 以下は相関の強い順に各5候補に加え、「全4系でより大きく、相関も同等以上」の候補を最大3つ表示した反例候補で、これらを新たな機構として採用したわけではない。全候補はCSVに残す。`coreNN`は共通骨格の原子番号NN、`X24`〜`X28`はその環C上のF/H、`NH_near`/`NH_other`はTSでアミン側Xに近い/遠いアミンH。各系の具体的な原子番号・元素はmappingを参照。
 
-| window | target | pool | metric | barrier | control_pair | pearson_r | spearman_r | stronger_in_all_four | MoriPF_value | RAFA14_value | RAFA15_value | RAFA16_value | MoriPF_atoms | RAFA14_atoms | RAFA15_atoms | RAFA16_atoms |
+| 集計区間（C–N距離） | 対象 | 比較対象の条件 | 評価量 | 障壁の種類 | 比較対象の原子対 | Pearson相関 r | 順位相関 | 4系すべてで値が同等以上 | MoriPFの値 | RAFA14の値 | RAFA15の値 | RAFA16の値 | MoriPFの原子番号 | RAFA14の原子番号 | RAFA15の原子番号 | RAFA16の原子番号 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| common_CN_2.50_to_2.10 | amine_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | amineN/core23 | 0.969268 | 0.8 | True | 0.34706 | 0.383787 | 0.178856 | 0.39148 | 23-45 | 23-43 | 23-43 | 23-43 |
-| common_CN_2.50_to_2.10 | amine_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | amineC1/core19 | -0.937481 | -0.4 | False | 0.00430654 | 0.00529835 | 0.128989 | 0.00389499 | 19-48 | 19-46 | 19-46 | 19-46 |
-| common_CN_2.50_to_2.10 | amine_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | amineN/core19 | -0.915912 | -0.4 | True | 0.0464877 | 0.0737347 | 0.422328 | 0.0459466 | 19-45 | 19-43 | 19-43 | 19-43 |
-| common_CN_2.50_to_2.10 | amine_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | amineC1/core13 | -0.905195 | -0.2 | True | 0.0529354 | 0.0791875 | 0.307793 | 0.0576549 | 13-48 | 13-46 | 13-46 | 13-46 |
-| common_CN_2.50_to_2.10 | amine_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | amineN/core12 | -0.901864 | -0.2 | True | 0.0685257 | 0.115021 | 0.491738 | 0.071698 | 12-45 | 12-43 | 12-43 | 12-43 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | core19/core20 | 0.998345 | 1 | False | 0.00563499 | 0.0085164 | 0.00145398 | 0.00678192 | 19-20 | 19-20 | 19-20 | 19-20 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | core11/core18 | 0.99833 | 1 | False | 0.000442432 | 0.00067749 | 4.29776e-05 | 0.000575353 | 11-18 | 11-18 | 11-18 | 11-18 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | core08/core14 | -0.998204 | -1 | False | -0.000124524 | -0.000234582 | 6.11572e-05 | -0.000187279 | 8-14 | 8-14 | 8-14 | 8-14 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | core10/core18 | 0.997924 | 1 | False | 0.00011401 | 0.000174294 | 2.65881e-05 | 0.000145723 | 10-18 | 10-18 | 10-18 | 10-18 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | core07/core22 | -0.99778 | -1 | False | -0.00210884 | -0.00356314 | 8.49079e-05 | -0.00258647 | 7-22 | 7-22 | 7-22 | 7-22 |
-| common_CN_2.50_to_2.10 | opposite_contact | disjoint | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | core20/core24 | -0.994598 | -1 | True | 0.00541022 | 0.00368614 | 0.00987585 | 0.00510686 | 20-24 | 20-24 | 20-24 | 20-24 |
+| 2.50→2.10 Å | アミン側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | amineN/core23 | 0.969268 | 0.8 | はい | 0.34706 | 0.383787 | 0.178856 | 0.39148 | 23-45 | 23-43 | 23-43 | 23-43 |
+| 2.50→2.10 Å | アミン側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | amineC1/core19 | -0.937481 | -0.4 | いいえ | 0.00430654 | 0.00529835 | 0.128989 | 0.00389499 | 19-48 | 19-46 | 19-46 | 19-46 |
+| 2.50→2.10 Å | アミン側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | amineN/core19 | -0.915912 | -0.4 | はい | 0.0464877 | 0.0737347 | 0.422328 | 0.0459466 | 19-45 | 19-43 | 19-43 | 19-43 |
+| 2.50→2.10 Å | アミン側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | amineC1/core13 | -0.905195 | -0.2 | はい | 0.0529354 | 0.0791875 | 0.307793 | 0.0576549 | 13-48 | 13-46 | 13-46 | 13-46 |
+| 2.50→2.10 Å | アミン側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | amineN/core12 | -0.901864 | -0.2 | はい | 0.0685257 | 0.115021 | 0.491738 | 0.071698 | 12-45 | 12-43 | 12-43 | 12-43 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | core19/core20 | 0.998345 | 1 | いいえ | 0.00563499 | 0.0085164 | 0.00145398 | 0.00678192 | 19-20 | 19-20 | 19-20 | 19-20 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | core11/core18 | 0.99833 | 1 | いいえ | 0.000442432 | 0.00067749 | 4.29776e-05 | 0.000575353 | 11-18 | 11-18 | 11-18 | 11-18 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | core08/core14 | -0.998204 | -1 | いいえ | -0.000124524 | -0.000234582 | 6.11572e-05 | -0.000187279 | 8-14 | 8-14 | 8-14 | 8-14 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | core10/core18 | 0.997924 | 1 | いいえ | 0.00011401 | 0.000174294 | 2.65881e-05 | 0.000145723 | 10-18 | 10-18 | 10-18 | 10-18 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | core07/core22 | -0.99778 | -1 | いいえ | -0.00210884 | -0.00356314 | 8.49079e-05 | -0.00258647 | 7-22 | 7-22 | 7-22 | 7-22 |
+| 2.50→2.10 Å | 反対側の接触 | 指定した2原子を含まない | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | core20/core24 | -0.994598 | -1 | はい | 0.00541022 | 0.00368614 | 0.00987585 | 0.00510686 | 20-24 | 20-24 | 20-24 | 20-24 |
 
 ### 他の単一原子も相関するか
 
 電子障壁と原子仕事の|r|が高い10原子。原子番号の対応が一意でないアルキルHは含めない。
 
-| kind | window | item | metric | barrier | pearson_r | spearman_r | leave_one_out_r_min | leave_one_out_r_max | median_magnitude |
+| 対象の種類 | 集計区間（C–N距離） | 原子／原子対 | 評価量 | 障壁の種類 | Pearson相関 r | 順位相関 | 1系を除いた相関の最小値 | 1系を除いた相関の最大値 | 4系での絶対値の中央値 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| atom | common_CN_2.50_to_2.10 | core02 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.996859 | 1 | 0.985659 | 0.999517 | 0.00533346 |
-| atom | common_CN_2.50_to_2.10 | core01 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.996258 | 1 | 0.997085 | 0.999777 | 0.00256298 |
-| atom | common_CN_2.50_to_2.10 | core18 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.994978 | 1 | 0.993562 | 0.999997 | 0.0076048 |
-| atom | common_CN_2.50_to_2.10 | core04 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.99461 | 1 | 0.984258 | 0.999298 | 0.00147852 |
-| atom | common_CN_2.50_to_2.10 | core03 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.994135 | 1 | 0.980769 | 0.998863 | 0.00538645 |
-| atom | common_CN_2.50_to_2.10 | core19 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.994096 | 1 | 0.980064 | 0.999991 | 0.0570321 |
-| atom | common_CN_2.50_to_2.10 | core08 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.994091 | 1 | 0.995373 | 0.999597 | 0.000368373 |
-| atom | common_CN_2.50_to_2.10 | core09 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.990826 | 1 | 0.975431 | 0.998649 | 0.000687417 |
-| atom | common_CN_2.50_to_2.10 | sub_alkylC1 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | -0.977178 | -0.8 | -0.996501 | -0.78308 | 0.000314287 |
-| atom | common_CN_2.50_to_2.10 | X28 | atomic_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 0.974304 | 1 | 0.944516 | 0.996199 | 0.00118799 |
+| 原子 | 2.50→2.10 Å | core02 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.996859 | 1 | 0.985659 | 0.999517 | 0.00533346 |
+| 原子 | 2.50→2.10 Å | core01 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.996258 | 1 | 0.997085 | 0.999777 | 0.00256298 |
+| 原子 | 2.50→2.10 Å | core18 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.994978 | 1 | 0.993562 | 0.999997 | 0.0076048 |
+| 原子 | 2.50→2.10 Å | core04 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.99461 | 1 | 0.984258 | 0.999298 | 0.00147852 |
+| 原子 | 2.50→2.10 Å | core03 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.994135 | 1 | 0.980769 | 0.998863 | 0.00538645 |
+| 原子 | 2.50→2.10 Å | core19 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.994096 | 1 | 0.980064 | 0.999991 | 0.0570321 |
+| 原子 | 2.50→2.10 Å | core08 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.994091 | 1 | 0.995373 | 0.999597 | 0.000368373 |
+| 原子 | 2.50→2.10 Å | core09 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.990826 | 1 | 0.975431 | 0.998649 | 0.000687417 |
+| 原子 | 2.50→2.10 Å | sub_alkylC1 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | -0.977178 | -0.8 | -0.996501 | -0.78308 | 0.000314287 |
+| 原子 | 2.50→2.10 Å | X28 | 原子の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 0.974304 | 1 | 0.944516 | 0.996199 | 0.00118799 |
 
-## 区間感度と探索の影響
+## 集計区間を変えた場合と、多数の候補を調べる影響
 
-| window | target | barrier | target_pearson_r | n_common_controls | controls_at_least_as_correlated | stronger_and_at_least_as_correlated |
+| 集計区間（C–N距離） | 対象 | 障壁の種類 | 指定接触の相関 r | 4系共通の比較対象数 | 同等以上の相関を示す比較対象数 | 値と相関がともに同等以上の数 |
 | --- | --- | --- | --- | --- | --- | --- |
-| common_CN_2.50_to_2.10 | amine_contact | absolute_electronic_barrier_kcal_mol | -0.185312 | 28 | 28 | 23 |
-| common_CN_2.50_to_2.10 | amine_contact | absolute_RRHO_G_barrier_kcal_mol | -0.286262 | 28 | 27 | 23 |
-| common_CN_2.50_to_2.10 | opposite_contact | absolute_electronic_barrier_kcal_mol | -0.966567 | 96 | 34 | 1 |
-| common_CN_2.50_to_2.10 | opposite_contact | absolute_RRHO_G_barrier_kcal_mol | -0.943007 | 96 | 45 | 2 |
-| sensitivity_CN_2.55_to_2.10 | amine_contact | absolute_electronic_barrier_kcal_mol | -0.182013 | 28 | 26 | 22 |
-| sensitivity_CN_2.55_to_2.10 | amine_contact | absolute_RRHO_G_barrier_kcal_mol | -0.283316 | 28 | 26 | 22 |
-| sensitivity_CN_2.55_to_2.10 | opposite_contact | absolute_electronic_barrier_kcal_mol | -0.959718 | 96 | 36 | 2 |
-| sensitivity_CN_2.55_to_2.10 | opposite_contact | absolute_RRHO_G_barrier_kcal_mol | -0.932885 | 96 | 48 | 2 |
-| sensitivity_CN_2.40_to_2.15 | amine_contact | absolute_electronic_barrier_kcal_mol | -0.166379 | 28 | 28 | 23 |
-| sensitivity_CN_2.40_to_2.15 | amine_contact | absolute_RRHO_G_barrier_kcal_mol | -0.267729 | 28 | 28 | 23 |
-| sensitivity_CN_2.40_to_2.15 | opposite_contact | absolute_electronic_barrier_kcal_mol | -0.969323 | 96 | 30 | 2 |
-| sensitivity_CN_2.40_to_2.15 | opposite_contact | absolute_RRHO_G_barrier_kcal_mol | -0.946931 | 96 | 42 | 2 |
+| 2.50→2.10 Å | アミン側の接触 | 電子障壁 ΔE‡（kcal/mol） | -0.185312 | 28 | 28 | 23 |
+| 2.50→2.10 Å | アミン側の接触 | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.286262 | 28 | 27 | 23 |
+| 2.50→2.10 Å | 反対側の接触 | 電子障壁 ΔE‡（kcal/mol） | -0.966567 | 96 | 34 | 1 |
+| 2.50→2.10 Å | 反対側の接触 | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.943007 | 96 | 45 | 2 |
+| 2.55→2.10 Å | アミン側の接触 | 電子障壁 ΔE‡（kcal/mol） | -0.182013 | 28 | 26 | 22 |
+| 2.55→2.10 Å | アミン側の接触 | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.283316 | 28 | 26 | 22 |
+| 2.55→2.10 Å | 反対側の接触 | 電子障壁 ΔE‡（kcal/mol） | -0.959718 | 96 | 36 | 2 |
+| 2.55→2.10 Å | 反対側の接触 | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.932885 | 96 | 48 | 2 |
+| 2.40→2.15 Å | アミン側の接触 | 電子障壁 ΔE‡（kcal/mol） | -0.166379 | 28 | 28 | 23 |
+| 2.40→2.15 Å | アミン側の接触 | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.267729 | 28 | 28 | 23 |
+| 2.40→2.15 Å | 反対側の接触 | 電子障壁 ΔE‡（kcal/mol） | -0.969323 | 96 | 30 | 2 |
+| 2.40→2.15 Å | 反対側の接触 | 自由エネルギー障壁 ΔG‡（kcal/mol） | -0.946931 | 96 | 42 | 2 |
 
 4系の障壁ラベルの全24通りの並べ替えについて、候補全体の最大|r|を求めた。対象の|r|以上の最大値が何通りで得られるかを記録する。下表は同分類の全候補を同時に走査した診断である。
 
-| window | target | pool | metric | barrier | n_label_permutations | observed_target_abs_r | permutations_with_scan_max_at_least_target | confirmatory_p_value |
+| 集計区間（C–N距離） | 対象 | 比較対象の条件 | 評価量 | 障壁の種類 | ラベルの並べ替え数 | 指定接触の相関の絶対値 | 指定接触以上の相関の絶対値が得られた回数 | 確証的p値として使用 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| common_CN_2.50_to_2.10 | amine_contact | same_category | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 24 | 0.185312 | 24 | False |
-| common_CN_2.50_to_2.10 | opposite_contact | same_category | radial_work_kcal_mol | absolute_electronic_barrier_kcal_mol | 24 | 0.966567 | 17 | False |
+| 2.50→2.10 Å | アミン側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 24 | 0.185312 | 24 | いいえ |
+| 2.50→2.10 Å | 反対側の接触 | 分子内／分子間の区分が同じ | 接触方向の仕事（kcal/mol） | 電子障壁 ΔE‡（kcal/mol） | 24 | 0.966567 | 17 | いいえ |
 
 これは候補を多数見たときに高い相関がどれほど出やすいかの記述で、事前登録された確証検定や独立したp値ではない。対照同士は原子を共有して互いに依存する。弱い相関の対照だけを選んで「ここだけ相関する」とは結論しない。全候補、全3区間、ΔE‡とΔG‡の双方を保存した。
 
@@ -254,7 +285,7 @@
 
 現在の結果からは、相関の良い指標を追加探索するより、RAFA15で大きい反対側応答がO21単独の移動・環の回転・C–N形成に伴う共通変形で説明できるかを調べる方が有用。累積仕事と二面角・接触角の変化を同じC–N軸で比較し、指定ペアとH11···O18などの高相関対照を同時に示す。複数の原子力射影は同じ構造運動を共有するので、相関が多数出ること自体も結果として扱う。
 
-原子仕事の座標合わせや射影仕事の微小値への数値誤差の影響は未評価の部分が残る。今回の対照比較は3区間で行ったが、追加の物理計算による独立検証ではない。
+原子仕事の座標合わせや接触方向の仕事の微小値への数値誤差の影響は未評価の部分が残る。今回の対照比較は3区間で行ったが、追加の物理計算による独立検証ではない。
 
 ## 再現と参照
 

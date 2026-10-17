@@ -1,12 +1,14 @@
 # MoriPF・RAFA14・RAFA15・RAFA16のIRC／反応力解析
 
+**図の説明：[全22種類・36枚の図の見方](analysis4_force/outputs/reports/figure_guide_ja.md)**。各図の目的、軸の単位、点・線・色の意味、読み取れることを説明しています。
+
 GaussianのIRC（固有反応座標）計算ログから、フッ素置換位置が異なる4分子系の反応経路を比較するPythonプロジェクトです。エネルギー、反応力、原子間距離・角度、分子断片の質量重心（COM）、原子の力と運動を解析します。
 
-**最新の結果：[4系解析の日本語summary](analysis4_force/outputs/reports/summary_ja.md)**
+**最新の結果：[4系解析の日本語まとめ](analysis4_force/outputs/reports/summary_ja.md)**
 
 **追加DFTなしの文献調査・方針：[logだけで評価する量と今回の結果](analysis4_force/outputs/reports/log_only_research_plan_ja.md)**
 
-**両側の定量化：[原子仕事・接触方向の射影仕事と障壁](analysis4_force/outputs/reports/two_sided_contact_summary_ja.md)**。図15は横軸を仕事（kcal/mol）、縦軸を各系の障壁へ変更。反対側原子仕事と電子障壁にr≈−0.965の対応がありますが、O21の応答が主成分で、ペア結合エネルギーではありません。
+**両側の定量化：[原子仕事・接触方向の仕事と障壁](analysis4_force/outputs/reports/two_sided_contact_summary_ja.md)**。図15は横軸を仕事（kcal/mol）、縦軸を各系の障壁へ変更。反対側原子仕事と電子障壁にr≈−0.965の対応がありますが、O21の応答が主成分で、ペア結合エネルギーではありません。
 
 **他の原子・接触との対照比較：[分子内順位と相関の特異性](analysis4_force/outputs/reports/contact_specificity_summary_ja.md)**。RAFA15の反対側H···Oは近い化学種・距離の接触で応答が大きい一方、他の接触にも同等以上の障壁相関があり、指定接触だけの特異性は示せません。
 
@@ -25,16 +27,18 @@ GaussianのIRC（固有反応座標）計算ログから、フッ素置換位置
 
 ortho FのないRAFA14はMoriPFより高障壁ですが、RAFA15はMoriPFよりH···F接触が長いにもかかわらず低障壁で、接触距離だけでは4系の障壁差を説明できません。接触の相関は水素結合や安定化エネルギーの直接的な証明ではありません。
 
-新しいLysはM06-2X/6-311++G(d,p)・SMD水のopt/freqで、正常終了・虚振動なしです。今回は分子＋Lysを基準とする絶対電子障壁・Gibbs障壁も計算しています。電子障壁が負の系もありますが、分離反応物基準の値であり、無障壁反応を意味しません。全系でGibbs障壁は正です。配座・標準状態・生成物対応の制限はsummaryに記載しています。
+新しいLysはM06-2X/6-311++G(d,p)・SMD水のopt/freqで、正常終了・虚振動なしです。今回は分子＋Lysを基準とする絶対電子障壁・Gibbs障壁も計算しています。電子障壁が負の系もありますが、分離反応物基準の値であり、無障壁反応を意味しません。全系でGibbs障壁は正です。配座・標準状態・生成物対応の制限は結果報告に記載しています。
 
 ![障壁と区間仕事](analysis4_force/outputs/figures/02_barriers_and_work.png)
+
+左から電子障壁ΔE‡、自由エネルギー障壁ΔG‡、IRC上のαからTSまでのエネルギー上昇。横軸は4つの分子系、縦軸はすべてkcal/molです。右の図は反応経路の一部分を測った値なので、左・中央の全障壁とは出発点が異なります。詳しくは[図2の説明](analysis4_force/outputs/reports/figure_guide_ja.md#fig02)を参照してください。
 
 ## ディレクトリ構成
 
 | ディレクトリ | 内容 |
 |---|---|
 | `analysis4_force/` | 最新の4系解析、設定、検証コード |
-| `analysis4_force/outputs/` | 4系のCSV、グラフ、方向を統一した解析用LOG、日本語summary |
+| `analysis4_force/outputs/` | 4系のCSV、グラフ、方向を統一した解析用LOG、日本語の結果報告 |
 | `data/completed_20261017/` | 今回の17入力ログの圧縮原本（`.gz`）とSHA-256 manifest |
 | `base_analysis/` | 従来の2系の基礎解析。共通のIRC parserもここに保存 |
 | `analysis2_force/` | 従来の2系の反応力解析。共通の構造・力の解析関数を再利用 |

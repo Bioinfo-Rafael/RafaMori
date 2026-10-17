@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from plotting4 import SYSTEM_COLORS
+from figure_explanations import write_annotated_report
 from reporting import markdown as base_markdown
 from contact_specificity import HERE,TARGETS,ENERGIES,pairkey,pool_mask
 
@@ -68,31 +69,33 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
     direct=s[(s.target=='opposite_contact')&(s.metric=='pair_atomic_work_kcal_mol')&(s.barrier==ENERGIES[0])].set_index('pool')
     radial=s[(s.target=='opposite_contact')&(s.metric=='radial_work_kcal_mol')&(s.barrier==ENERGIES[0])].set_index('pool')
     short=r[(r.kind=='contact')&(r.target=='opposite_contact')&(r.metric=='radial_work_kcal_mol')&(r.pool.isin(['same_category','distance_and_chemistry']))][['system','pool','value','magnitude_rank','n_controls']]
-    text=f'''# 分子内順位と、他の原子・接触を対照にした特異性検証
+    text=f'''# 着目した接触は、他の原子・接触と比べて特徴的か
 
-追加DFTなし。2026-10-17。全57原子と全1596原子対を計算し、幾何・結合関係で対照を選んだ。障壁は各系のΔE‡・ΔG‡そのもの。MoriPFとの差やpercentage pointsは用いない。
+解析日：2026-10-17。追加のDFT計算は行わず、既存ログから各系の全57原子と1596原子対について指標を計算した。比較対象は、原子間距離と結合のつながりを基に選んだ。障壁は各系のΔE‡・ΔG‡そのもの。MoriPFとの差やpercentage pointsは用いない。
 
 ## 結論
 
-**反対側H/F···Oは、近い種類・距離の接触の中で応答が大きい。ただし、障壁に相関する接触がこれだけという結果ではない。アミン側は「大きさ」と「相関」を同時に満たす根拠が弱い。**
+**反対側のH/F···Oは、原子の種類と距離が似た接触と比べると、接触方向の力・仕事が大きい。一方、障壁との相関が同じくらい強い接触は他にもある。アミン側については、「他の接触より値が大きく、障壁との相関も強い」という結果は得られていない。**
 
-元の図15で示した反対側2原子の仕事和（電子障壁r≈−0.965）は、同じ分類で4系に共通する対照{int(direct.loc['same_category','n_common_controls'])}個中、{int(direct.loc['same_category','controls_at_least_as_correlated'])}個が同等以上の|r|を持つ。H/F···O/Nかつ平均距離差±0.75 Åに絞っても、対照{int(direct.loc['distance_and_chemistry','n_common_controls'])}個中{int(direct.loc['distance_and_chemistry','controls_at_least_as_correlated'])}個が上回る。前の高相関だけでは特異性を示せなかった。
+元の図15で示した反対側2原子の仕事の合計（電子障壁r≈−0.965）は、同じ分類で4系に共通する対照{int(direct.loc['same_category','n_common_controls'])}個中、{int(direct.loc['same_category','controls_at_least_as_correlated'])}個が同等以上の|r|を持つ。H/F···O/Nかつ平均距離差±0.75 Åに絞っても、対照{int(direct.loc['distance_and_chemistry','n_common_controls'])}個中{int(direct.loc['distance_and_chemistry','controls_at_least_as_correlated'])}個が上回る。図15の高い相関だけでは、着目した接触に特有の関係とはいえない。
 
-接触方向の射影仕事（電子障壁r≈−0.967）では、同分類の対照{int(radial.loc['same_category','n_common_controls'])}個中{int(radial.loc['same_category','controls_at_least_as_correlated'])}個が同等以上の|r|を持つ。化学種・距離を絞っても対照{int(radial.loc['distance_and_chemistry','n_common_controls'])}個中{int(radial.loc['distance_and_chemistry','controls_at_least_as_correlated'])}個。したがってこの指標でも「ここだけ相関する」とはいえない。
+接触方向の仕事（電子障壁r≈−0.967）では、同分類の対照{int(radial.loc['same_category','n_common_controls'])}個中{int(radial.loc['same_category','controls_at_least_as_correlated'])}個が同等以上の|r|を持つ。化学種・距離を絞っても対照{int(radial.loc['distance_and_chemistry','n_common_controls'])}個中{int(radial.loc['distance_and_chemistry','controls_at_least_as_correlated'])}個。したがってこの指標でも「ここだけ相関する」とはいえない。
 
-一方、**RAFA15の反対側H56···O21は、化学種・距離を近づけた13候補の中で射影仕事・平均射影力とも1位**。同じ対照定義でMoriPFは2位、RAFA14は3位、RAFA16は2位であり、局所応答としては目立つ。2原子の仕事和では4系とも4/13位。指定接触を研究対象にする根拠は残るが、因果や唯一性は未確定。
+一方、**RAFA15の反対側H56···O21は、原子の種類と平均距離を絞った13候補の中で接触方向の仕事・接触方向の力の平均絶対値とも1位**。同じ対照定義でMoriPFは2位、RAFA14は3位、RAFA16は2位であり、この比較では値が大きい側に位置する。ただし、2原子の仕事を合計した値の順位は4系とも13候補中4位である。反対側の接触に注目する理由にはなるが、この接触が障壁を下げる原因だとはまだ特定できない。
+
+下表の計算値は、反対側の接触方向の仕事（kcal/mol）。集計区間はC–N 2.50→2.10 Åで、順位は仕事の絶対値が大きい順に付けた。
 
 {markdown(short)}
 
-「強さと相関の両方で全4系の対象を上回る」対照は、反対側の2原子仕事和には存在しなかった。射影仕事には広い対照でC20···C24が1件あり（r≈−0.995）、H/F···O/Nに限定すると0件。これは指標・対照の選択により結論が変わることを示す。C20···C24は1–4のC···Cなので、同じ化学相互作用とは主張せず、1–4対を除いた感度比較も残した。
+「強さと相関の両方で全4系の対象を上回る」対照は、反対側の2原子の仕事の合計には存在しなかった。接触方向の仕事には広い対照でC20···C24が1件あり（r≈−0.995）、H/F···O/Nに限定すると0件。これは指標・対照の選択により結論が変わることを示す。C20···C24は1–4のC···Cなので、同じ化学相互作用とは主張せず、1–4対を除いた感度比較も残した。
 
 ## 今回の問い
 
 「指定した接触に相関がある」だけでなく、(1) 同じ系の他の原子・接触より応答が大きいか、(2) 他の接触には同様の障壁相関がないか、(3) 指定原子を共有しない対照でも同じ結果が出ないか、を確認する。
 
-全原子や共有結合より最大であることは機構上の必要条件ではない。一方、同じ定義・近い距離・同じ分子内/分子間分類の対照でも平凡なら、「この接触だけが特別に強い」という説明は支持されない。本解析は全原子力からの間接量の比較であり、真のペア結合強度の順位ではない。
+反応を促進する接触が、共有結合を含むすべての原子対の中で最大の値を取る必要はない。ただし、種類や距離の似た接触と比べても値が大きくなければ、「この接触が特に強い」という説明の根拠にはならない。ここで比較しているのは、各原子に働く合計の力から作った間接指標であり、2原子間の結合の強さそのものではない。
 
-## 対照の固定ルール
+## 比較対象の選び方
 
 - 反応C–N距離の3区間は従来と同じ。主区間2.50→2.10 Å、感度区間2.55→2.10、2.40→2.15 Å。
 - 最も反応物側の構造で共有結合グラフを推定。距離が共有結合半径和×{config['covalent_radius_scale']}未満を結合とし、反応で形成中のC–Nは元の分子間の対として扱う。
@@ -105,9 +108,9 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 - 同一分子内の強さ順位は対称Hも含む全原子対。系間の相関は番号だけでは対応させず、共通骨格、環上の置換位置、求核剤の対応位置を使用する。アルキル基上の複数Hは一意な化学的対応を仮定せず系間相関から除外した。原子対応と共有結合グラフをCSVで公開する。
 - 系間比較では同じ対が**全4系で**接触条件を満たすものだけを採用。距離マッチも全4系で満たす。障壁値から対照を選ばない。
 
-## 全原子内で指定原子はどこに位置するか
+## 着目した原子の仕事は、全57原子の中でどのくらい大きいか
 
-仕事の符号を保って保存し、大きさの順位は絶対値で比較。rank=1が最大、対照数56に対象1原子を加えて全57原子。
+下表の計算値は原子ごとの仕事（kcal/mol）で、正負の符号をそのまま示す。順位は絶対値が大きい順に付け、1位を最大とする。比較対象の56原子に、着目した1原子を加えた全57原子での順位である。
 
 {markdown(atomic)}
 
@@ -115,7 +118,7 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 ## 同じ系の他の接触に比べて強いか
 
-`radial_work_kcal_mol`は接触方向の仕事診断、`mean_abs_projection_mEh_bohr`は接触方向の力の平均絶対値。強さのrankは大きい順、比較総数はn_controls+1。少数の順位差を精密な結合強度差とは読まない。
+下表では、①2原子の仕事の合計、②接触方向の仕事、③接触方向の力の平均絶対値を比較する。①と②の単位はkcal/mol、③はmEh/Bohr。順位は各指標の絶対値が大きい順で、比較する総数は「比較対象数＋着目した接触1個」となる。この順位を、結合エネルギーの順位とは解釈しない。
 
 {markdown(local)}
 
@@ -127,11 +130,11 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 {markdown(main)}
 
-元の図15の「2原子の仕事和」でも同じ対照比較を行った。これは指定した2原子の仕事の和であり、2原子間の力ではない：
+元の図15の「2原子の仕事の合計」でも同じ対照比較を行った。これは指定した2原子の仕事の和であり、2原子間の力ではない：
 
 {markdown(original)}
 
-アミン側の平均射影力は電子障壁との|r|順位が同分類で1位だが、各分子内での大きさは下位である。相関順位だけで強い接触と呼べない例になる。
+アミン側の接触方向の力の平均絶対値は電子障壁との|r|順位が同分類で1位だが、各分子内での大きさは下位である。相関順位だけで強い接触と呼べない例になる。
 
 同じ比較を力の平均絶対値で行った結果：
 
@@ -151,7 +154,7 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 {markdown(atomcorr.head(10).drop(columns='absr'))}
 
-## 区間感度と探索の影響
+## 集計区間を変えた場合と、多数の候補を調べる影響
 
 {markdown(sensitivity)}
 
@@ -165,7 +168,7 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 現在の結果からは、相関の良い指標を追加探索するより、RAFA15で大きい反対側応答がO21単独の移動・環の回転・C–N形成に伴う共通変形で説明できるかを調べる方が有用。累積仕事と二面角・接触角の変化を同じC–N軸で比較し、指定ペアとH11···O18などの高相関対照を同時に示す。複数の原子力射影は同じ構造運動を共有するので、相関が多数出ること自体も結果として扱う。
 
-原子仕事の座標合わせや射影仕事の微小値への数値誤差の影響は未評価の部分が残る。今回の対照比較は3区間で行ったが、追加の物理計算による独立検証ではない。
+原子仕事の座標合わせや接触方向の仕事の微小値への数値誤差の影響は未評価の部分が残る。今回の対照比較は3区間で行ったが、追加の物理計算による独立検証ではない。
 
 ## 再現と参照
 
@@ -173,4 +176,4 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 原子力と移動からの仕事配分には [Haas & Chu (2009), DOI:10.1063/1.3243080](https://doi.org/10.1063/1.3243080) の背景がある。今回の接触軸への射影、対照抽出、特異性評価は本プロジェクトのad hocな設計であり、論文によりこの仮説が証明されたという意味ではない。
 '''
-    (reportdir/'contact_specificity_summary_ja.md').write_text(text)
+    write_annotated_report(reportdir/'contact_specificity_summary_ja.md',text)
