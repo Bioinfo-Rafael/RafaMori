@@ -1,0 +1,92 @@
+[
+  {
+    "system": "MoriPF",
+    "source": "data/completed_20261017/IRC/MORIPF_IRC1.LOG",
+    "oriented_log": "analysis4_force/outputs/oriented_logs/MoriPF_oriented.log",
+    "coordinate_multiplier": -1,
+    "original_negative_CN_A": 1.6389500580203777,
+    "original_positive_CN_A": 2.616802025398559,
+    "reactant_side_CN_A": 2.616802025398559,
+    "product_side_CN_A": 1.6389500580203777,
+    "CN_monotonically_decreasing": true,
+    "max_CN_increase_A": 0.0,
+    "point_count": 64,
+    "TS_midpoint_alignment_RMSD_A": 5.589746663553192e-07,
+    "TS_energy_difference_kcal_mol": -1.8825370493347688e-05,
+    "excluded_unconverged_points": [
+      {
+        "path_number": 2,
+        "point_number": 29,
+        "signed_irc_coordinate": -3.5542499999999997
+      }
+    ],
+    "original_parser_warnings": [
+      "path 2 point 29: missing IRC coordinate extrapolated as -3.55425",
+      "TS geometry is absent from LOG; Cartesian midpoint of first forward/reverse structures was used (TS energy is from Energy From Chk)"
+    ]
+  },
+  {
+    "system": "RAFA14",
+    "source": "data/completed_20261017/IRC/RAFA14_IRC_MERGED.LOG",
+    "oriented_log": "analysis4_force/outputs/oriented_logs/RAFA14_oriented.log",
+    "coordinate_multiplier": 1,
+    "original_negative_CN_A": 2.5811749006142533,
+    "original_positive_CN_A": 1.651826946575821,
+    "reactant_side_CN_A": 2.5811749006142533,
+    "product_side_CN_A": 1.651826946575821,
+    "CN_monotonically_decreasing": true,
+    "max_CN_increase_A": 0.0,
+    "point_count": 60,
+    "TS_midpoint_alignment_RMSD_A": 6.214856150968447e-07,
+    "TS_energy_difference_kcal_mol": -2.51003988717066e-05,
+    "excluded_unconverged_points": [],
+    "original_parser_warnings": [
+      "TS geometry is absent from LOG; Cartesian midpoint of first forward/reverse structures was used (TS energy is from Energy From Chk)"
+    ]
+  },
+  {
+    "system": "RAFA15",
+    "source": "data/completed_20261017/IRC/RAFA15_IRC2.LOG",
+    "oriented_log": "analysis4_force/outputs/oriented_logs/RAFA15_oriented.log",
+    "coordinate_multiplier": -1,
+    "original_negative_CN_A": 1.6241893311735551,
+    "original_positive_CN_A": 2.5898742553160763,
+    "reactant_side_CN_A": 2.5898742553160763,
+    "product_side_CN_A": 1.6241893311735551,
+    "CN_monotonically_decreasing": true,
+    "max_CN_increase_A": 0.0,
+    "point_count": 57,
+    "TS_midpoint_alignment_RMSD_A": 5.981800257649626e-07,
+    "TS_energy_difference_kcal_mol": 6.2751710574943894e-06,
+    "excluded_unconverged_points": [
+      {
+        "path_number": 2,
+        "point_number": 22,
+        "signed_irc_coordinate": -2.77292
+      }
+    ],
+    "original_parser_warnings": [
+      "path 2 point 22: missing IRC coordinate extrapolated as -2.77292",
+      "TS geometry is absent from LOG; Cartesian midpoint of first forward/reverse structures was used (TS energy is from Energy From Chk)"
+    ]
+  },
+  {
+    "system": "RAFA16",
+    "source": "data/completed_20261017/IRC/RAFA16_IRC_COMPLETE_MERGED.LOG",
+    "oriented_log": "analysis4_force/outputs/oriented_logs/RAFA16_oriented.log",
+    "coordinate_multiplier": -1,
+    "original_negative_CN_A": 1.6407657075990465,
+    "original_positive_CN_A": 2.6032585466883615,
+    "reactant_side_CN_A": 2.6032585466883615,
+    "product_side_CN_A": 1.6407657075990465,
+    "CN_monotonically_decreasing": false,
+    "max_CN_increase_A": 0.011381866015720998,
+    "point_count": 71,
+    "TS_midpoint_alignment_RMSD_A": 5.673162367448831e-07,
+    "TS_energy_difference_kcal_mol": 0.0,
+    "excluded_unconverged_points": [],
+    "original_parser_warnings": [
+      "TS geometry is absent from LOG; Cartesian midpoint of first forward/reverse structures was used (TS energy is from Energy From Chk)"
+    ]
+  }
+]

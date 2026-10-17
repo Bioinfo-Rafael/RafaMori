@@ -1,0 +1,20 @@
+{
+  "warnings": [
+    "RAFA15 reactant: imaginary frequencies [-5.4036] cm^-1; minimum not fully verified",
+    "Lys calculation level differs: absolute substrate+Lys barriers are invalid; common-Lys-cancelled differences are reported instead.",
+    "Lys has no frequency/thermochemistry: absolute Gibbs barriers unavailable.",
+    "MoriPF: omitted 1 unconverged terminal point(s); no extrapolated coordinates used",
+    "RAFA15: omitted 1 unconverged terminal point(s); no extrapolated coordinates used",
+    "RAFA15: supplied optimized product is higher than the IRC product-side endpoint; conformer/path correspondence needs checking",
+    "RAFA16: local C-N increases up to 0.01138 A; overall orientation follows long-to-short endpoints"
+  ],
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "pandas": "3.0.5",
+  "systems": [
+    "MoriPF",
+    "RAFA14",
+    "RAFA15",
+    "RAFA16"
+  ]
+}

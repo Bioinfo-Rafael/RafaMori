@@ -1,0 +1,4 @@
+# Preserve original Gaussian output bytes and avoid enormous textual diffs.
+data/*.LOG -text -diff
+data/**/*.gz -text -diff
+*.png -text -diff

@@ -1,0 +1,12 @@
+test_all_contacts_and_fixed_selection (test_analysis4.Analysis4Tests.test_all_contacts_and_fixed_selection) ... ok
+test_analytic_derivatives_and_extrema (test_analysis4.Analysis4Tests.test_analytic_derivatives_and_extrema) ... ok
+test_barrier_cancellation_and_closure (test_analysis4.Analysis4Tests.test_barrier_cancellation_and_closure) ... ok
+test_force_motion_partition (test_analysis4.Analysis4Tests.test_force_motion_partition) ... ok
+test_four_oriented_logs_and_ts (test_analysis4.Analysis4Tests.test_four_oriented_logs_and_ts) ... ok
+test_original_hashes_and_compressed_roundtrip (test_analysis4.Analysis4Tests.test_original_hashes_and_compressed_roundtrip) ... ok
+test_stationary_audit_catches_wrong_lys_level (test_analysis4.Analysis4Tests.test_stationary_audit_catches_wrong_lys_level) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.925s
+
+OK

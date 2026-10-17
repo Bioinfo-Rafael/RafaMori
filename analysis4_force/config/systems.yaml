@@ -1,0 +1,26 @@
+reference_system: RAFA16
+systems:
+  MoriPF:
+    irc: IRC/MORIPF_IRC1.LOG
+    reactant: Reactant/MORIPF.LOG
+    product: Product/MORIPF_LYS.LOG
+    ts: TS/MORIPF_TS.LOG
+    reaction_N: 45
+  RAFA14:
+    irc: IRC/RAFA14_IRC_MERGED.LOG
+    reactant: Reactant/RAFA14.LOG
+    product: Product/RAFA14_LYS.LOG
+    ts: TS/RAFA14_TS2_FREQ.LOG
+    reaction_N: 43
+  RAFA15:
+    irc: IRC/RAFA15_IRC2.LOG
+    reactant: Reactant/RAFA15_UP.LOG
+    product: Product/RAFA15_HB_LYS.LOG
+    ts: TS/RAFA15_TS6.LOG
+    reaction_N: 43
+  RAFA16:
+    irc: IRC/RAFA16_IRC_COMPLETE_MERGED.LOG
+    reactant: Reactant/RAFA16.LOG
+    product: Product/RAFA16_LYS.LOG
+    ts: TS/RAFA16_TS.LOG
+    reaction_N: 43

@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+**/.cache/
+# Historical two-system results remain local.
+analysis2_force/outputs/
+# Byte-identical originals are versioned as .gz; expanded copies are local.
+data/completed_20261017/**/*.LOG
+data/completed_20261017/**/*.log
+data/completed_20261017/Lys.log

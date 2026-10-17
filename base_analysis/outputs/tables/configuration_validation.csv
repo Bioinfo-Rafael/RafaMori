@@ -1,0 +1,23 @@
+series,type,name,atom_numbers,observed_elements,status
+MoriPF,atom_mapping,reaction_C,20,C,OK
+MoriPF,atom_mapping,reaction_N,45,N,OK
+MoriPF,atom_mapping,hb_substituent_F,33,F,OK
+MoriPF,atom_mapping,hb_substituent_H,46,H,OK
+MoriPF,atom_mapping,hb_coumarin_O,19,O,OK
+MoriPF,atom_mapping,hb_coumarin_H,47,H,OK
+MoriPF,atom_mapping,interference_F,29,F,OK
+MoriPF,atom_mapping,interference_O,21,O,OK
+MoriPF,fragment,amine_side,"45,46,47,48,49,50,51,52,53,54,55,56,57","{'H': 9, 'C': 3, 'N': 1}",OK
+MoriPF,fragment,coumarin_core,"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22","{'C': 11, 'H': 6, 'O': 4, 'N': 1}",OK
+MoriPF,fragment,substituent_side,"23,24,25,26,27,28,29,30,31,32,33","{'C': 6, 'F': 5}",OK
+RAFA16,atom_mapping,reaction_C,20,C,OK
+RAFA16,atom_mapping,reaction_N,43,N,OK
+RAFA16,atom_mapping,hb_substituent_F,31,F,OK
+RAFA16,atom_mapping,hb_substituent_H,44,H,OK
+RAFA16,atom_mapping,hb_coumarin_O,19,O,OK
+RAFA16,atom_mapping,hb_coumarin_H,45,H,OK
+RAFA16,atom_mapping,interference_F,29,F,OK
+RAFA16,atom_mapping,interference_O,21,O,OK
+RAFA16,fragment,amine_side,"43,44,45,46,47,48,49,50,51,52,53,54,55","{'H': 9, 'C': 3, 'N': 1}",OK
+RAFA16,fragment,coumarin_core,"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22","{'C': 11, 'H': 6, 'O': 4, 'N': 1}",OK
+RAFA16,fragment,substituent_side,"23,24,25,26,27,28,29,30,31","{'C': 6, 'F': 3}",OK

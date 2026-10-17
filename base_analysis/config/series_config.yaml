@@ -1,0 +1,17 @@
+series:
+  MoriPF:
+    log_file: data/MORIPF_IRC1.LOG
+    reaction_direction_sign: -1
+  RAFA16:
+    log_file: data/RAFA16_IRC_COMPLETE_MERGED.LOG
+    reaction_direction_sign: -1
+
+parser:
+  expected_atom_count: 57
+  hartree_to_kcal_mol: 627.509474
+
+energy_analysis:
+  smoothing:
+    enabled: true
+    window_length: 7
+    polyorder: 3

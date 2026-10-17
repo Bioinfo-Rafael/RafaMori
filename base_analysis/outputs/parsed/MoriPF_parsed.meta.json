@@ -1,0 +1,24 @@
+{
+  "fingerprint": {
+    "sha256": "c95db082eb9d2c58ddf03eb5c3af6e4afc4f5c5668b7a52502d3a456fe861e24",
+    "direction_sign": -1,
+    "parser_version": 2
+  },
+  "metadata": {
+    "series": "MoriPF",
+    "log_file": "/Users/cls-lab/Git/RafaMori/base_analysis/data/MORIPF_IRC1.LOG",
+    "point_count": 65,
+    "path_counts": {
+      "0": 1,
+      "1": 35,
+      "2": 29
+    },
+    "ts_energy_hartree": -1799.698291,
+    "duplicates_removed": 63,
+    "force_missing_points": 1,
+    "warnings": [
+      "path 2 point 29: missing IRC coordinate extrapolated as 3.55425",
+      "TS geometry is absent from LOG; Cartesian midpoint of first forward/reverse structures was used (TS energy is from Energy From Chk)"
+    ]
+  }
+}

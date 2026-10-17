@@ -1,0 +1,382 @@
+[
+  {
+    "path": "csv/COM_corrected_distances.csv",
+    "bytes": 114300,
+    "sha256": "1d9724bd23663f5ec374ebb29c498984cfba13e9cebcfbcc5d101c382e37d518"
+  },
+  {
+    "path": "csv/COM_distances.csv",
+    "bytes": 44462,
+    "sha256": "3f88842135ba09910db859d9c15fc3be94945056c1f9a0e2966d4c9c8fe51911"
+  },
+  {
+    "path": "csv/all_NH_F_contacts.csv",
+    "bytes": 177564,
+    "sha256": "c8343dddebe53b6021832d8a4c63b92210ae44eb11acd460dd4ed346368c3234"
+  },
+  {
+    "path": "csv/atomic_contribution_MoriPF.csv.gz",
+    "bytes": 341217,
+    "sha256": "b5d51410da4704ed760e097d8bc9079180e0eeb012951b3b6233072f7f75c7d0"
+  },
+  {
+    "path": "csv/atomic_contribution_RAFA14.csv.gz",
+    "bytes": 319382,
+    "sha256": "fbaa18929464eab7a39256423400b9c679d66b64cc909546376d8c484c5dc244"
+  },
+  {
+    "path": "csv/atomic_contribution_RAFA15.csv.gz",
+    "bytes": 304195,
+    "sha256": "846391a1e4eb8392b13c02d43afda1a55878f640167cd110119a8cd096512e33"
+  },
+  {
+    "path": "csv/atomic_contribution_RAFA16.csv.gz",
+    "bytes": 378911,
+    "sha256": "d0dea48b52fd7d4891f0a085967cf019c7a41ee9552c6d0d5a35db24515d1195"
+  },
+  {
+    "path": "csv/atomic_force_MoriPF.csv",
+    "bytes": 389007,
+    "sha256": "43b53cc184c4c57dd32770422604258f4a16f46fbde0fe0f35415a983abcc40e"
+  },
+  {
+    "path": "csv/atomic_force_RAFA14.csv",
+    "bytes": 364279,
+    "sha256": "5e08fc8652b51f0a80ca8666bdabf203099b8b4e5d7eea529b3e23a94510f3fc"
+  },
+  {
+    "path": "csv/atomic_force_RAFA15.csv",
+    "bytes": 345645,
+    "sha256": "d183692cc1d4961a76b644a20985b7a7f2dcd140ed8e7240fe034025c5d58511"
+  },
+  {
+    "path": "csv/atomic_force_RAFA16.csv",
+    "bytes": 431479,
+    "sha256": "815d0167378d2699fe52d5bfc8345650638a211a82ac661d968f9c7a86ed4703"
+  },
+  {
+    "path": "csv/descriptive_correlations.csv",
+    "bytes": 5703,
+    "sha256": "a6f308fe78c10e8dfd48e53ffa4dceb5e78c6df2539698b9db5e7da2844930c0"
+  },
+  {
+    "path": "csv/dipoles.csv",
+    "bytes": 8390,
+    "sha256": "ae80e884d3292b603e3742fa8ac638c72a7aadfae577c24a0ab000d3137690da"
+  },
+  {
+    "path": "csv/endpoint_correspondence.csv",
+    "bytes": 492,
+    "sha256": "df0343ad3f6ce62651902e3d67339634fe5bc3d6e0c44569eee11b10d027d65b"
+  },
+  {
+    "path": "csv/energy_comparison.csv",
+    "bytes": 1562,
+    "sha256": "e2027360ef9fdd6cb3c344cba409f96283dbd67b9498f39977c20708f7cebb74"
+  },
+  {
+    "path": "csv/fluorine_positions.csv",
+    "bytes": 294,
+    "sha256": "bdeadbfb588a9cfa3b722fba6b94f9e2b42d3e7a560fd75d236ceaf4def431b8"
+  },
+  {
+    "path": "csv/force_motion_alignment.csv",
+    "bytes": 156601,
+    "sha256": "37b326daf71785d98fcb14b49d92e6f0982f08df8eba7988cc1c1bfaeac812a2"
+  },
+  {
+    "path": "csv/force_motion_validation.csv",
+    "bytes": 29077,
+    "sha256": "abe2a8049da118534164354d992378c228fc3c2c1323899f49dca1695fb05e93"
+  },
+  {
+    "path": "csv/force_motion_validation_summary.csv",
+    "bytes": 238,
+    "sha256": "c65ac51bcc2e17e090ecd89a91f6671c422b95134c6a1889590cf7d716d4a706"
+  },
+  {
+    "path": "csv/fragment_contributions.csv",
+    "bytes": 135220,
+    "sha256": "5f1a51eb40013e5c6d1e9be530a2e5f5437d2178a92f6f64dfdb36cd0b682041"
+  },
+  {
+    "path": "csv/geometry_change_MoriPF.csv",
+    "bytes": 23773,
+    "sha256": "01c29cfae3800f78c0048431661feca4ba01a14d635e58cdece4004ad1898c66"
+  },
+  {
+    "path": "csv/geometry_change_RAFA14.csv",
+    "bytes": 22242,
+    "sha256": "25a84da5a60f679dd7c60bc8222424928fb7bbe1aad4b3ba7174056a4c992bbe"
+  },
+  {
+    "path": "csv/geometry_change_RAFA15.csv",
+    "bytes": 21846,
+    "sha256": "47e885548280989ff88221df1e308070987be67ddaedf074cbe28673a619247a"
+  },
+  {
+    "path": "csv/geometry_change_RAFA16.csv",
+    "bytes": 26294,
+    "sha256": "231386df45774140a8f4c5bfb379b2937044fd9f7d443ce6c5cb79d0c21ac53d"
+  },
+  {
+    "path": "csv/geometry_population_summary.csv",
+    "bytes": 244,
+    "sha256": "aa9ef652153259632921683907af492a793536615a26fb0c5ded4e01a442e5d6"
+  },
+  {
+    "path": "csv/landmarks_MoriPF.csv",
+    "bytes": 230,
+    "sha256": "e7ad2ffd785212ddfdfe895dc0d55cdefa81e7062466bf5a8d37130f4ed4aacb"
+  },
+  {
+    "path": "csv/landmarks_RAFA14.csv",
+    "bytes": 233,
+    "sha256": "a8a69df13d674f93422e26dace311a006c65fdf1f5443d6671671940106afd1e"
+  },
+  {
+    "path": "csv/landmarks_RAFA15.csv",
+    "bytes": 233,
+    "sha256": "87bca878a74ab41a34443506f3ffcb999d74475907d76cd2ba5dca6d1d92ea2f"
+  },
+  {
+    "path": "csv/landmarks_RAFA16.csv",
+    "bytes": 232,
+    "sha256": "f453efc54945b86cd5a876359cb13efa58a3aac4d51c33170da535efbed6336b"
+  },
+  {
+    "path": "csv/orientation_audit.csv",
+    "bytes": 2154,
+    "sha256": "74304e915251f8c8b18bcc303e432229501beaa1b0c751085f7e52203da8a42f"
+  },
+  {
+    "path": "csv/parsed_oriented_MoriPF.csv.gz",
+    "bytes": 103608,
+    "sha256": "f55d2e817440f0527604bb650bf24192136f770c4537b443d5ac9e1f4114de3e"
+  },
+  {
+    "path": "csv/parsed_oriented_RAFA14.csv.gz",
+    "bytes": 97493,
+    "sha256": "93007bd88db25b9974205bab3592a96c2bc212a2279496367261b629898f7bd6"
+  },
+  {
+    "path": "csv/parsed_oriented_RAFA15.csv.gz",
+    "bytes": 92489,
+    "sha256": "c84e82fb99315d1106a1eeaf1ed868bd515f4fc6e5d3941a40c422e27ffc12a3"
+  },
+  {
+    "path": "csv/parsed_oriented_RAFA16.csv.gz",
+    "bytes": 115207,
+    "sha256": "4f3867f82ab87090e18b44fd6bc959ef79e887b07d237199131dc2048948effe"
+  },
+  {
+    "path": "csv/reaction_force_MoriPF.csv",
+    "bytes": 31976,
+    "sha256": "2b0cead8ce3b476f16534cee3c69e07a7a32281af2c2ef0d24e6c9aad8888ecb"
+  },
+  {
+    "path": "csv/reaction_force_RAFA14.csv",
+    "bytes": 30090,
+    "sha256": "d6837c294ee789806ee04282f232cb9fa64dc3dc023721bc0751c8395fdaada0"
+  },
+  {
+    "path": "csv/reaction_force_RAFA15.csv",
+    "bytes": 28581,
+    "sha256": "da242c773a11ef3da100a27b907dc93f34a7104e340b221c09119503d452baf1"
+  },
+  {
+    "path": "csv/reaction_force_RAFA16.csv",
+    "bytes": 35383,
+    "sha256": "bf144585aff0e5c3e9178f80a190d48c51d570f53d8ce0da2915dce52811d7d1"
+  },
+  {
+    "path": "csv/smoothing_sensitivity.csv",
+    "bytes": 1242,
+    "sha256": "6f18a607188961c47203d04e6bfdda6daef20e0d6a9c8f3a7f5cc3e8ab0cb6da"
+  },
+  {
+    "path": "csv/stationary_point_audit.csv",
+    "bytes": 5554,
+    "sha256": "3730c9b3d75f853ccc05fd648fed8281e3e8a58a3a53ff5ba5c6c6327e871fa5"
+  },
+  {
+    "path": "csv/system_summary.csv",
+    "bytes": 1269,
+    "sha256": "bacf65e70a82c92e013e9009daca0523197e3d36ea4866919c846f0da98829e6"
+  },
+  {
+    "path": "figures/01_MoriPF_energy_force_kappa.png",
+    "bytes": 212600,
+    "sha256": "e7aa2618df502d0648a8825ac4f59bd7d6ebdb08e54aedfa8e47777604a1e484"
+  },
+  {
+    "path": "figures/01_RAFA14_energy_force_kappa.png",
+    "bytes": 210194,
+    "sha256": "222520fdcb05084760203ef36ab12f2d2467d514ec03cd6f78a7e412525cd776"
+  },
+  {
+    "path": "figures/01_RAFA15_energy_force_kappa.png",
+    "bytes": 193989,
+    "sha256": "7da8f605072f53ed2744ee4018da97c2aecef0548ca72124e0100401a4a68b6b"
+  },
+  {
+    "path": "figures/01_RAFA16_energy_force_kappa.png",
+    "bytes": 211972,
+    "sha256": "375ce71e27dcdb57ed73ad2740551cd95a6ac786c3c01ad3d2defc2c70ddba37"
+  },
+  {
+    "path": "figures/01_four_systems_energy_force_kappa.png",
+    "bytes": 397174,
+    "sha256": "317ad82007e9357eb4a4cb79619840e40b05980204a9fb7c1805226b7ac050dd"
+  },
+  {
+    "path": "figures/02_relative_barriers.png",
+    "bytes": 102452,
+    "sha256": "76e615de68c85466e1ed5f7ea344801825c6e27f38298312bbf8c21fa78c1f31"
+  },
+  {
+    "path": "figures/04_MoriPF_geometry.png",
+    "bytes": 283039,
+    "sha256": "705ce5e64d494edda53812a2ac09f1594e503c5a59a5c043d5636c962a9efed7"
+  },
+  {
+    "path": "figures/04_RAFA14_geometry.png",
+    "bytes": 295339,
+    "sha256": "2633e50baa66fd08333d6d4139fa3df100eb88ec30f5c9b0c5632b8f05f04454"
+  },
+  {
+    "path": "figures/04_RAFA15_geometry.png",
+    "bytes": 283453,
+    "sha256": "bfd76f43a84c8974d768423c1bfeb5ef91c417da15b16705b024bfdad068c4e5"
+  },
+  {
+    "path": "figures/04_RAFA16_geometry.png",
+    "bytes": 285870,
+    "sha256": "1c2f1ea080a866237aa7f1a5db90d0eb3ef4d17be21dfac097cdd73051c46195"
+  },
+  {
+    "path": "figures/04_four_systems_geometry.png",
+    "bytes": 490466,
+    "sha256": "a9f1e14e49edb2d88130a609d532995a85c951b327aac68c4b0028b408428cfe"
+  },
+  {
+    "path": "figures/05_MoriPF_geometry_context.png",
+    "bytes": 295599,
+    "sha256": "1ffc8c36e0326a19cdd2c3cd7c86169d9ab8632e4508a05205c0373187b0de71"
+  },
+  {
+    "path": "figures/05_RAFA14_geometry_context.png",
+    "bytes": 283847,
+    "sha256": "18278feb348e4d39dc83986b7cdad66327bb6f707f60297d352c71c6fdb6c7a5"
+  },
+  {
+    "path": "figures/05_RAFA15_geometry_context.png",
+    "bytes": 302680,
+    "sha256": "ab55ff8ec1f2c0c4cead1845ca69c56bf44f610f9ea3a23460ee21acd9762a45"
+  },
+  {
+    "path": "figures/05_RAFA16_geometry_context.png",
+    "bytes": 356914,
+    "sha256": "f4a903428a83c297e823bb2562b96733fca6b6e89af546c3c908f238348000f0"
+  },
+  {
+    "path": "figures/06_MoriPF_atomic_force.png",
+    "bytes": 254213,
+    "sha256": "0c68ce742eaef0df6188ecb1eb5bb4154c5d8109d1452712513099e32c4369a7"
+  },
+  {
+    "path": "figures/06_RAFA14_atomic_force.png",
+    "bytes": 230519,
+    "sha256": "3fadc9570040cc35362cb2c74d62446aad20f696f685501e36e60ec0e6866ac9"
+  },
+  {
+    "path": "figures/06_RAFA15_atomic_force.png",
+    "bytes": 209433,
+    "sha256": "d9b65a9c909036f88bf78e0616d0ab1aba5a3c47e0ab26955485d4226d9921d7"
+  },
+  {
+    "path": "figures/06_RAFA16_atomic_force.png",
+    "bytes": 274526,
+    "sha256": "c68777b8202ad90c9dfa1874f93dcf9d1a77bf7b05246a3163a3204bdce7e465"
+  },
+  {
+    "path": "figures/07_dipoles.png",
+    "bytes": 262636,
+    "sha256": "429b4749e002d79e84362b7d921fb6aa7aa3747dfb21e295552074d2246adcab"
+  },
+  {
+    "path": "figures/08_force_motion_validation.png",
+    "bytes": 287926,
+    "sha256": "b078883e65b9d2fac79f2effb1a4aaf31db19d664e310ff4c9b169425335b10e"
+  },
+  {
+    "path": "figures/09_fragment_contributions.png",
+    "bytes": 382353,
+    "sha256": "d122a646579ccf0da84661ca3286cbd91fa21f932d88f619cdfd7b1c8475bda3"
+  },
+  {
+    "path": "figures/10_force_motion_alignment.png",
+    "bytes": 536831,
+    "sha256": "cf364a173562fe05d0316d4789d4028f89a3684934ad4893595be42372c5c51f"
+  },
+  {
+    "path": "figures/11_NH_F_contacts.png",
+    "bytes": 244116,
+    "sha256": "c81cfef02912a2cd45347fe1171f5731fad48984479b9c630ebdde5412d97301"
+  },
+  {
+    "path": "figures/12_contact_vs_progress_and_barrier.png",
+    "bytes": 105677,
+    "sha256": "343dc17787a98bb9096d516b5df48b5aa77c6627e22778d9b8dae8088e27994c"
+  },
+  {
+    "path": "figures/13_COM_corrected_distances.png",
+    "bytes": 338404,
+    "sha256": "8428c7bf7c450405062e8cef4b55d7885a13dae08221ab55e331f128a935228e"
+  },
+  {
+    "path": "oriented_logs/MoriPF_oriented.log",
+    "bytes": 486929,
+    "sha256": "1ede8b9f29401175978ba54a3b5a4933c1f15f6c49d4a148340d5022d9f1e624"
+  },
+  {
+    "path": "oriented_logs/RAFA14_oriented.log",
+    "bytes": 455859,
+    "sha256": "52b41a4f864d38ec4b8b498da908483cdb9f436d5668a4da0371846b5d1cfccb"
+  },
+  {
+    "path": "oriented_logs/RAFA15_oriented.log",
+    "bytes": 432843,
+    "sha256": "16040c9c377c5444cce642d0d9f2aa9d5cec593d04a9f5504fb00531f5f4d99a"
+  },
+  {
+    "path": "oriented_logs/RAFA16_oriented.log",
+    "bytes": 540406,
+    "sha256": "b7e0e1f22aa176199ad682c5c25f33afa5a45763c88662a9b3a8ff37d4746301"
+  },
+  {
+    "path": "reports/execution.json",
+    "bytes": 886,
+    "sha256": "e59f82536f1caf394581bd18cb60048c7d1754b82f1cb7b635ae35dbebbca209"
+  },
+  {
+    "path": "reports/orientation_audit.json",
+    "bytes": 3739,
+    "sha256": "7c99dbb3a32cf8d0cfadf51b5887803094ed5de8e810c5f8515399e8d788708c"
+  },
+  {
+    "path": "reports/stationary_point_audit.json",
+    "bytes": 12395,
+    "sha256": "f8eb2d8ed3376e0d89f6bf86cc4587572c48493bf0a8c214fd307b1c4083d4ac"
+  },
+  {
+    "path": "reports/summary_ja.md",
+    "bytes": 12124,
+    "sha256": "44b1eef66f95d636ff307e5587ccb257b14911d7f0985fc4e6ff86ac4b731477"
+  },
+  {
+    "path": "reports/test_results.txt",
+    "bytes": 901,
+    "sha256": "71252ee9953029e86781a730a86dfcdb43635946413b85f441308b3dbceea94b"
+  }
+]

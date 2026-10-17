@@ -1,0 +1,10 @@
+alias,expected_element,MoriPF,RAFA16
+reaction_C,C,20,20
+reaction_N,N,45,43
+hb_substituent_F,F,33,31
+hb_substituent_H,H,46,44
+hb_coumarin_O,O,19,19
+hb_coumarin_H,H,47,45
+interference_F,F,29,29
+interference_O,O,21,21
+

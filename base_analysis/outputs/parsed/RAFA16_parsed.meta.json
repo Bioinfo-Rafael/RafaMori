@@ -1,0 +1,23 @@
+{
+  "fingerprint": {
+    "sha256": "823068c21a02d20a384c5988d70d454c918cdefaf67418b41f3fd5853dc23cd1",
+    "direction_sign": -1,
+    "parser_version": 2
+  },
+  "metadata": {
+    "series": "RAFA16",
+    "log_file": "/Users/cls-lab/Git/RafaMori/base_analysis/data/RAFA16_IRC_COMPLETE_MERGED.LOG",
+    "point_count": 71,
+    "path_counts": {
+      "0": 1,
+      "1": 35,
+      "2": 35
+    },
+    "ts_energy_hartree": -1601.2516332,
+    "duplicates_removed": 70,
+    "force_missing_points": 1,
+    "warnings": [
+      "TS geometry is absent from LOG; Cartesian midpoint of first forward/reverse structures was used (TS energy is from Energy From Chk)"
+    ]
+  }
+}

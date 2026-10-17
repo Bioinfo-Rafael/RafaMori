@@ -1,0 +1,87 @@
+[
+  {
+    "path": "data/completed_20261017/IRC/MORIPF_IRC1.LOG",
+    "bytes": 3605830,
+    "sha256": "c95db082eb9d2c58ddf03eb5c3af6e4afc4f5c5668b7a52502d3a456fe861e24"
+  },
+  {
+    "path": "data/completed_20261017/IRC/RAFA14_IRC_MERGED.LOG",
+    "bytes": 1739310,
+    "sha256": "8f71db2052efb7327695911da5637a4f108027706f3853d75aee0953ebb1fc60"
+  },
+  {
+    "path": "data/completed_20261017/IRC/RAFA15_IRC2.LOG",
+    "bytes": 3098349,
+    "sha256": "e12f3f4bf82726b9bff903d70e3743ca9efbb855ab9dffad20abfe22a6f8cb58"
+  },
+  {
+    "path": "data/completed_20261017/IRC/RAFA16_IRC_COMPLETE_MERGED.LOG",
+    "bytes": 2022588,
+    "sha256": "823068c21a02d20a384c5988d70d454c918cdefaf67418b41f3fd5853dc23cd1"
+  },
+  {
+    "path": "data/completed_20261017/Product/MORIPF_LYS.LOG",
+    "bytes": 80246124,
+    "sha256": "2c3ced6d6b6de36af1a2931254678847b8fbd2cb84df936b436e19f51dacdbf3"
+  },
+  {
+    "path": "data/completed_20261017/Product/RAFA14_LYS.LOG",
+    "bytes": 79098098,
+    "sha256": "21aa2d541879c0a0370362b0d7d3e5c5bdc84ae10de8ece29a537ae6b3e9b647"
+  },
+  {
+    "path": "data/completed_20261017/Product/RAFA15_HB_LYS.LOG",
+    "bytes": 73122702,
+    "sha256": "34eec23ab9ac762cbdfa1dd6d4789ecd08caf8a2543aa5d0625ed4cf75aad551"
+  },
+  {
+    "path": "data/completed_20261017/Product/RAFA16_LYS.LOG",
+    "bytes": 74038897,
+    "sha256": "6d83d12c3ae9be86abeb334869be90fe1f76cc0fa0539322ffeb08360046912d"
+  },
+  {
+    "path": "data/completed_20261017/Reactant/MORIPF.LOG",
+    "bytes": 57354566,
+    "sha256": "cfb0c3aa6e94559d6becb048870cc59d630ed178f9128f9029abeed95781140a"
+  },
+  {
+    "path": "data/completed_20261017/Reactant/RAFA14.LOG",
+    "bytes": 53166520,
+    "sha256": "cff801274ebcbf26b66db29eb3c71b152e606b9b0b583252e04b4dde129c901d"
+  },
+  {
+    "path": "data/completed_20261017/Reactant/RAFA15_UP.LOG",
+    "bytes": 53012870,
+    "sha256": "3cce4a2851b9549b6461c3d2a9aa55bac5db83661ac9e831c06f769a3375a98e"
+  },
+  {
+    "path": "data/completed_20261017/Reactant/RAFA16.LOG",
+    "bytes": 51411138,
+    "sha256": "55066ef3d1c497aa5290db98ec863e023df3ec59c2b489191528ad3cfb7991bc"
+  },
+  {
+    "path": "data/completed_20261017/TS/MORIPF_TS.LOG",
+    "bytes": 79135154,
+    "sha256": "f1947270bc4ae4dd4159421960b633efe22c0ca1232af0464d654e8b6672113a"
+  },
+  {
+    "path": "data/completed_20261017/TS/RAFA14_TS2_FREQ.LOG",
+    "bytes": 635483,
+    "sha256": "2a13b0149d13a5686b6ce35aa520252c088432b58447aa942731e2fcdbbe53cc"
+  },
+  {
+    "path": "data/completed_20261017/TS/RAFA15_TS6.LOG",
+    "bytes": 845391,
+    "sha256": "b75fd30ba089c6f980b54531eba075d7a8bb24e1d6ed842149226ab480e38647"
+  },
+  {
+    "path": "data/completed_20261017/TS/RAFA16_TS.LOG",
+    "bytes": 74194559,
+    "sha256": "0bcb7a31482f8de3fdf058c05972a58cca1dd49b31fe3df18abed3cefc207b43"
+  },
+  {
+    "path": "data/completed_20261017/Lys.log",
+    "bytes": 1898933,
+    "sha256": "998a34807a6b98d643b8ea057531b5e49a99d79cf10f5be1e53b3030afc50be1"
+  }
+]

@@ -1,0 +1,15 @@
+system,F_atom,bonded_ring_C,position
+MoriPF,29,25,ortho
+MoriPF,30,27,meta
+MoriPF,31,28,para
+MoriPF,32,26,meta
+MoriPF,33,24,ortho
+RAFA14,29,27,meta
+RAFA14,30,28,para
+RAFA14,31,26,meta
+RAFA15,29,28,para
+RAFA15,30,26,meta
+RAFA15,31,24,ortho
+RAFA16,29,25,ortho
+RAFA16,30,28,para
+RAFA16,31,24,ortho

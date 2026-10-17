@@ -1,0 +1,51 @@
+systems:
+  MoriPF:
+    irc_log: ../../data/MORIPF_IRC1.LOG
+    reactant_log: MORIPF.LOG
+    product_log: MORIPF_LYS.LOG
+    # Preserve the established MoriPF analysis orientation (reactant at R<0).
+    coordinate_multiplier: -1.0
+  RAFA16:
+    irc_log: ../../data/RAFA16_IRC_COMPLETE_MERGED.LOG
+    reactant_log: RAFA16.LOG
+    product_log: RAFA16_LYS.LOG
+    coordinate_multiplier: -1.0
+
+shared_base_config:
+  atom_map: ../../base_analysis/config/atom_map.csv
+  targets: ../../base_analysis/config/analysis_targets.yaml
+
+numerics:
+  hartree_to_kcal_mol: 627.509474
+  dense_grid_points: 2001
+  smoothing_spline_lambda: null
+  extrema_raw_tolerance_steps: 3.0
+  kappa_zero_relative_tolerance: 0.12
+
+geometry_context:
+  covalent_radius_factor: 1.25
+  covalent_extra_tolerance_A: 0.10
+  interfragment_cutoff_A: 5.0
+
+force_motion:
+  bohr_to_angstrom: 0.529177210903
+  # The first three fragments form a disjoint partition of all 57 atoms.
+  # reaction_center is an overlapping diagnostic fragment.
+  disjoint_partition_fragments: [coumarin_side, substituent_side, amine_side]
+  fragments:
+    substituent_side:
+      shared_fragment: substituent_side
+    amine_side:
+      shared_fragment: amine_side
+    coumarin_side:
+      remaining_after: [substituent_side, amine_side]
+    reaction_center:
+      aliases:
+        - reaction_C
+        - reaction_N
+        - hb_substituent_F
+        - hb_substituent_H
+        - hb_coumarin_O
+        - hb_coumarin_H
+        - interference_F
+        - interference_O
