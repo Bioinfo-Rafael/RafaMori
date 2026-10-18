@@ -1,5 +1,7 @@
 # MoriPF・RAFA14・RAFA15・RAFA16のIRC／反応力解析
 
+**正方向・逆方向の障壁：[方向別の表とRAFA15生成物についての考察](analysis4_force/outputs/reports/directional_barriers_discussion_ja.md)**
+
 **E・G・TΔSと反応経路：[3×3の図と熱力学成分の説明](analysis4_force/outputs/reports/thermochemistry_profiles_ja.md)**。TSの熱補正を固定した参考曲線と、両端準位への滑らかな表示用接続を比較できます。
 
 **図の説明：[全23種類・37枚の図の見方](analysis4_force/outputs/reports/figure_guide_ja.md)**。各図の目的、軸の単位、点・線・色の意味、読み取れることを説明しています。

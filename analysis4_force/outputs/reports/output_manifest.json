@@ -515,6 +515,11 @@
     "sha256": "d24a27d06a3588c57e6d4a7c9878b955eaae15ce65c930b23c718fcd05f89704"
   },
   {
+    "path": "reports/directional_barriers_discussion_ja.md",
+    "bytes": 8665,
+    "sha256": "5c4d991f2eca00088101804c9fc611928b7f11b531f5fa8a330fc55635453cc5"
+  },
+  {
     "path": "reports/execution.json",
     "bytes": 882,
     "sha256": "d2297607140f4269369f51435328bc9f538db5fc870b24a2d244b62645d9d60e"
