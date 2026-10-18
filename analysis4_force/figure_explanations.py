@@ -96,13 +96,22 @@ rank 5/169なら、指定接触を含む169候補中で5番目に大きい。丸
 
 右ほど仕事の値が大きく、上端・下端に近いほど障壁との直線的な対応が強い。下側は負の相関なので「弱い相関」ではない。右図の赤点は比較的大きな仕事と強い負の相関を持つが、灰色点にも|r|が大きいものが多数ある。この図は「指定した接触だけが相関するか」を調べるもので、接触の実際の引力・斥力を描いたものではない。''')}
 
+FIGURES[23]=('E・G・TΔSを、IRCと両端準位の3通りの表示で比較する',
+'''4分子系を4色で重ねた3×3の図。上から電子エネルギーΔE、自由エネルギーΔG、エントロピー項TΔS（すべてkcal/mol）。左列はIRC区間だけ、中央列はその両端に分離反応物（基質＋Lys）と生成物の横棒を加えたもの、右列は横棒とIRCを滑らかな点線でつないだもの。各行の縦軸の範囲は3列で共通。色は青=MoriPF、緑=RAFA14、紫=RAFA15、橙=RAFA16。
+
+横軸は計算済み区間では元のIRC座標Rで、R=0の丸がTS。IRCの外に置いた横棒の横位置は表示用に決めたもので、計算された反応座標ではない。横棒側のひし形は反応物・生成物の準位を表す。すべて各系の分離反応物からの差で、MoriPFとの差ではない。反応物の横棒は全系で0になるため重なることがある。
+
+上段の実線と小点はIRCの電子エネルギー。中段・下段の破線はTSの熱補正を全IRC点に固定した参考曲線である。この仮定によりGはEと同じ形になり、TΔSは水平になる。G・TΔSを直接計算したのはfreqのある反応物・TS・生成物で、IRC各点のfreqは存在しない。
+
+右列の点線は、IRC末端でその傾きに、横棒で傾き0につながる表示用の3次Hermite曲線。計算済みIRCの位置・エネルギーは動かしていない。点線の谷・山は接続条件によって生じる形で、計算で得た中間体や障壁ではない。TΔSはΔH−ΔGであり、ΔE−ΔGとは異なる。''' )
+
 INTRO='''# 図の見方：何を比較し、どこまで読み取れるか
 
 この案内は `analysis4_force/outputs/figures/` にある全図を対象とする。計算結果を変えず、各図の目的、軸、点・線・色、解釈を説明する。
 
 ## 最初に見る順番
 
-**図3 → 図14 → 図15・18 → 図19 → 図20・21 → 図22** の順に見ると、障壁の違い、着目する接触、指標の定義、他の原子・接触との比較を順に確認できる。
+**図3・23 → 図14 → 図15・18 → 図19 → 図20・21 → 図22** の順に見ると、障壁の違い、着目する接触、指標の定義、他の原子・接触との比較を順に確認できる。
 
 ## 比べている原子
 
@@ -234,7 +243,7 @@ def localize_tables(text):
 
 if __name__=='__main__':
     reports=HERE/'outputs/reports'
-    for name in ['summary_ja.md','two_sided_contact_summary_ja.md','contact_specificity_summary_ja.md','log_only_research_plan_ja.md']:
+    for name in ['summary_ja.md','two_sided_contact_summary_ja.md','contact_specificity_summary_ja.md','log_only_research_plan_ja.md','thermochemistry_profiles_ja.md']:
         path=reports/name;write_annotated_report(path,path.read_text())
     write_guide()
     # Refresh checksums after a documentation-only update as well.

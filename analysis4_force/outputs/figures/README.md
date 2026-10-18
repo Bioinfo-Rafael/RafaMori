@@ -148,3 +148,9 @@
 
 - [22_contact_correlation_specificity.png](22_contact_correlation_specificity.png)
 
+### 図23：E・G・TΔSを、IRCと両端準位の3通りの表示で比較する
+
+[読み方](../reports/figure_guide_ja.md#fig23)
+
+- [23_energy_entropy_profiles_3x3.png](23_energy_entropy_profiles_3x3.png)
+

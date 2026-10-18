@@ -59,4 +59,31 @@ def energy_terms(reactant, ts, product, lys, ealpha, eleft):
         alpha_minus_substrate_E_hartree=ealpha-reactant['energy_hartree'])
     for key, label in [('H_hartree','enthalpy'), ('ZPE_corrected_hartree','ZPE_corrected_energy')]:
         values[f'{label}_barrier_kcal_mol']=(ts[key]-reactant[key]-lys[key])*KCAL
+    values.update(entropy_terms(reactant,ts,product,lys))
     return values
+
+
+def entropy_terms(reactant, ts, product, lys):
+    """RRHO entropy and thermal corrections; electronic E is not enthalpy H."""
+    records={'substrate':reactant,'TS':ts,'product':product,'Lys':lys}
+    for record in records.values():
+        if any(record.get(k) is None for k in ('energy_hartree','H_hartree','G_hartree','temperature_K')):
+            raise ValueError('E, H, G and temperature are required for entropy terms')
+        if not np.isclose(record['temperature_K'],ts['temperature_K']):
+            raise ValueError('Entropy comparison requires equal temperatures')
+    result={}
+    states={name:{q:r[k] for q,k in [('E','energy_hartree'),('H','H_hartree'),('G','G_hartree')]} for name,r in records.items()}
+    states['separated_reactants']={q:states['substrate'][q]+states['Lys'][q] for q in ('E','H','G')}
+    for name,v in states.items():
+        result[f'{name}_H_hartree']=v['H']
+        result[f'{name}_TS_kcal_mol']=(v['H']-v['G'])*KCAL
+        result[f'{name}_S_cal_mol_K']=result[f'{name}_TS_kcal_mol']*1000/ts['temperature_K']
+    ref=states['separated_reactants']
+    for name,label in [('TS','activation'),('product','reaction')]:
+        d={q:(states[name][q]-ref[q])*KCAL for q in ('E','H','G')}
+        result[f'T_delta_S_{label}_kcal_mol']=d['H']-d['G']
+        result[f'minus_T_delta_S_{label}_kcal_mol']=d['G']-d['H']
+        result[f'delta_S_{label}_cal_mol_K']=(d['H']-d['G'])*1000/ts['temperature_K']
+        result[f'G_minus_E_{label}_kcal_mol']=d['G']-d['E']
+        result[f'H_minus_E_{label}_kcal_mol']=d['H']-d['E']
+    return result

@@ -10,6 +10,11 @@
     "sha256": "3f88842135ba09910db859d9c15fc3be94945056c1f9a0e2966d4c9c8fe51911"
   },
   {
+    "path": "csv/activation_thermochemistry.csv",
+    "bytes": 937,
+    "sha256": "7bb7e57a34b9090202ff41c9bed5a5e8215c7d590d33eafb3111e3ad12914085"
+  },
+  {
     "path": "csv/all_NH_F_contacts.csv",
     "bytes": 177564,
     "sha256": "c8343dddebe53b6021832d8a4c63b92210ae44eb11acd460dd4ed346368c3234"
@@ -116,8 +121,8 @@
   },
   {
     "path": "csv/energy_comparison.csv",
-    "bytes": 2536,
-    "sha256": "eaaa4ee35f8034d26c3a801f5e10130d8d9e51642885e8c5102c414ff7c46df0"
+    "bytes": 4891,
+    "sha256": "703b893109454f112e128021264483b138f093958f890bb9bf20b28a7f7707e2"
   },
   {
     "path": "csv/fluorine_positions.csv",
@@ -248,6 +253,26 @@
     "path": "csv/system_summary.csv",
     "bytes": 1341,
     "sha256": "8972cdea47d4d80be71271e61ed5739d676176a6a9ba95ee39643c8abd1a2348"
+  },
+  {
+    "path": "csv/thermochemistry_connector_audit.csv",
+    "bytes": 4498,
+    "sha256": "7d870dfcddda424778c07173f8b2173e9f5d6cccf82d89ceb84ec416d4a50108"
+  },
+  {
+    "path": "csv/thermochemistry_display_profiles.csv",
+    "bytes": 1054451,
+    "sha256": "6f675bab8c3a2f8886b0b0cf481f91f9a9bb64ca69e53266e3c59106939bb435"
+  },
+  {
+    "path": "csv/thermochemistry_log_audit.csv",
+    "bytes": 1845,
+    "sha256": "e84274e42f542105757b4a45d0c211d4081a9259b8994ab9117806801353dbff"
+  },
+  {
+    "path": "csv/thermochemistry_states.csv",
+    "bytes": 2197,
+    "sha256": "1c151a1b780351a6804f64809b3118a8f7efaaca3242cf8f7ebdd9610dfab3ce"
   },
   {
     "path": "csv/two_sided_atom_mapping.csv",
@@ -450,9 +475,19 @@
     "sha256": "3bd758c5e7991a0dadf9812e6fcc1e2bdcccce862b444addd9aa7dc877bde1df"
   },
   {
+    "path": "figures/23_energy_entropy_profiles_3x3.png",
+    "bytes": 528305,
+    "sha256": "5bb3596c98408ce4baa8740fa1209ac18a0579539cda51f5cce4e6e4628861dd"
+  },
+  {
+    "path": "figures/23_energy_entropy_profiles_3x3.svg",
+    "bytes": 362888,
+    "sha256": "c6705b0ab58debe05fdfad4fe86a886afab92cd5b277b27b0f315d104a3a614b"
+  },
+  {
     "path": "figures/README.md",
-    "bytes": 5377,
-    "sha256": "f0893b98f4b3cad756c61d9dd259e3a7389a6b24f429f77950fccdf2ac42a818"
+    "bytes": 5587,
+    "sha256": "5e94977b8f53df3c5cda4f70ae27d3d2f3c6a3d682c84939f78b687d62de0ec1"
   },
   {
     "path": "oriented_logs/MoriPF_oriented.log",
@@ -486,8 +521,8 @@
   },
   {
     "path": "reports/figure_guide_ja.md",
-    "bytes": 28010,
-    "sha256": "df6b9028338a7c0f476d54f7fdff730afeb60a5ce27e8aafb51a007bcc31fe3f"
+    "bytes": 30008,
+    "sha256": "b84c992bd1313c59a12c6136c40d7e468420dfb72c62d0cdb6f3fd0fab89f089"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",
@@ -506,13 +541,18 @@
   },
   {
     "path": "reports/summary_ja.md",
-    "bytes": 18120,
-    "sha256": "e77d0f000cebe4d46a22f72105d13bff1eee96c844bcb43d6d3b60b7dc720468"
+    "bytes": 19158,
+    "sha256": "cd5d1926c91a1855fc7151293886dcc347a51ddcd385c1bb0477d518a6e3bf97"
   },
   {
     "path": "reports/test_results.txt",
     "bytes": 2902,
     "sha256": "daff095a5e758b42ed7e5e8f5372832f154c614bc0eddf9e3b6fe65789b2560d"
+  },
+  {
+    "path": "reports/thermochemistry_profiles_ja.md",
+    "bytes": 7530,
+    "sha256": "796e0d747671d78be1fa9f06407585afcb5708008c7c10f877972ff0c753e689"
   },
   {
     "path": "reports/two_sided_contact_summary_ja.md",
