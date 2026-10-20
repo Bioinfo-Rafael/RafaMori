@@ -126,8 +126,8 @@
   },
   {
     "path": "csv/cross_system_work_union.csv",
-    "bytes": 89060,
-    "sha256": "ba60647f4fc9fdb6051fb67492363516456f57715516dac04322584ba6516be2"
+    "bytes": 123725,
+    "sha256": "da950ccd66f1397350c8b34d8560411fef71727676adc73314f93e18f2722695"
   },
   {
     "path": "csv/descriptive_correlations.csv",
@@ -341,8 +341,8 @@
   },
   {
     "path": "csv/work_union_subplot_statistics.csv",
-    "bytes": 28256,
-    "sha256": "51b4b2b160b02c0c604e3f6f6fa2548f14f1320c85d2d413a5d438d07149812e"
+    "bytes": 30556,
+    "sha256": "2103807d9396e15ef3a66c55419b6125df9782d21430fbc69cf1ac0cd9f0cfe8"
   },
   {
     "path": "figures/01_MoriPF_energy_force_kappa.png",
@@ -741,8 +741,8 @@
   },
   {
     "path": "reports/cross_system_work_comparison_ja.md",
-    "bytes": 78611,
-    "sha256": "f7a869e015585830582bd7719da8bd7255e09e872d97db2adc1b2f042690a629"
+    "bytes": 84157,
+    "sha256": "34475f4033d103360e12fc2fd5a54ee8f7da218b986cf9fc51e99fa8b3eb9f16"
   },
   {
     "path": "reports/cross_system_work_union_audit.json",
@@ -786,8 +786,8 @@
   },
   {
     "path": "reports/higher_ranked_controls_summary_ja.md",
-    "bytes": 455689,
-    "sha256": "c66bb2659ff30aedb6280138fc5dd1532ce12cf52200923cf6add48c22a952df"
+    "bytes": 461235,
+    "sha256": "f58dfc1fe838ac03151f312882c4a34b9730eed353373db7c608132d8bb1d857"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",

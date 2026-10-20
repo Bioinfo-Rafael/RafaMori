@@ -2,6 +2,7 @@
 from pathlib import Path
 from functools import lru_cache
 import json
+import numpy as np
 import pandas as pd
 from contact_specificity import pool_mask
 from numbered_structures import SYSTEMS
@@ -36,6 +37,8 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
     allpairs['cross_key']=[pair_key(r.system,r.site_a,r.site_b) for r in allpairs.itertuples()]
     atomlookup={s:g.set_index('cross_key') for s,g in atoms.groupby('system')}
     pairlookup={s:g.set_index('cross_key') for s,g in allpairs.groupby('system')}
+    from work_union_plots import statistics
+    barriers=pd.read_csv(OUT/'csv/energy_comparison.csv').set_index('system').absolute_RRHO_G_barrier_kcal_mol
     assert all(g.index.is_unique for g in [*atomlookup.values(),*pairlookup.values()])
     roles=dictionary.set_index(['system','atom'])
     labels={}
@@ -50,7 +53,7 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
         labels[r.cross_key]=special.get(r.site,
             f'{r.element}{r.atom}' if r.cross_system_mapped else
             f'対応H（MoriPF H{r.cross_key.removeprefix("H_ref")}）')
-    records=[];audits=[]
+    records=[];audits=[];correlations=[]
 
     def emit(kind,target,pool,selections,candidates,lookup,metric):
         union=set().union(*(set(g.cross_key) for g in selections.values()))
@@ -61,6 +64,11 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
         ordered=sorted(union,key=lambda k:(best[k],k))
         rows=[]
         for key in ordered:
+            work=np.array([lookup[s].loc[key,metric] for s in SYSTEMS],dtype=float)
+            stat=statistics(work,barriers.loc[list(SYSTEMS)].to_numpy(float))
+            correlations.append(dict(kind=kind,target=target,pool=pool,cross_key=key,
+                                     pearson_r=stat['pearson_r'],r_squared=stat['r_squared'],
+                                     std_over_signed_mean=stat['std_over_signed_mean']))
             cells=[];details=[];target_any=False
             for system in SYSTEMS:
                 selected=selections[system];cand=candidates[system];data=lookup[system]
@@ -104,16 +112,22 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
                     pool_size=len(cand),selection_detail=reason))
             name=labels[key] if kind=='atom' else ' ··· '.join(labels[k] for k in key.split('||'))
             if target_any:name='**★ '+name+'**'
-            rows.append([name,*cells,' ／ '.join(details)])
+            cv=f'{stat["std_over_signed_mean"]:.3f}' if np.isfinite(stat['std_over_signed_mean']) else 'N/A'
+            rows.append([name,*cells,f'{stat["pearson_r"]:.3f}',f'{stat["r_squared"]:.3f}',cv,' ／ '.join(details)])
         audits.append(dict(kind=kind,target=target,pool=pool,union_count=len(union),
             selected_keys={s:sorted(g.cross_key) for s,g in selections.items()},union_keys=sorted(union)))
         return table(['対応する原子' if kind=='atom' else '対応する接触',
                       *[f'{s}：{"原子の仕事" if kind=="atom" else "接触方向の仕事"} / kcal/mol' for s in SYSTEMS],
-                      '詳細説明'],rows)+'\n'
+                      '正方向ΔG‡とのPearson r（無次元）','直線フィットR²（無次元）',
+                      '仕事のSTD/mean（無次元）','詳細説明'],rows)+'\n'
 
     text='## 分子系を横に並べた仕事の比較（和集合）\n\n'
     text+=(OUT.parent/'docs/work_comparison_groups_ja.md').read_text()+'\n\n'
     text+='共通のC–N距離2.50→2.10 Åについて、符号付きの仕事をMoriPF・RAFA14・RAFA15・RAFA16の列に並べた。MoriPFとの差には換算していない。★が着目対象。各セルには仕事と実際の原子番号を、詳細説明列には各系の候補内での絶対値順位／候補数と選択理由を示す。正の仕事はエネルギー上昇側、負は低下側の寄与であり、正負を区別して比較する。\n\n'
+    text+='**相関列は、その行の4系の符号付き仕事と、下表の正方向ΔG‡とのPearson相関係数r、および散布図の切片付き直線フィットの決定係数R²。** どちらも無次元で、小数点以下3桁を表示する。rが負なら仕事が大きい系ほどΔG‡が低く、正なら高い。R²は相関の正負を表さず、この回帰ではr²に等しい。各系の候補条件外の値も含め、散布図と同じ4点で計算した（n=4）。行の選別や順位付けは相関では行っていない。\n\n'
+    text+='**STD/mean列は、その行の4系の仕事の母標準偏差（ddof=0）を、符号付き算術平均で割った値。** 棒グラフのタイトルと同じ無次元量を小数点以下3桁で示す。平均が負なら比も負になり、正負の相殺で平均が小さくなると比は大きくなる。平均が数値的にゼロならN/Aとする。\n\n'
+    text+=table(['相関に用いたエネルギー',*[f'{s} / kcal/mol' for s in SYSTEMS]],
+                [['正方向ΔG‡ = G(TS)−G(基質)−G(Lys)',*[f'{barriers[s]:.3f}' for s in SYSTEMS]]])+'\n'
     text+='各系で「上位全件＋着目対象＋直下3件」を選び、その**和集合**を表の行にした。他系ではもっと下位になる行も削除せず、元の仕事と順位を示す。行の順は選択元の系での最も小さい順位を基準にした表示順で、4系共通の順位ではない。\n\n'
     text+='**原子対応を再確認し、全4系・全57原子の一対一対応を確認した。** Lysモデルとクマリン骨格は元素も含めて対応し、置換ベンゼンのF/Hは同じ結合位置として対応する。従来未対応としていた各系15個のアルキルHも、結合先と局所座標を共通IRC区間41点・TSで照合できた。以前の1点だけの行は対応する4系を統合し、フィットを再計算した。各系内部の仕事・順位・候補選択は変更していない。\n\n'
     text+='[全57位置の対応表と確認方法](atom_correspondence_audit_ja.md) · [原子対応CSV](../csv/audited_atom_correspondence.csv)。H_ref49などの位置ラベルは「MoriPFのH49に対応する位置」を意味し、各系の実際の原子番号はセル内に併記した。\n\n'
@@ -137,7 +151,8 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
             text+=emit('contact',target,pool,selections,candidates,pairlookup,pair_metric)
             if pool=='same_category':text+='</details>\n\n'
     text+='[横並び表の全セルと選択理由CSV](../csv/cross_system_work_union.csv) · [各系の選択集合と和集合の監査JSON](cross_system_work_union_audit.json)\n\n'
-    pd.DataFrame(records).to_csv(OUT/'csv/cross_system_work_union.csv',index=False)
+    pd.DataFrame(records).merge(pd.DataFrame(correlations),on=['kind','target','pool','cross_key'],
+                               validate='many_to_one').to_csv(OUT/'csv/cross_system_work_union.csv',index=False)
     (OUT/'reports/cross_system_work_union_audit.json').write_text(json.dumps(audits,ensure_ascii=False,indent=2)+'\n')
     from work_union_plots import main as draw_work_union
     gallery=draw_work_union()

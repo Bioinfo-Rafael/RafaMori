@@ -45,6 +45,10 @@ class WorkUnionPlotTests(unittest.TestCase):
             if row.n==4:
                 x=p.work_kcal_mol.to_numpy();y=p.forward_activation_G_kcal_mol.to_numpy()
                 fit=linregress(x,y)
+                self.assertAlmostEqual(row.pearson_r,fit.rvalue)
+                np.testing.assert_allclose(source.pearson_r,fit.rvalue)
+                np.testing.assert_allclose(source.r_squared,fit.rvalue**2)
+                np.testing.assert_allclose(source.std_over_signed_mean,np.std(x,ddof=0)/np.mean(x))
                 self.assertAlmostEqual(row.r_squared,fit.rvalue**2)
                 self.assertAlmostEqual(row.slope,fit.slope,places=7)
                 self.assertAlmostEqual(row.std_over_signed_mean,np.std(x,ddof=0)/np.mean(x))

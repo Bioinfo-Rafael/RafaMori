@@ -26,7 +26,8 @@ def statistics(x,y):
     n=len(x)
     result=dict(n=n,mean_work_kcal_mol=float(np.mean(x)),
                 population_std_work_kcal_mol=float(np.std(x,ddof=0)),
-                std_over_signed_mean=np.nan,slope=np.nan,intercept_kcal_mol=np.nan,r_squared=np.nan)
+                std_over_signed_mean=np.nan,slope=np.nan,intercept_kcal_mol=np.nan,
+                pearson_r=np.nan,r_squared=np.nan)
     if n!=4:return dict(result,status='incomplete_correspondence')
     tol=1e-12*max(1.,float(np.max(np.abs(x))))
     if abs(result['mean_work_kcal_mol'])>tol:
@@ -35,6 +36,7 @@ def statistics(x,y):
     slope,intercept=np.polyfit(x,y,1)
     predicted=slope*x+intercept
     result.update(slope=float(slope),intercept_kcal_mol=float(intercept),
+                  pearson_r=float(np.corrcoef(x,y)[0,1]),
                   r_squared=float(1-np.sum((y-predicted)**2)/np.sum((y-y.mean())**2)))
     return dict(result,status='ok' if np.isfinite(result['std_over_signed_mean']) else 'mean_near_zero')
 
