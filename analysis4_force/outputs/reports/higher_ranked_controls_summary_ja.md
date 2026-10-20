@@ -589,6 +589,8 @@ IRC端点は分離反応物の最適化構造とは異なる。したがって�
 
 [横並び表の全セルと選択理由CSV](../csv/cross_system_work_union.csv) · [各系の選択集合と和集合の監査JSON](cross_system_work_union_audit.json)
 
+[仕事の大きさ・系間変動・相関を同時に比較した考察](work_candidate_assessment_ja.md)
+
 
 [各原子・接触の散布図（ΔG‡と仕事）と4系の棒グラフ](cross_system_work_comparison_ja.md#work-plots)
 

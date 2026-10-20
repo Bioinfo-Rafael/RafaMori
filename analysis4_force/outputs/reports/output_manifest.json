@@ -335,6 +335,11 @@
     "sha256": "5af100f79f0ef342ba05a35f15aef5c121a2f9004f15d0043808fdf8cd3fea57"
   },
   {
+    "path": "csv/work_candidate_assessment.csv",
+    "bytes": 67969,
+    "sha256": "b52692d136c1b4c60039f3e951bb6f99950ce2c6849a0b9e6d471bea0f23ff23"
+  },
+  {
     "path": "csv/work_union_subplot_points.csv",
     "bytes": 52963,
     "sha256": "9c5c789961f01d5f9cc4062de1c817c8d8b5afde8306f13d50d92964eebaf704"
@@ -741,8 +746,8 @@
   },
   {
     "path": "reports/cross_system_work_comparison_ja.md",
-    "bytes": 89622,
-    "sha256": "aede9c7d87eab04d55af8007f750aa3cb4116f16e51f13374a3e630b703b2ea8"
+    "bytes": 89731,
+    "sha256": "82eda158362ac7eb342fd59f2bc3d17ff69984870d86c0c04a5c5b74d357436e"
   },
   {
     "path": "reports/cross_system_work_union_audit.json",
@@ -786,8 +791,8 @@
   },
   {
     "path": "reports/higher_ranked_controls_summary_ja.md",
-    "bytes": 466700,
-    "sha256": "e8524235f31555d90b567406032d0678d317298722301046e5934442f929a6c7"
+    "bytes": 466809,
+    "sha256": "f628ffd3e273fba79dfbd7d575f8875653651290bdf44084290cdd7a6b07de78"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",
@@ -823,6 +828,11 @@
     "path": "reports/two_sided_contact_summary_ja.md",
     "bytes": 30919,
     "sha256": "8d8c079fd5971316f41c1e4f07a629f3d99cab184894b274011a99e98301efd1"
+  },
+  {
+    "path": "reports/work_candidate_assessment_ja.md",
+    "bytes": 9859,
+    "sha256": "5747bcb962a8f52130b087778e385b754bdb096a69225d38490c8c1ef41571af"
   },
   {
     "path": "reports/work_union_subplot_manifest.json",

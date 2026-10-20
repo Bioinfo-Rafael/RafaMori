@@ -155,8 +155,11 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
             text+=emit('contact',target,pool,selections,candidates,pairlookup,pair_metric)
             if pool=='same_category':text+='</details>\n\n'
     text+='[横並び表の全セルと選択理由CSV](../csv/cross_system_work_union.csv) · [各系の選択集合と和集合の監査JSON](cross_system_work_union_audit.json)\n\n'
+    text+='[仕事の大きさ・系間変動・相関を同時に比較した考察](work_candidate_assessment_ja.md)\n\n'
     pd.DataFrame(records).merge(pd.DataFrame(correlations),on=['kind','target','pool','cross_key'],
                                validate='many_to_one').to_csv(OUT/'csv/cross_system_work_union.csv',index=False)
+    from work_candidate_assessment import main as assess_work_candidates
+    assess_work_candidates()
     (OUT/'reports/cross_system_work_union_audit.json').write_text(json.dumps(audits,ensure_ascii=False,indent=2)+'\n')
     from work_union_plots import main as draw_work_union
     gallery=draw_work_union()

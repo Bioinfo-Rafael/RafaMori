@@ -434,6 +434,8 @@
 
 [横並び表の全セルと選択理由CSV](../csv/cross_system_work_union.csv) · [各系の選択集合と和集合の監査JSON](cross_system_work_union_audit.json)
 
+[仕事の大きさ・系間変動・相関を同時に比較した考察](work_candidate_assessment_ja.md)
+
 <a id="work-plots"></a>
 
 ## 仕事と活性化自由エネルギーの散布図・4系の棒グラフ
