@@ -115,6 +115,11 @@
     "sha256": "2077cfe9b185d9643d259dd3f0a04a0db62bb84f0a32da3235315d088ad3be7c"
   },
   {
+    "path": "csv/cross_system_work_union.csv",
+    "bytes": 105318,
+    "sha256": "d2c983ce4b8c6c88e17fd14faeace34f5f1fc3ab949eb2026ec8e10a0ef65c4a"
+  },
+  {
     "path": "csv/descriptive_correlations.csv",
     "bytes": 5703,
     "sha256": "a6f308fe78c10e8dfd48e53ffa4dceb5e78c6df2539698b9db5e7da2844930c0"
@@ -580,6 +585,16 @@
     "sha256": "3d1d0ae0daffe7b8b8925b2df5af16045fcf768b29ccd2cf169deb791017d9a4"
   },
   {
+    "path": "reports/cross_system_work_comparison_ja.md",
+    "bytes": 92689,
+    "sha256": "8c8faacff1cff3fab6be6f566eb664e33c744a0d95f4505962a91b1870c17984"
+  },
+  {
+    "path": "reports/cross_system_work_union_audit.json",
+    "bytes": 17510,
+    "sha256": "2ba12749d544da701d3b2cd7ad2a15d5af0bc4f13bf985ecf10b1aa5a4e80859"
+  },
+  {
     "path": "reports/directional_barriers_discussion_ja.md",
     "bytes": 8665,
     "sha256": "5c4d991f2eca00088101804c9fc611928b7f11b531f5fa8a330fc55635453cc5"
@@ -616,8 +631,8 @@
   },
   {
     "path": "reports/higher_ranked_controls_summary_ja.md",
-    "bytes": 385604,
-    "sha256": "14806a6dfaabf94c41b33a6a2f46140315a075cac47a3e9d9cab7f00ef6981b3"
+    "bytes": 478180,
+    "sha256": "5adabeeb7a3a416f4c3bbcc23a99f39a54012b9dec3dcccd817e70ba2f2fbbc4"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",
