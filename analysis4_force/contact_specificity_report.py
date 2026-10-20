@@ -71,6 +71,8 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
     short=r[(r.kind=='contact')&(r.target=='opposite_contact')&(r.metric=='radial_work_kcal_mol')&(r.pool.isin(['same_category','distance_and_chemistry']))][['system','pool','value','magnitude_rank','n_controls']]
     text=f'''# 着目した接触は、他の原子・接触と比べて特徴的か
 
+**2026-10-20追補：[指定対象より上位の原子・接触を一つずつ確認した結果](higher_ranked_controls_summary_ja.md)**。上位には反応C20を含む対や、指定F···Hとは逆向きの力を示す接触があった。以下の絶対値の順位だけで、指定接触の役割を判断しない。
+
 解析日：2026-10-17。追加のDFT計算は行わず、既存ログから各系の全57原子と1596原子対について指標を計算した。比較対象は、原子間距離と結合のつながりを基に選んだ。障壁は各系のΔE‡・ΔG‡そのもの。MoriPFとの差やpercentage pointsは用いない。
 
 ## 結論

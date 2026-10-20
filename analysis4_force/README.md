@@ -1,5 +1,7 @@
 # 4系IRC・Reaction Force解析
 
+**上位候補の個別確認：[原子・接触の位置、結合関係、角度、力の向きまで調べた結果](outputs/reports/higher_ranked_controls_summary_ja.md)**。4系それぞれについて、指定対象より上位の全件を掲載しています。
+
 **正方向・逆方向の障壁：[方向別の表とRAFA15生成物についての考察](outputs/reports/directional_barriers_discussion_ja.md)**
 
 **E・G・TΔSと反応経路：[3×3の図と熱力学成分の説明](outputs/reports/thermochemistry_profiles_ja.md)**。TSの熱補正を固定した参考曲線と、両端準位への滑らかな表示用接続を比較できます。
@@ -96,3 +98,7 @@ python -m unittest discover -s analysis4_force/tests -v
 ## 日本語の図解だけを更新する
 
 `python analysis4_force/figure_explanations.py` で、既存の結果報告の図説明、全図の案内、出力ファイルのハッシュ一覧を更新できます。数値解析や図の再計算は行いません。通常の解析を再実行した場合も、結果報告に図の説明が付きます。
+
+## 指定対象より上位の原子・接触を同定する
+
+`python analysis4_force/higher_ranked_controls.py` で、既存の全原子・原子対の比較結果に、各原子の役割、結合経路、共通C–N区間での接触角、符号付きの力を付けます。指定対象より上位の全件を3区間・7比較条件について保存し、各系の日本語一覧と考察を生成します。通常の全解析にも組み込んであります。

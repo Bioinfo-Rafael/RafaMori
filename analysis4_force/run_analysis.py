@@ -209,6 +209,8 @@ def main():
     analyze_two_sided()
     from contact_specificity import main as analyze_specificity
     analyze_specificity()
+    from higher_ranked_controls import main as identify_higher_controls
+    identify_higher_controls()
     (reports/'execution.json').write_text(json.dumps(dict(warnings=warnings,python=platform.python_version(),numpy=np.__version__,pandas=pd.__version__,systems=list(records),energy_reference='each separated substrate + Lys',Lys_sha256=lys['sha256'],Lys_method_basis=lys['method_basis'],Lys_solvent=lys['solvent']),indent=2)+'\n')
     from thermochemistry_profiles import main as analyze_thermochemistry
     analyze_thermochemistry()

@@ -175,6 +175,21 @@
     "sha256": "aa9ef652153259632921683907af492a793536615a26fb0c5ded4e01a442e5d6"
   },
   {
+    "path": "csv/higher_rank_atom_dictionary.csv",
+    "bytes": 17907,
+    "sha256": "92815d0c824a813822e09ad776adf7269bb6d0bdfd1194f9c638c57f7c4ce487"
+  },
+  {
+    "path": "csv/higher_rank_competitors.csv",
+    "bytes": 3535884,
+    "sha256": "35970b6f052bfeeadeaa835c844cf7ceca8f857537f906347ba86ff6282e61e7"
+  },
+  {
+    "path": "csv/higher_rank_contact_identities.csv",
+    "bytes": 1689201,
+    "sha256": "7b7d6caca983af9cfaaec19d52260921cac2db1e29977bdec603ec2c76baa7fc"
+  },
+  {
     "path": "csv/landmarks_MoriPF.csv",
     "bytes": 230,
     "sha256": "e7ad2ffd785212ddfdfe895dc0d55cdefa81e7062466bf5a8d37130f4ed4aacb"
@@ -511,8 +526,8 @@
   },
   {
     "path": "reports/contact_specificity_summary_ja.md",
-    "bytes": 39472,
-    "sha256": "d24a27d06a3588c57e6d4a7c9878b955eaae15ce65c930b23c718fcd05f89704"
+    "bytes": 39800,
+    "sha256": "3d1d0ae0daffe7b8b8925b2df5af16045fcf768b29ccd2cf169deb791017d9a4"
   },
   {
     "path": "reports/directional_barriers_discussion_ja.md",
@@ -528,6 +543,31 @@
     "path": "reports/figure_guide_ja.md",
     "bytes": 30008,
     "sha256": "b84c992bd1313c59a12c6136c40d7e468420dfb72c62d0cdb6f3fd0fab89f089"
+  },
+  {
+    "path": "reports/higher_ranked_controls_MoriPF_ja.md",
+    "bytes": 77102,
+    "sha256": "7e47191c219ae80317120689c832ec787163c36c9780a2fc8931ec61152ce62e"
+  },
+  {
+    "path": "reports/higher_ranked_controls_RAFA14_ja.md",
+    "bytes": 87287,
+    "sha256": "fe5dde8b71b7754591527445dd5db3dfbc2bae762eb5c60c437fa29e70ca2a5d"
+  },
+  {
+    "path": "reports/higher_ranked_controls_RAFA15_ja.md",
+    "bytes": 71835,
+    "sha256": "8310bdb2bcb612b7e72771cce35ba9a750f9d80417d8f83d2e236b54654b7d61"
+  },
+  {
+    "path": "reports/higher_ranked_controls_RAFA16_ja.md",
+    "bytes": 77061,
+    "sha256": "f18710ce31860d54de64b8d984191af3361c0c3579b2810f83a40cd82f4ecd59"
+  },
+  {
+    "path": "reports/higher_ranked_controls_summary_ja.md",
+    "bytes": 14958,
+    "sha256": "50a769c066d3bb2e8836c80e14003dc4f3a8964cd1869abd7b2e8b3abf563136"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",

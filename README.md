@@ -1,5 +1,7 @@
 # MoriPF・RAFA14・RAFA15・RAFA16のIRC／反応力解析
 
+**上位候補の個別確認：[原子・接触の位置、結合関係、角度、力の向きまで調べた結果](analysis4_force/outputs/reports/higher_ranked_controls_summary_ja.md)**。4系それぞれについて、指定対象より上位の全件を掲載しています。
+
 **正方向・逆方向の障壁：[方向別の表とRAFA15生成物についての考察](analysis4_force/outputs/reports/directional_barriers_discussion_ja.md)**
 
 **E・G・TΔSと反応経路：[3×3の図と熱力学成分の説明](analysis4_force/outputs/reports/thermochemistry_profiles_ja.md)**。TSの熱補正を固定した参考曲線と、両端準位への滑らかな表示用接続を比較できます。
