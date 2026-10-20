@@ -6,7 +6,7 @@
 
 **E・G・TΔSと反応経路：[3×3の図と熱力学成分の説明](outputs/reports/thermochemistry_profiles_ja.md)**。TSの熱補正を固定した参考曲線と、両端準位への滑らかな表示用接続を比較できます。
 
-**図の説明：[全23種類・37枚の図の見方](outputs/reports/figure_guide_ja.md)**。各図の目的、軸の単位、点・線・色の意味、読み取れることを説明しています。
+**図の説明：[全24種類・41枚の図の見方](outputs/reports/figure_guide_ja.md)**。各図の目的、軸の単位、点・線・色の意味、読み取れることを説明しています。
 
 [解析結果](outputs/reports/summary_ja.md)が結論と解釈の入口です。ルートで `python analysis4_force/run_analysis.py` を実行すると、入力照合、解析用LOGの生成・再読込、CSV・図・summaryの生成まで実施します。
 

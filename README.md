@@ -6,7 +6,7 @@
 
 **E・G・TΔSと反応経路：[3×3の図と熱力学成分の説明](analysis4_force/outputs/reports/thermochemistry_profiles_ja.md)**。TSの熱補正を固定した参考曲線と、両端準位への滑らかな表示用接続を比較できます。
 
-**図の説明：[全23種類・37枚の図の見方](analysis4_force/outputs/reports/figure_guide_ja.md)**。各図の目的、軸の単位、点・線・色の意味、読み取れることを説明しています。
+**図の説明：[全24種類・41枚の図の見方](analysis4_force/outputs/reports/figure_guide_ja.md)**。各図の目的、軸の単位、点・線・色の意味、読み取れることを説明しています。
 
 GaussianのIRC（固有反応座標）計算ログから、フッ素置換位置が異なる4分子系の反応経路を比較するPythonプロジェクトです。エネルギー、反応力、原子間距離・角度、分子断片の質量重心（COM）、原子の力と運動を解析します。
 

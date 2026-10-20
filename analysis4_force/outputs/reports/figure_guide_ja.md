@@ -74,6 +74,7 @@ RAFA14のアミン側はH···Hなので、4系をまとめて「F···H」と
 - [図21：指定した接触の力・仕事を、同じ系の他の接触と比べる](#fig21)
 - [図22：接触の値の大きさと、障壁との相関を同時に比べる](#fig22)
 - [図23：E・G・TΔSを、IRCと両端準位の3通りの表示で比較する](#fig23)
+- [図24：4系の構造式とGaussian原子番号を対応付ける](#fig24)
 
 <a id="fig01"></a>
 
@@ -416,3 +417,20 @@ rank 5/169なら、指定接触を含む169候補中で5番目に大きい。丸
 対象ファイル：
 
 - [23_energy_entropy_profiles_3x3.png](../figures/23_energy_entropy_profiles_3x3.png)
+
+<a id="fig24"></a>
+
+## 図24：4系の構造式とGaussian原子番号を対応付ける
+
+![図24：4系の構造式とGaussian原子番号を対応付ける](../figures/24_MoriPF_numbered_structure.png)
+
+MoriPF・RAFA14・RAFA15・RAFA16について、ログと表に使う全57原子の番号を付けた2次元構造式。炭素は骨格式の頂点で表し、そのそばに数字を表示する。水素も省略していない。黄は反応C20、紫は求核剤N、赤は環のアミン側F/H、橙は選択アミンH、緑は反対側F/H、青はO21を示す。色は位置の目印で、力や相互作用の強さを表さない。
+
+反応物側の共有結合グラフに基づく図で、TSの3次元配置、接触距離、形成中のC–N結合は描いていない。F/Hとアミンの番号は分子系により異なる。拡大用SVGと原子順を保持したMOLファイルも保存した。
+
+対象ファイル：
+
+- [24_MoriPF_numbered_structure.png](../figures/24_MoriPF_numbered_structure.png)
+- [24_RAFA14_numbered_structure.png](../figures/24_RAFA14_numbered_structure.png)
+- [24_RAFA15_numbered_structure.png](../figures/24_RAFA15_numbered_structure.png)
+- [24_RAFA16_numbered_structure.png](../figures/24_RAFA16_numbered_structure.png)

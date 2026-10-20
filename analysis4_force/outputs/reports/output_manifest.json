@@ -500,9 +500,49 @@
     "sha256": "c6705b0ab58debe05fdfad4fe86a886afab92cd5b277b27b0f315d104a3a614b"
   },
   {
+    "path": "figures/24_MoriPF_numbered_structure.png",
+    "bytes": 136828,
+    "sha256": "568a7538656cb06bfb60e6f2d2daa87ad055293af48550012d43e3214ee615b3"
+  },
+  {
+    "path": "figures/24_MoriPF_numbered_structure.svg",
+    "bytes": 106398,
+    "sha256": "cd328d1e8b6da9ee464268dd06b3515396b26647dcb411283b53eb531aadc530"
+  },
+  {
+    "path": "figures/24_RAFA14_numbered_structure.png",
+    "bytes": 135396,
+    "sha256": "5db4587dff470ab6caad29f9bca9d1b17b703749f63751bb5a9adbe298a0336e"
+  },
+  {
+    "path": "figures/24_RAFA14_numbered_structure.svg",
+    "bytes": 106458,
+    "sha256": "f05484650778b75605dd41b0320249c81ae621a0be5fe2322b56cb6fce289d3f"
+  },
+  {
+    "path": "figures/24_RAFA15_numbered_structure.png",
+    "bytes": 135499,
+    "sha256": "4125dd18a0ede6787c5d200e5ca83017a2df95978d0073b7ed55331e3df0d236"
+  },
+  {
+    "path": "figures/24_RAFA15_numbered_structure.svg",
+    "bytes": 106574,
+    "sha256": "698fc31d17be34b9a396057a9523ceeea674ae93f91876d5bb80bd5bff5f3b2e"
+  },
+  {
+    "path": "figures/24_RAFA16_numbered_structure.png",
+    "bytes": 135162,
+    "sha256": "852cb645b7f443fec8a52e0527346535a09829298571a3a27c23b8f49259fa77"
+  },
+  {
+    "path": "figures/24_RAFA16_numbered_structure.svg",
+    "bytes": 106574,
+    "sha256": "cac679617b996ed19975e30b33347bcace7ae409766a2418a67357d0c9880184"
+  },
+  {
     "path": "figures/README.md",
-    "bytes": 5587,
-    "sha256": "5e94977b8f53df3c5cda4f70ae27d3d2f3c6a3d682c84939f78b687d62de0ec1"
+    "bytes": 5993,
+    "sha256": "4b6b2fab7120a77d3836d1f9c2a2262c3d77860326b00d33a5c0cffa9c4ba886"
   },
   {
     "path": "oriented_logs/MoriPF_oriented.log",
@@ -541,33 +581,33 @@
   },
   {
     "path": "reports/figure_guide_ja.md",
-    "bytes": 30008,
-    "sha256": "b84c992bd1313c59a12c6136c40d7e468420dfb72c62d0cdb6f3fd0fab89f089"
+    "bytes": 31353,
+    "sha256": "72d12d7a64c5d27dc8d7263051853e8efc5abef872873783d0b08d7e6f654f78"
   },
   {
     "path": "reports/higher_ranked_controls_MoriPF_ja.md",
-    "bytes": 77102,
-    "sha256": "7e47191c219ae80317120689c832ec787163c36c9780a2fc8931ec61152ce62e"
+    "bytes": 80605,
+    "sha256": "0c0ced3db8afb20ef0a57f33ef5d40dbd97ed0a8691c96312c824c21207e80b2"
   },
   {
     "path": "reports/higher_ranked_controls_RAFA14_ja.md",
-    "bytes": 87287,
-    "sha256": "fe5dde8b71b7754591527445dd5db3dfbc2bae762eb5c60c437fa29e70ca2a5d"
+    "bytes": 92059,
+    "sha256": "98122428e0c830c6cca08136978a92b3f8a673d9035bb5be06400c48b7ac4f49"
   },
   {
     "path": "reports/higher_ranked_controls_RAFA15_ja.md",
-    "bytes": 71835,
-    "sha256": "8310bdb2bcb612b7e72771cce35ba9a750f9d80417d8f83d2e236b54654b7d61"
+    "bytes": 77254,
+    "sha256": "40df5d8fef82759a69a6f782140774bbf13eb49f9515417a696debadd59f6514"
   },
   {
     "path": "reports/higher_ranked_controls_RAFA16_ja.md",
-    "bytes": 77061,
-    "sha256": "f18710ce31860d54de64b8d984191af3361c0c3579b2810f83a40cd82f4ecd59"
+    "bytes": 80564,
+    "sha256": "a33cff9814252da99d5b20e6f7b296287eb1b9f01b6d792b03e2425a09fd451f"
   },
   {
     "path": "reports/higher_ranked_controls_summary_ja.md",
-    "bytes": 14958,
-    "sha256": "50a769c066d3bb2e8836c80e14003dc4f3a8964cd1869abd7b2e8b3abf563136"
+    "bytes": 348244,
+    "sha256": "2df0bca818eec4135f00ddfd339b3e78cfff1a3981797f98b8b1f3c1af3ea0c8"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",
@@ -603,5 +643,30 @@
     "path": "reports/two_sided_contact_summary_ja.md",
     "bytes": 30919,
     "sha256": "8d8c079fd5971316f41c1e4f07a629f3d99cab184894b274011a99e98301efd1"
+  },
+  {
+    "path": "structures/MoriPF_numbered.mol",
+    "bytes": 4816,
+    "sha256": "19d0416525fb09bf46161299b2ee1d7e0a23aa7e0a80e9a7c29b8609b23c2036"
+  },
+  {
+    "path": "structures/RAFA14_numbered.mol",
+    "bytes": 4816,
+    "sha256": "b183769b9a9c74bb4467fae3a248542fa2c8e0e468f52ffd83e1854107290073"
+  },
+  {
+    "path": "structures/RAFA15_numbered.mol",
+    "bytes": 4816,
+    "sha256": "8668bf494b3d0f4e7f409ed6d83a785eb3589cfe77d4eb36e421ce51b6f92953"
+  },
+  {
+    "path": "structures/RAFA16_numbered.mol",
+    "bytes": 4816,
+    "sha256": "172634251cf8276a020606e74aba093bc2abbbe12180d3653f979e6bb7a91249"
+  },
+  {
+    "path": "structures/numbered_structure_audit.json",
+    "bytes": 67632,
+    "sha256": "3dcbae41e06b8cc9aa4e245333bf66804e3b80c913f7853d59820c991aa58453"
   }
 ]

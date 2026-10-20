@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 import yaml
 from contact_specificity import pool_mask, POOLS
+from numbered_structures import structure_section, SYSTEMS
 
 HERE=Path(__file__).resolve().parent
 OUT=HERE/'outputs'
@@ -29,6 +30,66 @@ def table(headers,rows):
 
 
 def fmt(x):return '—' if pd.isna(x) else f'{x:.6g}'
+
+
+def rank_context(frame,metric,key,targets,below=3):
+    """All preceding rows, nominated rows, and at least three following rows.
+
+    Ties at the final boundary are retained. Competition ranks use the same
+    numerical tolerance as the source analysis.
+    """
+    ordered=frame.sort_values([metric,key],key=lambda x: x.abs() if x.name==metric else x,
+                              ascending=[False,True]).copy()
+    ordered['rank']=[int((frame[metric].abs()>abs(v)+1e-12).sum())+1 for v in ordered[metric]]
+    ordered['is_target']=ordered[key].isin(targets)
+    positions=np.flatnonzero(ordered.is_target.to_numpy())
+    assert len(positions)==len(targets)
+    last=min(len(ordered)-1,int(positions.max())+below)
+    cutoff=abs(ordered.iloc[last][metric])
+    return ordered[ordered[metric].abs()>=cutoff-1e-12]
+
+
+def context_tables(system,atoms,pairs,dictionary,config):
+    """Self-contained tables used by both the overview and individual reports."""
+    a=atoms[(atoms.system==system)&(atoms.window==PRIMARY)].merge(
+        dictionary[dictionary.system==system],on=['system','atom','element','site'])
+    p=pairs[(pairs.system==system)&(pairs.window==PRIMARY)]
+    text='### 原子の仕事・力：着目する4原子と、その前後\n\n'
+    text+='★が着目原子。4原子それぞれについて上位すべてと直下3件を含む範囲を一つの表にまとめた。各行は絶対値の降順で、仕事の値には符号を残している。\n\n'
+    for metric in ATOM_METRICS:
+        g=rank_context(a,metric,'atom',a.loc[a.target_atom,'atom'].tolist())
+        text+=f'<details>\n<summary>{METRICS[metric]}：上位・着目原子・下位を開く</summary>\n\n'
+        text+=table(['順位','原子','値','位置・役割','直接結合する原子'],[
+            [r.rank,('**★ '+f'{r.element}{r.atom}'+'**') if r.is_target else f'{r.element}{r.atom}',
+             f'**{fmt(getattr(r,metric))}**' if r.is_target else fmt(getattr(r,metric)),r.role_ja,r.neighbors]
+            for r in g.itertuples()])+'\n</details>\n\n'
+    text+='### 接触の仕事・力：着目する接触と、その前後\n\n'
+    text+='表ごとに指定接触を★で示し、上位すべて・指定接触・直下3件を同じ表に並べた。同値が境界にある場合は同値の行も残す。下位候補が3件未満なら残りをすべて示す。順位は各表の比較条件の中で付けたもの。Q̄の負は距離を縮める向き、正は開く向きで、2原子間だけの引力・斥力を示すものではない。\n\n'
+    atomvalues=a.set_index('atom').atomic_work_kcal_mol
+    for target in ['amine_contact','opposite_contact']:
+        t=p[p.nominated==target].iloc[0]
+        text+=f'#### {NAMES[target]}：★ {t.pair_label}\n\n'
+        for metric in PAIR_METRICS:
+            text+=f'**{METRICS[metric]}**\n\n'
+            for pool,label in [('distance_and_chemistry','種類・距離を絞った比較'),('same_category','分子内／分子間の区分を合わせた広い比較')]:
+                candidates=p[pool_mask(p,t,pool,config)]
+                g=rank_context(candidates,metric,'pair',[t.pair])
+                rank=int(g.loc[g.is_target,'rank'].iloc[0])
+                intro=f'{label}：指定接触は{rank}/{len(candidates)}位'
+                if pool=='same_category':text+=f'<details>\n<summary>{intro}（上位全件・指定接触・直下3件）</summary>\n\n'
+                else:text+=intro+'。\n\n'
+                rows=[]
+                for r in g.itertuples():
+                    note=r.interpretation_ja
+                    if metric=='pair_atomic_work_kcal_mol':
+                        note=f'{r.element_a}{r.atom_a}の仕事={fmt(atomvalues[r.atom_a])}、{r.element_b}{r.atom_b}の仕事={fmt(atomvalues[r.atom_b])}。'+note
+                    rows.append([r.rank,'**★ '+r.pair_label+'**' if r.is_target else r.pair_label,
+                        f'**{fmt(getattr(r,metric))}**' if r.is_target else fmt(getattr(r,metric)),
+                        f'{r.mean_distance_A:.3f}',fmt(r.mean_signed_projection_mEh_bohr),
+                        f'{r.contact_type}／{r.topology}',f'{r.role_a} ＋ {r.role_b}',note])
+                text+=table(['順位','原子対','値','平均距離 / Å','Q̄ / mEh/Bohr','種類・結合関係','原子の位置','個別の読み方'],rows)+'\n'
+                if pool=='same_category':text+='</details>\n\n'
+    return text
 
 
 def graph_for(mapping,edges):
@@ -188,48 +249,10 @@ def enumerate_controls(atoms,pairs,config):
 
 
 def system_report(system,atoms,pairs,dictionary,controls,config):
-    a=atoms[(atoms.system==system)&(atoms.window==PRIMARY)].merge(dictionary[dictionary.system==system],on=['system','atom','element','site'])
-    p=pairs[(pairs.system==system)&(pairs.window==PRIMARY)].copy()
-    c=controls[(controls.system==system)&(controls.window==PRIMARY)]
-    atomvalues=a.set_index('atom').atomic_work_kcal_mol
-    text=f'# {system}：指定対象より上位の原子・接触を一つずつ確認する\n\n[全4系の考察](higher_ranked_controls_summary_ja.md)\n\n'
-    text+='主区間はC–N 2.50→2.10 Å。順位は各量の絶対値が大きい順で、表の仕事には符号を残す。「上位」は相互作用エネルギーが大きいという意味ではない。ΔG‡や障壁との相関では選別していない。\n\n'
-    text+='## 原子ごとの仕事・力\n\n全57原子を示す。★が指定した4原子。各対象より順位が小さい行が、その対象より上位の原子を全件列挙したものになる。原子の力は他の全原子から受ける力の合計である。\n\n'
-    for metric in ATOM_METRICS:
-        g=a.sort_values(metric,key=abs,ascending=False)
-        rows=[]
-        for r in g.itertuples():
-            rank=int((a[metric].abs()>abs(getattr(r,metric))+1e-12).sum())+1
-            rows.append([rank,('★ ' if r.target_atom else '')+f'{r.element}{r.atom}',fmt(getattr(r,metric)),r.role_ja,r.neighbors])
-        text+=f'### {METRICS[metric]}\n\n'+table(['順位','原子','値','分子内の位置・役割','直接結合している原子'],rows)+'\n'
-    text+='## 接触ごとの上位候補\n\n各指標について、まず原子の種類と平均距離を絞った比較、次に分子内／分子間の区分だけを合わせた広い比較を示す。どちらも上位を省略しない。広い比較の順位を示し、狭い比較で残るかどうかを別列に示す。\n\n'
-    text+='dは共通区間の平均距離（Å）。Q̄は接触方向の力の符号付き平均（mEh/Bohr）で、負が縮める向き、正が開く向き。これは2原子間だけの引力・斥力ではない。D–H···A角は共通区間の平均で、該当するH···O/N/F対だけ示す。\n\n'
-    for target in ['amine_contact','opposite_contact']:
-        t=p[p.nominated==target].iloc[0]
-        text+=f'### {NAMES[target]}の指定接触：{t.pair_label}\n\n{t.role_a} と {t.role_b}。平均距離 {t.mean_distance_A:.3f} Å、{t.topology}。'
-        if pd.notna(t.mean_DHA_angle_deg):text+=f' {t.DH_A}の平均角は{t.mean_DHA_angle_deg:.1f}°、TSでは{t.TS_DHA_angle_deg:.1f}°。'
-        text+='\n\n'
-        for metric in PAIR_METRICS:
-            broad=p[pool_mask(p,t,'same_category',config)&(p.pair!=t.pair)]
-            matched=set(p[pool_mask(p,t,'distance_and_chemistry',config)].pair)
-            h=broad[broad[metric].abs()>abs(t[metric])+1e-12].sort_values(metric,key=abs,ascending=False)
-            mh=h[h.pair.isin(matched)]
-            text+=f'#### {METRICS[metric]}\n\n指定接触の値：**{fmt(t[metric])}**。広い比較では{len(h)+1}/{len(broad)+1}位、種類・距離を絞った比較では{len(mh)+1}/{len(matched)}位。\n\n'
-            def details(g):
-                rows=[]
-                for r in g.itertuples():
-                    rank=int((broad[metric].abs()>abs(getattr(r,metric))+1e-12).sum())+1
-                    note=r.interpretation_ja
-                    if metric=='pair_atomic_work_kcal_mol':
-                        note=f'原子別の仕事は{r.element_a}{r.atom_a}: {fmt(atomvalues[r.atom_a])}、{r.element_b}{r.atom_b}: {fmt(atomvalues[r.atom_b])}。この和は接触固有の量ではない。'+note
-                    rows.append([rank,r.pair_label,fmt(getattr(r,metric)),f'{r.mean_distance_A:.3f}',fmt(r.mean_signed_projection_mEh_bohr),
-                        f'{r.contact_type}／{r.topology}',f'{r.role_a} ＋ {r.role_b}',
-                        '該当' if r.pair in matched else '対象外',note])
-                return table(['広い比較での順位','原子対','値','d / Å','Q̄','種類・結合関係','原子の位置','種類・距離条件','個別の読み方'],rows)
-            text+='**種類・距離を絞っても上位に残るもの（全件）**\n\n'
-            text+=details(mh) if len(mh) else '上位の対照はない。\n'
-            text+='\n<details>\n<summary>広い比較で上位の全'+str(len(h))+'原子対を開く</summary>\n\n'+details(h)+'\n</details>\n\n'
-    text+='## データの追跡\n\n[全原子の対応・結合先](../csv/higher_rank_atom_dictionary.csv)、[各接触の距離・角度・符号付きQ](../csv/higher_rank_contact_identities.csv)、[全3区間・全7比較条件の上位一覧](../csv/higher_rank_competitors.csv)。このページは主区間の2種類の比較条件を読みやすくしたもの。\n'
+    text=f'# {system}：着目する原子・接触と、その上位・直下3件の比較\n\n[全4系の考察と比較表](higher_ranked_controls_summary_ja.md)\n\n'
+    text+='主区間はC–N 2.50→2.10 Å。順位は各量の絶対値が大きい順。「上位」は相互作用エネルギーが大きいという意味ではない。ΔG‡や障壁との相関では選別していない。\n\n'
+    text+=structure_section(system)+context_tables(system,atoms,pairs,dictionary,config)
+    text+='## データの追跡\n\n[全原子の対応・結合先](../csv/higher_rank_atom_dictionary.csv)、[各接触の距離・角度・符号付きQ](../csv/higher_rank_contact_identities.csv)、[全3区間・全7比較条件の上位一覧](../csv/higher_rank_competitors.csv)。\n'
     (OUT/f'reports/higher_ranked_controls_{system}_ja.md').write_text(text)
 
 
@@ -248,7 +271,9 @@ def main():
     competitors=competitors.merge(lookup,left_on=['system','window','control_pair'],right_on=['system','window','pair'],how='left').drop(columns='pair')
     competitors=competitors.merge(dictionary[['system','atom','role_ja','neighbors']],left_on=['system','control_atom'],right_on=['system','atom'],how='left').drop(columns='atom')
     competitors.to_csv(OUT/'csv/higher_rank_competitors.csv',index=False)
-    for system in atoms.system.unique():system_report(system,atoms,identified,dictionary,competitors,cfg)
+    from numbered_structures import main as draw_numbered_structures
+    draw_numbered_structures()
+    for system in SYSTEMS:system_report(system,atoms,identified,dictionary,competitors,cfg)
     write_overview(atoms,identified,competitors,cfg)
     print(f'{len(dictionary)} atom identities; {len(identified)} eligible contacts across 3 windows; {len(competitors)} higher-ranking entries (repeated across targets/metrics/pools).')
 
@@ -257,7 +282,7 @@ def write_overview(atoms,pairs,controls,config):
     primary=pairs[pairs.window==PRIMARY]
     a=atoms[atoms.window==PRIMARY]
     c=controls[(controls.window==PRIMARY)&(controls.kind=='contact')]
-    text='''# 指定対象より上位の原子・接触の中身を調べた結果
+    text='''# 着目する原子・接触の順位と、比較対象の中身を調べた結果
 
 作成日：2026-10-20（JST）。ΔG‡を説明指標にせず、原子の仕事・力と接触方向の仕事・力について、指定対象より上位のものを一つずつ同定した。新しいDFTは行っていない。
 
@@ -275,39 +300,59 @@ def write_overview(atoms,pairs,controls,config):
 
 '''
     for system in atoms.system.unique():
-        text+=f'- [{system}：全57原子と、各指標で指定接触より上位の全原子対](higher_ranked_controls_{system}_ja.md)\n'
+        text+=f'- [{system}：番号付き構造式・着目対象・上位全件・直下3件](higher_ranked_controls_{system}_ja.md)\n'
     text+='''
-各系のページでは、種類と距離を絞っても上位に残る原子対を本文に示し、広い比較の全件を折りたたみ表にした。1行が1原子または1原子対で、その位置・結合関係・値・個別の読み方を記載している。
+このまとめの後半に、4系すべての番号付き構造式と比較表を掲載した。各系の個別ページにも同じ表を置いた。★が着目対象で、上位だけでなく指定対象自身と直下3件も同じ表に載せた。広い比較の表は折りたたんである。
 
 ## 1. 原子の仕事で上位なのは、主反応と求核剤の動きを担う原子だった
 
 全4系で原子仕事の1位は求核剤N、2位は反応C20だった。その後には求核剤のアルキルC、もう一方のアミンH、C20に結合するクマリン骨格C13などが並ぶ。したがって、指定F/HやO21より仕事が大きい原子の多くは、反応中心や求核剤全体の移動・変形に関係する原子である。補助接触がこれらすべてを上回る必要はない。
 
-RAFA15でO21（9位）より原子仕事が大きい全8原子を示す。
+RAFA15のO21を例に、上位8原子・O21自身・直下3原子を示す。4系の全指定原子と力の表は後半に掲載した。
 
 '''
     g=a[a.system=='RAFA15'].sort_values('atomic_work_kcal_mol',key=abs,ascending=False)
     d=pd.read_csv(OUT/'csv/higher_rank_atom_dictionary.csv');rd=d[d.system=='RAFA15'].set_index('atom')
     o=g[g.site=='core21'].iloc[0]
-    h=g[g.atomic_work_kcal_mol.abs()>abs(o.atomic_work_kcal_mol)+1e-12]
-    text+=table(['順位','原子','仕事 / kcal/mol','位置・役割'],[[i+1,f'{r.element}{r.atom}',fmt(r.atomic_work_kcal_mol),rd.loc[r.atom,'role_ja']] for i,r in enumerate(h.itertuples())])
+    h=rank_context(g,'atomic_work_kcal_mol','atom',[o.atom])
+    text+=table(['順位','原子','仕事 / kcal/mol','位置・役割'],[[r.rank,('**★ O21**' if r.is_target else f'{r.element}{r.atom}'),fmt(r.atomic_work_kcal_mol),rd.loc[r.atom,'role_ja']] for r in h.itertuples()])
     text+='''
 2原子の仕事を足した指標では、仕事の大きいNやC20などと組み合わせた多くの対が上位になる。これは、その組合せの相互作用が強いことを直接示さない。個別表では、2原子それぞれの仕事も併記し、どちらが和を担うかを確認できるようにした。
 
-## 2. RAFA15の反対側H56···O21より上位の接触は、すべてC20を含んでいた
+## 2. 反対側の接触を4系で比較する
+
+まず4系について、広い比較の順位と、その上位にある原子対の内訳を示す。原子対を一つずつ確認する表は後半にあり、指定接触と直下3件も含めている。
+
+'''
+    rows=[]
+    for system in SYSTEMS:
+        g=primary[primary.system==system];t=g[g.nominated=='opposite_contact'].iloc[0]
+        broad=g[pool_mask(g,t,'same_category',config)]
+        for metric in PAIR_METRICS[1:]:
+            upper=broad[broad[metric].abs()>abs(t[metric])+1e-12]
+            others=upper[~upper.includes_reaction_C20]
+            rows.append([system,t.pair_label,METRICS[metric],fmt(t[metric]),
+                         f'{len(upper)+1}/{len(broad)}',int(upper.includes_reaction_C20.sum()),
+                         len(others),'、'.join(others.pair_label) or 'なし'])
+    text+=table(['分子系','指定接触','指標','指定接触の値','順位／候補数','上位のうちC20を含む対の数',
+                 '上位のうちC20を含まない対の数','C20を含まない上位対'],rows)
+    text+='''
+MoriPF・RAFA16では、仕事の上位にC20を含まない対も4つあり、どちらもC12···O22、C13···F29、O19···O21、O22···F29だった。RAFA14でもO22···H56などの骨格内近接が上位にある。**「指定接触より上位はすべてC20を含む」という特徴はRAFA15に限られる。** 反対側のH/F···O21を、4系すべてで一律に主要な接触と呼ぶことはできない。
+
+### RAFA15の反対側H56···O21を詳しく見る
 
 反対側の指定接触O21···H56は、接触方向の仕事が0.009085 kcal/mol、力の平均絶対値が0.513777 mEh/Bohr。広い基質分子内の比較では、それぞれ169候補中5位、3位だった。
 
-### 接触方向の仕事で上位の全4対
+### 接触方向の仕事：上位4対・指定接触・直下3対
 
 '''
     g=primary[primary.system=='RAFA15'];t=g[g.nominated=='opposite_contact'].iloc[0]
     for metric,label in [('radial_work_kcal_mol','仕事 / kcal/mol'),('mean_abs_projection_mEh_bohr','平均絶対値 / mEh/Bohr')]:
-        if metric.startswith('mean'):text+='\n### 接触方向の力で上位の全2対\n\n'
+        if metric.startswith('mean'):text+='\n### 接触方向の力：上位2対・指定接触・直下3対\n\n'
         broad=g[pool_mask(g,t,'same_category',config)]
-        h=broad[broad[metric].abs()>abs(t[metric])+1e-12].sort_values(metric,key=abs,ascending=False)
+        h=rank_context(broad,metric,'pair',[t.pair])
         text+=table(['順位','原子対',label,'平均距離 / Å','結合関係','原子の位置'],[
-            [i+1,r.pair_label,fmt(getattr(r,metric)),f'{r.mean_distance_A:.3f}',r.topology,f'{r.role_a} ＋ {r.role_b}'] for i,r in enumerate(h.itertuples())])
+            [r.rank,'**★ '+r.pair_label+'**' if r.is_target else r.pair_label,fmt(getattr(r,metric)),f'{r.mean_distance_A:.3f}',r.topology,f'{r.role_a} ＋ {r.role_b}'] for r in h.itertuples()])
     text+='''
 上位にあるのは、C20とortho置換原子または環Cの組合せである。C20は求核攻撃を受ける反応点なので、その全原子力が複数の方向に投影されている可能性がある。これらを「H56···O21より強い独立した非共有結合」と呼ぶのは適切ではない。
 
@@ -326,15 +371,15 @@ Q<0は距離を縮める向き、Q>0は開く向きの全原子力の射影で�
     text+='''
 Fを含むMoriPF・RAFA15・RAFA16では、指定接触の平均Qは負だった。RAFA14の指定接触はF···HではなくH···Hで、平均Qは正だった。この違いは、平均絶対値だけの順位では表せない。
 
-以下は、種類・距離を絞った比較でも、指定接触より力の平均絶対値が大きい全候補である。各系ごとの一覧を省略せず示す。
+以下は、種類・距離を絞った比較における上位全件・指定接触・直下3件である。★が指定接触で、順位はこの絞った候補内のもの。
 
 '''
     for system in atoms.system.unique():
         g=primary[primary.system==system];t=g[g.nominated=='amine_contact'].iloc[0]
-        h=g[pool_mask(g,t,'distance_and_chemistry',config)&(g.mean_abs_projection_mEh_bohr>t.mean_abs_projection_mEh_bohr+1e-12)].sort_values('mean_abs_projection_mEh_bohr',ascending=False)
+        h=rank_context(g[pool_mask(g,t,'distance_and_chemistry',config)],'mean_abs_projection_mEh_bohr','pair',[t.pair])
         text+=f'### {system}\n\n'
-        text+=table(['原子対','接触の種類','平均距離 / Å','平均角 / °','平均絶対値 / mEh/Bohr','平均Q / mEh/Bohr'],[
-            [r.pair_label,r.contact_type,f'{r.mean_distance_A:.3f}',fmt(r.mean_DHA_angle_deg),fmt(r.mean_abs_projection_mEh_bohr),fmt(r.mean_signed_projection_mEh_bohr)] for r in h.itertuples()])+'\n'
+        text+=table(['順位','原子対','接触の種類','平均距離 / Å','平均角 / °','平均絶対値 / mEh/Bohr','平均Q / mEh/Bohr'],[
+            [r.rank,'**★ '+r.pair_label+'**' if r.is_target else r.pair_label,r.contact_type,f'{r.mean_distance_A:.3f}',fmt(r.mean_DHA_angle_deg),fmt(r.mean_abs_projection_mEh_bohr),fmt(r.mean_signed_projection_mEh_bohr)] for r in h.itertuples()])+'\n'
     text+='''
 MoriPFとRAFA16では、この絞った比較で上位にある5対はすべて平均Qが正で、指定F···Hの負のQとは向きが異なる。N–H···OやC–H···Oという元素の組合せでも、この結果から「F···Hより強い水素結合」とは結論できない。
 
@@ -350,15 +395,21 @@ RAFA15で値の大きいN–H···O候補の平均角は約66〜69°で、平�
 
 今回のCSVには、共通区間での平均 max(−Q,0) と平均 max(Q,0) も併記した。単位はmEh/Bohrで、両者の和が従来の平均絶対値、開く成分−縮める成分が平均Qになる。**これは今回の確認を受けて追加した記述用の分解であり、独立した検証やペア間の引力・斥力の分解ではない。** この新しい量で有利な候補だけを残した順位や、障壁に合う指標の選別は行っていない。
 
-現在優先して追う対象は、アミン側では **Fと2つのN–Hそれぞれの接触**、反対側では **H/F···O21と、それより上位のC20を含む対**である。距離・角度・符号付きQ・接触方向の仕事を同じC–N軸で追えば、Fがアミンの配置を保つ方向に働くという仮説と、単に反応中心の全体的な変形を拾っている可能性を、具体的な対照を使って比較できる。
+現在優先して追う対象は、アミン側では **Fと2つのN–Hそれぞれの接触**、反対側では **H/F···O21と、それより上位のC20を含む対、O22···H/Fなどの骨格内近接**である。距離・角度・符号付きQ・接触方向の仕事を同じC–N軸で追えば、Fがアミンの配置を保つ方向に働くという仮説と、単に反応中心の全体的な変形を拾っている可能性を、具体的な対照を使って比較できる。
 
 ## 原子番号の意味についての補足
 
 旧説明で「クマリンO」とまとめていたO21は、結合関係では**反応カルボニルC20に結合するO**である。クマリン環内のOはO18、ラクトンのカルボニルOはO19、C20と置換ベンゼンC23をつなぐOはO22。この区別を各行の説明に反映した。結合グラフは反応物側IRC端点の距離に基づく既存の推定を使用し、形成中のC20–求核Nは元の分子間として別に識別している。原子の位置・結合先は確認できるが、各近接に独立した相互作用があることまで確認したわけではない。
 
-## 保存した範囲と検証
-
 '''
+    text+='## 4系すべての構造式と比較表\n\n以下は共通C–N区間2.50→2.10 Åでの比較。原子は仕事と力の2指標、接触は2原子の仕事の合計・接触方向の仕事・接触方向の力の3指標を、各系について示す。\n\n'
+    for system in SYSTEMS:
+        text+=f'### {system}\n\n'
+        text+=structure_section(system).replace('## 原子番号付きの構造式','#### 原子番号付きの構造式')
+        body=context_tables(system,atoms,pairs,d,config)
+        body=body.replace('#### ','##### ').replace('### 原子','#### 原子').replace('### 接触','#### 接触')
+        text+=body
+    text+='## 保存した範囲と検証\n\n'
     text+=f'全4系の{len(d)}原子の対応、全3区間の{len(pairs)}接触候補を同定した。上位一覧は{len(controls)}行で、同じ対が区間・指標・比較条件ごとに重複して現れる。独立した相互作用がこの数だけあるという意味ではない。主区間の広い接触比較だけでは{len(c[c.pool=="same_category"])}行である。\n\n'
     text+='''
 - [原子の位置・結合先の辞書](../csv/higher_rank_atom_dictionary.csv)

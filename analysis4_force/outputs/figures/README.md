@@ -154,3 +154,12 @@
 
 - [23_energy_entropy_profiles_3x3.png](23_energy_entropy_profiles_3x3.png)
 
+### 図24：4系の構造式とGaussian原子番号を対応付ける
+
+[読み方](../reports/figure_guide_ja.md#fig24)
+
+- [24_MoriPF_numbered_structure.png](24_MoriPF_numbered_structure.png)
+- [24_RAFA14_numbered_structure.png](24_RAFA14_numbered_structure.png)
+- [24_RAFA15_numbered_structure.png](24_RAFA15_numbered_structure.png)
+- [24_RAFA16_numbered_structure.png](24_RAFA16_numbered_structure.png)
+

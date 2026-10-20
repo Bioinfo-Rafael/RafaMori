@@ -1,0 +1,3033 @@
+{
+  "rdkit_version": "2026.09.1",
+  "source": "audited reactant-side covalent graph; original atom numbering",
+  "bond_order_method": "RDKit DetermineBondOrders, neutral non-radical valence assignment; sanitized",
+  "mapping_sha256": "d5f8f935e757207a8460c36db77ad6d743b4824a3c5efd8eec8156ce6c737c7e",
+  "edges_sha256": "84df8ef33c75babedddbb4a14875ee95c204ec6f3344c431d43b480266e51e6c",
+  "systems": {
+    "MoriPF": {
+      "formula": "C23H23F5N2O4",
+      "smiles": "CCCN.CCN(CC)c1ccc2cc(C(=O)Oc3c(F)c(F)c(F)c(F)c3F)c(=O)oc2c1",
+      "atom_count": 57,
+      "fragment_count": 2,
+      "atoms": [
+        {
+          "number": 1,
+          "element": "C",
+          "site": "core01",
+          "annotation": "1",
+          "x2d": 2.4572768896647514,
+          "y2d": -1.4755717474031562
+        },
+        {
+          "number": 2,
+          "element": "C",
+          "site": "core02",
+          "annotation": "2",
+          "x2d": 0.9577255480159811,
+          "y2d": -1.5122565366129963
+        },
+        {
+          "number": 3,
+          "element": "C",
+          "site": "core03",
+          "annotation": "3",
+          "x2d": 0.17617991780339645,
+          "y2d": -0.23194937507104202
+        },
+        {
+          "number": 4,
+          "element": "C",
+          "site": "core04",
+          "annotation": "4",
+          "x2d": 0.8941856292395836,
+          "y2d": 1.0850425756807514
+        },
+        {
+          "number": 5,
+          "element": "C",
+          "site": "core05",
+          "annotation": "5",
+          "x2d": 2.3937369708883542,
+          "y2d": 1.121727364890592
+        },
+        {
+          "number": 6,
+          "element": "C",
+          "site": "core06",
+          "annotation": "6",
+          "x2d": 3.175282601100939,
+          "y2d": -0.1585797966513611
+        },
+        {
+          "number": 7,
+          "element": "H",
+          "site": "core07",
+          "annotation": "7",
+          "x2d": -2.041377135281564,
+          "y2d": -1.5856261150326751
+        },
+        {
+          "number": 8,
+          "element": "H",
+          "site": "core08",
+          "annotation": "8",
+          "x2d": 3.2388225198773366,
+          "y2d": -2.7558789089451095
+        },
+        {
+          "number": 9,
+          "element": "H",
+          "site": "core09",
+          "annotation": "9",
+          "x2d": 0.2397198365797934,
+          "y2d": -2.82924848736479
+        },
+        {
+          "number": 10,
+          "element": "C",
+          "site": "core10",
+          "annotation": "10",
+          "x2d": -1.3233714238453758,
+          "y2d": -0.2686341642808811
+        },
+        {
+          "number": 11,
+          "element": "H",
+          "site": "core11",
+          "annotation": "11",
+          "x2d": 3.1117426823245404,
+          "y2d": 2.4387193156423854
+        },
+        {
+          "number": 12,
+          "element": "C",
+          "site": "core12",
+          "annotation": "12",
+          "x2d": -1.3869113426217714,
+          "y2d": 2.3286649480128663
+        },
+        {
+          "number": 13,
+          "element": "C",
+          "site": "core13",
+          "annotation": "13",
+          "x2d": -2.104917054057959,
+          "y2d": 1.011672997261073
+        },
+        {
+          "number": 14,
+          "element": "N",
+          "site": "core14",
+          "annotation": "14",
+          "x2d": 4.674833942749711,
+          "y2d": -0.12189500744152107
+        },
+        {
+          "number": 15,
+          "element": "C",
+          "site": "core15",
+          "annotation": "15",
+          "x2d": 5.4563795729622955,
+          "y2d": -1.402202168983475
+        },
+        {
+          "number": 16,
+          "element": "H",
+          "site": "core16",
+          "annotation": "16",
+          "x2d": 4.176072411420341,
+          "y2d": -2.183747799196058
+        },
+        {
+          "number": 17,
+          "element": "H",
+          "site": "core17",
+          "annotation": "17",
+          "x2d": 6.736686734504248,
+          "y2d": -0.6206565387708911
+        },
+        {
+          "number": 18,
+          "element": "O",
+          "site": "core18",
+          "annotation": "18",
+          "x2d": 0.11263999902699977,
+          "y2d": 2.3653497372227053
+        },
+        {
+          "number": 19,
+          "element": "O",
+          "site": "core19",
+          "annotation": "19",
+          "x2d": -2.168456972834355,
+          "y2d": 3.60897210955482
+        },
+        {
+          "number": 20,
+          "element": "C",
+          "site": "core20",
+          "annotation": "20",
+          "x2d": -3.60446839570673,
+          "y2d": 0.9749882080512342
+        },
+        {
+          "number": 21,
+          "element": "O",
+          "site": "core21",
+          "annotation": "21",
+          "x2d": -4.386014025919312,
+          "y2d": 2.2552953695931883
+        },
+        {
+          "number": 22,
+          "element": "O",
+          "site": "core22",
+          "annotation": "22",
+          "x2d": -4.3224741071429165,
+          "y2d": -0.34200374270055917
+        },
+        {
+          "number": 23,
+          "element": "C",
+          "site": "core23",
+          "annotation": "23",
+          "x2d": -5.822025448791688,
+          "y2d": -0.37868853191039875
+        },
+        {
+          "number": 24,
+          "element": "C",
+          "site": "core24",
+          "annotation": "24",
+          "x2d": -6.60357107900427,
+          "y2d": 0.9016186296315559
+        },
+        {
+          "number": 25,
+          "element": "C",
+          "site": "core25",
+          "annotation": "25",
+          "x2d": -6.540031160227877,
+          "y2d": -1.6956804826621918
+        },
+        {
+          "number": 26,
+          "element": "C",
+          "site": "core26",
+          "annotation": "26",
+          "x2d": -8.103122420653042,
+          "y2d": 0.8649338404217174
+        },
+        {
+          "number": 27,
+          "element": "C",
+          "site": "core27",
+          "annotation": "27",
+          "x2d": -8.039582501876648,
+          "y2d": -1.73236527187203
+        },
+        {
+          "number": 28,
+          "element": "C",
+          "site": "core28",
+          "annotation": "28",
+          "x2d": -8.82112813208923,
+          "y2d": -0.4520581103300759
+        },
+        {
+          "number": 29,
+          "element": "F",
+          "site": "X25",
+          "annotation": "29",
+          "x2d": -5.758485530015294,
+          "y2d": -2.9759876442041464
+        },
+        {
+          "number": 30,
+          "element": "F",
+          "site": "X27",
+          "annotation": "30",
+          "x2d": -8.757588213312834,
+          "y2d": -3.0493572226238217
+        },
+        {
+          "number": 31,
+          "element": "F",
+          "site": "X28",
+          "annotation": "31",
+          "x2d": -10.320679473738002,
+          "y2d": -0.4887428995399157
+        },
+        {
+          "number": 32,
+          "element": "F",
+          "site": "X26",
+          "annotation": "32",
+          "x2d": -8.884668050865624,
+          "y2d": 2.1452410019636727
+        },
+        {
+          "number": 33,
+          "element": "F",
+          "site": "X24",
+          "annotation": "33",
+          "x2d": -5.885565367568082,
+          "y2d": 2.2186105803833502
+        },
+        {
+          "number": 34,
+          "element": "C",
+          "site": "sub_alkylC1",
+          "annotation": "34",
+          "x2d": 6.2379252031748775,
+          "y2d": -2.6825093305254284
+        },
+        {
+          "number": 35,
+          "element": "H",
+          "site": "unmapped_35",
+          "annotation": "35",
+          "x2d": 7.0194708333874605,
+          "y2d": -3.9628164920673825
+        },
+        {
+          "number": 36,
+          "element": "H",
+          "site": "unmapped_36",
+          "annotation": "36",
+          "x2d": 4.957618041632924,
+          "y2d": -3.464054960738012
+        },
+        {
+          "number": 37,
+          "element": "H",
+          "site": "unmapped_37",
+          "annotation": "37",
+          "x2d": 7.518232364716832,
+          "y2d": -1.9009637003128446
+        },
+        {
+          "number": 38,
+          "element": "C",
+          "site": "sub_alkylC2",
+          "annotation": "38",
+          "x2d": 5.392839654185898,
+          "y2d": 1.1950969433102712
+        },
+        {
+          "number": 39,
+          "element": "H",
+          "site": "unmapped_39",
+          "annotation": "39",
+          "x2d": 4.075847703434103,
+          "y2d": 1.9131026547464578
+        },
+        {
+          "number": 40,
+          "element": "H",
+          "site": "unmapped_40",
+          "annotation": "40",
+          "x2d": 6.709831604937691,
+          "y2d": 0.47709123187408414
+        },
+        {
+          "number": 41,
+          "element": "C",
+          "site": "sub_alkylC3",
+          "annotation": "41",
+          "x2d": 6.110845365622084,
+          "y2d": 2.512088894062065
+        },
+        {
+          "number": 42,
+          "element": "H",
+          "site": "unmapped_42",
+          "annotation": "42",
+          "x2d": 6.828851077058269,
+          "y2d": 3.8290808448138574
+        },
+        {
+          "number": 43,
+          "element": "H",
+          "site": "unmapped_43",
+          "annotation": "43",
+          "x2d": 7.427837316373878,
+          "y2d": 1.7940831826258787
+        },
+        {
+          "number": 44,
+          "element": "H",
+          "site": "unmapped_44",
+          "annotation": "44",
+          "x2d": 4.793853414870291,
+          "y2d": 3.23009460549825
+        },
+        {
+          "number": 45,
+          "element": "N",
+          "site": "amineN",
+          "annotation": "45",
+          "x2d": -2.4230769230769234,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 46,
+          "element": "H",
+          "site": "NH_near",
+          "annotation": "46",
+          "x2d": -3.1730769230769234,
+          "y2d": 5.030042739137199
+        },
+        {
+          "number": 47,
+          "element": "H",
+          "site": "NH_other",
+          "annotation": "47",
+          "x2d": -3.1730769230769225,
+          "y2d": 7.628118950490515
+        },
+        {
+          "number": 48,
+          "element": "C",
+          "site": "amineC1",
+          "annotation": "48",
+          "x2d": -0.9230769230769231,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 49,
+          "element": "H",
+          "site": "unmapped_49",
+          "annotation": "49",
+          "x2d": -0.923076923076923,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 50,
+          "element": "H",
+          "site": "unmapped_50",
+          "annotation": "50",
+          "x2d": -0.9230769230769234,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 51,
+          "element": "C",
+          "site": "amineC2",
+          "annotation": "51",
+          "x2d": 0.5769230769230769,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 52,
+          "element": "H",
+          "site": "unmapped_52",
+          "annotation": "52",
+          "x2d": 0.5769230769230769,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 53,
+          "element": "H",
+          "site": "unmapped_53",
+          "annotation": "53",
+          "x2d": 0.5769230769230771,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 54,
+          "element": "C",
+          "site": "amineC3",
+          "annotation": "54",
+          "x2d": 2.0769230769230766,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 55,
+          "element": "H",
+          "site": "unmapped_55",
+          "annotation": "55",
+          "x2d": 3.5769230769230766,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 56,
+          "element": "H",
+          "site": "unmapped_56",
+          "annotation": "56",
+          "x2d": 2.0769230769230766,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 57,
+          "element": "H",
+          "site": "unmapped_57",
+          "annotation": "57",
+          "x2d": 2.0769230769230775,
+          "y2d": 4.829080844813857
+        }
+      ],
+      "bonds": [
+        {
+          "a": 1,
+          "b": 2,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 1,
+          "b": 6,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 1,
+          "b": 8,
+          "type": "SINGLE"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 2,
+          "b": 9,
+          "type": "SINGLE"
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 3,
+          "b": 10,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 4,
+          "b": 18,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 5,
+          "b": 6,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 5,
+          "b": 11,
+          "type": "SINGLE"
+        },
+        {
+          "a": 6,
+          "b": 14,
+          "type": "SINGLE"
+        },
+        {
+          "a": 7,
+          "b": 10,
+          "type": "SINGLE"
+        },
+        {
+          "a": 10,
+          "b": 13,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 13,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 18,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 19,
+          "type": "DOUBLE"
+        },
+        {
+          "a": 13,
+          "b": 20,
+          "type": "SINGLE"
+        },
+        {
+          "a": 14,
+          "b": 15,
+          "type": "SINGLE"
+        },
+        {
+          "a": 14,
+          "b": 38,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 16,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 17,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 34,
+          "type": "SINGLE"
+        },
+        {
+          "a": 20,
+          "b": 21,
+          "type": "DOUBLE"
+        },
+        {
+          "a": 20,
+          "b": 22,
+          "type": "SINGLE"
+        },
+        {
+          "a": 22,
+          "b": 23,
+          "type": "SINGLE"
+        },
+        {
+          "a": 23,
+          "b": 24,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 23,
+          "b": 25,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 24,
+          "b": 26,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 24,
+          "b": 33,
+          "type": "SINGLE"
+        },
+        {
+          "a": 25,
+          "b": 27,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 25,
+          "b": 29,
+          "type": "SINGLE"
+        },
+        {
+          "a": 26,
+          "b": 28,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 26,
+          "b": 32,
+          "type": "SINGLE"
+        },
+        {
+          "a": 27,
+          "b": 28,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 27,
+          "b": 30,
+          "type": "SINGLE"
+        },
+        {
+          "a": 28,
+          "b": 31,
+          "type": "SINGLE"
+        },
+        {
+          "a": 34,
+          "b": 35,
+          "type": "SINGLE"
+        },
+        {
+          "a": 34,
+          "b": 36,
+          "type": "SINGLE"
+        },
+        {
+          "a": 34,
+          "b": 37,
+          "type": "SINGLE"
+        },
+        {
+          "a": 38,
+          "b": 39,
+          "type": "SINGLE"
+        },
+        {
+          "a": 38,
+          "b": 40,
+          "type": "SINGLE"
+        },
+        {
+          "a": 38,
+          "b": 41,
+          "type": "SINGLE"
+        },
+        {
+          "a": 41,
+          "b": 42,
+          "type": "SINGLE"
+        },
+        {
+          "a": 41,
+          "b": 43,
+          "type": "SINGLE"
+        },
+        {
+          "a": 41,
+          "b": 44,
+          "type": "SINGLE"
+        },
+        {
+          "a": 45,
+          "b": 46,
+          "type": "SINGLE"
+        },
+        {
+          "a": 45,
+          "b": 47,
+          "type": "SINGLE"
+        },
+        {
+          "a": 45,
+          "b": 48,
+          "type": "SINGLE"
+        },
+        {
+          "a": 48,
+          "b": 49,
+          "type": "SINGLE"
+        },
+        {
+          "a": 48,
+          "b": 50,
+          "type": "SINGLE"
+        },
+        {
+          "a": 48,
+          "b": 51,
+          "type": "SINGLE"
+        },
+        {
+          "a": 51,
+          "b": 52,
+          "type": "SINGLE"
+        },
+        {
+          "a": 51,
+          "b": 53,
+          "type": "SINGLE"
+        },
+        {
+          "a": 51,
+          "b": 54,
+          "type": "SINGLE"
+        },
+        {
+          "a": 54,
+          "b": 55,
+          "type": "SINGLE"
+        },
+        {
+          "a": 54,
+          "b": 56,
+          "type": "SINGLE"
+        },
+        {
+          "a": 54,
+          "b": 57,
+          "type": "SINGLE"
+        }
+      ]
+    },
+    "RAFA14": {
+      "formula": "C23H25F3N2O4",
+      "smiles": "CCCN.CCN(CC)c1ccc2cc(C(=O)Oc3cc(F)c(F)c(F)c3)c(=O)oc2c1",
+      "atom_count": 57,
+      "fragment_count": 2,
+      "atoms": [
+        {
+          "number": 1,
+          "element": "C",
+          "site": "core01",
+          "annotation": "1",
+          "x2d": 2.4572768896647514,
+          "y2d": -1.4755717474031562
+        },
+        {
+          "number": 2,
+          "element": "C",
+          "site": "core02",
+          "annotation": "2",
+          "x2d": 0.9577255480159811,
+          "y2d": -1.5122565366129963
+        },
+        {
+          "number": 3,
+          "element": "C",
+          "site": "core03",
+          "annotation": "3",
+          "x2d": 0.17617991780339645,
+          "y2d": -0.23194937507104202
+        },
+        {
+          "number": 4,
+          "element": "C",
+          "site": "core04",
+          "annotation": "4",
+          "x2d": 0.8941856292395836,
+          "y2d": 1.0850425756807514
+        },
+        {
+          "number": 5,
+          "element": "C",
+          "site": "core05",
+          "annotation": "5",
+          "x2d": 2.3937369708883542,
+          "y2d": 1.121727364890592
+        },
+        {
+          "number": 6,
+          "element": "C",
+          "site": "core06",
+          "annotation": "6",
+          "x2d": 3.175282601100939,
+          "y2d": -0.1585797966513611
+        },
+        {
+          "number": 7,
+          "element": "H",
+          "site": "core07",
+          "annotation": "7",
+          "x2d": -2.041377135281564,
+          "y2d": -1.5856261150326751
+        },
+        {
+          "number": 8,
+          "element": "H",
+          "site": "core08",
+          "annotation": "8",
+          "x2d": 3.2388225198773366,
+          "y2d": -2.7558789089451095
+        },
+        {
+          "number": 9,
+          "element": "H",
+          "site": "core09",
+          "annotation": "9",
+          "x2d": 0.2397198365797934,
+          "y2d": -2.82924848736479
+        },
+        {
+          "number": 10,
+          "element": "C",
+          "site": "core10",
+          "annotation": "10",
+          "x2d": -1.3233714238453758,
+          "y2d": -0.2686341642808811
+        },
+        {
+          "number": 11,
+          "element": "H",
+          "site": "core11",
+          "annotation": "11",
+          "x2d": 3.1117426823245404,
+          "y2d": 2.4387193156423854
+        },
+        {
+          "number": 12,
+          "element": "C",
+          "site": "core12",
+          "annotation": "12",
+          "x2d": -1.3869113426217714,
+          "y2d": 2.3286649480128663
+        },
+        {
+          "number": 13,
+          "element": "C",
+          "site": "core13",
+          "annotation": "13",
+          "x2d": -2.104917054057959,
+          "y2d": 1.011672997261073
+        },
+        {
+          "number": 14,
+          "element": "N",
+          "site": "core14",
+          "annotation": "14",
+          "x2d": 4.674833942749711,
+          "y2d": -0.12189500744152107
+        },
+        {
+          "number": 15,
+          "element": "C",
+          "site": "core15",
+          "annotation": "15",
+          "x2d": 5.4563795729622955,
+          "y2d": -1.402202168983475
+        },
+        {
+          "number": 16,
+          "element": "H",
+          "site": "core16",
+          "annotation": "16",
+          "x2d": 4.176072411420341,
+          "y2d": -2.183747799196058
+        },
+        {
+          "number": 17,
+          "element": "H",
+          "site": "core17",
+          "annotation": "17",
+          "x2d": 6.736686734504248,
+          "y2d": -0.6206565387708911
+        },
+        {
+          "number": 18,
+          "element": "O",
+          "site": "core18",
+          "annotation": "18",
+          "x2d": 0.11263999902699977,
+          "y2d": 2.3653497372227053
+        },
+        {
+          "number": 19,
+          "element": "O",
+          "site": "core19",
+          "annotation": "19",
+          "x2d": -2.168456972834355,
+          "y2d": 3.60897210955482
+        },
+        {
+          "number": 20,
+          "element": "C",
+          "site": "core20",
+          "annotation": "20",
+          "x2d": -3.60446839570673,
+          "y2d": 0.9749882080512342
+        },
+        {
+          "number": 21,
+          "element": "O",
+          "site": "core21",
+          "annotation": "21",
+          "x2d": -4.386014025919312,
+          "y2d": 2.2552953695931883
+        },
+        {
+          "number": 22,
+          "element": "O",
+          "site": "core22",
+          "annotation": "22",
+          "x2d": -4.3224741071429165,
+          "y2d": -0.34200374270055917
+        },
+        {
+          "number": 23,
+          "element": "C",
+          "site": "core23",
+          "annotation": "23",
+          "x2d": -5.822025448791688,
+          "y2d": -0.37868853191039875
+        },
+        {
+          "number": 24,
+          "element": "C",
+          "site": "core24",
+          "annotation": "24",
+          "x2d": -6.60357107900427,
+          "y2d": 0.9016186296315559
+        },
+        {
+          "number": 25,
+          "element": "C",
+          "site": "core25",
+          "annotation": "25",
+          "x2d": -6.540031160227877,
+          "y2d": -1.6956804826621918
+        },
+        {
+          "number": 26,
+          "element": "C",
+          "site": "core26",
+          "annotation": "26",
+          "x2d": -8.103122420653042,
+          "y2d": 0.8649338404217174
+        },
+        {
+          "number": 27,
+          "element": "C",
+          "site": "core27",
+          "annotation": "27",
+          "x2d": -8.039582501876648,
+          "y2d": -1.73236527187203
+        },
+        {
+          "number": 28,
+          "element": "C",
+          "site": "core28",
+          "annotation": "28",
+          "x2d": -8.82112813208923,
+          "y2d": -0.4520581103300759
+        },
+        {
+          "number": 29,
+          "element": "F",
+          "site": "X27",
+          "annotation": "29",
+          "x2d": -8.757588213312834,
+          "y2d": -3.0493572226238217
+        },
+        {
+          "number": 30,
+          "element": "F",
+          "site": "X28",
+          "annotation": "30",
+          "x2d": -10.320679473738002,
+          "y2d": -0.4887428995399157
+        },
+        {
+          "number": 31,
+          "element": "F",
+          "site": "X26",
+          "annotation": "31",
+          "x2d": -8.884668050865624,
+          "y2d": 2.1452410019636727
+        },
+        {
+          "number": 32,
+          "element": "C",
+          "site": "sub_alkylC1",
+          "annotation": "32",
+          "x2d": 6.2379252031748775,
+          "y2d": -2.6825093305254284
+        },
+        {
+          "number": 33,
+          "element": "H",
+          "site": "unmapped_33",
+          "annotation": "33",
+          "x2d": 7.0194708333874605,
+          "y2d": -3.9628164920673825
+        },
+        {
+          "number": 34,
+          "element": "H",
+          "site": "unmapped_34",
+          "annotation": "34",
+          "x2d": 4.957618041632924,
+          "y2d": -3.464054960738012
+        },
+        {
+          "number": 35,
+          "element": "H",
+          "site": "unmapped_35",
+          "annotation": "35",
+          "x2d": 7.518232364716832,
+          "y2d": -1.9009637003128446
+        },
+        {
+          "number": 36,
+          "element": "C",
+          "site": "sub_alkylC2",
+          "annotation": "36",
+          "x2d": 5.392839654185898,
+          "y2d": 1.1950969433102712
+        },
+        {
+          "number": 37,
+          "element": "H",
+          "site": "unmapped_37",
+          "annotation": "37",
+          "x2d": 4.075847703434103,
+          "y2d": 1.9131026547464578
+        },
+        {
+          "number": 38,
+          "element": "H",
+          "site": "unmapped_38",
+          "annotation": "38",
+          "x2d": 6.709831604937691,
+          "y2d": 0.47709123187408414
+        },
+        {
+          "number": 39,
+          "element": "C",
+          "site": "sub_alkylC3",
+          "annotation": "39",
+          "x2d": 6.110845365622084,
+          "y2d": 2.512088894062065
+        },
+        {
+          "number": 40,
+          "element": "H",
+          "site": "unmapped_40",
+          "annotation": "40",
+          "x2d": 6.828851077058269,
+          "y2d": 3.8290808448138574
+        },
+        {
+          "number": 41,
+          "element": "H",
+          "site": "unmapped_41",
+          "annotation": "41",
+          "x2d": 7.427837316373878,
+          "y2d": 1.7940831826258787
+        },
+        {
+          "number": 42,
+          "element": "H",
+          "site": "unmapped_42",
+          "annotation": "42",
+          "x2d": 4.793853414870291,
+          "y2d": 3.23009460549825
+        },
+        {
+          "number": 43,
+          "element": "N",
+          "site": "amineN",
+          "annotation": "43",
+          "x2d": -2.4230769230769234,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 44,
+          "element": "H",
+          "site": "NH_near",
+          "annotation": "44",
+          "x2d": -3.1730769230769234,
+          "y2d": 5.030042739137199
+        },
+        {
+          "number": 45,
+          "element": "H",
+          "site": "NH_other",
+          "annotation": "45",
+          "x2d": -3.1730769230769225,
+          "y2d": 7.628118950490515
+        },
+        {
+          "number": 46,
+          "element": "C",
+          "site": "amineC1",
+          "annotation": "46",
+          "x2d": -0.9230769230769231,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 47,
+          "element": "H",
+          "site": "unmapped_47",
+          "annotation": "47",
+          "x2d": -0.923076923076923,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 48,
+          "element": "H",
+          "site": "unmapped_48",
+          "annotation": "48",
+          "x2d": -0.9230769230769234,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 49,
+          "element": "C",
+          "site": "amineC2",
+          "annotation": "49",
+          "x2d": 0.5769230769230769,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 50,
+          "element": "H",
+          "site": "unmapped_50",
+          "annotation": "50",
+          "x2d": 0.5769230769230769,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 51,
+          "element": "H",
+          "site": "unmapped_51",
+          "annotation": "51",
+          "x2d": 0.5769230769230771,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 52,
+          "element": "C",
+          "site": "amineC3",
+          "annotation": "52",
+          "x2d": 2.0769230769230766,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 53,
+          "element": "H",
+          "site": "unmapped_53",
+          "annotation": "53",
+          "x2d": 3.5769230769230766,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 54,
+          "element": "H",
+          "site": "unmapped_54",
+          "annotation": "54",
+          "x2d": 2.0769230769230766,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 55,
+          "element": "H",
+          "site": "unmapped_55",
+          "annotation": "55",
+          "x2d": 2.0769230769230775,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 56,
+          "element": "H",
+          "site": "X25",
+          "annotation": "56",
+          "x2d": -5.758485530015294,
+          "y2d": -2.9759876442041464
+        },
+        {
+          "number": 57,
+          "element": "H",
+          "site": "X24",
+          "annotation": "57",
+          "x2d": -5.885565367568082,
+          "y2d": 2.2186105803833502
+        }
+      ],
+      "bonds": [
+        {
+          "a": 1,
+          "b": 2,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 1,
+          "b": 6,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 1,
+          "b": 8,
+          "type": "SINGLE"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 2,
+          "b": 9,
+          "type": "SINGLE"
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 3,
+          "b": 10,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 4,
+          "b": 18,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 5,
+          "b": 6,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 5,
+          "b": 11,
+          "type": "SINGLE"
+        },
+        {
+          "a": 6,
+          "b": 14,
+          "type": "SINGLE"
+        },
+        {
+          "a": 7,
+          "b": 10,
+          "type": "SINGLE"
+        },
+        {
+          "a": 10,
+          "b": 13,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 13,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 18,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 19,
+          "type": "DOUBLE"
+        },
+        {
+          "a": 13,
+          "b": 20,
+          "type": "SINGLE"
+        },
+        {
+          "a": 14,
+          "b": 15,
+          "type": "SINGLE"
+        },
+        {
+          "a": 14,
+          "b": 36,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 16,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 17,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 32,
+          "type": "SINGLE"
+        },
+        {
+          "a": 20,
+          "b": 21,
+          "type": "DOUBLE"
+        },
+        {
+          "a": 20,
+          "b": 22,
+          "type": "SINGLE"
+        },
+        {
+          "a": 22,
+          "b": 23,
+          "type": "SINGLE"
+        },
+        {
+          "a": 23,
+          "b": 24,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 23,
+          "b": 25,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 24,
+          "b": 26,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 24,
+          "b": 57,
+          "type": "SINGLE"
+        },
+        {
+          "a": 25,
+          "b": 27,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 25,
+          "b": 56,
+          "type": "SINGLE"
+        },
+        {
+          "a": 26,
+          "b": 28,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 26,
+          "b": 31,
+          "type": "SINGLE"
+        },
+        {
+          "a": 27,
+          "b": 28,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 27,
+          "b": 29,
+          "type": "SINGLE"
+        },
+        {
+          "a": 28,
+          "b": 30,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 33,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 34,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 35,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 37,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 38,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 39,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 40,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 41,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 42,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 44,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 45,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 46,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 47,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 48,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 49,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 50,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 51,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 52,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 53,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 54,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 55,
+          "type": "SINGLE"
+        }
+      ]
+    },
+    "RAFA15": {
+      "formula": "C23H25F3N2O4",
+      "smiles": "CCCN.CCN(CC)c1ccc2cc(C(=O)Oc3ccc(F)c(F)c3F)c(=O)oc2c1",
+      "atom_count": 57,
+      "fragment_count": 2,
+      "atoms": [
+        {
+          "number": 1,
+          "element": "C",
+          "site": "core01",
+          "annotation": "1",
+          "x2d": 2.4572768896647514,
+          "y2d": -1.4755717474031562
+        },
+        {
+          "number": 2,
+          "element": "C",
+          "site": "core02",
+          "annotation": "2",
+          "x2d": 0.9577255480159811,
+          "y2d": -1.5122565366129963
+        },
+        {
+          "number": 3,
+          "element": "C",
+          "site": "core03",
+          "annotation": "3",
+          "x2d": 0.17617991780339645,
+          "y2d": -0.23194937507104202
+        },
+        {
+          "number": 4,
+          "element": "C",
+          "site": "core04",
+          "annotation": "4",
+          "x2d": 0.8941856292395836,
+          "y2d": 1.0850425756807514
+        },
+        {
+          "number": 5,
+          "element": "C",
+          "site": "core05",
+          "annotation": "5",
+          "x2d": 2.3937369708883542,
+          "y2d": 1.121727364890592
+        },
+        {
+          "number": 6,
+          "element": "C",
+          "site": "core06",
+          "annotation": "6",
+          "x2d": 3.175282601100939,
+          "y2d": -0.1585797966513611
+        },
+        {
+          "number": 7,
+          "element": "H",
+          "site": "core07",
+          "annotation": "7",
+          "x2d": -2.041377135281564,
+          "y2d": -1.5856261150326751
+        },
+        {
+          "number": 8,
+          "element": "H",
+          "site": "core08",
+          "annotation": "8",
+          "x2d": 3.2388225198773366,
+          "y2d": -2.7558789089451095
+        },
+        {
+          "number": 9,
+          "element": "H",
+          "site": "core09",
+          "annotation": "9",
+          "x2d": 0.2397198365797934,
+          "y2d": -2.82924848736479
+        },
+        {
+          "number": 10,
+          "element": "C",
+          "site": "core10",
+          "annotation": "10",
+          "x2d": -1.3233714238453758,
+          "y2d": -0.2686341642808811
+        },
+        {
+          "number": 11,
+          "element": "H",
+          "site": "core11",
+          "annotation": "11",
+          "x2d": 3.1117426823245404,
+          "y2d": 2.4387193156423854
+        },
+        {
+          "number": 12,
+          "element": "C",
+          "site": "core12",
+          "annotation": "12",
+          "x2d": -1.3869113426217714,
+          "y2d": 2.3286649480128663
+        },
+        {
+          "number": 13,
+          "element": "C",
+          "site": "core13",
+          "annotation": "13",
+          "x2d": -2.104917054057959,
+          "y2d": 1.011672997261073
+        },
+        {
+          "number": 14,
+          "element": "N",
+          "site": "core14",
+          "annotation": "14",
+          "x2d": 4.674833942749711,
+          "y2d": -0.12189500744152107
+        },
+        {
+          "number": 15,
+          "element": "C",
+          "site": "core15",
+          "annotation": "15",
+          "x2d": 5.4563795729622955,
+          "y2d": -1.402202168983475
+        },
+        {
+          "number": 16,
+          "element": "H",
+          "site": "core16",
+          "annotation": "16",
+          "x2d": 4.176072411420341,
+          "y2d": -2.183747799196058
+        },
+        {
+          "number": 17,
+          "element": "H",
+          "site": "core17",
+          "annotation": "17",
+          "x2d": 6.736686734504248,
+          "y2d": -0.6206565387708911
+        },
+        {
+          "number": 18,
+          "element": "O",
+          "site": "core18",
+          "annotation": "18",
+          "x2d": 0.11263999902699977,
+          "y2d": 2.3653497372227053
+        },
+        {
+          "number": 19,
+          "element": "O",
+          "site": "core19",
+          "annotation": "19",
+          "x2d": -2.168456972834355,
+          "y2d": 3.60897210955482
+        },
+        {
+          "number": 20,
+          "element": "C",
+          "site": "core20",
+          "annotation": "20",
+          "x2d": -3.60446839570673,
+          "y2d": 0.9749882080512342
+        },
+        {
+          "number": 21,
+          "element": "O",
+          "site": "core21",
+          "annotation": "21",
+          "x2d": -4.386014025919312,
+          "y2d": 2.2552953695931883
+        },
+        {
+          "number": 22,
+          "element": "O",
+          "site": "core22",
+          "annotation": "22",
+          "x2d": -4.3224741071429165,
+          "y2d": -0.34200374270055917
+        },
+        {
+          "number": 23,
+          "element": "C",
+          "site": "core23",
+          "annotation": "23",
+          "x2d": -5.822025448791688,
+          "y2d": -0.37868853191039875
+        },
+        {
+          "number": 24,
+          "element": "C",
+          "site": "core24",
+          "annotation": "24",
+          "x2d": -6.60357107900427,
+          "y2d": 0.9016186296315559
+        },
+        {
+          "number": 25,
+          "element": "C",
+          "site": "core25",
+          "annotation": "25",
+          "x2d": -6.540031160227877,
+          "y2d": -1.6956804826621918
+        },
+        {
+          "number": 26,
+          "element": "C",
+          "site": "core26",
+          "annotation": "26",
+          "x2d": -8.103122420653042,
+          "y2d": 0.8649338404217174
+        },
+        {
+          "number": 27,
+          "element": "C",
+          "site": "core27",
+          "annotation": "27",
+          "x2d": -8.039582501876648,
+          "y2d": -1.73236527187203
+        },
+        {
+          "number": 28,
+          "element": "C",
+          "site": "core28",
+          "annotation": "28",
+          "x2d": -8.82112813208923,
+          "y2d": -0.4520581103300759
+        },
+        {
+          "number": 29,
+          "element": "F",
+          "site": "X28",
+          "annotation": "29",
+          "x2d": -10.320679473738002,
+          "y2d": -0.4887428995399157
+        },
+        {
+          "number": 30,
+          "element": "F",
+          "site": "X26",
+          "annotation": "30",
+          "x2d": -8.884668050865624,
+          "y2d": 2.1452410019636727
+        },
+        {
+          "number": 31,
+          "element": "F",
+          "site": "X24",
+          "annotation": "31",
+          "x2d": -5.885565367568082,
+          "y2d": 2.2186105803833502
+        },
+        {
+          "number": 32,
+          "element": "C",
+          "site": "sub_alkylC1",
+          "annotation": "32",
+          "x2d": 6.2379252031748775,
+          "y2d": -2.6825093305254284
+        },
+        {
+          "number": 33,
+          "element": "H",
+          "site": "unmapped_33",
+          "annotation": "33",
+          "x2d": 7.0194708333874605,
+          "y2d": -3.9628164920673825
+        },
+        {
+          "number": 34,
+          "element": "H",
+          "site": "unmapped_34",
+          "annotation": "34",
+          "x2d": 4.957618041632924,
+          "y2d": -3.464054960738012
+        },
+        {
+          "number": 35,
+          "element": "H",
+          "site": "unmapped_35",
+          "annotation": "35",
+          "x2d": 7.518232364716832,
+          "y2d": -1.9009637003128446
+        },
+        {
+          "number": 36,
+          "element": "C",
+          "site": "sub_alkylC2",
+          "annotation": "36",
+          "x2d": 5.392839654185898,
+          "y2d": 1.1950969433102712
+        },
+        {
+          "number": 37,
+          "element": "H",
+          "site": "unmapped_37",
+          "annotation": "37",
+          "x2d": 4.075847703434103,
+          "y2d": 1.9131026547464578
+        },
+        {
+          "number": 38,
+          "element": "H",
+          "site": "unmapped_38",
+          "annotation": "38",
+          "x2d": 6.709831604937691,
+          "y2d": 0.47709123187408414
+        },
+        {
+          "number": 39,
+          "element": "C",
+          "site": "sub_alkylC3",
+          "annotation": "39",
+          "x2d": 6.110845365622084,
+          "y2d": 2.512088894062065
+        },
+        {
+          "number": 40,
+          "element": "H",
+          "site": "unmapped_40",
+          "annotation": "40",
+          "x2d": 6.828851077058269,
+          "y2d": 3.8290808448138574
+        },
+        {
+          "number": 41,
+          "element": "H",
+          "site": "unmapped_41",
+          "annotation": "41",
+          "x2d": 7.427837316373878,
+          "y2d": 1.7940831826258787
+        },
+        {
+          "number": 42,
+          "element": "H",
+          "site": "unmapped_42",
+          "annotation": "42",
+          "x2d": 4.793853414870291,
+          "y2d": 3.23009460549825
+        },
+        {
+          "number": 43,
+          "element": "N",
+          "site": "amineN",
+          "annotation": "43",
+          "x2d": -2.4230769230769234,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 44,
+          "element": "H",
+          "site": "NH_near",
+          "annotation": "44",
+          "x2d": -3.1730769230769234,
+          "y2d": 5.030042739137199
+        },
+        {
+          "number": 45,
+          "element": "H",
+          "site": "NH_other",
+          "annotation": "45",
+          "x2d": -3.1730769230769225,
+          "y2d": 7.628118950490515
+        },
+        {
+          "number": 46,
+          "element": "C",
+          "site": "amineC1",
+          "annotation": "46",
+          "x2d": -0.9230769230769231,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 47,
+          "element": "H",
+          "site": "unmapped_47",
+          "annotation": "47",
+          "x2d": -0.923076923076923,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 48,
+          "element": "H",
+          "site": "unmapped_48",
+          "annotation": "48",
+          "x2d": -0.9230769230769234,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 49,
+          "element": "C",
+          "site": "amineC2",
+          "annotation": "49",
+          "x2d": 0.5769230769230769,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 50,
+          "element": "H",
+          "site": "unmapped_50",
+          "annotation": "50",
+          "x2d": 0.5769230769230769,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 51,
+          "element": "H",
+          "site": "unmapped_51",
+          "annotation": "51",
+          "x2d": 0.5769230769230771,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 52,
+          "element": "C",
+          "site": "amineC3",
+          "annotation": "52",
+          "x2d": 2.0769230769230766,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 53,
+          "element": "H",
+          "site": "unmapped_53",
+          "annotation": "53",
+          "x2d": 3.5769230769230766,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 54,
+          "element": "H",
+          "site": "unmapped_54",
+          "annotation": "54",
+          "x2d": 2.0769230769230766,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 55,
+          "element": "H",
+          "site": "unmapped_55",
+          "annotation": "55",
+          "x2d": 2.0769230769230775,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 56,
+          "element": "H",
+          "site": "X25",
+          "annotation": "56",
+          "x2d": -5.758485530015294,
+          "y2d": -2.9759876442041464
+        },
+        {
+          "number": 57,
+          "element": "H",
+          "site": "X27",
+          "annotation": "57",
+          "x2d": -8.757588213312834,
+          "y2d": -3.0493572226238217
+        }
+      ],
+      "bonds": [
+        {
+          "a": 1,
+          "b": 2,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 1,
+          "b": 6,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 1,
+          "b": 8,
+          "type": "SINGLE"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 2,
+          "b": 9,
+          "type": "SINGLE"
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 3,
+          "b": 10,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 4,
+          "b": 18,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 5,
+          "b": 6,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 5,
+          "b": 11,
+          "type": "SINGLE"
+        },
+        {
+          "a": 6,
+          "b": 14,
+          "type": "SINGLE"
+        },
+        {
+          "a": 7,
+          "b": 10,
+          "type": "SINGLE"
+        },
+        {
+          "a": 10,
+          "b": 13,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 13,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 18,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 19,
+          "type": "DOUBLE"
+        },
+        {
+          "a": 13,
+          "b": 20,
+          "type": "SINGLE"
+        },
+        {
+          "a": 14,
+          "b": 15,
+          "type": "SINGLE"
+        },
+        {
+          "a": 14,
+          "b": 36,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 16,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 17,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 32,
+          "type": "SINGLE"
+        },
+        {
+          "a": 20,
+          "b": 21,
+          "type": "DOUBLE"
+        },
+        {
+          "a": 20,
+          "b": 22,
+          "type": "SINGLE"
+        },
+        {
+          "a": 22,
+          "b": 23,
+          "type": "SINGLE"
+        },
+        {
+          "a": 23,
+          "b": 24,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 23,
+          "b": 25,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 24,
+          "b": 26,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 24,
+          "b": 31,
+          "type": "SINGLE"
+        },
+        {
+          "a": 25,
+          "b": 27,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 25,
+          "b": 56,
+          "type": "SINGLE"
+        },
+        {
+          "a": 26,
+          "b": 28,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 26,
+          "b": 30,
+          "type": "SINGLE"
+        },
+        {
+          "a": 27,
+          "b": 28,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 27,
+          "b": 57,
+          "type": "SINGLE"
+        },
+        {
+          "a": 28,
+          "b": 29,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 33,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 34,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 35,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 37,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 38,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 39,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 40,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 41,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 42,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 44,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 45,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 46,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 47,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 48,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 49,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 50,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 51,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 52,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 53,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 54,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 55,
+          "type": "SINGLE"
+        }
+      ]
+    },
+    "RAFA16": {
+      "formula": "C23H25F3N2O4",
+      "smiles": "CCCN.CCN(CC)c1ccc2cc(C(=O)Oc3c(F)cc(F)cc3F)c(=O)oc2c1",
+      "atom_count": 57,
+      "fragment_count": 2,
+      "atoms": [
+        {
+          "number": 1,
+          "element": "C",
+          "site": "core01",
+          "annotation": "1",
+          "x2d": 2.4572768896647514,
+          "y2d": -1.4755717474031562
+        },
+        {
+          "number": 2,
+          "element": "C",
+          "site": "core02",
+          "annotation": "2",
+          "x2d": 0.9577255480159811,
+          "y2d": -1.5122565366129963
+        },
+        {
+          "number": 3,
+          "element": "C",
+          "site": "core03",
+          "annotation": "3",
+          "x2d": 0.17617991780339645,
+          "y2d": -0.23194937507104202
+        },
+        {
+          "number": 4,
+          "element": "C",
+          "site": "core04",
+          "annotation": "4",
+          "x2d": 0.8941856292395836,
+          "y2d": 1.0850425756807514
+        },
+        {
+          "number": 5,
+          "element": "C",
+          "site": "core05",
+          "annotation": "5",
+          "x2d": 2.3937369708883542,
+          "y2d": 1.121727364890592
+        },
+        {
+          "number": 6,
+          "element": "C",
+          "site": "core06",
+          "annotation": "6",
+          "x2d": 3.175282601100939,
+          "y2d": -0.1585797966513611
+        },
+        {
+          "number": 7,
+          "element": "H",
+          "site": "core07",
+          "annotation": "7",
+          "x2d": -2.041377135281564,
+          "y2d": -1.5856261150326751
+        },
+        {
+          "number": 8,
+          "element": "H",
+          "site": "core08",
+          "annotation": "8",
+          "x2d": 3.2388225198773366,
+          "y2d": -2.7558789089451095
+        },
+        {
+          "number": 9,
+          "element": "H",
+          "site": "core09",
+          "annotation": "9",
+          "x2d": 0.2397198365797934,
+          "y2d": -2.82924848736479
+        },
+        {
+          "number": 10,
+          "element": "C",
+          "site": "core10",
+          "annotation": "10",
+          "x2d": -1.3233714238453758,
+          "y2d": -0.2686341642808811
+        },
+        {
+          "number": 11,
+          "element": "H",
+          "site": "core11",
+          "annotation": "11",
+          "x2d": 3.1117426823245404,
+          "y2d": 2.4387193156423854
+        },
+        {
+          "number": 12,
+          "element": "C",
+          "site": "core12",
+          "annotation": "12",
+          "x2d": -1.3869113426217714,
+          "y2d": 2.3286649480128663
+        },
+        {
+          "number": 13,
+          "element": "C",
+          "site": "core13",
+          "annotation": "13",
+          "x2d": -2.104917054057959,
+          "y2d": 1.011672997261073
+        },
+        {
+          "number": 14,
+          "element": "N",
+          "site": "core14",
+          "annotation": "14",
+          "x2d": 4.674833942749711,
+          "y2d": -0.12189500744152107
+        },
+        {
+          "number": 15,
+          "element": "C",
+          "site": "core15",
+          "annotation": "15",
+          "x2d": 5.4563795729622955,
+          "y2d": -1.402202168983475
+        },
+        {
+          "number": 16,
+          "element": "H",
+          "site": "core16",
+          "annotation": "16",
+          "x2d": 4.176072411420341,
+          "y2d": -2.183747799196058
+        },
+        {
+          "number": 17,
+          "element": "H",
+          "site": "core17",
+          "annotation": "17",
+          "x2d": 6.736686734504248,
+          "y2d": -0.6206565387708911
+        },
+        {
+          "number": 18,
+          "element": "O",
+          "site": "core18",
+          "annotation": "18",
+          "x2d": 0.11263999902699977,
+          "y2d": 2.3653497372227053
+        },
+        {
+          "number": 19,
+          "element": "O",
+          "site": "core19",
+          "annotation": "19",
+          "x2d": -2.168456972834355,
+          "y2d": 3.60897210955482
+        },
+        {
+          "number": 20,
+          "element": "C",
+          "site": "core20",
+          "annotation": "20",
+          "x2d": -3.60446839570673,
+          "y2d": 0.9749882080512342
+        },
+        {
+          "number": 21,
+          "element": "O",
+          "site": "core21",
+          "annotation": "21",
+          "x2d": -4.386014025919312,
+          "y2d": 2.2552953695931883
+        },
+        {
+          "number": 22,
+          "element": "O",
+          "site": "core22",
+          "annotation": "22",
+          "x2d": -4.3224741071429165,
+          "y2d": -0.34200374270055917
+        },
+        {
+          "number": 23,
+          "element": "C",
+          "site": "core23",
+          "annotation": "23",
+          "x2d": -5.822025448791688,
+          "y2d": -0.37868853191039875
+        },
+        {
+          "number": 24,
+          "element": "C",
+          "site": "core24",
+          "annotation": "24",
+          "x2d": -6.60357107900427,
+          "y2d": 0.9016186296315559
+        },
+        {
+          "number": 25,
+          "element": "C",
+          "site": "core25",
+          "annotation": "25",
+          "x2d": -6.540031160227877,
+          "y2d": -1.6956804826621918
+        },
+        {
+          "number": 26,
+          "element": "C",
+          "site": "core26",
+          "annotation": "26",
+          "x2d": -8.103122420653042,
+          "y2d": 0.8649338404217174
+        },
+        {
+          "number": 27,
+          "element": "C",
+          "site": "core27",
+          "annotation": "27",
+          "x2d": -8.039582501876648,
+          "y2d": -1.73236527187203
+        },
+        {
+          "number": 28,
+          "element": "C",
+          "site": "core28",
+          "annotation": "28",
+          "x2d": -8.82112813208923,
+          "y2d": -0.4520581103300759
+        },
+        {
+          "number": 29,
+          "element": "F",
+          "site": "X25",
+          "annotation": "29",
+          "x2d": -5.758485530015294,
+          "y2d": -2.9759876442041464
+        },
+        {
+          "number": 30,
+          "element": "F",
+          "site": "X28",
+          "annotation": "30",
+          "x2d": -10.320679473738002,
+          "y2d": -0.4887428995399157
+        },
+        {
+          "number": 31,
+          "element": "F",
+          "site": "X24",
+          "annotation": "31",
+          "x2d": -5.885565367568082,
+          "y2d": 2.2186105803833502
+        },
+        {
+          "number": 32,
+          "element": "C",
+          "site": "sub_alkylC1",
+          "annotation": "32",
+          "x2d": 6.2379252031748775,
+          "y2d": -2.6825093305254284
+        },
+        {
+          "number": 33,
+          "element": "H",
+          "site": "unmapped_33",
+          "annotation": "33",
+          "x2d": 7.0194708333874605,
+          "y2d": -3.9628164920673825
+        },
+        {
+          "number": 34,
+          "element": "H",
+          "site": "unmapped_34",
+          "annotation": "34",
+          "x2d": 4.957618041632924,
+          "y2d": -3.464054960738012
+        },
+        {
+          "number": 35,
+          "element": "H",
+          "site": "unmapped_35",
+          "annotation": "35",
+          "x2d": 7.518232364716832,
+          "y2d": -1.9009637003128446
+        },
+        {
+          "number": 36,
+          "element": "C",
+          "site": "sub_alkylC2",
+          "annotation": "36",
+          "x2d": 5.392839654185898,
+          "y2d": 1.1950969433102712
+        },
+        {
+          "number": 37,
+          "element": "H",
+          "site": "unmapped_37",
+          "annotation": "37",
+          "x2d": 4.075847703434103,
+          "y2d": 1.9131026547464578
+        },
+        {
+          "number": 38,
+          "element": "H",
+          "site": "unmapped_38",
+          "annotation": "38",
+          "x2d": 6.709831604937691,
+          "y2d": 0.47709123187408414
+        },
+        {
+          "number": 39,
+          "element": "C",
+          "site": "sub_alkylC3",
+          "annotation": "39",
+          "x2d": 6.110845365622084,
+          "y2d": 2.512088894062065
+        },
+        {
+          "number": 40,
+          "element": "H",
+          "site": "unmapped_40",
+          "annotation": "40",
+          "x2d": 6.828851077058269,
+          "y2d": 3.8290808448138574
+        },
+        {
+          "number": 41,
+          "element": "H",
+          "site": "unmapped_41",
+          "annotation": "41",
+          "x2d": 7.427837316373878,
+          "y2d": 1.7940831826258787
+        },
+        {
+          "number": 42,
+          "element": "H",
+          "site": "unmapped_42",
+          "annotation": "42",
+          "x2d": 4.793853414870291,
+          "y2d": 3.23009460549825
+        },
+        {
+          "number": 43,
+          "element": "N",
+          "site": "amineN",
+          "annotation": "43",
+          "x2d": -2.4230769230769234,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 44,
+          "element": "H",
+          "site": "NH_near",
+          "annotation": "44",
+          "x2d": -3.1730769230769234,
+          "y2d": 5.030042739137199
+        },
+        {
+          "number": 45,
+          "element": "H",
+          "site": "NH_other",
+          "annotation": "45",
+          "x2d": -3.1730769230769225,
+          "y2d": 7.628118950490515
+        },
+        {
+          "number": 46,
+          "element": "C",
+          "site": "amineC1",
+          "annotation": "46",
+          "x2d": -0.9230769230769231,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 47,
+          "element": "H",
+          "site": "unmapped_47",
+          "annotation": "47",
+          "x2d": -0.923076923076923,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 48,
+          "element": "H",
+          "site": "unmapped_48",
+          "annotation": "48",
+          "x2d": -0.9230769230769234,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 49,
+          "element": "C",
+          "site": "amineC2",
+          "annotation": "49",
+          "x2d": 0.5769230769230769,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 50,
+          "element": "H",
+          "site": "unmapped_50",
+          "annotation": "50",
+          "x2d": 0.5769230769230769,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 51,
+          "element": "H",
+          "site": "unmapped_51",
+          "annotation": "51",
+          "x2d": 0.5769230769230771,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 52,
+          "element": "C",
+          "site": "amineC3",
+          "annotation": "52",
+          "x2d": 2.0769230769230766,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 53,
+          "element": "H",
+          "site": "unmapped_53",
+          "annotation": "53",
+          "x2d": 3.5769230769230766,
+          "y2d": 6.329080844813857
+        },
+        {
+          "number": 54,
+          "element": "H",
+          "site": "unmapped_54",
+          "annotation": "54",
+          "x2d": 2.0769230769230766,
+          "y2d": 7.829080844813857
+        },
+        {
+          "number": 55,
+          "element": "H",
+          "site": "unmapped_55",
+          "annotation": "55",
+          "x2d": 2.0769230769230775,
+          "y2d": 4.829080844813857
+        },
+        {
+          "number": 56,
+          "element": "H",
+          "site": "X26",
+          "annotation": "56",
+          "x2d": -8.884668050865624,
+          "y2d": 2.1452410019636727
+        },
+        {
+          "number": 57,
+          "element": "H",
+          "site": "X27",
+          "annotation": "57",
+          "x2d": -8.757588213312834,
+          "y2d": -3.0493572226238217
+        }
+      ],
+      "bonds": [
+        {
+          "a": 1,
+          "b": 2,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 1,
+          "b": 6,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 1,
+          "b": 8,
+          "type": "SINGLE"
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 2,
+          "b": 9,
+          "type": "SINGLE"
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 3,
+          "b": 10,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 4,
+          "b": 18,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 5,
+          "b": 6,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 5,
+          "b": 11,
+          "type": "SINGLE"
+        },
+        {
+          "a": 6,
+          "b": 14,
+          "type": "SINGLE"
+        },
+        {
+          "a": 7,
+          "b": 10,
+          "type": "SINGLE"
+        },
+        {
+          "a": 10,
+          "b": 13,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 13,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 18,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 12,
+          "b": 19,
+          "type": "DOUBLE"
+        },
+        {
+          "a": 13,
+          "b": 20,
+          "type": "SINGLE"
+        },
+        {
+          "a": 14,
+          "b": 15,
+          "type": "SINGLE"
+        },
+        {
+          "a": 14,
+          "b": 36,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 16,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 17,
+          "type": "SINGLE"
+        },
+        {
+          "a": 15,
+          "b": 32,
+          "type": "SINGLE"
+        },
+        {
+          "a": 20,
+          "b": 21,
+          "type": "DOUBLE"
+        },
+        {
+          "a": 20,
+          "b": 22,
+          "type": "SINGLE"
+        },
+        {
+          "a": 22,
+          "b": 23,
+          "type": "SINGLE"
+        },
+        {
+          "a": 23,
+          "b": 24,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 23,
+          "b": 25,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 24,
+          "b": 26,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 24,
+          "b": 31,
+          "type": "SINGLE"
+        },
+        {
+          "a": 25,
+          "b": 27,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 25,
+          "b": 29,
+          "type": "SINGLE"
+        },
+        {
+          "a": 26,
+          "b": 28,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 26,
+          "b": 56,
+          "type": "SINGLE"
+        },
+        {
+          "a": 27,
+          "b": 28,
+          "type": "AROMATIC"
+        },
+        {
+          "a": 27,
+          "b": 57,
+          "type": "SINGLE"
+        },
+        {
+          "a": 28,
+          "b": 30,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 33,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 34,
+          "type": "SINGLE"
+        },
+        {
+          "a": 32,
+          "b": 35,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 37,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 38,
+          "type": "SINGLE"
+        },
+        {
+          "a": 36,
+          "b": 39,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 40,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 41,
+          "type": "SINGLE"
+        },
+        {
+          "a": 39,
+          "b": 42,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 44,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 45,
+          "type": "SINGLE"
+        },
+        {
+          "a": 43,
+          "b": 46,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 47,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 48,
+          "type": "SINGLE"
+        },
+        {
+          "a": 46,
+          "b": 49,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 50,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 51,
+          "type": "SINGLE"
+        },
+        {
+          "a": 49,
+          "b": 52,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 53,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 54,
+          "type": "SINGLE"
+        },
+        {
+          "a": 52,
+          "b": 55,
+          "type": "SINGLE"
+        }
+      ]
+    }
+  }
+}
