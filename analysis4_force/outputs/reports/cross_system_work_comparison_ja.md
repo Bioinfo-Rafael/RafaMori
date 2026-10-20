@@ -1,6 +1,6 @@
 # 4系の原子仕事・接触方向の仕事の比較
 
-[全体の考察](higher_ranked_controls_summary_ja.md)
+[全体の考察](higher_ranked_controls_summary_ja.md) · [散布図・棒グラフへ](#work-plots)
 
 ## 分子系を横に並べた仕事の比較（和集合）
 
@@ -260,3 +260,134 @@
 
 [横並び表の全セルと選択理由CSV](../csv/cross_system_work_union.csv) · [各系の選択集合と和集合の監査JSON](cross_system_work_union_audit.json)
 
+<a id="work-plots"></a>
+
+## 仕事と活性化自由エネルギーの散布図・4系の棒グラフ
+
+[全散布図のPDF](../figures/25_work_union_scatter_all.pdf) · [全棒グラフのPDF](../figures/26_work_union_bars_all.pdf)
+
+全5表の和集合を、表ごとに最大4列×4行のパネルへ分けた。1パネルが1つの対応する原子または原子対。表の間で重複する対象は同じ計算値を再掲する。各パネル左上のIDと位置ラベル、下側の原子番号対応を表・CSVと照合できる。青=MoriPF、緑=RAFA14、紫=RAFA15、橙=RAFA16。
+
+**散布図**：横軸はC–N 2.50→2.10 Å区間の符号付き仕事（kcal/mol）、縦軸はfreq計算からの正方向のΔG‡ = G(TS)−G(基質)−G(Lys)（kcal/mol）。4系の対応が確定したパネルだけ、切片付き最小二乗直線を当てはめ、タイトルにR²を小数点以下3桁で示す。赤い枠は着目対象。比較条件外の系も、対応する仕事が得られる場合は4点の比較に含める。条件内の点を丸、条件外を×で区別した。順位は元の候補条件のままであり、フィットのために選び直していない。
+
+$$
+\widehat{\Delta G^\ddagger}=aW+b,\qquad
+R^2=1-\frac{\sum_s(\Delta G_s^\ddagger-\widehat{\Delta G_s^\ddagger})^2}
+{\sum_s(\Delta G_s^\ddagger-\overline{\Delta G^\ddagger})^2}
+$$
+
+**棒グラフ**：横軸は4分子系、縦軸は符号付き仕事（kcal/mol）。タイトルのSTD/meanは、4系の母標準偏差（ddof=0）を符号付き算術平均で割った無次元量で、小数点以下3桁を表示する。
+
+$$
+\overline W=\frac14\sum_sW_s,\qquad
+\sigma_W=\sqrt{\frac14\sum_s(W_s-\overline W)^2},\qquad
+\mathrm{STD/mean}=\frac{\sigma_W}{\overline W}
+$$
+
+平均が負ならSTD/meanも負になる。平均が0に近い場合は比が大きくなり、正負の相殺にも影響されるため、値だけを「効果の強さ」とは読まない。平均の絶対値が `1e-12 × max(1, max|W|)` 以下ならN/Aとする。個体対応が未確定の行は分かっている系だけを描き、欠測をゼロ扱いせず、R²・STD/meanともN/Aとする。散布図ではnも表示する。
+
+全パネルでΔG‡の縦軸範囲は共通。仕事の軸は小さな値も読めるようにパネルごとに調整しているため、傾きの見た目や棒の高さだけでは異なるパネルを比較できない。各軸の数値を確認する。**4系だけの探索的なフィットであり、高いR²だけで因果関係や相互作用の特異性を示すものではない。** RAFA15反応物に微小な虚振動があるため、そのRRHO自由エネルギーには既報の留保がある。
+
+[全パネルのR²・回帰係数・平均・STD/mean](../csv/work_union_subplot_statistics.csv) · [各点の仕事・ΔG‡・原子番号・条件内外](../csv/work_union_subplot_points.csv)
+
+### 原子の仕事：57パネル
+
+#### ページ1
+
+![原子の仕事：仕事とΔG‡・ページ1](../figures/25_atoms_scatter_01.png)
+
+![原子の仕事：4系の仕事・ページ1](../figures/26_atoms_bars_01.png)
+
+#### ページ2
+
+![原子の仕事：仕事とΔG‡・ページ2](../figures/25_atoms_scatter_02.png)
+
+![原子の仕事：4系の仕事・ページ2](../figures/26_atoms_bars_02.png)
+
+#### ページ3
+
+![原子の仕事：仕事とΔG‡・ページ3](../figures/25_atoms_scatter_03.png)
+
+![原子の仕事：4系の仕事・ページ3](../figures/26_atoms_bars_03.png)
+
+#### ページ4
+
+![原子の仕事：仕事とΔG‡・ページ4](../figures/25_atoms_scatter_04.png)
+
+![原子の仕事：4系の仕事・ページ4](../figures/26_atoms_bars_04.png)
+
+### アミン側・種類と距離を限定：25パネル
+
+#### ページ1
+
+![アミン側・種類と距離を限定：仕事とΔG‡・ページ1](../figures/25_amine_matched_scatter_01.png)
+
+![アミン側・種類と距離を限定：4系の仕事・ページ1](../figures/26_amine_matched_bars_01.png)
+
+#### ページ2
+
+![アミン側・種類と距離を限定：仕事とΔG‡・ページ2](../figures/25_amine_matched_scatter_02.png)
+
+![アミン側・種類と距離を限定：4系の仕事・ページ2](../figures/26_amine_matched_bars_02.png)
+
+### アミン側・広い比較：87パネル
+
+#### ページ1
+
+![アミン側・広い比較：仕事とΔG‡・ページ1](../figures/25_amine_broad_scatter_01.png)
+
+![アミン側・広い比較：4系の仕事・ページ1](../figures/26_amine_broad_bars_01.png)
+
+#### ページ2
+
+![アミン側・広い比較：仕事とΔG‡・ページ2](../figures/25_amine_broad_scatter_02.png)
+
+![アミン側・広い比較：4系の仕事・ページ2](../figures/26_amine_broad_bars_02.png)
+
+#### ページ3
+
+![アミン側・広い比較：仕事とΔG‡・ページ3](../figures/25_amine_broad_scatter_03.png)
+
+![アミン側・広い比較：4系の仕事・ページ3](../figures/26_amine_broad_bars_03.png)
+
+#### ページ4
+
+![アミン側・広い比較：仕事とΔG‡・ページ4](../figures/25_amine_broad_scatter_04.png)
+
+![アミン側・広い比較：4系の仕事・ページ4](../figures/26_amine_broad_bars_04.png)
+
+#### ページ5
+
+![アミン側・広い比較：仕事とΔG‡・ページ5](../figures/25_amine_broad_scatter_05.png)
+
+![アミン側・広い比較：4系の仕事・ページ5](../figures/26_amine_broad_bars_05.png)
+
+#### ページ6
+
+![アミン側・広い比較：仕事とΔG‡・ページ6](../figures/25_amine_broad_scatter_06.png)
+
+![アミン側・広い比較：4系の仕事・ページ6](../figures/26_amine_broad_bars_06.png)
+
+### 反対側・種類と距離を限定：7パネル
+
+#### ページ1
+
+![反対側・種類と距離を限定：仕事とΔG‡・ページ1](../figures/25_opposite_matched_scatter_01.png)
+
+![反対側・種類と距離を限定：4系の仕事・ページ1](../figures/26_opposite_matched_bars_01.png)
+
+### 反対側・広い比較：23パネル
+
+#### ページ1
+
+![反対側・広い比較：仕事とΔG‡・ページ1](../figures/25_opposite_broad_scatter_01.png)
+
+![反対側・広い比較：4系の仕事・ページ1](../figures/26_opposite_broad_bars_01.png)
+
+#### ページ2
+
+![反対側・広い比較：仕事とΔG‡・ページ2](../figures/25_opposite_broad_scatter_02.png)
+
+![反対側・広い比較：4系の仕事・ページ2](../figures/26_opposite_broad_bars_02.png)
+
+[全散布図のPDF](../figures/25_work_union_scatter_all.pdf) · [全棒グラフのPDF](../figures/26_work_union_bars_all.pdf)

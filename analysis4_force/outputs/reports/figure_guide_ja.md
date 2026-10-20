@@ -75,6 +75,8 @@ RAFA14のアミン側はH···Hなので、4系をまとめて「F···H」と
 - [図22：接触の値の大きさと、障壁との相関を同時に比べる](#fig22)
 - [図23：E・G・TΔSを、IRCと両端準位の3通りの表示で比較する](#fig23)
 - [図24：4系の構造式とGaussian原子番号を対応付ける](#fig24)
+- [図25：和集合の各原子・接触について、仕事と正方向ΔG‡を直線フィットする](#fig25)
+- [図26：和集合の各原子・接触の仕事を4系の棒グラフで比較する](#fig26)
 
 <a id="fig01"></a>
 
@@ -434,3 +436,59 @@ MoriPF・RAFA14・RAFA15・RAFA16について、ログと表に使う全57原子
 - [24_RAFA14_numbered_structure.png](../figures/24_RAFA14_numbered_structure.png)
 - [24_RAFA15_numbered_structure.png](../figures/24_RAFA15_numbered_structure.png)
 - [24_RAFA16_numbered_structure.png](../figures/24_RAFA16_numbered_structure.png)
+
+<a id="fig25"></a>
+
+## 図25：和集合の各原子・接触について、仕事と正方向ΔG‡を直線フィットする
+
+![図25：和集合の各原子・接触について、仕事と正方向ΔG‡を直線フィットする](../figures/25_amine_broad_scatter_01.png)
+
+1パネルが横並び比較表の1行に対応する散布図。横軸は共通C–N距離2.50→2.10 Åでの符号付き原子仕事または接触方向の仕事（kcal/mol）、縦軸は分離反応物＋Lys基準の正方向ΔG‡（kcal/mol）。色は青=MoriPF、緑=RAFA14、紫=RAFA15、橙=RAFA16。4系の対応が確定した場合に切片付き最小二乗直線を引き、タイトルにR²を小数点以下3桁で示す。赤枠は着目対象。丸は元の候補条件内、×は条件外だが対応する値を描いたもの。
+
+各ページは最大4列×4行。位置ラベル・原子番号・パネルIDで表と照合する。個体対応が未確定のHは既知の点だけを示し、フィットせずR²=N/Aとする。全パネルでΔG‡の縦軸は共通、仕事の横軸は各パネルで異なる。4系だけの探索的な相関であり、高いR²だけで因果関係や特異性を判断しない。元の順位や和集合を相関に合わせて選び直してはいない。
+
+対象ファイル：
+
+- [25_amine_broad_scatter_01.png](../figures/25_amine_broad_scatter_01.png)
+- [25_amine_broad_scatter_02.png](../figures/25_amine_broad_scatter_02.png)
+- [25_amine_broad_scatter_03.png](../figures/25_amine_broad_scatter_03.png)
+- [25_amine_broad_scatter_04.png](../figures/25_amine_broad_scatter_04.png)
+- [25_amine_broad_scatter_05.png](../figures/25_amine_broad_scatter_05.png)
+- [25_amine_broad_scatter_06.png](../figures/25_amine_broad_scatter_06.png)
+- [25_amine_matched_scatter_01.png](../figures/25_amine_matched_scatter_01.png)
+- [25_amine_matched_scatter_02.png](../figures/25_amine_matched_scatter_02.png)
+- [25_atoms_scatter_01.png](../figures/25_atoms_scatter_01.png)
+- [25_atoms_scatter_02.png](../figures/25_atoms_scatter_02.png)
+- [25_atoms_scatter_03.png](../figures/25_atoms_scatter_03.png)
+- [25_atoms_scatter_04.png](../figures/25_atoms_scatter_04.png)
+- [25_opposite_broad_scatter_01.png](../figures/25_opposite_broad_scatter_01.png)
+- [25_opposite_broad_scatter_02.png](../figures/25_opposite_broad_scatter_02.png)
+- [25_opposite_matched_scatter_01.png](../figures/25_opposite_matched_scatter_01.png)
+
+<a id="fig26"></a>
+
+## 図26：和集合の各原子・接触の仕事を4系の棒グラフで比較する
+
+![図26：和集合の各原子・接触の仕事を4系の棒グラフで比較する](../figures/26_amine_broad_bars_01.png)
+
+1パネルが横並び比較表の1行。横軸はMoriPF・RAFA14・RAFA15・RAFA16、縦軸は共通C–N距離2.50→2.10 Åでの符号付き原子仕事または接触方向の仕事（kcal/mol）。色は図25と共通で、赤枠が着目対象。斜線の棒は元の候補条件外だが対応する計算値。棒がないN/Aは対応未確定であり、仕事ゼロではない。
+
+タイトルのSTD/meanは、4系の母標準偏差（ddof=0）÷符号付き算術平均で、小数点以下3桁。平均が負なら比も負になり、正負の相殺で平均が小さくなると比が大きくなる。対応未確定または平均が数値的にゼロの場合はN/Aとする。仕事の縦軸はパネルごとに異なるので、別パネル同士は棒の見た目の高さでなく軸の数値で比較する。
+
+対象ファイル：
+
+- [26_amine_broad_bars_01.png](../figures/26_amine_broad_bars_01.png)
+- [26_amine_broad_bars_02.png](../figures/26_amine_broad_bars_02.png)
+- [26_amine_broad_bars_03.png](../figures/26_amine_broad_bars_03.png)
+- [26_amine_broad_bars_04.png](../figures/26_amine_broad_bars_04.png)
+- [26_amine_broad_bars_05.png](../figures/26_amine_broad_bars_05.png)
+- [26_amine_broad_bars_06.png](../figures/26_amine_broad_bars_06.png)
+- [26_amine_matched_bars_01.png](../figures/26_amine_matched_bars_01.png)
+- [26_amine_matched_bars_02.png](../figures/26_amine_matched_bars_02.png)
+- [26_atoms_bars_01.png](../figures/26_atoms_bars_01.png)
+- [26_atoms_bars_02.png](../figures/26_atoms_bars_02.png)
+- [26_atoms_bars_03.png](../figures/26_atoms_bars_03.png)
+- [26_atoms_bars_04.png](../figures/26_atoms_bars_04.png)
+- [26_opposite_broad_bars_01.png](../figures/26_opposite_broad_bars_01.png)
+- [26_opposite_broad_bars_02.png](../figures/26_opposite_broad_bars_02.png)
+- [26_opposite_matched_bars_01.png](../figures/26_opposite_matched_bars_01.png)

@@ -163,3 +163,43 @@
 - [24_RAFA15_numbered_structure.png](24_RAFA15_numbered_structure.png)
 - [24_RAFA16_numbered_structure.png](24_RAFA16_numbered_structure.png)
 
+### 図25：和集合の各原子・接触について、仕事と正方向ΔG‡を直線フィットする
+
+[読み方](../reports/figure_guide_ja.md#fig25)
+
+- [25_amine_broad_scatter_01.png](25_amine_broad_scatter_01.png)
+- [25_amine_broad_scatter_02.png](25_amine_broad_scatter_02.png)
+- [25_amine_broad_scatter_03.png](25_amine_broad_scatter_03.png)
+- [25_amine_broad_scatter_04.png](25_amine_broad_scatter_04.png)
+- [25_amine_broad_scatter_05.png](25_amine_broad_scatter_05.png)
+- [25_amine_broad_scatter_06.png](25_amine_broad_scatter_06.png)
+- [25_amine_matched_scatter_01.png](25_amine_matched_scatter_01.png)
+- [25_amine_matched_scatter_02.png](25_amine_matched_scatter_02.png)
+- [25_atoms_scatter_01.png](25_atoms_scatter_01.png)
+- [25_atoms_scatter_02.png](25_atoms_scatter_02.png)
+- [25_atoms_scatter_03.png](25_atoms_scatter_03.png)
+- [25_atoms_scatter_04.png](25_atoms_scatter_04.png)
+- [25_opposite_broad_scatter_01.png](25_opposite_broad_scatter_01.png)
+- [25_opposite_broad_scatter_02.png](25_opposite_broad_scatter_02.png)
+- [25_opposite_matched_scatter_01.png](25_opposite_matched_scatter_01.png)
+
+### 図26：和集合の各原子・接触の仕事を4系の棒グラフで比較する
+
+[読み方](../reports/figure_guide_ja.md#fig26)
+
+- [26_amine_broad_bars_01.png](26_amine_broad_bars_01.png)
+- [26_amine_broad_bars_02.png](26_amine_broad_bars_02.png)
+- [26_amine_broad_bars_03.png](26_amine_broad_bars_03.png)
+- [26_amine_broad_bars_04.png](26_amine_broad_bars_04.png)
+- [26_amine_broad_bars_05.png](26_amine_broad_bars_05.png)
+- [26_amine_broad_bars_06.png](26_amine_broad_bars_06.png)
+- [26_amine_matched_bars_01.png](26_amine_matched_bars_01.png)
+- [26_amine_matched_bars_02.png](26_amine_matched_bars_02.png)
+- [26_atoms_bars_01.png](26_atoms_bars_01.png)
+- [26_atoms_bars_02.png](26_atoms_bars_02.png)
+- [26_atoms_bars_03.png](26_atoms_bars_03.png)
+- [26_atoms_bars_04.png](26_atoms_bars_04.png)
+- [26_opposite_broad_bars_01.png](26_opposite_broad_bars_01.png)
+- [26_opposite_broad_bars_02.png](26_opposite_broad_bars_02.png)
+- [26_opposite_matched_bars_01.png](26_opposite_matched_bars_01.png)
+

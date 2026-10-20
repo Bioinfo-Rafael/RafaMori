@@ -126,5 +126,7 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
     text+='[横並び表の全セルと選択理由CSV](../csv/cross_system_work_union.csv) · [各系の選択集合と和集合の監査JSON](cross_system_work_union_audit.json)\n\n'
     pd.DataFrame(records).to_csv(OUT/'csv/cross_system_work_union.csv',index=False)
     (OUT/'reports/cross_system_work_union_audit.json').write_text(json.dumps(audits,ensure_ascii=False,indent=2)+'\n')
-    (OUT/'reports/cross_system_work_comparison_ja.md').write_text('# 4系の原子仕事・接触方向の仕事の比較\n\n[全体の考察](higher_ranked_controls_summary_ja.md)\n\n'+text)
-    return text
+    from work_union_plots import main as draw_work_union
+    gallery=draw_work_union()
+    (OUT/'reports/cross_system_work_comparison_ja.md').write_text('# 4系の原子仕事・接触方向の仕事の比較\n\n[全体の考察](higher_ranked_controls_summary_ja.md) · [散布図・棒グラフへ](#work-plots)\n\n'+text+gallery)
+    return text+'\n[各原子・接触の散布図（ΔG‡と仕事）と4系の棒グラフ](cross_system_work_comparison_ja.md#work-plots)\n\n'
