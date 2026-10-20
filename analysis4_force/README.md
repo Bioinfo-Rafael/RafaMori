@@ -1,14 +1,8 @@
 # 4系IRC・Reaction Force解析
 
-**上位候補の個別確認：[原子・接触の位置、結合関係、角度、力の向きまで調べた結果](outputs/reports/higher_ranked_controls_summary_ja.md)**。4系それぞれについて、指定対象より上位の全件を掲載しています。
+**資料を探す入口：[Markdown一覧・読む順番・現在の結論](outputs/reports/README.md)**。結果を読む場合は、この案内から[現在の考察](outputs/reports/work_candidate_assessment_ja.md)や[4系の仕事の比較表](outputs/reports/cross_system_work_comparison_ja.md)へ進んでください。
 
-**正方向・逆方向の障壁：[方向別の表とRAFA15生成物についての考察](outputs/reports/directional_barriers_discussion_ja.md)**
-
-**E・G・TΔSと反応経路：[3×3の図と熱力学成分の説明](outputs/reports/thermochemistry_profiles_ja.md)**。TSの熱補正を固定した参考曲線と、両端準位への滑らかな表示用接続を比較できます。
-
-**図の説明：[全26種類・65枚の図の見方](outputs/reports/figure_guide_ja.md)**。各図の目的、軸の単位、点・線・色の意味、読み取れることを説明しています。
-
-[解析結果](outputs/reports/summary_ja.md)が結論と解釈の入口です。ルートで `python analysis4_force/run_analysis.py` を実行すると、入力照合、解析用LOGの生成・再読込、CSV・図・summaryの生成まで実施します。
+このREADMEは実装・入力・再現性の説明です。ルートで `python analysis4_force/run_analysis.py` を実行すると、入力照合、解析用LOGの生成・再読込、CSV・図・報告書の生成まで実施します。
 
 ## 入力と再現性
 
@@ -54,7 +48,8 @@ IRC左端からTSへの障壁・αまでの仕事は計算範囲に依存する�
 
 | ファイル／ディレクトリ | 内容 |
 |---|---|
-| `outputs/reports/summary_ja.md` | 日本語の結果報告、図、仮説評価、制限、参照文献 |
+| `outputs/reports/README.md` | 全Markdownの案内、読む順番、現在の結論 |
+| `outputs/reports/summary_ja.md` | 4系解析の基礎報告、図、仮説評価、制限、参照文献 |
 | `outputs/reports/stationary_point_audit.json` | 全opt/freqの条件、エネルギー、周波数、抽出行番号 |
 | `outputs/reports/orientation_audit.json` | 符号、C–N距離、除外点、TS対応の検証 |
 | `outputs/csv/system_summary.csv` | 4系の比較表 |

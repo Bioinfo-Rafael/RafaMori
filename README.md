@@ -1,22 +1,13 @@
 # MoriPF・RAFA14・RAFA15・RAFA16のIRC／反応力解析
 
-**上位候補の個別確認：[原子・接触の位置、結合関係、角度、力の向きまで調べた結果](analysis4_force/outputs/reports/higher_ranked_controls_summary_ja.md)**。4系それぞれについて、指定対象より上位の全件を掲載しています。
-
-**正方向・逆方向の障壁：[方向別の表とRAFA15生成物についての考察](analysis4_force/outputs/reports/directional_barriers_discussion_ja.md)**
-
-**E・G・TΔSと反応経路：[3×3の図と熱力学成分の説明](analysis4_force/outputs/reports/thermochemistry_profiles_ja.md)**。TSの熱補正を固定した参考曲線と、両端準位への滑らかな表示用接続を比較できます。
-
-**図の説明：[全26種類・65枚の図の見方](analysis4_force/outputs/reports/figure_guide_ja.md)**。各図の目的、軸の単位、点・線・色の意味、読み取れることを説明しています。
-
 GaussianのIRC（固有反応座標）計算ログから、フッ素置換位置が異なる4分子系の反応経路を比較するPythonプロジェクトです。エネルギー、反応力、原子間距離・角度、分子断片の質量重心（COM）、原子の力と運動を解析します。
 
-**最新の結果：[4系解析の日本語まとめ](analysis4_force/outputs/reports/summary_ja.md)**
+**資料を探す入口：[Markdown一覧・読む順番・現在の結論](analysis4_force/outputs/reports/README.md)**。各報告の役割と、現在の比較に使う資料・初期の報告・旧2系解析の違いを説明しています。
 
-**追加DFTなしの文献調査・方針：[logだけで評価する量と今回の結果](analysis4_force/outputs/reports/log_only_research_plan_ja.md)**
-
-**両側の定量化：[原子仕事・接触方向の仕事と障壁](analysis4_force/outputs/reports/two_sided_contact_summary_ja.md)**。図15は横軸を仕事（kcal/mol）、縦軸を各系の障壁へ変更。反対側原子仕事と電子障壁にr≈−0.965の対応がありますが、O21の応答が主成分で、ペア結合エネルギーではありません。
-
-**他の原子・接触との対照比較：[分子内順位と相関の特異性](analysis4_force/outputs/reports/contact_specificity_summary_ja.md)**。RAFA15の反対側H···Oは近い化学種・距離の接触で応答が大きい一方、他の接触にも同等以上の障壁相関があり、指定接触だけの特異性は示せません。
+- [現在の考察](analysis4_force/outputs/reports/work_candidate_assessment_ja.md)：仕事の大きさ・ばらつき・障壁との相関を合わせた候補評価。
+- [4系の仕事の比較表](analysis4_force/outputs/reports/cross_system_work_comparison_ja.md)：数値・相関係数・STD/meanと散布図・棒グラフ。詳細説明は別表。
+- [正方向・逆方向の障壁](analysis4_force/outputs/reports/directional_barriers_discussion_ja.md)：ΔE‡・ΔG‡・エントロピー項とRAFA15生成物の考察。
+- [図の説明](analysis4_force/outputs/reports/figure_guide_ja.md)：全26種類・65枚の目的、軸・単位、点・線・色の意味。
 
 ## 今回の比較でわかったこと
 
