@@ -193,7 +193,7 @@ def write_annotated_report(path,text):
 
 def write_guide():
     figures=HERE/'outputs/figures';reports=HERE/'outputs/reports'
-    text=INTRO+'\n## 図ごとの説明\n\n'
+    text=INTRO+'\n'+(HERE/'docs/work_comparison_groups_ja.md').read_text()+'\n\n## 図ごとの説明\n\n'
     for number,(title,body) in FIGURES.items():
         files=sorted(figures.glob(f'{number:02d}_*.png'))
         if not files:raise ValueError(f'No figure for {number}')

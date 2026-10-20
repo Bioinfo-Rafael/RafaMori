@@ -48,6 +48,7 @@ def main():
     audits=json.loads((OUT/'reports/cross_system_work_union_audit.json').read_text())
     fitrows=[];plotpoints=[];figures=[]
     gallery='<a id="work-plots"></a>\n\n## 仕事と活性化自由エネルギーの散布図・4系の棒グラフ\n\n'
+    gallery+=(OUT.parent/'docs/work_comparison_groups_ja.md').read_text()+'\n\n'
     gallery+='[全散布図のPDF](../figures/25_work_union_scatter_all.pdf) · [全棒グラフのPDF](../figures/26_work_union_bars_all.pdf)\n\n'
     gallery+='全5表の和集合を、表ごとに最大4列×4行のパネルへ分けた。1パネルが1つの対応する原子または原子対。表の間で重複する対象は同じ計算値を再掲する。各パネル左上のIDと位置ラベル、下側の原子番号対応を表・CSVと照合できる。青=MoriPF、緑=RAFA14、紫=RAFA15、橙=RAFA16。\n\n'
     gallery+='**散布図**：横軸はC–N 2.50→2.10 Å区間の符号付き仕事（kcal/mol）、縦軸はfreq計算からの正方向のΔG‡ = G(TS)−G(基質)−G(Lys)（kcal/mol）。4系の対応が確定したパネルだけ、切片付き最小二乗直線を当てはめ、タイトルにR²を小数点以下3桁で示す。赤い枠は着目対象。比較条件外の系も、対応する仕事が得られる場合は4点の比較に含める。条件内の点を丸、条件外を×で区別した。順位は元の候補条件のままであり、フィットのために選び直していない。\n\n'

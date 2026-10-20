@@ -756,8 +756,8 @@
   },
   {
     "path": "reports/cross_system_work_comparison_ja.md",
-    "bytes": 99311,
-    "sha256": "b6dc3d2980199c96b2eb72f45cf52399c1a766505ef544bb2c44d541b7dd4611"
+    "bytes": 104251,
+    "sha256": "e5db7dae8cb986968595c7e01278fa9e1f8428b695194b66dbd0ba238e56051b"
   },
   {
     "path": "reports/cross_system_work_union_audit.json",
@@ -776,8 +776,8 @@
   },
   {
     "path": "reports/figure_guide_ja.md",
-    "bytes": 36149,
-    "sha256": "d86c32cf12522a79f13a6b28d15c0b5c4bb5fa5c6d8cc18cb1556ba0526ffff3"
+    "bytes": 38619,
+    "sha256": "3553a2a9bff95a832144b37060a4f53aa32d08f00b92adf69c50a8fba8aa947e"
   },
   {
     "path": "reports/higher_ranked_controls_MoriPF_ja.md",
@@ -801,8 +801,8 @@
   },
   {
     "path": "reports/higher_ranked_controls_summary_ja.md",
-    "bytes": 478305,
-    "sha256": "e82e5b9857ee931757f329cf0ae3a7e7e5a6a59010813f7686fb1d04248e7364"
+    "bytes": 480775,
+    "sha256": "517d97d3e49f312ac4f13714dfa481c2fb7847eb6ca73eeddfde2c03084d4e53"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",
