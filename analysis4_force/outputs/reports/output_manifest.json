@@ -60,6 +60,16 @@
     "sha256": "815d0167378d2699fe52d5bfc8345650638a211a82ac661d968f9c7a86ed4703"
   },
   {
+    "path": "csv/atomic_work_barrier_percentage_audit.csv",
+    "bytes": 2272,
+    "sha256": "72a4544e2b6a92c9adb296f71c46c89ec7f211a070138f9d94f463f0a50d0eb6"
+  },
+  {
+    "path": "csv/atomic_work_barrier_percentages.csv",
+    "bytes": 134349,
+    "sha256": "3a97184863da66eaa3b12a64e00c81c8adc89c9f080a2441b96b0b5b5941d128"
+  },
+  {
     "path": "csv/contact_controls_atoms.csv",
     "bytes": 69956,
     "sha256": "f8389da82fd849f418f8e7dbaa646a807ef22aae27cc8a3857380835003e0770"
@@ -586,28 +596,28 @@
   },
   {
     "path": "reports/higher_ranked_controls_MoriPF_ja.md",
-    "bytes": 80605,
-    "sha256": "0c0ced3db8afb20ef0a57f33ef5d40dbd97ed0a8691c96312c824c21207e80b2"
+    "bytes": 87813,
+    "sha256": "75752062df8baaa55acb0ecbfad3d364e9027bdd104e6216975fe2cafe5c7d2c"
   },
   {
     "path": "reports/higher_ranked_controls_RAFA14_ja.md",
-    "bytes": 92059,
-    "sha256": "98122428e0c830c6cca08136978a92b3f8a673d9035bb5be06400c48b7ac4f49"
+    "bytes": 98556,
+    "sha256": "3da309b868ef14ac87c2c2905dd71f691454607fa85e269625d387014f2ec7f0"
   },
   {
     "path": "reports/higher_ranked_controls_RAFA15_ja.md",
-    "bytes": 77254,
-    "sha256": "40df5d8fef82759a69a6f782140774bbf13eb49f9515417a696debadd59f6514"
+    "bytes": 83787,
+    "sha256": "1f7af20e1e001423db80c57538fe92e6f9ea530c8b6aa87ff432f17bafa363bb"
   },
   {
     "path": "reports/higher_ranked_controls_RAFA16_ja.md",
-    "bytes": 80564,
-    "sha256": "a33cff9814252da99d5b20e6f7b296287eb1b9f01b6d792b03e2425a09fd451f"
+    "bytes": 87882,
+    "sha256": "c520c8bc6ec09ed605cdde3e11d6ee7522ba7ca62455708dbb36d028cd574385"
   },
   {
     "path": "reports/higher_ranked_controls_summary_ja.md",
-    "bytes": 354924,
-    "sha256": "072e9f728c921e9c30ecc01559e481babc7710803c31f552dc2635a54d54d44a"
+    "bytes": 385604,
+    "sha256": "14806a6dfaabf94c41b33a6a2f46140315a075cac47a3e9d9cab7f00ef6981b3"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",

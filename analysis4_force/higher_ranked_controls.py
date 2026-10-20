@@ -32,6 +32,58 @@ def table(headers,rows):
 def fmt(x):return '—' if pd.isna(x) else f'{x:.6g}'
 
 
+def work_percentages(atoms):
+    energy=pd.read_csv(OUT/'csv/energy_comparison.csv')
+    windows=pd.read_csv(OUT/'csv/two_sided_window_metrics.csv')
+    windows=windows[windows.H_choice=='primary'][['system','window','window_energy_rise_kcal_mol']]
+    result=atoms.merge(windows,on=['system','window'],validate='many_to_one').merge(
+        energy[['system','IRC_left_to_TS_kcal_mol','absolute_electronic_barrier_kcal_mol']],
+        on='system',validate='many_to_one')
+    assert (result.IRC_left_to_TS_kcal_mol>0).all()
+    assert (result.window_energy_rise_kcal_mol>0).all()
+    result['atomic_work_pct_IRC_endpoint_barrier']=100*result.atomic_work_kcal_mol/result.IRC_left_to_TS_kcal_mol
+    result['atomic_work_pct_window_energy_rise']=100*result.atomic_work_kcal_mol/result.window_energy_rise_kcal_mol
+    audit=result.groupby(['system','window'],sort=False).agg(
+        atom_count=('atom','size'),sum_atomic_work_kcal_mol=('atomic_work_kcal_mol','sum'),
+        window_energy_rise_kcal_mol=('window_energy_rise_kcal_mol','first'),
+        IRC_endpoint_barrier_kcal_mol=('IRC_left_to_TS_kcal_mol','first'),
+        separated_reactants_barrier_kcal_mol=('absolute_electronic_barrier_kcal_mol','first'),
+        sum_pct_IRC_endpoint_barrier=('atomic_work_pct_IRC_endpoint_barrier','sum'),
+        sum_pct_window_energy_rise=('atomic_work_pct_window_energy_rise','sum')).reset_index()
+    assert (audit.atom_count==57).all()
+    audit['integration_residual_kcal_mol']=audit.sum_atomic_work_kcal_mol-audit.window_energy_rise_kcal_mol
+    result.to_csv(OUT/'csv/atomic_work_barrier_percentages.csv',index=False)
+    audit.to_csv(OUT/'csv/atomic_work_barrier_percentage_audit.csv',index=False)
+    return result
+
+
+def percentage_summary():
+    audit=pd.read_csv(OUT/'csv/atomic_work_barrier_percentage_audit.csv')
+    audit=audit[audit.window==PRIMARY]
+    text='## 原子仕事の合計と電子障壁に対する割合\n\n'
+    text+='原子の仕事の表には、全57原子と合計行を載せた。分母を明示して、次の2種類の割合を併記する。どちらも符号付きの仕事を使用し、絶対値にはしていない。\n\n'
+    text+=r'''$$
+p_i^{\mathrm{IRC}}=100\,\frac{W_i^{[2.50\to2.10]}}{E_{\mathrm{TS}}-E_{\mathrm{IRC,start}}},
+\qquad
+p_i^{\mathrm{window}}=100\,\frac{W_i^{[2.50\to2.10]}}{E_{c=2.10}-E_{c=2.50}}
+$$
+
+前者は「IRC反応物側端点→TSの電子障壁の何％を、この部分区間でその原子が担ったか」、後者は「積分区間の電子エネルギー上昇の何％をその原子が担ったか」を表す。分母は以下の実際のエネルギー差であり、仕事の合計を分母にして100%へ強制的に合わせてはいない。
+
+**全原子の仕事の和が対応するのは、積分区間の電子エネルギー差。現在の2.50→2.10 Åの仕事を足しても、端点→TSの障壁全体にはならない。** 端点からTSまで同じ積分を行えば、その区間の電子障壁に対応する。自由エネルギー障壁ΔG‡や熱補正込みの障壁には対応しない。
+
+| 分子系 | IRC端点→TSのΔE‡ / kcal/mol | 積分区間ΔE / kcal/mol | 全57原子の仕事ΣW / kcal/mol | 積分残差ΣW−区間ΔE / kcal/mol | ΣW／IRC端点→TSのΔE‡ / % | ΣW／区間ΔE / % | 分離反応物＋Lys→TSのΔE‡ / kcal/mol |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+'''
+    for r in audit.itertuples():
+        text+='| '+' | '.join([r.system,*[fmt(v) for v in [r.IRC_endpoint_barrier_kcal_mol,r.window_energy_rise_kcal_mol,
+            r.sum_atomic_work_kcal_mol,r.integration_residual_kcal_mol,r.sum_pct_IRC_endpoint_barrier,
+            r.sum_pct_window_energy_rise,r.separated_reactants_barrier_kcal_mol]]])+' |\n'
+    text+='\nIRC端点は分離反応物の最適化構造とは異なる。したがって、端点→TSの障壁が分離反応物基準の障壁を必ず過小評価するとは限らない。今回、分離反応物基準のΔE‡はMoriPF・RAFA15・RAFA16で負であり、上の割合の分母には使用していない。負の原子仕事はエネルギー低下への寄与で、その割合も負になる。全原子の割合の和と100%の差は、区間の不足と積分残差を区別して読む。\n\n'
+    text+='[全57原子×4系×3区間の割合CSV](../csv/atomic_work_barrier_percentages.csv) · [合計・分母・残差の監査CSV](../csv/atomic_work_barrier_percentage_audit.csv)\n\n'
+    return text
+
+
 def rank_context(frame,metric,key,targets,below=3):
     """All preceding rows, nominated rows, and at least three following rows.
 
@@ -55,14 +107,24 @@ def context_tables(system,atoms,pairs,dictionary,config):
         dictionary[dictionary.system==system],on=['system','atom','element','site'])
     p=pairs[(pairs.system==system)&(pairs.window==PRIMARY)]
     text='### 原子の仕事・力：着目する4原子と、その前後\n\n'
-    text+='★が着目原子。4原子それぞれについて上位すべてと直下3件を含む範囲を一つの表にまとめた。各行は絶対値の降順で、仕事の値には符号を残している。\n\n'
+    text+=f'この系の割合の分母：IRC端点→TSのΔE‡ = {a.IRC_left_to_TS_kcal_mol.iloc[0]:.6f} kcal/mol、積分区間ΔE = {a.window_energy_rise_kcal_mol.iloc[0]:.6f} kcal/mol。\n\n'
+    text+='★が着目原子。仕事は全57原子と合計を示す。力は着目4原子の上位すべてと直下3件を含む範囲を示す。順位は絶対値の降順で、仕事と割合には符号を残す。割合の分母はIRC端点→TSの電子障壁と、C–N 2.50→2.10 Åの区間エネルギー差である。\n\n'
     for metric in ATOM_METRICS:
-        g=rank_context(a,metric,'atom',a.loc[a.target_atom,'atom'].tolist())
+        iswork=metric=='atomic_work_kcal_mol'
+        g=rank_context(a,metric,'atom',a.loc[a.target_atom,'atom'].tolist(),below=57 if iswork else 3)
         text+=f'<details>\n<summary>{METRICS[metric]}：上位・着目原子・下位を開く</summary>\n\n'
-        text+=table(['順位','原子','値','位置・役割','直接結合する原子'],[
-            [r.rank,('**★ '+f'{r.element}{r.atom}'+'**') if r.is_target else f'{r.element}{r.atom}',
-             f'**{fmt(getattr(r,metric))}**' if r.is_target else fmt(getattr(r,metric)),r.role_ja,r.neighbors]
-            for r in g.itertuples()])+'\n</details>\n\n'
+        headers=['順位','原子',METRICS[metric]]
+        if iswork:headers+=['原子仕事／IRC端点→TSのΔE‡ / %','原子仕事／区間ΔE / %']
+        headers+=['位置・役割','直接結合する原子']
+        rows=[]
+        for r in g.itertuples():
+            row=[r.rank,'**★ '+f'{r.element}{r.atom}'+'**' if r.is_target else f'{r.element}{r.atom}',
+                 f'**{fmt(getattr(r,metric))}**' if r.is_target else fmt(getattr(r,metric))]
+            if iswork:row+=[fmt(r.atomic_work_pct_IRC_endpoint_barrier),fmt(r.atomic_work_pct_window_energy_rise)]
+            rows.append(row+[r.role_ja,r.neighbors])
+        if iswork:rows.append(['—','**全57原子の合計**',fmt(a.atomic_work_kcal_mol.sum()),
+            fmt(a.atomic_work_pct_IRC_endpoint_barrier.sum()),fmt(a.atomic_work_pct_window_energy_rise.sum()),'C–N 2.50→2.10 Åの積分','—'])
+        text+=table(headers,rows)+'\n</details>\n\n'
     text+='### 接触の仕事・力：着目する接触と、その前後\n\n'
     text+='表ごとに指定接触を★で示し、上位すべて・指定接触・直下3件を同じ表に並べた。同値が境界にある場合は同値の行も残す。下位候補が3件未満なら残りをすべて示す。順位は各表の比較条件の中で付けたもの。Q̄の負は距離を縮める向き、正は開く向きで、2原子間だけの引力・斥力を示すものではない。\n\n'
     atomvalues=a.set_index('atom').atomic_work_kcal_mol
@@ -82,12 +144,12 @@ def context_tables(system,atoms,pairs,dictionary,config):
                 for r in g.itertuples():
                     note=r.interpretation_ja
                     if metric=='pair_atomic_work_kcal_mol':
-                        note=f'{r.element_a}{r.atom_a}の仕事={fmt(atomvalues[r.atom_a])}、{r.element_b}{r.atom_b}の仕事={fmt(atomvalues[r.atom_b])}。'+note
+                        note=f'{r.element_a}{r.atom_a}の仕事={fmt(atomvalues[r.atom_a])} kcal/mol、{r.element_b}{r.atom_b}の仕事={fmt(atomvalues[r.atom_b])} kcal/mol。'+note
                     rows.append([r.rank,'**★ '+r.pair_label+'**' if r.is_target else r.pair_label,
                         f'**{fmt(getattr(r,metric))}**' if r.is_target else fmt(getattr(r,metric)),
                         f'{r.mean_distance_A:.3f}',fmt(r.mean_signed_projection_mEh_bohr),
                         f'{r.contact_type}／{r.topology}',f'{r.role_a} ＋ {r.role_b}',note])
-                text+=table(['順位','原子対','値','平均距離 / Å','Q̄ / mEh/Bohr','種類・結合関係','原子の位置','個別の読み方'],rows)+'\n'
+                text+=table(['順位','原子対',METRICS[metric],'平均原子間距離 / Å','接触方向の力の符号付き平均Q / mEh/Bohr','種類・結合関係','原子の位置','個別の読み方'],rows)+'\n'
                 if pool=='same_category':text+='</details>\n\n'
     return text
 
@@ -259,7 +321,7 @@ def system_report(system,atoms,pairs,dictionary,controls,config):
 def main():
     cfg=yaml.safe_load((HERE/'config/contact_specificity.yaml').read_text())
     windows=yaml.safe_load((HERE/'config/two_sided_contacts.yaml').read_text())['windows']
-    atoms=pd.read_csv(OUT/'csv/contact_controls_atoms.csv')
+    atoms=work_percentages(pd.read_csv(OUT/'csv/contact_controls_atoms.csv'))
     pairs=pd.read_csv(OUT/'csv/contact_controls_pairs.csv').fillna({'nominated':''})
     mapping=pd.read_csv(OUT/'csv/contact_controls_mapping.csv');edges=pd.read_csv(OUT/'csv/contact_controls_covalent_edges.csv')
     identified,dictionary=enrich_pairs(pairs,mapping,edges,windows)
@@ -301,7 +363,7 @@ def write_overview(atoms,pairs,controls,config):
 '''
     for system in atoms.system.unique():
         text+=f'- [{system}：番号付き構造式・着目対象・上位全件・直下3件](higher_ranked_controls_{system}_ja.md)\n'
-    text+='\n'+(HERE/'docs/force_work_definitions_ja.md').read_text()+'\n'
+    text+='\n'+(HERE/'docs/force_work_definitions_ja.md').read_text()+'\n'+percentage_summary()
     text+='''
 このまとめの後半に、4系すべての番号付き構造式と比較表を掲載した。各系の個別ページにも同じ表を置いた。★が着目対象で、上位だけでなく指定対象自身と直下3件も同じ表に載せた。広い比較の表は折りたたんである。
 
@@ -316,7 +378,7 @@ RAFA15のO21を例に、上位8原子・O21自身・直下3原子を示す。4�
     d=pd.read_csv(OUT/'csv/higher_rank_atom_dictionary.csv');rd=d[d.system=='RAFA15'].set_index('atom')
     o=g[g.site=='core21'].iloc[0]
     h=rank_context(g,'atomic_work_kcal_mol','atom',[o.atom])
-    text+=table(['順位','原子','仕事 / kcal/mol','位置・役割'],[[r.rank,('**★ O21**' if r.is_target else f'{r.element}{r.atom}'),fmt(r.atomic_work_kcal_mol),rd.loc[r.atom,'role_ja']] for r in h.itertuples()])
+    text+=table(['順位','原子','原子の仕事 / kcal/mol','原子仕事／IRC端点→TSのΔE‡ / %','原子仕事／区間ΔE / %','位置・役割'],[[r.rank,('**★ O21**' if r.is_target else f'{r.element}{r.atom}'),fmt(r.atomic_work_kcal_mol),fmt(r.atomic_work_pct_IRC_endpoint_barrier),fmt(r.atomic_work_pct_window_energy_rise),rd.loc[r.atom,'role_ja']] for r in h.itertuples()])
     text+='''
 2原子の仕事を足した指標では、仕事の大きいNやC20などと組み合わせた多くの対が上位になる。これは、その組合せの相互作用が強いことを直接示さない。個別表では、2原子それぞれの仕事も併記し、どちらが和を担うかを確認できるようにした。
 
@@ -325,18 +387,18 @@ RAFA15のO21を例に、上位8原子・O21自身・直下3原子を示す。4�
 まず4系について、広い比較の順位と、その上位にある原子対の内訳を示す。原子対を一つずつ確認する表は後半にあり、指定接触と直下3件も含めている。
 
 '''
-    rows=[]
-    for system in SYSTEMS:
-        g=primary[primary.system==system];t=g[g.nominated=='opposite_contact'].iloc[0]
-        broad=g[pool_mask(g,t,'same_category',config)]
-        for metric in PAIR_METRICS[1:]:
+    for metric in PAIR_METRICS[1:]:
+        rows=[]
+        for system in SYSTEMS:
+            g=primary[primary.system==system];t=g[g.nominated=='opposite_contact'].iloc[0]
+            broad=g[pool_mask(g,t,'same_category',config)]
             upper=broad[broad[metric].abs()>abs(t[metric])+1e-12]
             others=upper[~upper.includes_reaction_C20]
-            rows.append([system,t.pair_label,METRICS[metric],fmt(t[metric]),
+            rows.append([system,t.pair_label,fmt(t[metric]),
                          f'{len(upper)+1}/{len(broad)}',int(upper.includes_reaction_C20.sum()),
                          len(others),'、'.join(others.pair_label) or 'なし'])
-    text+=table(['分子系','指定接触','指標','指定接触の値','順位／候補数','上位のうちC20を含む対の数',
-                 '上位のうちC20を含まない対の数','C20を含まない上位対'],rows)
+        text+=table(['分子系','指定接触',METRICS[metric],'順位／候補数','上位のうちC20を含む対の数',
+                     '上位のうちC20を含まない対の数','C20を含まない上位対'],rows)+'\n'
     text+='''
 MoriPF・RAFA16では、仕事の上位にC20を含まない対も4つあり、どちらもC12···O22、C13···F29、O19···O21、O22···F29だった。RAFA14でもO22···H56などの骨格内近接が上位にある。**「指定接触より上位はすべてC20を含む」という特徴はRAFA15に限られる。** 反対側のH/F···O21を、4系すべてで一律に主要な接触と呼ぶことはできない。
 
@@ -348,7 +410,7 @@ MoriPF・RAFA16では、仕事の上位にC20を含まない対も4つあり、�
 
 '''
     g=primary[primary.system=='RAFA15'];t=g[g.nominated=='opposite_contact'].iloc[0]
-    for metric,label in [('radial_work_kcal_mol','仕事 / kcal/mol'),('mean_abs_projection_mEh_bohr','平均絶対値 / mEh/Bohr')]:
+    for metric,label in [('radial_work_kcal_mol',METRICS['radial_work_kcal_mol']),('mean_abs_projection_mEh_bohr',METRICS['mean_abs_projection_mEh_bohr'])]:
         if metric.startswith('mean'):text+='\n### 接触方向の力：上位2対・指定接触・直下3対\n\n'
         broad=g[pool_mask(g,t,'same_category',config)]
         h=rank_context(broad,metric,'pair',[t.pair])
@@ -367,7 +429,7 @@ Q<0は距離を縮める向き、Q>0は開く向きの全原子力の射影で�
 
 '''
     chosen=primary[primary.nominated=='amine_contact']
-    text+=table(['分子系','指定原子対','平均絶対値 / mEh/Bohr','符号付き平均Q / mEh/Bohr','平均D–H···A角 / °'],[
+    text+=table(['分子系','指定原子対','接触方向の力の平均絶対値 / mEh/Bohr','接触方向の力の符号付き平均Q / mEh/Bohr','平均D–H···A角 / °'],[
         [r.system,r.pair_label,fmt(r.mean_abs_projection_mEh_bohr),fmt(r.mean_signed_projection_mEh_bohr),fmt(r.mean_DHA_angle_deg)] for r in chosen.itertuples()])
     text+='''
 Fを含むMoriPF・RAFA15・RAFA16では、指定接触の平均Qは負だった。RAFA14の指定接触はF···HではなくH···Hで、平均Qは正だった。この違いは、平均絶対値だけの順位では表せない。
@@ -379,7 +441,7 @@ Fを含むMoriPF・RAFA15・RAFA16では、指定接触の平均Qは負だった
         g=primary[primary.system==system];t=g[g.nominated=='amine_contact'].iloc[0]
         h=rank_context(g[pool_mask(g,t,'distance_and_chemistry',config)],'mean_abs_projection_mEh_bohr','pair',[t.pair])
         text+=f'### {system}\n\n'
-        text+=table(['順位','原子対','接触の種類','平均距離 / Å','平均角 / °','平均絶対値 / mEh/Bohr','平均Q / mEh/Bohr'],[
+        text+=table(['順位','原子対','接触の種類','平均距離 / Å','平均D–H···A角 / °','接触方向の力の平均絶対値 / mEh/Bohr','接触方向の力の符号付き平均Q / mEh/Bohr'],[
             [r.rank,'**★ '+r.pair_label+'**' if r.is_target else r.pair_label,r.contact_type,f'{r.mean_distance_A:.3f}',fmt(r.mean_DHA_angle_deg),fmt(r.mean_abs_projection_mEh_bohr),fmt(r.mean_signed_projection_mEh_bohr)] for r in h.itertuples()])+'\n'
     text+='''
 MoriPFとRAFA16では、この絞った比較で上位にある5対はすべて平均Qが正で、指定F···Hの負のQとは向きが異なる。N–H···OやC–H···Oという元素の組合せでも、この結果から「F···Hより強い水素結合」とは結論できない。
