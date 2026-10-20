@@ -71,7 +71,7 @@ RAFA14のアミン側はH···Hなので、4系をまとめて「F···H」と
 
 距離は共通のC–N距離2.50→2.10 Å区間で評価する。最短距離4.0 Åの条件と、平均距離差±0.75 Åの条件は別である。原子種と距離を近づけても、化学的に同じ種類・強さの相互作用であるとは保証しない。O21は反応カルボニルC20のOであり、クマリン環内O18とは異なる。
 
-**matchedは「4系間で原子対応が付いている」という意味ではない。** 原子対応の確定／未確定は別に判定している。また、図の対象は各系の「上位全件＋指定対象＋直下3件」の和集合なので、matchedの図にも、ある系では条件外だが他系で選ばれた接触が現れる。その場合も対応する仕事の値を示し、散布図では×、棒グラフでは斜線で区別している。
+**matchedは「4系間で原子対応が付いている」という意味ではない。** 原子対応は別に確認しており、再確認後はLysモデル・クマリン骨格のHを含め、全4系で57対57の対応が得られている。また、図の対象は各系の「上位全件＋指定対象＋直下3件」の和集合なので、matchedの図にも、ある系では条件外だが他系で選ばれた接触が現れる。その場合も対応する仕事の値を示し、散布図では×、棒グラフでは斜線で区別している。
 
 
 ## 図ごとの説明
@@ -470,7 +470,7 @@ MoriPF・RAFA14・RAFA15・RAFA16について、ログと表に使う全57原子
 
 1パネルが横並び比較表の1行に対応する散布図。横軸は共通C–N距離2.50→2.10 Åでの符号付き原子仕事または接触方向の仕事（kcal/mol）、縦軸は分離反応物＋Lys基準の正方向ΔG‡（kcal/mol）。色は青=MoriPF、緑=RAFA14、紫=RAFA15、橙=RAFA16。4系の対応が確定した場合に切片付き最小二乗直線を引き、タイトルにR²を小数点以下3桁で示す。赤枠は着目対象。丸は元の候補条件内、×は条件外だが対応する値を描いたもの。
 
-各ページは最大4列×4行。位置ラベル・原子番号・パネルIDで表と照合する。個体対応が未確定のHは既知の点だけを示し、フィットせずR²=N/Aとする。全パネルでΔG‡の縦軸は共通、仕事の横軸は各パネルで異なる。4系だけの探索的な相関であり、高いR²だけで因果関係や特異性を判断しない。元の順位や和集合を相関に合わせて選び直してはいない。
+各ページは最大4列×4行。位置ラベル・原子番号・パネルIDで表と照合する。原子対応を再確認し、Lysモデル・クマリン骨格のHを含めて全57位置を対応させた。全パネルが4点になり、旧版の対応未確定によるR²=N/Aは解消した。全パネルでΔG‡の縦軸は共通、仕事の横軸は各パネルで異なる。4系だけの探索的な相関であり、高いR²だけで因果関係や特異性を判断しない。元の順位や和集合を相関に合わせて選び直してはいない。
 
 対象ファイル：
 
@@ -479,13 +479,10 @@ MoriPF・RAFA14・RAFA15・RAFA16について、ログと表に使う全57原子
 - [25_amine_broad_scatter_03.png](../figures/25_amine_broad_scatter_03.png)
 - [25_amine_broad_scatter_04.png](../figures/25_amine_broad_scatter_04.png)
 - [25_amine_broad_scatter_05.png](../figures/25_amine_broad_scatter_05.png)
-- [25_amine_broad_scatter_06.png](../figures/25_amine_broad_scatter_06.png)
 - [25_amine_matched_scatter_01.png](../figures/25_amine_matched_scatter_01.png)
-- [25_amine_matched_scatter_02.png](../figures/25_amine_matched_scatter_02.png)
 - [25_atoms_scatter_01.png](../figures/25_atoms_scatter_01.png)
 - [25_atoms_scatter_02.png](../figures/25_atoms_scatter_02.png)
 - [25_atoms_scatter_03.png](../figures/25_atoms_scatter_03.png)
-- [25_atoms_scatter_04.png](../figures/25_atoms_scatter_04.png)
 - [25_opposite_broad_scatter_01.png](../figures/25_opposite_broad_scatter_01.png)
 - [25_opposite_broad_scatter_02.png](../figures/25_opposite_broad_scatter_02.png)
 - [25_opposite_matched_scatter_01.png](../figures/25_opposite_matched_scatter_01.png)
@@ -496,9 +493,9 @@ MoriPF・RAFA14・RAFA15・RAFA16について、ログと表に使う全57原子
 
 ![図26：和集合の各原子・接触の仕事を4系の棒グラフで比較する](../figures/26_amine_broad_bars_01.png)
 
-1パネルが横並び比較表の1行。横軸はMoriPF・RAFA14・RAFA15・RAFA16、縦軸は共通C–N距離2.50→2.10 Åでの符号付き原子仕事または接触方向の仕事（kcal/mol）。色は図25と共通で、赤枠が着目対象。斜線の棒は元の候補条件外だが対応する計算値。棒がないN/Aは対応未確定であり、仕事ゼロではない。
+1パネルが横並び比較表の1行。横軸はMoriPF・RAFA14・RAFA15・RAFA16、縦軸は共通C–N距離2.50→2.10 Åでの符号付き原子仕事または接触方向の仕事（kcal/mol）。色は図25と共通で、赤枠が着目対象。斜線の棒は元の候補条件外だが対応する計算値。原子対応の再確認後は全パネルに対応する4系の棒がある。
 
-タイトルのSTD/meanは、4系の母標準偏差（ddof=0）÷符号付き算術平均で、小数点以下3桁。平均が負なら比も負になり、正負の相殺で平均が小さくなると比が大きくなる。対応未確定または平均が数値的にゼロの場合はN/Aとする。仕事の縦軸はパネルごとに異なるので、別パネル同士は棒の見た目の高さでなく軸の数値で比較する。
+タイトルのSTD/meanは、4系の母標準偏差（ddof=0）÷符号付き算術平均で、小数点以下3桁。平均が負なら比も負になり、正負の相殺で平均が小さくなると比が大きくなる。平均が数値的にゼロの場合はN/Aとする。仕事の縦軸はパネルごとに異なるので、別パネル同士は棒の見た目の高さでなく軸の数値で比較する。
 
 対象ファイル：
 
@@ -507,13 +504,10 @@ MoriPF・RAFA14・RAFA15・RAFA16について、ログと表に使う全57原子
 - [26_amine_broad_bars_03.png](../figures/26_amine_broad_bars_03.png)
 - [26_amine_broad_bars_04.png](../figures/26_amine_broad_bars_04.png)
 - [26_amine_broad_bars_05.png](../figures/26_amine_broad_bars_05.png)
-- [26_amine_broad_bars_06.png](../figures/26_amine_broad_bars_06.png)
 - [26_amine_matched_bars_01.png](../figures/26_amine_matched_bars_01.png)
-- [26_amine_matched_bars_02.png](../figures/26_amine_matched_bars_02.png)
 - [26_atoms_bars_01.png](../figures/26_atoms_bars_01.png)
 - [26_atoms_bars_02.png](../figures/26_atoms_bars_02.png)
 - [26_atoms_bars_03.png](../figures/26_atoms_bars_03.png)
-- [26_atoms_bars_04.png](../figures/26_atoms_bars_04.png)
 - [26_opposite_broad_bars_01.png](../figures/26_opposite_broad_bars_01.png)
 - [26_opposite_broad_bars_02.png](../figures/26_opposite_broad_bars_02.png)
 - [26_opposite_matched_bars_01.png](../figures/26_opposite_matched_bars_01.png)

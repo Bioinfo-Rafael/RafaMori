@@ -1,5 +1,6 @@
-"""Compare signed work at audited corresponding sites; never match alkyl H by ID."""
+"""Compare signed work using complete, geometry-audited atom correspondence."""
 from pathlib import Path
+from functools import lru_cache
 import json
 import pandas as pd
 from contact_specificity import pool_mask
@@ -8,8 +9,14 @@ from numbered_structures import SYSTEMS
 OUT=Path(__file__).resolve().parent/'outputs'
 
 
+@lru_cache(maxsize=1)
+def correspondence_lookup():
+    d=pd.read_csv(OUT/'csv/audited_atom_correspondence.csv')
+    return d.set_index(['system','original_site']).cross_site.to_dict()
+
+
 def site_key(system,site):
-    return f'{system}:{site}' if site.startswith('unmapped_') else site
+    return correspondence_lookup()[system,site]
 
 
 def pair_key(system,a,b):
@@ -18,6 +25,9 @@ def pair_key(system,a,b):
 
 def build_cross_system_tables(atoms,identified,dictionary,config):
     from higher_ranked_controls import PRIMARY,ATOM_TARGETS,rank_context,table,fmt
+    from atom_correspondence import build_correspondence
+    build_correspondence()
+    correspondence_lookup.cache_clear()
     atom_metric='atomic_work_kcal_mol';pair_metric='radial_work_kcal_mol'
     atoms=atoms[atoms.window==PRIMARY].copy()
     allpairs=pd.read_csv(OUT/'csv/contact_controls_pairs.csv').fillna({'nominated':''})
@@ -38,7 +48,8 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
              'sub_alkylC3':'基質アミノ置換基の末端CH₃（枝2）'}
     for r in atoms.itertuples():
         labels[r.cross_key]=special.get(r.site,
-            f'{r.element}{r.atom}' if r.cross_system_mapped else f'{r.system}のH{r.atom}（個体対応未確定）')
+            f'{r.element}{r.atom}' if r.cross_system_mapped else
+            f'対応H（MoriPF H{r.cross_key.removeprefix("H_ref")}）')
     records=[];audits=[]
 
     def emit(kind,target,pool,selections,candidates,lookup,metric):
@@ -104,7 +115,8 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
     text+=(OUT.parent/'docs/work_comparison_groups_ja.md').read_text()+'\n\n'
     text+='共通のC–N距離2.50→2.10 Åについて、符号付きの仕事をMoriPF・RAFA14・RAFA15・RAFA16の列に並べた。MoriPFとの差には換算していない。★が着目対象。各セルには仕事と実際の原子番号を、詳細説明列には各系の候補内での絶対値順位／候補数と選択理由を示す。正の仕事はエネルギー上昇側、負は低下側の寄与であり、正負を区別して比較する。\n\n'
     text+='各系で「上位全件＋着目対象＋直下3件」を選び、その**和集合**を表の行にした。他系ではもっと下位になる行も削除せず、元の仕事と順位を示す。行の順は選択元の系での最も小さい順位を基準にした表示順で、4系共通の順位ではない。\n\n'
-    text+='対応は既存の位置ラベルに従う。F→Hの置換も同じ環位置として並べる。選択アミンHは各系のTSで環のアミン側F/Hに近いHであり、同じ役割としての対応である。アルキル基の等価Hは個体対応が確定していないため、原子番号が同じでも別系のHと同じ行には結び付けない。該当行を系固有の行として残し、他系を「—」にする（ゼロではない）。\n\n'
+    text+='**原子対応を再確認し、全4系・全57原子の一対一対応を確認した。** Lysモデルとクマリン骨格は元素も含めて対応し、置換ベンゼンのF/Hは同じ結合位置として対応する。従来未対応としていた各系15個のアルキルHも、結合先と局所座標を共通IRC区間41点・TSで照合できた。以前の1点だけの行は対応する4系を統合し、フィットを再計算した。各系内部の仕事・順位・候補選択は変更していない。\n\n'
+    text+='[全57位置の対応表と確認方法](atom_correspondence_audit_ja.md) · [原子対応CSV](../csv/audited_atom_correspondence.csv)。H_ref49などの位置ラベルは「MoriPFのH49に対応する位置」を意味し、各系の実際の原子番号はセル内に併記した。\n\n'
     text+='### 対応する原子の仕事\n\n4つの着目原子それぞれについて選択した行を、さらに4系で和集合にした。順位の母集団は各系の全57原子。各系での全57原子・合計・障壁に対する割合は後続の個別表にある。\n\n'
     selections={};candidates={}
     for s in SYSTEMS:

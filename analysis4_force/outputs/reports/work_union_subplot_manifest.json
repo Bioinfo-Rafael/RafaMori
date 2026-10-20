@@ -108,15 +108,7 @@
       "atoms-037",
       "atoms-038",
       "atoms-039",
-      "atoms-040",
-      "atoms-041",
-      "atoms-042",
-      "atoms-043",
-      "atoms-044",
-      "atoms-045",
-      "atoms-046",
-      "atoms-047",
-      "atoms-048"
+      "atoms-040"
     ]
   },
   {
@@ -132,49 +124,7 @@
       "atoms-037",
       "atoms-038",
       "atoms-039",
-      "atoms-040",
-      "atoms-041",
-      "atoms-042",
-      "atoms-043",
-      "atoms-044",
-      "atoms-045",
-      "atoms-046",
-      "atoms-047",
-      "atoms-048"
-    ]
-  },
-  {
-    "group": "atoms",
-    "kind": "scatter",
-    "page": 4,
-    "path": "25_atoms_scatter_04.png",
-    "panel_ids": [
-      "atoms-049",
-      "atoms-050",
-      "atoms-051",
-      "atoms-052",
-      "atoms-053",
-      "atoms-054",
-      "atoms-055",
-      "atoms-056",
-      "atoms-057"
-    ]
-  },
-  {
-    "group": "atoms",
-    "kind": "bars",
-    "page": 4,
-    "path": "26_atoms_bars_04.png",
-    "panel_ids": [
-      "atoms-049",
-      "atoms-050",
-      "atoms-051",
-      "atoms-052",
-      "atoms-053",
-      "atoms-054",
-      "atoms-055",
-      "atoms-056",
-      "atoms-057"
+      "atoms-040"
     ]
   },
   {
@@ -196,9 +146,7 @@
       "amine_matched-011",
       "amine_matched-012",
       "amine_matched-013",
-      "amine_matched-014",
-      "amine_matched-015",
-      "amine_matched-016"
+      "amine_matched-014"
     ]
   },
   {
@@ -220,43 +168,7 @@
       "amine_matched-011",
       "amine_matched-012",
       "amine_matched-013",
-      "amine_matched-014",
-      "amine_matched-015",
-      "amine_matched-016"
-    ]
-  },
-  {
-    "group": "amine_matched",
-    "kind": "scatter",
-    "page": 2,
-    "path": "25_amine_matched_scatter_02.png",
-    "panel_ids": [
-      "amine_matched-017",
-      "amine_matched-018",
-      "amine_matched-019",
-      "amine_matched-020",
-      "amine_matched-021",
-      "amine_matched-022",
-      "amine_matched-023",
-      "amine_matched-024",
-      "amine_matched-025"
-    ]
-  },
-  {
-    "group": "amine_matched",
-    "kind": "bars",
-    "page": 2,
-    "path": "26_amine_matched_bars_02.png",
-    "panel_ids": [
-      "amine_matched-017",
-      "amine_matched-018",
-      "amine_matched-019",
-      "amine_matched-020",
-      "amine_matched-021",
-      "amine_matched-022",
-      "amine_matched-023",
-      "amine_matched-024",
-      "amine_matched-025"
+      "amine_matched-014"
     ]
   },
   {
@@ -457,22 +369,7 @@
     "page": 5,
     "path": "25_amine_broad_scatter_05.png",
     "panel_ids": [
-      "amine_broad-065",
-      "amine_broad-066",
-      "amine_broad-067",
-      "amine_broad-068",
-      "amine_broad-069",
-      "amine_broad-070",
-      "amine_broad-071",
-      "amine_broad-072",
-      "amine_broad-073",
-      "amine_broad-074",
-      "amine_broad-075",
-      "amine_broad-076",
-      "amine_broad-077",
-      "amine_broad-078",
-      "amine_broad-079",
-      "amine_broad-080"
+      "amine_broad-065"
     ]
   },
   {
@@ -481,52 +378,7 @@
     "page": 5,
     "path": "26_amine_broad_bars_05.png",
     "panel_ids": [
-      "amine_broad-065",
-      "amine_broad-066",
-      "amine_broad-067",
-      "amine_broad-068",
-      "amine_broad-069",
-      "amine_broad-070",
-      "amine_broad-071",
-      "amine_broad-072",
-      "amine_broad-073",
-      "amine_broad-074",
-      "amine_broad-075",
-      "amine_broad-076",
-      "amine_broad-077",
-      "amine_broad-078",
-      "amine_broad-079",
-      "amine_broad-080"
-    ]
-  },
-  {
-    "group": "amine_broad",
-    "kind": "scatter",
-    "page": 6,
-    "path": "25_amine_broad_scatter_06.png",
-    "panel_ids": [
-      "amine_broad-081",
-      "amine_broad-082",
-      "amine_broad-083",
-      "amine_broad-084",
-      "amine_broad-085",
-      "amine_broad-086",
-      "amine_broad-087"
-    ]
-  },
-  {
-    "group": "amine_broad",
-    "kind": "bars",
-    "page": 6,
-    "path": "26_amine_broad_bars_06.png",
-    "panel_ids": [
-      "amine_broad-081",
-      "amine_broad-082",
-      "amine_broad-083",
-      "amine_broad-084",
-      "amine_broad-085",
-      "amine_broad-086",
-      "amine_broad-087"
+      "amine_broad-065"
     ]
   },
   {
