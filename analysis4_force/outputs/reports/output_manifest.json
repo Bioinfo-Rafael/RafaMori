@@ -741,8 +741,8 @@
   },
   {
     "path": "reports/cross_system_work_comparison_ja.md",
-    "bytes": 84157,
-    "sha256": "34475f4033d103360e12fc2fd5a54ee8f7da218b986cf9fc51e99fa8b3eb9f16"
+    "bytes": 89622,
+    "sha256": "aede9c7d87eab04d55af8007f750aa3cb4116f16e51f13374a3e630b703b2ea8"
   },
   {
     "path": "reports/cross_system_work_union_audit.json",
@@ -786,8 +786,8 @@
   },
   {
     "path": "reports/higher_ranked_controls_summary_ja.md",
-    "bytes": 461235,
-    "sha256": "f58dfc1fe838ac03151f312882c4a34b9730eed353373db7c608132d8bb1d857"
+    "bytes": 466700,
+    "sha256": "e8524235f31555d90b567406032d0678d317298722301046e5934442f929a6c7"
   },
   {
     "path": "reports/log_only_research_plan_ja.md",

@@ -62,7 +62,7 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
         best={k:min(int(g.loc[g.cross_key==k,'rank'].iloc[0]) for g in selections.values()
                     if k in set(g.cross_key)) for k in union}
         ordered=sorted(union,key=lambda k:(best[k],k))
-        rows=[]
+        rows=[];detail_rows=[]
         for key in ordered:
             work=np.array([lookup[s].loc[key,metric] for s in SYSTEMS],dtype=float)
             stat=statistics(work,barriers.loc[list(SYSTEMS)].to_numpy(float))
@@ -113,17 +113,21 @@ def build_cross_system_tables(atoms,identified,dictionary,config):
             name=labels[key] if kind=='atom' else ' ··· '.join(labels[k] for k in key.split('||'))
             if target_any:name='**★ '+name+'**'
             cv=f'{stat["std_over_signed_mean"]:.3f}' if np.isfinite(stat['std_over_signed_mean']) else 'N/A'
-            rows.append([name,*cells,f'{stat["pearson_r"]:.3f}',f'{stat["r_squared"]:.3f}',cv,' ／ '.join(details)])
+            rows.append([name,*cells,f'{stat["pearson_r"]:.3f}',f'{stat["r_squared"]:.3f}',cv])
+            detail_rows.append([name,*details])
         audits.append(dict(kind=kind,target=target,pool=pool,union_count=len(union),
             selected_keys={s:sorted(g.cross_key) for s,g in selections.items()},union_keys=sorted(union)))
-        return table(['対応する原子' if kind=='atom' else '対応する接触',
+        row_header='対応する原子' if kind=='atom' else '対応する接触'
+        numerical=table([row_header,
                       *[f'{s}：{"原子の仕事" if kind=="atom" else "接触方向の仕事"} / kcal/mol' for s in SYSTEMS],
                       '正方向ΔG‡とのPearson r（無次元）','直線フィットR²（無次元）',
-                      '仕事のSTD/mean（無次元）','詳細説明'],rows)+'\n'
+                      '仕事のSTD/mean（無次元）'],rows)+'\n'
+        explanation=table([row_header,*[f'{s}：順位・選択理由・位置' for s in SYSTEMS]],detail_rows)
+        return numerical+'<details>\n<summary>詳細説明表：各系の順位・選択理由・原子の位置</summary>\n\n'+explanation+'\n</details>\n\n'
 
     text='## 分子系を横に並べた仕事の比較（和集合）\n\n'
     text+=(OUT.parent/'docs/work_comparison_groups_ja.md').read_text()+'\n\n'
-    text+='共通のC–N距離2.50→2.10 Åについて、符号付きの仕事をMoriPF・RAFA14・RAFA15・RAFA16の列に並べた。MoriPFとの差には換算していない。★が着目対象。各セルには仕事と実際の原子番号を、詳細説明列には各系の候補内での絶対値順位／候補数と選択理由を示す。正の仕事はエネルギー上昇側、負は低下側の寄与であり、正負を区別して比較する。\n\n'
+    text+='共通のC–N距離2.50→2.10 Åについて、符号付きの仕事をMoriPF・RAFA14・RAFA15・RAFA16の列に並べた。MoriPFとの差には換算していない。★が着目対象。数値表には仕事・原子番号・r・R²・STD/meanを示す。各系の候補内での絶対値順位／候補数、選択理由、原子の位置は、直後の折りたたみ式の詳細説明表に分けた。両表の行の対象と順序は同じ。正の仕事はエネルギー上昇側、負は低下側の寄与であり、正負を区別して比較する。\n\n'
     text+='**相関列は、その行の4系の符号付き仕事と、下表の正方向ΔG‡とのPearson相関係数r、および散布図の切片付き直線フィットの決定係数R²。** どちらも無次元で、小数点以下3桁を表示する。rが負なら仕事が大きい系ほどΔG‡が低く、正なら高い。R²は相関の正負を表さず、この回帰ではr²に等しい。各系の候補条件外の値も含め、散布図と同じ4点で計算した（n=4）。行の選別や順位付けは相関では行っていない。\n\n'
     text+='**STD/mean列は、その行の4系の仕事の母標準偏差（ddof=0）を、符号付き算術平均で割った値。** 棒グラフのタイトルと同じ無次元量を小数点以下3桁で示す。平均が負なら比も負になり、正負の相殺で平均が小さくなると比は大きくなる。平均が数値的にゼロならN/Aとする。\n\n'
     text+=table(['相関に用いたエネルギー',*[f'{s} / kcal/mol' for s in SYSTEMS]],
