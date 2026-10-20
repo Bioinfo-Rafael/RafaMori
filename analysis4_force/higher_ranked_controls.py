@@ -301,6 +301,7 @@ def write_overview(atoms,pairs,controls,config):
 '''
     for system in atoms.system.unique():
         text+=f'- [{system}：番号付き構造式・着目対象・上位全件・直下3件](higher_ranked_controls_{system}_ja.md)\n'
+    text+='\n'+(HERE/'docs/force_work_definitions_ja.md').read_text()+'\n'
     text+='''
 このまとめの後半に、4系すべての番号付き構造式と比較表を掲載した。各系の個別ページにも同じ表を置いた。★が着目対象で、上位だけでなく指定対象自身と直下3件も同じ表に載せた。広い比較の表は折りたたんである。
 
