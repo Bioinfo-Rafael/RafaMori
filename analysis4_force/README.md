@@ -8,6 +8,7 @@
 
 - `../data/completed_20261017/manifest.json` に原本のファイル名、サイズ、SHA-256を保存。
 - 新しい `LYS (1).LOG` は `Lys.log` として旧ファイルを置換。manifestに元ファイル名を記録。17ログを個別にgzip圧縮し、Gitに保存。展開後のバイト列をハッシュで照合する。
+- 2026-10-22：RAFA15生成物を `Product/RAFA15_LYS_OPTFREQ2.LOG` に更新。旧LOGとgzip原本は `../data/completed_20261017/archive/20261022/Product/` に退避し、別manifestで保存。現行入力manifestには新ログを登録。
 - `config/systems.yaml` は4系のIRC・反応物・生成物・TSと求核Nの対応。
 - `config/atom_map.csv` と `analysis_targets.yaml` はTS構造から再生成。反応C20、O19、O21、フェニル環C23–C28という共有骨格の番号は入力に基づく前提で、元素と環の結合性を検査する。
 - アミンNの共有結合Hを2個抽出。全Fとの組合せを保存し、TSで最短のF···Hペアを図示対象として固定する。途中で最短ペアを切り替えない。
@@ -36,7 +37,7 @@
 
 反応物分子＋Lysの組成・電荷がTS・生成物に一致し、計算条件・温度・圧力が一致することを検証する。新しいLysはM06-2X/6-311++G(d,p)・SMD水のopt/freq正常終了、33モード・虚振動なし。`energetics.py` で参照条件の不整合や熱化学の欠落を拒否する。
 
-分離反応物基準の `ΔE‡ = E_TS − E_substrate − E_Lys`、`ΔG‡ = G_TS − G_substrate − G_Lys` と、生成物の反応エネルギーを計算する。各系の値をそのまま表示する。MoriPFを引く系間のゼロ合わせとそのCSVは廃止した。全電子エネルギー（Hartree）も保存する。
+分離反応物基準の `ΔE‡ = E_TS − E_substrate − E_Lys`、`ΔG‡ = G_TS − G_substrate − G_Lys` と、生成物の反応エネルギーを計算する。逆向きの障壁は `X_TS − X_product`（X = E, H, G）として同時に計算し、`directional_barriers.csv` と `directional_barriers.json` にも保存する。各系の値をそのまま表示する。MoriPFを引く系間のゼロ合わせとそのCSVは廃止した。全電子エネルギー（Hartree）も保存する。
 
 Gibbs値は298.15 K・1 atmのRRHOモデルで、1 Mや準調和への補正は行わない。RAFA15の微小虚振動は `RRHO_G_provisional=true` として残す。`absolute_barrier_valid` は条件・組成が整合した算術値のフラグであり、反応物の厳密な極小確認は `reactant_minimum_verified` に分ける。
 

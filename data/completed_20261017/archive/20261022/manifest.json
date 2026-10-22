@@ -1,0 +1,10 @@
+[
+  {
+    "path": "data/completed_20261017/archive/20261022/Product/RAFA15_HB_LYS.LOG",
+    "bytes": 73122702,
+    "sha256": "34eec23ab9ac762cbdfa1dd6d4789ecd08caf8a2543aa5d0625ed4cf75aad551",
+    "original_path": "data/completed_20261017/Product/RAFA15_HB_LYS.LOG",
+    "archived_on": "2026-10-22",
+    "superseded_by": "data/completed_20261017/Product/RAFA15_LYS_OPTFREQ2.LOG"
+  }
+]

@@ -31,6 +31,30 @@ class ThermochemistryTests(unittest.TestCase):
         self.assertTrue((audit[audit.role=='irc'].freq_thermochemistry_blocks==0).all())
         self.assertLess(audit.H_minus_G_minus_printed_TS_kcal_mol.abs().max(),.001)
 
+    def test_reverse_barriers_use_current_product_and_close_thermodynamic_cycle(self):
+        audit=json.loads((OUT/'reports/stationary_point_audit.json').read_text())
+        barriers=pd.read_csv(OUT/'csv/directional_barriers.csv').set_index('system')
+        energy=pd.read_csv(OUT/'csv/energy_comparison.csv').set_index('system')
+        saved=json.loads((OUT/'reports/directional_barriers.json').read_text())
+        for system,row in barriers.iterrows():
+            records={r['role']:r for r in audit if r['system']==system}
+            exported=next(r for r in saved if r['system']==system)
+            self.assertEqual(exported['product_sha256'],records['product']['sha256'])
+            for quantity,key,label in [('E','energy_hartree','electronic'),('H','H_hartree','enthalpy'),('G','G_hartree','RRHO_G')]:
+                reverse=(records['ts'][key]-records['product'][key])*KCAL
+                self.assertAlmostEqual(row[f'reverse_delta_{quantity}_kcal_mol'],reverse,places=8)
+                self.assertAlmostEqual(energy.loc[system,f'reverse_{label}_barrier_kcal_mol'],reverse,places=8)
+                self.assertAlmostEqual(exported[f'reverse_delta_{quantity}_kcal_mol'],reverse,places=8)
+            for quantity in ['delta_E','delta_H','delta_G','T_delta_S']:
+                self.assertAlmostEqual(row[f'forward_{quantity}_kcal_mol']-row[f'reverse_{quantity}_kcal_mol'],
+                                       row[f'reaction_{quantity}_kcal_mol'],places=8)
+        r=barriers.loc['RAFA15']
+        self.assertEqual(Path(r.product_log).name,'RAFA15_LYS_OPTFREQ2.LOG')
+        self.assertAlmostEqual(r.reverse_delta_E_kcal_mol,2.2629309403,places=8)
+        self.assertAlmostEqual(r.reverse_delta_G_kcal_mol,.9964850448,places=8)
+        self.assertTrue(r.forward_RRHO_G_provisional)
+        self.assertFalse(r.reverse_RRHO_G_provisional)
+
     def test_irc_values_and_constant_correction_are_preserved(self):
         data=pd.read_csv(OUT/'csv/thermochemistry_display_profiles.csv')
         e=pd.read_csv(OUT/'csv/energy_comparison.csv').set_index('system')

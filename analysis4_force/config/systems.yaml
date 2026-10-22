@@ -14,7 +14,7 @@ systems:
   RAFA15:
     irc: IRC/RAFA15_IRC2.LOG
     reactant: Reactant/RAFA15_UP.LOG
-    product: Product/RAFA15_HB_LYS.LOG
+    product: Product/RAFA15_LYS_OPTFREQ2.LOG
     ts: TS/RAFA15_TS6.LOG
     reaction_N: 43
   RAFA16:

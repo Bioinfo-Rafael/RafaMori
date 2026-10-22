@@ -14,7 +14,7 @@ from scipy.interpolate import CubicHermiteSpline
 from matplotlib.lines import Line2D
 import matplotlib.pyplot as plt
 
-from energetics import KCAL, entropy_terms
+from energetics import KCAL, entropy_terms, reverse_barrier_terms
 from plotting4 import SYSTEM_COLORS
 from reporting import markdown
 from figure_explanations import write_annotated_report
@@ -67,6 +67,7 @@ def thermochemistry_tables():
     for system in energy.index:
         records = {r['role']: r for r in audit if r['system'] == system}
         terms = entropy_terms(records['reactant'], records['ts'], records['product'], lys)
+        terms.update(reverse_barrier_terms(records['ts'], records['product']))
         for name, value in terms.items():
             energy.loc[system, name] = value
         ref = {q: records['reactant'][k] + lys[k] for q, k in [('E','energy_hartree'),('H','H_hartree'),('G','G_hartree')]}
@@ -243,7 +244,7 @@ L = clip(2 |ΔE_gap| / max(|m|, 0.25), 0.25 × IRC幅, 0.75 × IRC幅)
 
 接続線は3次Hermite曲線で、IRC側では値と傾きをIRC末端に合わせ、横棒側では傾きを0にする。これにより接続点で値と1階微分が連続になり、垂直な接続や傾きの急な折れを避ける。2階微分の連続性は課していない。
 
-**準位差と末端の傾きの向きが合わなければ、滑らかな接続には途中の谷・山が必要になる。** たとえば左の分離反応物の準位がIRC左端より高く、IRC左端ではTSへ向かってエネルギーが上がっている場合、一度下がってから上がる形になる。この図の点線に現れる谷・山は、未知の中間体や障壁を発見したものではない。RAFA15では生成物optとIRC末端の構造対応にも留保があるため、接続線の形を機構の根拠には使わない。
+**準位差と末端の傾きの向きが合わなければ、滑らかな接続には途中の谷・山が必要になる。** たとえば左の分離反応物の準位がIRC左端より高く、IRC左端ではTSへ向かってエネルギーが上がっている場合、一度下がってから上がる形になる。この図の点線に現れる谷・山は、未知の中間体や障壁を発見したものではない。RAFA15は2026-10-22受領の新生成物ログに更新した。生成物optはIRC末端より低エネルギーとなり、構造差も小さくなったが、接続線の形は機構の根拠には使わない。[逆向き障壁と生成物の再評価](directional_barriers_discussion_ja.md)を参照。
 
 ## 保存した値と検証
 
@@ -282,6 +283,8 @@ def main():
     models=build_profiles(energy)
     draw_matrix(models)
     write_report(energy)
+    from directional_barriers import main as write_directional_barriers
+    write_directional_barriers()
     print(energy[['T_delta_S_activation_kcal_mol','G_minus_E_activation_kcal_mol']].round(4).to_string())
 
 

@@ -1,12 +1,12 @@
 # 解析資料の案内：どのMarkdownを読めばよいか
 
-更新日：2026-10-20（JST）。現在の対象はMoriPF・RAFA14・RAFA15・RAFA16の4系。ここを文書の入口とし、目的別に必要な資料を開く。似た内容の報告は解析を追加した順に残っているため、古い総括と最新の比較結果を区別する。
+更新日：2026-10-22（JST）。現在の対象はMoriPF・RAFA14・RAFA15・RAFA16の4系。ここを文書の入口とし、目的別に必要な資料を開く。似た内容の報告は解析を追加した順に残っているため、古い総括と最新の比較結果を区別する。
 
 ## 最初に読む3つ
 
 1. [仕事の大きさ・ばらつき・相関を合わせた考察](work_candidate_assessment_ja.md)：現在の結論と、Fによる反応促進についてどこまで言えるか。
 2. [4系を横に並べた仕事の比較](cross_system_work_comparison_ja.md)：原子・接触の仕事、Pearson r、R²、STD/mean、散布図・棒グラフ。数値表と詳細説明表は分離してある。
-3. [正方向・逆方向の活性化障壁](directional_barriers_discussion_ja.md)：電子エネルギー・自由エネルギー・エントロピー項の障壁と、RAFA15生成物の問題。
+3. [正方向・逆方向の活性化障壁](directional_barriers_discussion_ja.md)：電子エネルギー・自由エネルギー・エントロピー項の障壁と、RAFA15新生成物による逆向き障壁の再計算。
 
 原子番号が分からなくなったら[全57位置の対応表](atom_correspondence_audit_ja.md)、図の読み方が分からなければ[図の説明](figure_guide_ja.md)へ進む。
 
@@ -42,6 +42,8 @@ O21は着目候補の中では有力だが、原子仕事全体の最大成分�
 | RAFA15 | −4.587 | 8.943 |
 | RAFA16 | −0.579 | 15.023 |
 
+2026-10-22更新：RAFA15生成物を `RAFA15_LYS_OPTFREQ2.LOG` に置換。逆向きΔE‡ = 2.263、ΔG‡ = 0.996 kcal/molとなり、旧ログの負値は解消した。正方向の値は変更なし。
+
 出典：[energy_comparison.csv](../csv/energy_comparison.csv)。RRHO自由エネルギーは298.15 K・1 atm。RAFA15反応物には微小な虚振動があり、同系のΔG‡は暫定値として扱う。電子障壁が負でも、自由エネルギー障壁がないという意味ではない。
 
 | 比較する2系 | 正方向ΔG‡の差の大きさ / kcal/mol |
@@ -76,7 +78,7 @@ $$
 | [higher_ranked_controls_RAFA15_ja.md](higher_ranked_controls_RAFA15_ja.md) | RAFA15について同じ構成。 | アミン側F／反対側Hの系を調べる。 |
 | [higher_ranked_controls_RAFA16_ja.md](higher_ranked_controls_RAFA16_ja.md) | RAFA16について同じ構成。 | 両側ortho位置がFの系を調べる。 |
 | [atom_correspondence_audit_ja.md](atom_correspondence_audit_ja.md) | 全57位置の4系間対応。結合関係、局所配置、共通IRC区間41点・TSによるH対応の確認。 | 同じ行が本当に同じ位置か、原子番号がどうずれるかを確認する。最新の横並び表・図25/26はこの対応を使用。 |
-| [directional_barriers_discussion_ja.md](directional_barriers_discussion_ja.md) | 正方向・逆方向のΔE‡・ΔG‡・TΔSの表と考察。RAFA15生成物とIRC末端の不整合も説明。 | 障壁・生成物の安定性・逆反応を読む。 |
+| [directional_barriers_discussion_ja.md](directional_barriers_discussion_ja.md) | 正方向・逆方向のΔE‡・ΔG‡・TΔSの表と考察。RAFA15新生成物とIRC末端の対応改善も説明。 | 障壁・生成物の安定性・逆反応を読む。 |
 | [thermochemistry_profiles_ja.md](thermochemistry_profiles_ja.md) | E・G・TΔSを3×3で表示。IRCのみ、両端の反応物／生成物準位、滑らかな接続を比較。 | エネルギープロファイルを見る。IRC上のG・TΔSはTS熱補正固定の参考曲線で、各点のfreq計算ではない。 |
 | [figure_guide_ja.md](figure_guide_ja.md) | 図01〜26の目的、軸・単位、色、パネル、解釈、amine/opposite・matched/broadの意味。 | 図の読み方を確認する。 |
 | [summary_ja.md](summary_ja.md) | 4系解析の基礎的な総括。障壁、IRC方向、反応力、距離、計算条件と制約。 | 全体像と入力計算を知る資料。後から追加した和集合・全H対応・候補評価までは網羅しない。 |

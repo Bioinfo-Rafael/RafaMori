@@ -140,14 +140,19 @@
     "sha256": "ae80e884d3292b603e3742fa8ac638c72a7aadfae577c24a0ab000d3137690da"
   },
   {
+    "path": "csv/directional_barriers.csv",
+    "bytes": 3168,
+    "sha256": "3d246ebf9050ec826478ed8ff27ffe4ce99083e02607fec60a24e426a871102c"
+  },
+  {
     "path": "csv/endpoint_correspondence.csv",
-    "bytes": 492,
-    "sha256": "df0343ad3f6ce62651902e3d67339634fe5bc3d6e0c44569eee11b10d027d65b"
+    "bytes": 495,
+    "sha256": "79965252d8ed52e954526b3b0f75eabdfad33fb7f54e7175710ea77352710be9"
   },
   {
     "path": "csv/energy_comparison.csv",
-    "bytes": 4891,
-    "sha256": "703b893109454f112e128021264483b138f093958f890bb9bf20b28a7f7707e2"
+    "bytes": 5509,
+    "sha256": "2fe9aad77bcf83f8e36c4b8cc5f5b00ccff92426db1ed506d9c4e987ecb6263b"
   },
   {
     "path": "csv/fluorine_positions.csv",
@@ -286,8 +291,8 @@
   },
   {
     "path": "csv/stationary_point_audit.csv",
-    "bytes": 5616,
-    "sha256": "959acab47abca4734fc49c687648cbd209dd956ea44f0464583dc84ef3307321"
+    "bytes": 5621,
+    "sha256": "f138e8a84f4eb5d6d923a2229d42f2820c1fd65858cf4b0e2eb0149373efc7de"
   },
   {
     "path": "csv/system_summary.csv",
@@ -296,23 +301,23 @@
   },
   {
     "path": "csv/thermochemistry_connector_audit.csv",
-    "bytes": 4498,
-    "sha256": "7d870dfcddda424778c07173f8b2173e9f5d6cccf82d89ceb84ec416d4a50108"
+    "bytes": 4484,
+    "sha256": "73e1dcff12908766fd755bfaa0d5c4c0c618b2fc5b309672c094ea8620ebb120"
   },
   {
     "path": "csv/thermochemistry_display_profiles.csv",
-    "bytes": 1054451,
-    "sha256": "6f675bab8c3a2f8886b0b0cf481f91f9a9bb64ca69e53266e3c59106939bb435"
+    "bytes": 1055568,
+    "sha256": "495297a98bcd18ae3808c03bf0fb9b90a3f4c82f7b4d5d534053220468db6eb4"
   },
   {
     "path": "csv/thermochemistry_log_audit.csv",
-    "bytes": 1845,
-    "sha256": "e84274e42f542105757b4a45d0c211d4081a9259b8994ab9117806801353dbff"
+    "bytes": 1852,
+    "sha256": "b3eaf8c3858bd58c3842e691e2152b28571e270b954150eab00ace8feee2d992"
   },
   {
     "path": "csv/thermochemistry_states.csv",
-    "bytes": 2197,
-    "sha256": "1c151a1b780351a6804f64809b3118a8f7efaaca3242cf8f7ebdd9610dfab3ce"
+    "bytes": 2194,
+    "sha256": "daf0e0abc101565c7731e7a25157537b15b133752a74bb8f861498b2cb65172c"
   },
   {
     "path": "csv/two_sided_atom_mapping.csv",
@@ -531,13 +536,13 @@
   },
   {
     "path": "figures/23_energy_entropy_profiles_3x3.png",
-    "bytes": 528305,
-    "sha256": "5bb3596c98408ce4baa8740fa1209ac18a0579539cda51f5cce4e6e4628861dd"
+    "bytes": 523766,
+    "sha256": "a257e0602feada8502ac02867ce753401ae28326ca770822e4283ece172ccc0e"
   },
   {
     "path": "figures/23_energy_entropy_profiles_3x3.svg",
-    "bytes": 362888,
-    "sha256": "c6705b0ab58debe05fdfad4fe86a886afab92cd5b277b27b0f315d104a3a614b"
+    "bytes": 362010,
+    "sha256": "512ebb6a878893f07e16d743bf831fee43562dd88c4278e73d4a7ca70b05c1a6"
   },
   {
     "path": "figures/24_MoriPF_numbered_structure.png",
@@ -736,8 +741,8 @@
   },
   {
     "path": "reports/README.md",
-    "bytes": 12950,
-    "sha256": "362e64da4d0f9953c968498ce0b1fd496bdf1d56c6e1be4fbcfa272ca04f011d"
+    "bytes": 13194,
+    "sha256": "bc24a405bdeb87b38ae75c4a7d0fb0ad21425f7a1c2e6d1b1a146a039fbdc4fe"
   },
   {
     "path": "reports/atom_correspondence_audit_ja.md",
@@ -760,14 +765,19 @@
     "sha256": "1b1b22a357280770bdf8677a2bfbc2774ee856a34faa39a04708ba9514a469f5"
   },
   {
+    "path": "reports/directional_barriers.json",
+    "bytes": 5953,
+    "sha256": "6060a45691f68e7fda14af684f22f7a8a0b511481780ed7032cf930da073fce7"
+  },
+  {
     "path": "reports/directional_barriers_discussion_ja.md",
-    "bytes": 8665,
-    "sha256": "5c4d991f2eca00088101804c9fc611928b7f11b531f5fa8a330fc55635453cc5"
+    "bytes": 6860,
+    "sha256": "0f0fb31c84bf57c2989029f28a8f2b079d77592f8e876bb800afac5026191d14"
   },
   {
     "path": "reports/execution.json",
-    "bytes": 882,
-    "sha256": "d2297607140f4269369f51435328bc9f538db5fc870b24a2d244b62645d9d60e"
+    "bytes": 749,
+    "sha256": "2a74a67560ce2186dab16a3ab7610eebd5c70d59d3939bd1fb096a5a73659ee2"
   },
   {
     "path": "reports/figure_guide_ja.md",
@@ -811,13 +821,13 @@
   },
   {
     "path": "reports/stationary_point_audit.json",
-    "bytes": 12437,
-    "sha256": "85bbc8a2922caf86778b54e2e898f68faf2102f3c0e61224950d040abd5d9c7c"
+    "bytes": 12442,
+    "sha256": "83a7b6070c60bf37da98a2a587db572779427bf846215f4b4760108843f85b66"
   },
   {
     "path": "reports/summary_ja.md",
-    "bytes": 19158,
-    "sha256": "cd5d1926c91a1855fc7151293886dcc347a51ddcd385c1bb0477d518a6e3bf97"
+    "bytes": 19343,
+    "sha256": "9a0db3ed3cfafa6a5546612ebfc5262e0e699e03ce496addd6bb212b4cceb5cd"
   },
   {
     "path": "reports/test_results.txt",
@@ -826,8 +836,8 @@
   },
   {
     "path": "reports/thermochemistry_profiles_ja.md",
-    "bytes": 7530,
-    "sha256": "796e0d747671d78be1fa9f06407585afcb5708008c7c10f877972ff0c753e689"
+    "bytes": 7701,
+    "sha256": "bbb7d583f3f3194d65d58d4b39960c7a7d049855882f7dbf4b4e36e2cb61a6af"
   },
   {
     "path": "reports/two_sided_contact_summary_ja.md",

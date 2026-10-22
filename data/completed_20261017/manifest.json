@@ -30,9 +30,12 @@
     "sha256": "21aa2d541879c0a0370362b0d7d3e5c5bdc84ae10de8ece29a537ae6b3e9b647"
   },
   {
-    "path": "data/completed_20261017/Product/RAFA15_HB_LYS.LOG",
-    "bytes": 73122702,
-    "sha256": "34eec23ab9ac762cbdfa1dd6d4789ecd08caf8a2543aa5d0625ed4cf75aad551"
+    "path": "data/completed_20261017/Product/RAFA15_LYS_OPTFREQ2.LOG",
+    "bytes": 75777645,
+    "sha256": "e317ddc668a4735c4a2c113b6e01ca9306d042303aa83ef848c9311515bb0863",
+    "source_filename": "RAFA15_LYS_OPTFREQ2.LOG",
+    "updated_on": "2026-10-22",
+    "replaces": "data/completed_20261017/archive/20261022/Product/RAFA15_HB_LYS.LOG"
   },
   {
     "path": "data/completed_20261017/Product/RAFA16_LYS.LOG",

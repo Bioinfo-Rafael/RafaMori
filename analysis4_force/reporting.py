@@ -68,7 +68,7 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
     transition_corr=corr[(corr.region=='transition')&(corr.x=='FH_A')&(corr.y=='CN_A')][['system','n','pearson_r','spearman_r']]
     text=f'''# 4分子系のIRC・反応力解析：結果と解釈
 
-実行日：2026-10-17（JST）。入力：完成.zip内の16ログと、同条件で再計算された `LYS (1).LOG`（保存名 `Lys.log`）。旧結果を上書き更新。既存の2系解析から独立した4系解析。
+入力更新日：2026-10-22（JST）。入力：完成.zip由来のログと、同条件で再計算された `LYS (1).LOG`（保存名 `Lys.log`）。RAFA15生成物は `RAFA15_LYS_OPTFREQ2.LOG` に置換し、旧ログは `data/completed_20261017/archive/20261022/Product/` に退避した。既存の2系解析から独立した4系解析。
 
 ## 背景と問い
 
@@ -90,7 +90,7 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
 
 `ΔE‡ = E_TS − E_substrate − E_Lys`、`ΔG‡ = G_TS − G_substrate − G_Lys`。生成物についても同様に計算した。Lysの電子エネルギーは{lys['energy_hartree']:.9f} Hartree、RRHO Gibbsエネルギーは{lys['G_hartree']:.6f} Hartree。
 
-電子障壁が負でも、分離した2分子の電子エネルギーよりTSが低いという意味であり、反応障壁が存在しないという意味ではない。RRHO Gibbs障壁は全系で正で、IRCの反応物側からTSへもエネルギー上昇がある。生成物側は与えられたopt構造についての値であり、特にRAFA15のIRCとの対応には後述の制限がある。
+電子障壁が負でも、分離した2分子の電子エネルギーよりTSが低いという意味であり、反応障壁が存在しないという意味ではない。RRHO Gibbs障壁は全系で正で、IRCの反応物側からTSへもエネルギー上昇がある。生成物側は与えられたopt構造についての値である。RAFA15の新生成物では旧ログでの負の逆向き障壁が解消した。[正方向・逆方向の障壁と生成物の解釈](directional_barriers_discussion_ja.md)も参照。
 
 ![絶対障壁](../figures/03_absolute_barriers.png)
 
@@ -155,7 +155,7 @@ TSは対応するfreqログの実座標・電子エネルギーを使用した�
 
 {markdown(endpoints)}
 
-生成物optとIRC末端のRMSDは、原子番号をそのまま対応させた重ね合わせの診断値であり、対称等価原子の入れ替え探索はしていない。特にopt生成物がIRC末端より高エネルギーの場合、別配座／別経路の可能性がある。両者を滑らかな接続線で結ばない。
+生成物optとIRC末端のRMSDは、原子番号をそのまま対応させた重ね合わせの診断値であり、対称等価原子の入れ替え探索はしていない。特にopt生成物がIRC末端より高エネルギーの場合、別配座／別経路の可能性がある。両者の間を計算済みの経路として扱わない。図23の滑らかな点線は表示用の接続である。
 
 ## 力・運動解析の検証
 

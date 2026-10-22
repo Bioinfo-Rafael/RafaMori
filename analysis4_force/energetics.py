@@ -60,6 +60,21 @@ def energy_terms(reactant, ts, product, lys, ealpha, eleft):
     for key, label in [('H_hartree','enthalpy'), ('ZPE_corrected_hartree','ZPE_corrected_energy')]:
         values[f'{label}_barrier_kcal_mol']=(ts[key]-reactant[key]-lys[key])*KCAL
     values.update(entropy_terms(reactant,ts,product,lys))
+    values.update(reverse_barrier_terms(ts, product))
+    return values
+
+
+def reverse_barrier_terms(ts, product):
+    """Product-to-TS differences; independent of the separated reactants."""
+    values = {
+        f'reverse_{label}_barrier_kcal_mol': (ts[key] - product[key]) * KCAL
+        for key, label in [('energy_hartree', 'electronic'),
+                           ('H_hartree', 'enthalpy'), ('G_hartree', 'RRHO_G')]
+    }
+    tds = values['reverse_enthalpy_barrier_kcal_mol'] - values['reverse_RRHO_G_barrier_kcal_mol']
+    values['T_delta_S_reverse_activation_kcal_mol'] = tds
+    values['minus_T_delta_S_reverse_activation_kcal_mol'] = -tds
+    values['reverse_RRHO_G_provisional'] = bool(product['imaginary_frequencies'])
     return values
 
 
