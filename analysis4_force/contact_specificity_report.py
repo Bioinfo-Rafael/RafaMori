@@ -73,15 +73,15 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 **2026-10-20追補：[指定対象より上位の原子・接触を一つずつ確認した結果](higher_ranked_controls_summary_ja.md)**。上位には反応C20を含む対や、指定F···Hとは逆向きの力を示す接触があった。以下の絶対値の順位だけで、指定接触の役割を判断しない。
 
-解析日：2026-10-17。追加のDFT計算は行わず、既存ログから各系の全57原子と1596原子対について指標を計算した。比較対象は、原子間距離と結合のつながりを基に選んだ。障壁は各系のΔE‡・ΔG‡そのもの。MoriPFとの差やpercentage pointsは用いない。
+更新日：2026-10-25。RAFA15反応物の置換に伴い、全障壁・相関・対照件数を再計算した。追加のDFT計算は行わず、既存ログから各系の全57原子と1596原子対について指標を計算した。比較対象は、原子間距離と結合のつながりを基に選んだ。障壁は各系のΔE‡・ΔG‡そのもの。MoriPFとの差やpercentage pointsは用いない。
 
 ## 結論
 
 **反対側のH/F···Oは、原子の種類と距離が似た接触と比べると、接触方向の力・仕事が大きい。一方、障壁との相関が同じくらい強い接触は他にもある。アミン側については、「他の接触より値が大きく、障壁との相関も強い」という結果は得られていない。**
 
-元の図15で示した反対側2原子の仕事の合計（電子障壁r≈−0.965）は、同じ分類で4系に共通する対照{int(direct.loc['same_category','n_common_controls'])}個中、{int(direct.loc['same_category','controls_at_least_as_correlated'])}個が同等以上の|r|を持つ。H/F···O/Nかつ平均距離差±0.75 Åに絞っても、対照{int(direct.loc['distance_and_chemistry','n_common_controls'])}個中{int(direct.loc['distance_and_chemistry','controls_at_least_as_correlated'])}個が上回る。図15の高い相関だけでは、着目した接触に特有の関係とはいえない。
+元の図15で示した反対側2原子の仕事の合計（電子障壁r={direct.loc['same_category','target_pearson_r']:.3f}）は、同じ分類で4系に共通する対照{int(direct.loc['same_category','n_common_controls'])}個中、{int(direct.loc['same_category','controls_at_least_as_correlated'])}個が同等以上の|r|を持つ。H/F···O/Nかつ平均距離差±0.75 Åに絞っても、対照{int(direct.loc['distance_and_chemistry','n_common_controls'])}個中{int(direct.loc['distance_and_chemistry','controls_at_least_as_correlated'])}個が上回る。図15の高い相関だけでは、着目した接触に特有の関係とはいえない。
 
-接触方向の仕事（電子障壁r≈−0.967）では、同分類の対照{int(radial.loc['same_category','n_common_controls'])}個中{int(radial.loc['same_category','controls_at_least_as_correlated'])}個が同等以上の|r|を持つ。化学種・距離を絞っても対照{int(radial.loc['distance_and_chemistry','n_common_controls'])}個中{int(radial.loc['distance_and_chemistry','controls_at_least_as_correlated'])}個。したがってこの指標でも「ここだけ相関する」とはいえない。
+接触方向の仕事（電子障壁r={radial.loc['same_category','target_pearson_r']:.3f}）では、同分類の対照{int(radial.loc['same_category','n_common_controls'])}個中{int(radial.loc['same_category','controls_at_least_as_correlated'])}個が同等以上の|r|を持つ。化学種・距離を絞っても対照{int(radial.loc['distance_and_chemistry','n_common_controls'])}個中{int(radial.loc['distance_and_chemistry','controls_at_least_as_correlated'])}個。したがってこの指標でも「ここだけ相関する」とはいえない。
 
 一方、**RAFA15の反対側H56···O21は、原子の種類と平均距離を絞った13候補の中で接触方向の仕事・接触方向の力の平均絶対値とも1位**。同じ対照定義でMoriPFは2位、RAFA14は3位、RAFA16は2位であり、この比較では値が大きい側に位置する。ただし、2原子の仕事を合計した値の順位は4系とも13候補中4位である。反対側の接触に注目する理由にはなるが、この接触が障壁を下げる原因だとはまだ特定できない。
 
@@ -89,7 +89,7 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 {markdown(short)}
 
-「強さと相関の両方で全4系の対象を上回る」対照は、反対側の2原子の仕事の合計には存在しなかった。接触方向の仕事には広い対照でC20···C24が1件あり（r≈−0.995）、H/F···O/Nに限定すると0件。これは指標・対照の選択により結論が変わることを示す。C20···C24は1–4のC···Cなので、同じ化学相互作用とは主張せず、1–4対を除いた感度比較も残した。
+「強さと相関の両方で全4系の対象を上回る」対照は、反対側の2原子の仕事の合計では広い対照で{int(direct.loc['same_category','stronger_and_at_least_as_correlated'])}件、接触方向の仕事では{int(radial.loc['same_category','stronger_and_at_least_as_correlated'])}件。化学種と距離を絞った接触方向の仕事では{int(radial.loc['distance_and_chemistry','stronger_and_at_least_as_correlated'])}件となる。該当する対照は下の表とCSVに記録した。1–4対を除いた感度比較も残し、同じ化学相互作用とは自動的に仮定しない。
 
 ## 今回の問い
 
@@ -136,7 +136,7 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 {markdown(original)}
 
-アミン側の接触方向の力の平均絶対値は電子障壁との|r|順位が同分類で1位だが、各分子内での大きさは下位である。相関順位だけで強い接触と呼べない例になる。
+接触方向の力の平均絶対値についても新しい電子障壁で相関と対照件数を再計算した。各分子内での大きさ順位と系間相関の順位は別であり、相関順位だけで強い接触とは呼べない。
 
 同じ比較を力の平均絶対値で行った結果：
 
@@ -168,7 +168,7 @@ def create_report(atoms,pairs,ranks,corr,spec,examples,perms,config,windows,ener
 
 ## 次に既存logだけで詰めること
 
-現在の結果からは、相関の良い指標を追加探索するより、RAFA15で大きい反対側応答がO21単独の移動・環の回転・C–N形成に伴う共通変形で説明できるかを調べる方が有用。累積仕事と二面角・接触角の変化を同じC–N軸で比較し、指定ペアとH11···O18などの高相関対照を同時に示す。複数の原子力射影は同じ構造運動を共有するので、相関が多数出ること自体も結果として扱う。
+現在の結果からは、相関の良い指標を追加探索するより、RAFA15で大きい反対側応答がO21単独の移動・環の回転・C–N形成に伴う共通変形で説明できるかを調べる方が有用。累積仕事と二面角・接触角の変化を同じC–N軸で比較し、指定ペアと今回の表にある高相関対照を同時に示す。複数の原子力射影は同じ構造運動を共有するので、相関が多数出ること自体も結果として扱う。
 
 原子仕事の座標合わせや接触方向の仕事の微小値への数値誤差の影響は未評価の部分が残る。今回の対照比較は3区間で行ったが、追加の物理計算による独立検証ではない。
 

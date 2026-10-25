@@ -217,7 +217,7 @@ def main():
     from figure_explanations import write_guide
     write_guide()
     manifest_path=reports/'output_manifest.json'
-    manifest=[dict(path=str(p.relative_to(out)),bytes=p.stat().st_size,sha256=sha256(p)) for p in sorted(out.rglob('*')) if p.is_file() and p!=manifest_path]
+    manifest=[dict(path=str(p.relative_to(out)),bytes=p.stat().st_size,sha256=sha256(p)) for p in sorted(out.rglob('*')) if p.is_file() and p.name != '.DS_Store' and p!=manifest_path]
     manifest_path.write_text(json.dumps(manifest,indent=2)+'\n')
     print(summary.to_string(index=False));print('\n'.join(warnings))
 

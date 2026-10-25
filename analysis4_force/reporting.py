@@ -20,14 +20,14 @@ def create_extra_figures(summary,energy,contacts,corrected,figdir,config):
     fig,axes=plt.subplots(1,3,figsize=(14,4.7))
     for ax,col,title in zip(axes,['absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol','alpha_to_TS_kcal_mol'],['Electronic barrier ΔE‡','RRHO Gibbs barrier ΔG‡','Work from alpha to TS']):
         bars=ax.bar(summary.system,summary[col],color=[SYSTEM_COLORS[s] for s in summary.system]);ax.bar_label(bars,fmt='%.2f',padding=3);ax.set(title=title,ylabel='kcal/mol');ax.axhline(0,color='black',lw=.7);ax.margins(y=.22)
-    fig.suptitle('Barriers from each separated substrate + Lys; no inter-system centering\nRAFA15 RRHO values are provisional (small imaginary reactant mode)',fontsize=11)
+    fig.suptitle('Barriers from each separated substrate + Lys; no inter-system centering\nRRHO at 298.15 K, 1 atm; current reactant minima verified',fontsize=11)
     fig.tight_layout();fig.savefig(figdir/'02_barriers_and_work.png',dpi=190);plt.close(fig)
     fig,axes=plt.subplots(1,2,figsize=(11,4.8))
     for ax,col,title in zip(axes,['absolute_electronic_barrier_kcal_mol','absolute_RRHO_G_barrier_kcal_mol'],['Electronic barrier from separated reactants','RRHO Gibbs barrier from separated reactants']):
         bars=ax.bar(summary.system,summary[col],color=[SYSTEM_COLORS[s] for s in summary.system])
         ax.bar_label(bars,fmt='%.2f',padding=3);ax.axhline(0,color='black',lw=.7)
         ax.set(title=title,ylabel='kcal/mol');ax.margins(y=.25)
-    fig.suptitle('M06-2X/6-311++G(d,p), SMD water; RRHO: 298.15 K, 1 atm\nRAFA15 RRHO values are provisional (small imaginary reactant mode)',fontsize=11)
+    fig.suptitle('M06-2X/6-311++G(d,p), SMD water; RRHO: 298.15 K, 1 atm\nRRHO at 298.15 K, 1 atm; current reactant minima verified',fontsize=11)
     fig.tight_layout();fig.savefig(figdir/'03_absolute_barriers.png',dpi=190);plt.close(fig)
     fig,axes=plt.subplots(2,2,figsize=(12,9))
     for ax,system in zip(axes.flat,summary.system):
@@ -68,7 +68,7 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
     transition_corr=corr[(corr.region=='transition')&(corr.x=='FH_A')&(corr.y=='CN_A')][['system','n','pearson_r','spearman_r']]
     text=f'''# 4分子系のIRC・反応力解析：結果と解釈
 
-入力更新日：2026-10-22（JST）。入力：完成.zip由来のログと、同条件で再計算された `LYS (1).LOG`（保存名 `Lys.log`）。RAFA15生成物は `RAFA15_LYS_OPTFREQ2.LOG` に置換し、旧ログは `data/completed_20261017/archive/20261022/Product/` に退避した。既存の2系解析から独立した4系解析。
+入力更新日：2026-10-25（JST）。入力：完成.zip由来のログと、同条件で再計算された `LYS (1).LOG`（保存名 `Lys.log`）。RAFA15生成物は `RAFA15_LYS_OPTFREQ2.LOG` に置換し、旧ログは `data/completed_20261017/archive/20261022/Product/` に退避した。2026-10-25に反応物を `RAFA15__REACTANT_OPTFREQ2 (1).LOG` で更新した（保存先は従来どおり `Reactant/RAFA15_UP.LOG`、旧原本は `archive/20261025/Reactant/`）。既存の2系解析から独立した4系解析。
 
 ## 背景と問い
 
@@ -104,7 +104,7 @@ def write_report(summary,energy,orientation,stationary,endpoints,validation,warn
 
 - RAFA14（ortho Fなし）の最短F···Hは{values.loc['RAFA14','TS_nearest_FH_A']:.2f} Å、電子障壁は{values.loc['RAFA14','absolute_electronic_barrier_kcal_mol']:.2f} kcal/mol。
 - MoriPFとRAFA16は約2.35 Å、N–H···F角約120°の近接配置を持ち、電子障壁はそれぞれ{values.loc['MoriPF','absolute_electronic_barrier_kcal_mol']:.2f}、{values.loc['RAFA16','absolute_electronic_barrier_kcal_mol']:.2f} kcal/mol。
-- RAFA15は最短F···Hが{values.loc['RAFA15','TS_nearest_FH_A']:.2f} Å、角度{values.loc['RAFA15','TS_NHF_angle_deg']:.1f}°でも、電子障壁は{values.loc['RAFA15','absolute_electronic_barrier_kcal_mol']:.2f} kcal/molと最も低い。接触の短さだけでは順位を説明できない。
+- RAFA15は最短F···Hが{values.loc['RAFA15','TS_nearest_FH_A']:.2f} Å、角度{values.loc['RAFA15','TS_NHF_angle_deg']:.1f}°でも、電子障壁は{values.loc['RAFA15','absolute_electronic_barrier_kcal_mol']:.2f} kcal/mol。現在の電子障壁の順位は上表のとおりで、反応物配座の変更によって旧解析の順位が変わった。
 - RAFA15のα→TS仕事は{energies.loc['RAFA15','alpha_to_TS_kcal_mol']:.2f} kcal/molと最大。分離反応物→αは{energies.loc['RAFA15','separated_reactants_to_alpha_kcal_mol']:.2f} kcal/mol。この区間には会合・配座変化が含まれ、特定の接触の安定化には分解できない。
 
 ortho Fの有無、F···H距離、N–H···F角度と障壁を合わせて評価する。短い接触や大きな相関係数だけでは、水素結合・安定化エネルギー・因果関係の証明にならない。F置換に伴う電子効果、分子の配向、立体効果、他の接触も同時に変わる。また、MoriPFはF数自体がRAFA14–16と異なるため、位置だけを比較する対照ではない。
@@ -149,7 +149,7 @@ TSは対応するfreqログの実座標・電子エネルギーを使用した�
 
 分子側の反応物・TS・生成物と新しいLysはすべてM06-2X/6-311++G(d,p)、SMD水。Lysはopt/freq正常終了、13原子・33振動モード・虚振動0個。組成、電荷、計算レベル、温度・圧力、熱化学の有無を確認してから絶対障壁を計算する。旧Lysに由来する異条件の算術値と警告は今回の出力から削除した。
 
-ΔG‡はGaussian標準RRHO値による298.15 K・1 atmのモデル値であり、1 M標準状態補正や低振動数の準調和補正はしていない。1 atmから1 Mへの補正を行う場合、会合型反応の絶対値が変わるが、同一分子数変化の系間比較では共通項は相殺する。低振動数・配座差の誤差は残る。RAFA15反応物には−5.4036 cm⁻¹の小さな虚振動があり、この系のRRHO値は暫定としてフラグを残している。
+ΔG‡はGaussian標準RRHO値による298.15 K・1 atmのモデル値であり、1 M標準状態補正や低振動数の準調和補正はしていない。1 atmから1 Mへの補正を行う場合、会合型反応の絶対値が変わるが、同一分子数変化の系間比較では共通項は相殺する。低振動数・配座差の誤差は残る。RAFA15の新反応物は虚振動なし（最低12.9416 cm⁻¹）で、旧反応物の微小虚振動による暫定フラグを解除した。配座の全探索や、新配座から既存TSへの接続は未検証である。
 
 `absolute_barrier_valid` は計算条件・組成が整合した算術値であることを示す。全反応物が厳密な極小であることや実験速度の再現を保証するフラグではない。別列 `reactant_minimum_verified` と `RRHO_G_provisional` を参照する。単一の与えられた配座・経路についての比較なので、速度定数や実験的反応性の順位は確定しない。
 
@@ -168,7 +168,7 @@ TSは対応するfreqログの実座標・電子エネルギーを使用した�
 - 原子の仕事を経路に沿って積み上げた曲線と、接触距離・角度・環の回転を比べ、RAFA15のO21で仕事が増える位置を調べる。
 - 点を間引く、積分方法や座標の重ね合わせ方を変える、といった確認により、小さな仕事の値と順位がどの程度変わるかを調べる。
 
-追加DFTを伴う配座探索やエネルギー分解は、現在の作業範囲に含めない。微小虚振動など、既存ログだけでは解消できない点は結果の制限として残す。
+追加DFTを伴う配座探索やエネルギー分解は、現在の作業範囲に含めない。反応物の配座集団やTSへの接続など、既存ログだけでは確定できない点は結果の制限として残す。
 
 ## 実行時の警告
 

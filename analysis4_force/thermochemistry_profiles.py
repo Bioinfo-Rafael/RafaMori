@@ -178,7 +178,7 @@ def draw_matrix(models):
                 Line2D([0],[0],color='#555555',marker='D',label='Stationary-state level')]
     fig.suptitle('Four-system energy and entropy profiles: calculated values, fixed-TS approximations, and display connections',fontsize=14,y=.992)
     fig.legend(handles=handles,loc='upper center',bbox_to_anchor=(.5,.965),ncol=4,frameon=False,fontsize=10)
-    fig.text(.5,.015,'Each system uses its own separated reactant + Lys reference; no MoriPF subtraction.  T = 298.15 K, RRHO at 1 atm.\nG − E includes thermal enthalpy corrections and is not TΔS.  RAFA15 thermochemistry remains provisional (small imaginary reactant mode).',ha='center',fontsize=10)
+    fig.text(.5,.015,'Each system uses its own separated reactant + Lys reference; no MoriPF subtraction.  T = 298.15 K, RRHO at 1 atm.\nG − E includes thermal enthalpy corrections and is not TΔS.  Current reactant minima have no imaginary frequencies; conformer/path uncertainty remains.',ha='center',fontsize=10)
     fig.tight_layout(rect=(0,.065,1,.89),w_pad=1.1,h_pad=1.5)
     for ext in ('png','svg'):
         fig.savefig(OUT/f'figures/23_energy_entropy_profiles_3x3.{ext}',dpi=190)
@@ -208,7 +208,7 @@ TΔS‡ = ΔH‡ − ΔG‡
 
 ΔH‡−ΔE‡にはゼロ点エネルギーや熱的な補正が含まれる。表では、依頼されたEとGの差も独立の列として残した。TΔS‡が負なら、エントロピーの寄与−TΔS‡は正となり、自由エネルギー障壁を押し上げる。
 
-RAFA15の−TΔS‡は約11.82 kcal/mol、他の3系は約14.38〜14.59 kcal/mol。今回の配座とRRHO近似では、RAFA15の障壁が低いことには電子エネルギーだけでなく、エントロピーによる押し上げが小さいことも寄与している。ただし、この差をH···O接触だけに割り当てることはできない。RAFA15反応物には微小虚振動が残り、熱化学量は暫定値である。
+RAFA15の新反応物では−TΔS‡は約13.026 kcal/molとなる。他の3系より小さいが、電子障壁が高いためΔG‡は4系で最大となる。旧解析の「最も低障壁」という解釈は更新した。新反応物に虚振動はないが、配座・RRHO近似への依存は残る。この差をH···O接触だけに割り当てることはできない。
 
 ## 3×3の図
 
@@ -268,7 +268,7 @@ H−Gはログに印字されたT×Sと0.001 kcal/mol以内で一致すること
 
 '''+markdown(shown)+'''
 
-G−Eには熱的なエンタルピー補正も含まれるため、TΔSとは異なる。RAFA15はエントロピーによる障壁の押し上げ（−TΔS‡）が他の3系より小さい。微小虚振動による暫定値という扱いは維持する。
+G−Eには熱的なエンタルピー補正も含まれるため、TΔSとは異なる。RAFA15はエントロピーによる障壁の押し上げ（−TΔS‡）が他の3系より小さい。新反応物に虚振動はなく、旧暫定フラグは解除した。電子障壁の増加により、RAFA15のΔG‡は現在4系で最大である。
 
 [3×3のE・G・TΔS図と、滑らかな接続の説明](thermochemistry_profiles_ja.md)
 <!-- thermochemistry:end -->
@@ -295,5 +295,5 @@ if __name__=='__main__':
     import hashlib
     manifest_path=OUT/'reports/output_manifest.json'
     manifest=[dict(path=str(p.relative_to(OUT)),bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest())
-              for p in sorted(OUT.rglob('*')) if p.is_file() and p!=manifest_path]
+              for p in sorted(OUT.rglob('*')) if p.is_file() and p.name != '.DS_Store' and p!=manifest_path]
     manifest_path.write_text(json.dumps(manifest,indent=2)+'\n')

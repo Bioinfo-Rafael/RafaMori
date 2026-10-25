@@ -1,6 +1,5 @@
 {
   "warnings": [
-    "RAFA15 reactant: imaginary frequencies [-5.4036] cm^-1; minimum not fully verified",
     "MoriPF: omitted 1 unconverged terminal point(s); no extrapolated coordinates used",
     "RAFA15: omitted 1 unconverged terminal point(s); no extrapolated coordinates used",
     "RAFA16: local C-N increases up to 0.01138 A; overall orientation follows long-to-short endpoints"

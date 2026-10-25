@@ -24,6 +24,7 @@ def main():
         reactant, ts, product = (records[k] for k in ('reactant', 'ts', 'product'))
         row = dict(system=system, temperature_K=ts['temperature_K'], pressure_atm=ts['pressure_atm'],
                    product_log=product['path'], product_sha256=product['sha256'],
+                   reactant_log=reactant['path'], reactant_sha256=reactant['sha256'],
                    TS_log=ts['path'], TS_sha256=ts['sha256'],
                    forward_RRHO_G_provisional=bool(reactant['imaginary_frequencies']),
                    **reverse_barrier_terms(ts, product))
@@ -85,11 +86,11 @@ TΔS‡はエントロピー項であり、それ単独を活性化障壁とは�
 
 {shown('forward')}
 
-RAFA15の反応物には−5.4036 cm⁻¹の微小虚振動があるため、正方向のG・エントロピー項は暫定値である。負のΔE‡はTSが分離反応物より電子エネルギーで低いことを示し、無障壁反応を意味しない。
+RAFA15反応物を2026-10-25に `RAFA15__REACTANT_OPTFREQ2 (1).LOG` へ更新した。保存先は従来どおり `Reactant/RAFA15_UP.LOG`。新反応物は虚振動なし（最低12.9416 cm⁻¹）で、旧ログの虚振動による暫定フラグは解除した。負のΔE‡はTSが分離反応物より電子エネルギーで低いことを示し、無障壁反応を意味しない。
 
-生成物ログの置換では正方向の障壁は変わらない。自由エネルギー障壁は **RAFA15 < MoriPF < RAFA16 < RAFA14** の順であり、同じ条件・経路が反応速度を支配するなら予想される速さは逆順となる。この順位はユーザーが示したMoriPF、RAFA16、RAFA14の順に反応性が低下する傾向と整合する。
+自由エネルギー障壁は **{' < '.join(table.sort_values('forward_delta_G_kcal_mol').index)}** の順となる。旧反応物基準のRAFA15はΔE‡ = −4.587、ΔG‡ = 8.943だったが、新基準ではそれぞれ{r.forward_delta_E_kcal_mol:.3f}、{r.forward_delta_G_kcal_mol:.3f}へ増加した。旧解析の「RAFA15が最も低障壁」という結論は撤回する。MoriPF・RAFA16・RAFA14の相互の順序は変わらない。
 
-RAFA15の−TΔS‡は約{-r.forward_T_delta_S_kcal_mol:.3f}で、他の3系より小さい。電子エネルギー障壁の低さと合わせて正方向のΔG‡の低さに寄与する。ただし、F···HやH···O接触の因果効果はこの差だけから特定できず、反応物の配座・振動にも依存する。
+RAFA15の−TΔS‡は約{-r.forward_T_delta_S_kcal_mol:.3f}で、他の3系より小さい。ただし電子障壁は4系で最大となり、現在のΔG‡も4系で最大である。F···HやH···O接触の因果効果はこの差だけから特定できず、反応物の配座・振動にも依存する。
 
 ## 逆方向：product → TS
 
@@ -97,7 +98,7 @@ RAFA15の−TΔS‡は約{-r.forward_T_delta_S_kcal_mol:.3f}で、他の3系よ�
 
 RAFA15の逆向き障壁は **ΔE‡ = {r.reverse_delta_E_kcal_mol:.3f}、ΔH‡ = {r.reverse_delta_H_kcal_mol:.3f}、ΔG‡ = {r.reverse_delta_G_kcal_mol:.3f}**。TΔS‡は{r.reverse_T_delta_S_kcal_mol:.3f}で、自由エネルギー障壁へのエントロピー寄与−TΔS‡は{-r.reverse_T_delta_S_kcal_mol:.3f}である。
 
-逆方向の差にはreactantの値が入らないため、RAFA15反応物の微小虚振動は直接影響しない。表は指定productとTSの差であり、実際の逆反応障壁と解釈するには同じ反応経路で結ばれていることの確認が必要である。
+逆方向の差にはreactantの値が入らないため、今回の反応物置換では逆向き障壁は変わらない。表は指定productとTSの差であり、実際の逆反応障壁と解釈するには同じ反応経路で結ばれていることの確認が必要である。
 
 ## RAFA15生成物の置換とIRC末端との対応
 
@@ -122,9 +123,9 @@ RAFA15の逆向き障壁は **ΔE‡ = {r.reverse_delta_E_kcal_mol:.3f}、ΔH‡
 
 {shown('reaction')}
 
-RAFA15の新生成物は分離反応物に対してEが{r.reaction_delta_E_kcal_mol:.3f}、Gが{r.reaction_delta_G_kcal_mol:.3f}となる。電子エネルギーでは生成物側が低い一方、会合を含む熱化学補正を加えると、この標準状態では生成物側のGが高い。新生成物の反応ΔGは4系で最も低い。
+RAFA15の新生成物は分離反応物に対してEが{r.reaction_delta_E_kcal_mol:.3f}、Gが{r.reaction_delta_G_kcal_mol:.3f}となる。新しい分離反応物基準ではE・Gともに生成物側が高くなり、反応ΔGは4系で最大となる。これは生成物そのものを再変更したためではなく、反応物の基準エネルギーが下がったためである。
 
-RAFA15は正方向のΔG‡が最も低く、新生成物から指定TSへ戻るΔG‡も小さい。ただし単一配座・RRHOのエネルギー差から実験の収率や寿命は断定できない。配座集団、濃度、標準状態の変換、低振動数の扱い、後続反応は含めていない。
+RAFA15は新基準で正方向のΔG‡が最も高く、一方、生成物から指定TSへ戻るΔG‡は小さいままである。新反応物配座から既存TSへの接続・配座変換経路は未検証である。ただし単一配座・RRHOのエネルギー差から実験の収率や寿命は断定できない。配座集団、濃度、標準状態の変換、低振動数の扱い、後続反応は含めていない。
 
 ## 根拠と再生成
 
@@ -132,6 +133,7 @@ RAFA15は正方向のΔG‡が最も低く、新生成物から指定TSへ戻る
 - [freqログの監査値](stationary_point_audit.json) と [状態ごとの熱力学量](../csv/thermochemistry_states.csv)
 - [生成物optとIRC末端の比較](../csv/endpoint_correspondence.csv)
 - [更新した3×3図](../figures/23_energy_entropy_profiles_3x3.png) と [表示・近似の説明](thermochemistry_profiles_ja.md)
+- [旧反応物の退避記録](../../../data/completed_20261017/archive/20261025/manifest.json)：旧 `RAFA15_UP.LOG` のLOGとgzipを保存。
 - [現行入力manifest](../../../data/completed_20261017/manifest.json) と [旧入力の退避記録](../../../data/completed_20261017/archive/20261022/manifest.json)
 
 `python analysis4_force/run_analysis.py` で入力から全解析・関連図を再生成できる。既存監査値からの本表・CSV・JSONだけの再生成は `python analysis4_force/directional_barriers.py`。各系で「正方向−逆方向＝反応量」をE・H・G・TΔSについて検証し、小数第3位に丸めて表示した。
@@ -145,5 +147,5 @@ if __name__ == '__main__':
     manifest_path = OUT / 'reports/output_manifest.json'
     manifest = [dict(path=str(p.relative_to(OUT)), bytes=p.stat().st_size,
                      sha256=hashlib.sha256(p.read_bytes()).hexdigest())
-                for p in sorted(OUT.rglob('*')) if p.is_file() and p != manifest_path]
+                for p in sorted(OUT.rglob('*')) if p.is_file() and p.name != '.DS_Store' and p != manifest_path]
     manifest_path.write_text(json.dumps(manifest, indent=2) + '\n')

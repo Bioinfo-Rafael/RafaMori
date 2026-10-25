@@ -1,0 +1,11 @@
+[
+  {
+    "path": "data/completed_20261017/archive/20261025/Reactant/RAFA15_UP.LOG",
+    "bytes": 53012870,
+    "sha256": "3cce4a2851b9549b6461c3d2a9aa55bac5db83661ac9e831c06f769a3375a98e",
+    "original_path": "data/completed_20261017/Reactant/RAFA15_UP.LOG",
+    "archived_on": "2026-10-25",
+    "superseded_by": "data/completed_20261017/Reactant/RAFA15_UP.LOG",
+    "replacement_source_filename": "RAFA15__REACTANT_OPTFREQ2 (1).LOG"
+  }
+]

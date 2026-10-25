@@ -54,8 +54,11 @@
   },
   {
     "path": "data/completed_20261017/Reactant/RAFA15_UP.LOG",
-    "bytes": 53012870,
-    "sha256": "3cce4a2851b9549b6461c3d2a9aa55bac5db83661ac9e831c06f769a3375a98e"
+    "bytes": 52646272,
+    "sha256": "44e75118a5d84b40433038ebf3515ecee862560f4f1d6ddc10de247b98d73066",
+    "source_filename": "RAFA15__REACTANT_OPTFREQ2 (1).LOG",
+    "updated_on": "2026-10-25",
+    "replaces": "data/completed_20261017/archive/20261025/Reactant/RAFA15_UP.LOG"
   },
   {
     "path": "data/completed_20261017/Reactant/RAFA16.LOG",

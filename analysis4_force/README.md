@@ -9,6 +9,7 @@
 - `../data/completed_20261017/manifest.json` に原本のファイル名、サイズ、SHA-256を保存。
 - 新しい `LYS (1).LOG` は `Lys.log` として旧ファイルを置換。manifestに元ファイル名を記録。17ログを個別にgzip圧縮し、Gitに保存。展開後のバイト列をハッシュで照合する。
 - 2026-10-22：RAFA15生成物を `Product/RAFA15_LYS_OPTFREQ2.LOG` に更新。旧LOGとgzip原本は `../data/completed_20261017/archive/20261022/Product/` に退避し、別manifestで保存。現行入力manifestには新ログを登録。
+- 2026-10-25：`RAFA15__REACTANT_OPTFREQ2 (1).LOG` を従来の `Reactant/RAFA15_UP.LOG` に保存。旧LOGとgzip原本は `archive/20261025/Reactant/` に退避。原子順序は旧反応物と異なるため、反応物の原子番号をTS/IRCへ直接対応させず、障壁の参照エネルギーと組成検証に使用する。
 - `config/systems.yaml` は4系のIRC・反応物・生成物・TSと求核Nの対応。
 - `config/atom_map.csv` と `analysis_targets.yaml` はTS構造から再生成。反応C20、O19、O21、フェニル環C23–C28という共有骨格の番号は入力に基づく前提で、元素と環の結合性を検査する。
 - アミンNの共有結合Hを2個抽出。全Fとの組合せを保存し、TSで最短のF···Hペアを図示対象として固定する。途中で最短ペアを切り替えない。
@@ -39,7 +40,7 @@
 
 分離反応物基準の `ΔE‡ = E_TS − E_substrate − E_Lys`、`ΔG‡ = G_TS − G_substrate − G_Lys` と、生成物の反応エネルギーを計算する。逆向きの障壁は `X_TS − X_product`（X = E, H, G）として同時に計算し、`directional_barriers.csv` と `directional_barriers.json` にも保存する。各系の値をそのまま表示する。MoriPFを引く系間のゼロ合わせとそのCSVは廃止した。全電子エネルギー（Hartree）も保存する。
 
-Gibbs値は298.15 K・1 atmのRRHOモデルで、1 Mや準調和への補正は行わない。RAFA15の微小虚振動は `RRHO_G_provisional=true` として残す。`absolute_barrier_valid` は条件・組成が整合した算術値のフラグであり、反応物の厳密な極小確認は `reactant_minimum_verified` に分ける。
+Gibbs値は298.15 K・1 atmのRRHOモデルで、1 Mや準調和への補正は行わない。RAFA15の新反応物は虚振動なしで、`RRHO_G_provisional=false`、`reactant_minimum_verified=true` となる。`absolute_barrier_valid` は条件・組成が整合した算術値のフラグであり、反応物の厳密な極小確認は `reactant_minimum_verified` に分ける。
 
 4系比較・個別系のエネルギー図ともに各系の分離反応物基準のΔE(R)を使い、TSの高さはその系のΔE‡を表す。反応力は定数オフセットに依存しない。数値平滑化でTS値を一時的に引く処理は丸め誤差対策で、表示のゼロ合わせではない。
 

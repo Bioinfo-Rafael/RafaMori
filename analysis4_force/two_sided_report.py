@@ -46,7 +46,7 @@ def create_report(profiles,metrics,corr,mapping,cfg,fig,reports):
     correlation_figure(chosen,primary,['near_atomic_work_kcal_mol','opposite_atomic_work_kcal_mol'],
         ['Amine-side atomic work (kcal/mol)','Opposite-side atomic work (kcal/mol)'],
         ['Ortho X + amine H','Opposite ortho X + coumarin O21'],fig/'15_two_sided_barrier_correlations.png',
-        'Log-only atomic work; C-N 2.50 → 2.10 Å; 4 systems\nBarriers from each separated substrate + Lys; RAFA15 RRHO provisional')
+        'Log-only atomic work; C-N 2.50 → 2.10 Å; 4 systems\nBarriers from each separated substrate + Lys; RRHO at 298.15 K, 1 atm')
     correlation_figure(chosen,primary,['opposite_projected_magnitude_share','opposite_atomic_force_share'],
         ['Opposite / (amine + opposite) projected-force magnitude (dimensionless)',
          'Opposite / (amine + opposite) atomic-force magnitude (dimensionless)'],
@@ -58,7 +58,7 @@ def create_report(profiles,metrics,corr,mapping,cfg,fig,reports):
         'Q from total atomic forces; radial work is not isolated pair-interaction energy; 4 systems')
 
     fig3,axes=plt.subplots(1,2,figsize=(12,4.8))
-    for ax,target,title in zip(axes,TARGETS,['Electronic barrier ΔE‡','RRHO Gibbs barrier ΔG‡ (RAFA15 provisional)']):
+    for ax,target,title in zip(axes,TARGETS,['Electronic barrier ΔE‡','RRHO Gibbs barrier ΔG‡']):
         for descriptor,label,marker in [('near_atomic_work_kcal_mol','Amine-side work','o'),('opposite_atomic_work_kcal_mol','Opposite-side work','s'),('opposite_atomic_force_share','Original atomic-force ratio','^')]:
             subset=corr[(corr.descriptor==descriptor)&(corr.target==target)]
             labels=[w.replace('common_CN_','').replace('sensitivity_CN_','').replace('_to_',' → ')+'\n'+('nearest H' if h=='primary' else 'other H') for w,h in zip(subset.window,subset.H_choice)]
@@ -95,6 +95,9 @@ def create_report(profiles,metrics,corr,mapping,cfg,fig,reports):
     tableforce=chosen[['system','near_X_mean_force_mEh_bohr','amine_H_mean_force_mEh_bohr','opposite_X_mean_force_mEh_bohr','opposite_O_mean_force_mEh_bohr','near_mean_signed_projected_force_mEh_bohr','opposite_mean_signed_projected_force_mEh_bohr']]
     allcor=primary[['descriptor','target','pearson_r','spearman_r','LOO_prediction_RMSE_kcal_mol']]
     sens=corr[corr.descriptor.isin(works+['opposite_atomic_force_share'])][['window','H_choice','descriptor','target','pearson_r','spearman_r']]
+    def rc(metric,target=TARGETS[0]):
+        return float(primary[(primary.descriptor==metric)&(primary.target==target)].iloc[0].pearson_r)
+    rafa=chosen.set_index('system').loc['RAFA15']
     text=f'''# 既存logによる両側接触・原子仕事と活性化障壁
 
 ## 結論と今回の変更
@@ -113,7 +116,7 @@ def create_report(profiles,metrics,corr,mapping,cfg,fig,reports):
 
 {markdown(selected_corr(works))}
 
-反対側2原子の仕事の合計と障壁の相関は、ΔE‡でr≈−0.965、ΔG‡でr≈−0.976となった。4系の中でRAFA15はこの仕事が最も大きく、障壁は最も低い。つまり、**仕事が大きい系ほど障壁が低いという負の相関**であり、「反発が小さいため障壁が低い」と直接説明する値ではない。RAFA15では反対側仕事の約98%がO21由来で、H56単独の仕事は小さい。
+反対側2原子の仕事の合計と障壁の相関は、ΔE‡でr={rc('opposite_atomic_work_kcal_mol'):.3f}、ΔG‡でr={rc('opposite_atomic_work_kcal_mol',TARGETS[1]):.3f}。2026-10-25の反応物更新により、旧解析の負相関は正相関に変わった。RAFA15はこの仕事も正方向障壁も4系で最大となる。仕事の大きさを、その接触による障壁低下と解釈しない。RAFA15では反対側仕事の約98%がO21由来で、H56単独の仕事は小さい。
 
 相関が強くても、この値を接触の相互作用エネルギーとみなすことはできない。アミン側と反対側は分けて表示し、相関の弱い結果も含めて比較する。選択4原子の合計仕事、O21単独、残りの全原子も保存し、特定の接触ではなく反応中心全体の変化で説明できないかを確認する。
 
@@ -152,7 +155,7 @@ W_near + W_opposite + W_remaining = W_all ≈ E(end) − E(start)
 
 {markdown(accounting)}
 
-RAFA15は共通区間のエネルギー上昇が約4.031 kcal/molと大きい一方、その区間に入る時点のエネルギーが約−9.019 kcal/molと低い。したがって共通区間の仕事が大きくても、分離反応物から測った障壁は低くなる。入口の値は会合・配座変化などを含む総エネルギーであり、特定のH···O安定化エネルギーではない。入口値と障壁の相関は上式を共有するため、独立した予測証拠に使わない。
+RAFA15の共通区間のエネルギー上昇は{rafa.window_energy_rise_kcal_mol:.3f} kcal/mol、入口は新しい分離反応物基準で{rafa.entry_energy_kcal_mol:.3f} kcal/molとなる。区間仕事は変わらず、反応物基準の変更によって入口と全障壁が上がった。入口の値は会合・配座変化などを含む総エネルギーであり、特定のH···O安定化エネルギーではない。入口値と障壁の相関は上式を共有するため、独立した予測証拠に使わない。
 
 ## 接触方向に限定した補助指標
 
@@ -163,7 +166,7 @@ W_radial,ab = −∫ Q_ab d r_ab
 
 力を接触軸へ射影し、その距離変化に沿って積分する。単位はkcal/mol。共通C–N区間内での動きを評価するad hocな診断値で、単独ペアのポテンシャルではなく、全原子仕事に足してはいけない。Q>0は開く向き、Q<0は閉じる向き。全系の反対側平均Qは負であり、F···O固有の反発をこの符号から判定しない。
 
-反対側の接触方向の仕事は電子障壁とr≈−0.967（3区間で約−0.959〜−0.969）、アミン側は主区間でr≈−0.185。反対側の量は約−0.0016〜0.0091 kcal/molにすぎず、数kcal/molの全障壁差をこの値の大きさで説明しているわけではない。微小な構造・力の応答を拾う候補であり、原子仕事とは別定義である。反対側の定義はアミンHの選択に依存しないため、Hを替えて一致すること自体は独立の感度検証ではない。
+反対側の接触方向の仕事は主区間で電子障壁とr={rc('opposite_pair_diagnostic_work_kcal_mol'):.3f}、アミン側はr={rc('near_pair_diagnostic_work_kcal_mol'):.3f}。全3区間の値は下の感度表に示す。反対側の量は約−0.0016〜0.0091 kcal/molにすぎず、数kcal/molの全障壁差をこの値の大きさで説明しているわけではない。微小な構造・力の応答を拾う候補であり、原子仕事とは別定義である。反対側の定義はアミンHの選択に依存しないため、Hを替えて一致すること自体は独立の感度検証ではない。
 
 ![接触方向の仕事](../figures/18_radial_work_barrier_correlations.png)
 
@@ -180,7 +183,7 @@ B_atomic = ∫ (|F_Xopp| + |F_O|) dc
            / ∫ (|F_Xnear| + |F_HN| + |F_Xopp| + |F_O|) dc
 ```
 
-割合そのものを無次元値として表示する。電子障壁とのr≈0.958という相関はMoriPFを引かなくても変わらない。定数の差し引きは相関を変えないため、以前の相関がゼロ合わせで生まれたわけではない。ただし、分母・原子選択に依存し、物理的な解釈に乏しいという問題は残る。
+割合そのものを無次元値として表示する。現在の電子障壁との相関はr={rc('opposite_atomic_force_share'):.3f}。全系への定数の差し引きは相関を変えないが、今回のRAFA15だけの反応物基準の変更は相関を変える。ただし、分母・原子選択に依存し、物理的な解釈に乏しいという問題は残る。
 
 RAFA15の反対側原子力の大きさは約97%がO21に由来する。この比率をH···O相互作用の強さと読むことはできない。
 
@@ -196,7 +199,7 @@ RAFA15の反対側原子力の大きさは約97%がO21に由来する。この�
 
 {markdown(sens)}
 
-4系しかないため、相関係数・順位と1系除外予測は記述的診断。複数指標を同じ4系で探索した交差検証は独立検証ではない。比率や線形結合の係数を障壁に合わせて最適化しない。RAFA15のRRHO Gibbs障壁は反応物の微小虚振動のため暫定。
+4系しかないため、相関係数・順位と1系除外予測は記述的診断。複数指標を同じ4系で探索した交差検証は独立検証ではない。比率や線形結合の係数を障壁に合わせて最適化しない。RAFA15の新反応物は虚振動なしで、従来の暫定フラグを解除した。配座・標準状態・低振動数のRRHO近似への依存は残る。
 
 ## 再現・文献
 

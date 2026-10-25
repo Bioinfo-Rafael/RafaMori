@@ -52,7 +52,9 @@ class ThermochemistryTests(unittest.TestCase):
         self.assertEqual(Path(r.product_log).name,'RAFA15_LYS_OPTFREQ2.LOG')
         self.assertAlmostEqual(r.reverse_delta_E_kcal_mol,2.2629309403,places=8)
         self.assertAlmostEqual(r.reverse_delta_G_kcal_mol,.9964850448,places=8)
-        self.assertTrue(r.forward_RRHO_G_provisional)
+        self.assertFalse(r.forward_RRHO_G_provisional)
+        self.assertAlmostEqual(r.forward_delta_E_kcal_mol,4.2351423888,places=8)
+        self.assertAlmostEqual(r.forward_delta_G_kcal_mol,18.0628602091,places=8)
         self.assertFalse(r.reverse_RRHO_G_provisional)
 
     def test_irc_values_and_constant_correction_are_preserved(self):

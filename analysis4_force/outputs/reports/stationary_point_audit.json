@@ -222,10 +222,10 @@
     "system": "RAFA15",
     "role": "reactant",
     "path": "/Users/cls-lab/Git/RafaMori/data/completed_20261017/Reactant/RAFA15_UP.LOG",
-    "sha256": "3cce4a2851b9549b6461c3d2a9aa55bac5db83661ac9e831c06f769a3375a98e",
-    "energy_hartree": -1426.79131671,
-    "energy_source_line": 502946,
-    "geometry_source_line": 502841,
+    "sha256": "44e75118a5d84b40433038ebf3515ecee862560f4f1d6ddc10de247b98d73066",
+    "energy_hartree": -1426.80537553,
+    "energy_source_line": 488286,
+    "geometry_source_line": 488181,
     "atom_count": 44,
     "composition": {
       "6": 20,
@@ -242,12 +242,10 @@
     "optimization_completed": true,
     "normal_termination": true,
     "frequency_count": 126,
-    "imaginary_frequencies": [
-      -5.4036
-    ],
-    "G_hartree": -1426.517689,
-    "H_hartree": -1426.437196,
-    "ZPE_corrected_hartree": -1426.462011,
+    "imaginary_frequencies": [],
+    "G_hartree": -1426.532223,
+    "H_hartree": -1426.449812,
+    "ZPE_corrected_hartree": -1426.475359,
     "temperature_K": 298.15,
     "pressure_atm": 1.0
   },

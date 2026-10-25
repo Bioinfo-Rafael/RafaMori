@@ -494,5 +494,5 @@ if __name__=='__main__':
     main()
     manifest_path=OUT/'reports/output_manifest.json'
     manifest=[dict(path=str(p.relative_to(OUT)),bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest())
-              for p in sorted(OUT.rglob('*')) if p.is_file() and p!=manifest_path]
+              for p in sorted(OUT.rglob('*')) if p.is_file() and p.name != '.DS_Store' and p!=manifest_path]
     manifest_path.write_text(json.dumps(manifest,indent=2)+'\n')

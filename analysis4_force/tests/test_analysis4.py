@@ -11,6 +11,25 @@ from numerics4 import reaction_force_profile
 from energetics import validate_reference
 
 class Analysis4Tests(unittest.TestCase):
+    def test_rafa15_reactant_replacement_and_archive(self):
+        data=ROOT/'data/completed_20261017'
+        manifest=json.loads((data/'manifest.json').read_text())
+        entry=next(r for r in manifest if r['path'].endswith('Reactant/RAFA15_UP.LOG'))
+        self.assertEqual(entry['source_filename'],'RAFA15__REACTANT_OPTFREQ2 (1).LOG')
+        self.assertEqual(entry['sha256'],'44e75118a5d84b40433038ebf3515ecee862560f4f1d6ddc10de247b98d73066')
+        archived=json.loads((data/'archive/20261025/manifest.json').read_text())[0]
+        self.assertEqual(archived['sha256'],'3cce4a2851b9549b6461c3d2a9aa55bac5db83661ac9e831c06f769a3375a98e')
+        self.assertEqual(hashlib.sha256(gzip.decompress(Path(str(ROOT/archived['path'])+'.gz').read_bytes())).hexdigest(),archived['sha256'])
+        audit=json.loads((OUT/'reports/stationary_point_audit.json').read_text())
+        reactant=next(r for r in audit if r['system']=='RAFA15' and r['role']=='reactant')
+        self.assertEqual(reactant['sha256'],entry['sha256'])
+        self.assertEqual(reactant['frequency_count'],126)
+        self.assertEqual(reactant['imaginary_frequencies'],[])
+        self.assertTrue(reactant['normal_termination'])
+        self.assertTrue(reactant['optimization_completed'])
+        self.assertAlmostEqual(reactant['energy_hartree'],-1426.805375530,places=9)
+        self.assertAlmostEqual(reactant['G_hartree'],-1426.532223,places=6)
+
     def test_original_hashes_and_compressed_roundtrip(self):
         for row in json.loads((ROOT/'data/completed_20261017/manifest.json').read_text()):
             path=ROOT/row['path']
@@ -72,7 +91,7 @@ class Analysis4Tests(unittest.TestCase):
                 expected_rxn=(records['product'][key]-records['reactant'][key]-lys[key])*627.509474
                 self.assertAlmostEqual(row[f'{prefix}_reaction_energy_kcal_mol'],expected_rxn,places=8)
             self.assertAlmostEqual(row.separated_reactants_to_alpha_kcal_mol+row.alpha_to_TS_kcal_mol,row.absolute_electronic_barrier_kcal_mol,places=8)
-            self.assertEqual(bool(row.RRHO_G_provisional),system=='RAFA15')
+            self.assertEqual(bool(row.RRHO_G_provisional),bool(records['reactant']['imaginary_frequencies']))
             profile=pd.read_csv(CSV/f'reaction_force_{system}.csv')
             self.assertNotIn('E_relative_reference_barrier_kcal_mol',profile.columns)
             ts=profile.loc[profile.R.abs().idxmin()]
