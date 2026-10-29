@@ -38,12 +38,12 @@ Python 3.10以降とGit for Windowsを用意します。PowerShellでリポジ�
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\irc_eda\scripts\setup_windows.ps1
-.\irc_eda\.venv\Scripts\python.exe -m irc_eda inspect
-.\irc_eda\.venv\Scripts\python.exe -m irc_eda prepare
-.\irc_eda\.venv\Scripts\python.exe -m irc_eda analyze
+.\irc_eda\scripts\run_windows.ps1 inspect
+.\irc_eda\scripts\run_windows.ps1 prepare
+.\irc_eda\scripts\run_windows.ps1 analyze
 ```
 
-圧縮原本はそのまま読めるので、手動展開は不要です。`requirements-lock.txt`は今回のMac環境の記録です。Windowsでは`requirements.txt`から環境を構築します。
+圧縮原本はそのまま読めるので、手動展開は不要です。`requirements-lock.txt`は今回のMac環境の記録です。Windowsでは`requirements.txt`から環境を構築します。`run_windows.ps1`はPythonのUTF-8モードを指定します。直接起動する場合も `python -X utf8 -m irc_eda ...` としてください。Windowsの既定コードページではUTF-8設定や出力の読み書きに失敗することがあります。
 
 確認するファイル：
 
@@ -71,7 +71,7 @@ executables:
 ```
 
 ```powershell
-.\irc_eda\.venv\Scripts\python.exe -m irc_eda inspect -c .\irc_eda\config\local.yaml
+.\irc_eda\scripts\run_windows.ps1 inspect -c .\irc_eda\config\local.yaml
 ```
 
 この指定でWindows版Gaussianの無人起動方法まで検証済みになるわけではありません。現在のM06-2X/SMD対象では、実行前チェックが停止します。

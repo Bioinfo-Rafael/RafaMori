@@ -1,0 +1,62 @@
+﻿[
+    {
+        "Path":  "data/completed_20261017/IRC/MORIPF_IRC1.LOG.gz",
+        "Match":  true,
+        "SHA256":  "ffae917ff6123ce64a142d3785ab04a2fe56a5684f96563ae84b3bad17b30254"
+    },
+    {
+        "Path":  "data/completed_20261017/IRC/RAFA14_IRC_MERGED.LOG.gz",
+        "Match":  true,
+        "SHA256":  "6891174dd10f47d6cc6c0ec7ade1069d056b6465a17d1b00019f9b57ef4b731e"
+    },
+    {
+        "Path":  "data/completed_20261017/IRC/RAFA15_IRC2.LOG.gz",
+        "Match":  true,
+        "SHA256":  "47ded051b8845120913a738831e25f429fdde0926acedada98dcfbf55ec69491"
+    },
+    {
+        "Path":  "data/completed_20261017/IRC/RAFA16_IRC_COMPLETE_MERGED.LOG.gz",
+        "Match":  true,
+        "SHA256":  "a5afc1f23e36032be7d229475f9b23d733e9c9e36ece1c7fc416955859077c9a"
+    },
+    {
+        "Path":  "data/completed_20261017/TS/MORIPF_TS.LOG.gz",
+        "Match":  true,
+        "SHA256":  "db81b02bb87b73ac8569fe75775d8a2a555c0d6fd98faf3ba79c2c80ec3b3602"
+    },
+    {
+        "Path":  "data/completed_20261017/TS/RAFA14_TS2_FREQ.LOG.gz",
+        "Match":  true,
+        "SHA256":  "fa64ab4bbe1c20c240a473fd64386c8cd16467085dc24f46bc4b237cd0d7e205"
+    },
+    {
+        "Path":  "data/completed_20261017/TS/RAFA15_TS6.LOG.gz",
+        "Match":  true,
+        "SHA256":  "c9a8a77773868f3ff74c4aaad29a5465ac2fbed3e3952e53e8d64ebbf47364cd"
+    },
+    {
+        "Path":  "data/completed_20261017/TS/RAFA16_TS.LOG.gz",
+        "Match":  true,
+        "SHA256":  "aebd122b6a637439c371a8f3048cdfe365001540251ce54ce4426b45802d6e10"
+    },
+    {
+        "Path":  "data/completed_20261017/TS/RAFA14_TS2_NBO.LOG.gz",
+        "Match":  true,
+        "SHA256":  "3a39bddde503e92a075bcf175db192578efe3105a645bdc26a0023ba8494babf"
+    },
+    {
+        "Path":  "data/completed_20261017/TS/RAFA15_TS6_NBO.LOG.gz",
+        "Match":  true,
+        "SHA256":  "482ddd503cdaed905482ea68d692f678dbba25dc1aa22a146d87ef6c07b2d23b"
+    },
+    {
+        "Path":  "data/completed_20261017/TS/RAFA14_TS2_NBO.fchk.gz",
+        "Match":  true,
+        "SHA256":  "5fd2cf0a2ed9138477b4346abfdf070e1d5ec574fac8350f0523aeb691e4fff7"
+    },
+    {
+        "Path":  "data/completed_20261017/TS/RAFA15_TS6_NBO.fchk.gz",
+        "Match":  true,
+        "SHA256":  "17019010274318a760b3a651d53111eec8d3bdbda2beea56c96b8cdeb13c0ac3"
+    }
+]
