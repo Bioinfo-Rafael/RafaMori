@@ -1,0 +1,44 @@
+# Paths are resolved relative to this file. All original files are read-only.
+input_root: ../..
+inventory_exclude: [irc_eda] # Generated adapter reports and upstream examples are not Gaussian source data.
+output_dir: ../outputs/project
+scope: pilot
+parallel_jobs: 1
+threads: 4
+memory: 4GB
+timeout_seconds: 86400
+geometry_tolerance_angstrom: 0.0002
+energy_tolerance_hartree: 0.000002
+closure_tolerance_kcal_mol: 0.25
+plot_top_pairs: 6
+plot_pairs: []
+iqa:
+  partition: TFVC
+executables: {}
+software_versions: {}
+wavefunction_conditions: {}
+systems:
+  MoriPF:
+    irc: data/completed_20261017/IRC/MORIPF_IRC1.LOG
+    ts: data/completed_20261017/TS/MORIPF_TS.LOG
+    coordinate_sign: -1
+    reference_point: MoriPF_p1_0035
+    fragments: null
+  RAFA14:
+    irc: data/completed_20261017/IRC/RAFA14_IRC_MERGED.LOG
+    ts: data/completed_20261017/TS/RAFA14_TS2_FREQ.LOG
+    coordinate_sign: 1
+    reference_point: RAFA14_p2_0035
+    fragments: null
+  RAFA15:
+    irc: data/completed_20261017/IRC/RAFA15_IRC2.LOG
+    ts: data/completed_20261017/TS/RAFA15_TS6.LOG
+    coordinate_sign: -1
+    reference_point: RAFA15_p1_0035
+    fragments: null
+  RAFA16:
+    irc: data/completed_20261017/IRC/RAFA16_IRC_COMPLETE_MERGED.LOG
+    ts: data/completed_20261017/TS/RAFA16_TS.LOG
+    coordinate_sign: -1
+    reference_point: RAFA16_p1_0035
+    fragments: null

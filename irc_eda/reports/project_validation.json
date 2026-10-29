@@ -1,0 +1,46 @@
+[
+  {
+    "system": "MoriPF",
+    "point_count": 64,
+    "existing_profile": "/Users/cls-lab/Git/RafaMori/analysis4_force/outputs/csv/reaction_force_MoriPF.csv",
+    "max_coordinate_difference": 0.0,
+    "max_energy_difference_hartree": 0.0,
+    "xyz_max_difference_angstrom": 0.0,
+    "source_hashes_unchanged": true,
+    "cclib_checked_non_TS_points": 63,
+    "max_corrector_minus_scf_hartree": 1.080000174624729e-06
+  },
+  {
+    "system": "RAFA14",
+    "point_count": 60,
+    "existing_profile": "/Users/cls-lab/Git/RafaMori/analysis4_force/outputs/csv/reaction_force_RAFA14.csv",
+    "max_coordinate_difference": 0.0,
+    "max_energy_difference_hartree": 0.0,
+    "xyz_max_difference_angstrom": 0.0,
+    "source_hashes_unchanged": true,
+    "cclib_checked_non_TS_points": 59,
+    "max_corrector_minus_scf_hartree": 5.100000635138713e-07
+  },
+  {
+    "system": "RAFA15",
+    "point_count": 57,
+    "existing_profile": "/Users/cls-lab/Git/RafaMori/analysis4_force/outputs/csv/reaction_force_RAFA15.csv",
+    "max_coordinate_difference": 0.0,
+    "max_energy_difference_hartree": 0.0,
+    "xyz_max_difference_angstrom": 0.0,
+    "source_hashes_unchanged": true,
+    "cclib_checked_non_TS_points": 56,
+    "max_corrector_minus_scf_hartree": 4.999999418942025e-07
+  },
+  {
+    "system": "RAFA16",
+    "point_count": 71,
+    "existing_profile": "/Users/cls-lab/Git/RafaMori/analysis4_force/outputs/csv/reaction_force_RAFA16.csv",
+    "max_coordinate_difference": 0.0,
+    "max_energy_difference_hartree": 0.0,
+    "xyz_max_difference_angstrom": 0.0,
+    "source_hashes_unchanged": true,
+    "cclib_checked_non_TS_points": 70,
+    "max_corrector_minus_scf_hartree": null
+  }
+]

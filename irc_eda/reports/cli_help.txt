@@ -1,0 +1,11 @@
+usage: python -m irc_eda [-h] [-c CONFIG]
+                         {inspect,prepare,run-iqa,run-eda,analyze,run-all,check-samples}
+
+Gaussian IRC → official APOST3D ENPART / easyEDA sobEDA adapters
+
+positional arguments:
+  {inspect,prepare,run-iqa,run-eda,analyze,run-all,check-samples}
+
+options:
+  -h, --help            show this help message and exit
+  -c, --config CONFIG

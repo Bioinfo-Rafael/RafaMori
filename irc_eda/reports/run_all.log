@@ -1,0 +1,14 @@
+{
+  "irc_points": 252,
+  "systems": {
+    "MoriPF": 64,
+    "RAFA14": 60,
+    "RAFA15": 57,
+    "RAFA16": 71
+  },
+  "iqa_success_points": 0,
+  "eda_success_points": 0,
+  "prepared_sp_inputs": 252,
+  "executed_gaussian_sp_jobs": 0,
+  "failed_points": []
+}

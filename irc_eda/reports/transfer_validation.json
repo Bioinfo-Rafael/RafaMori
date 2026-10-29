@@ -1,0 +1,39 @@
+{
+  "platform_tested": "macOS arm64, isolated ZIP extraction; Windows execution NOT tested",
+  "extracted_directory": "/var/folders/9v/4_0508ps1r79hjh0f80nm8800000gp/T/rafamori-transfer-check-oy4qrv2o",
+  "irc_points": 252,
+  "xyz_files": 252,
+  "single_point_inputs": 252,
+  "input_inventory_files": 12,
+  "original_expanded_logs_present": false,
+  "commands": [
+    {
+      "command": [
+        "irc_eda/scripts/verify_transfer.py"
+      ],
+      "returncode": 0,
+      "stdout": "OK: 37 source/data files match their SHA-256 hashes.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-m",
+        "irc_eda",
+        "prepare"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"prepared\": 252\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "-m",
+        "irc_eda",
+        "analyze"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"irc_points\": 252,\n  \"systems\": {\n    \"MoriPF\": 64,\n    \"RAFA14\": 60,\n    \"RAFA15\": 57,\n    \"RAFA16\": 71\n  },\n  \"iqa_success_points\": 0,\n  \"eda_success_points\": 0,\n  \"prepared_sp_inputs\": 252,\n  \"executed_gaussian_sp_jobs\": 0,\n  \"failed_points\": []\n}\n",
+      "stderr": ""
+    }
+  ]
+}

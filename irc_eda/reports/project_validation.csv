@@ -1,0 +1,5 @@
+system,point_count,existing_profile,max_coordinate_difference,max_energy_difference_hartree,xyz_max_difference_angstrom,source_hashes_unchanged,cclib_checked_non_TS_points,max_corrector_minus_scf_hartree
+MoriPF,64,/Users/cls-lab/Git/RafaMori/analysis4_force/outputs/csv/reaction_force_MoriPF.csv,0.0,0.0,0.0,True,63,1.080000174624729e-06
+RAFA14,60,/Users/cls-lab/Git/RafaMori/analysis4_force/outputs/csv/reaction_force_RAFA14.csv,0.0,0.0,0.0,True,59,5.100000635138713e-07
+RAFA15,57,/Users/cls-lab/Git/RafaMori/analysis4_force/outputs/csv/reaction_force_RAFA15.csv,0.0,0.0,0.0,True,56,4.999999418942025e-07
+RAFA16,71,/Users/cls-lab/Git/RafaMori/analysis4_force/outputs/csv/reaction_force_RAFA16.csv,0.0,0.0,0.0,True,70,

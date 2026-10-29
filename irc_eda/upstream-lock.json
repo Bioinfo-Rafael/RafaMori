@@ -1,0 +1,10 @@
+{
+  "APOST3D": {
+    "url": "https://github.com/mgimferrer/APOST3D.git",
+    "commit": "3ba2d95b58831d7a6adaaedc40cc4ed950eb16c5"
+  },
+  "easyEDA": {
+    "url": "https://github.com/kangmg/easyEDA.git",
+    "commit": "08d7a7dfe4775e35c2fc55e321d1262c3afd33e2"
+  }
+}
