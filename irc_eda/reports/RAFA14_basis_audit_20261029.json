@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-29",
+  "engine": "Windows Gaussian 16 C.01",
+  "purpose": "basis construction only; not a converged SP or IQA/EDA",
+  "source": "data\\completed_20261017\\TS\\RAFA14_TS2_NBO.fchk.gz",
+  "reference": "irc_eda\\outputs\\alternatives\\RAFA14_basis_check_saved\\basis.fchk",
+  "source_basis_signature": "2adb36b0c3a427251900a88e87f2903d5449b8672ee6e92a4a083b1ada207e1b",
+  "reference_basis_signature": "2adb36b0c3a427251900a88e87f2903d5449b8672ee6e92a4a083b1ada207e1b",
+  "basis_signature_equal": true,
+  "atomic_numbers_equal": true,
+  "source_nbasis": 879,
+  "reference_nbasis": 879,
+  "normal_termination": true,
+  "scf_done_count": 0,
+  "route": "M062X/6-311++G(d,p) Guess=(Only,Save,Huckel) NoSymm SCRF=(SMD,Solvent=Water)",
+  "files_sha256": {
+    "data\\completed_20261017\\TS\\RAFA14_TS2_NBO.fchk.gz": "5fd2cf0a2ed9138477b4346abfdf070e1d5ec574fac8350f0523aeb691e4fff7",
+    "irc_eda\\outputs\\alternatives\\RAFA14_basis_check_saved\\basis.gjf": "56d3f8874270006c714e200d5b75b80737885b10e6ebf24f828182487f728cf2",
+    "irc_eda\\outputs\\alternatives\\RAFA14_basis_check_saved\\basis.out": "817877a9e8d3d4547164f18d46f7edd8b43c756d75df86b1fe9d1e3ed35e9564",
+    "irc_eda\\outputs\\alternatives\\RAFA14_basis_check_saved\\basis.fchk": "2e7bfdc17ae344ba64446774211f81f9f7be0c876aa9ed2b65fd699a154bf27c"
+  },
+  "first_attempt": "Guess=Only terminated normally without SCF, but checkpoint lacked basis; repeated with Save,Huckel. Neither is a converged target SP."
+}

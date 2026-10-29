@@ -1,0 +1,80 @@
+[
+  {
+    "id": "aimall_iqa",
+    "url": "https://aim.tkgristmill.com/manual/aimqb/aimqb.html",
+    "retrieved_date_jst": "2026-10-29",
+    "sha256": "363ff5409f35d50f9fb7d782aaace72ed770206b00cf528481ade3c382cb663a",
+    "local_cache": "irc_eda\\outputs\\alternatives\\sources\\aimall_iqa.html"
+  },
+  {
+    "id": "aimall_license",
+    "url": "https://aim.tkgristmill.com/license.html",
+    "retrieved_date_jst": "2026-10-29",
+    "sha256": "68c90127977b0e9eec40e7621b4a5f9620884f6f21a82d57984d946fc2f35598",
+    "local_cache": "irc_eda\\outputs\\alternatives\\sources\\aimall_license.html"
+  },
+  {
+    "id": "aimall_registration",
+    "url": "https://aim.tkgristmill.com/register.html",
+    "retrieved_date_jst": "2026-10-29",
+    "sha256": "127880ada13e8107570711ea318ce57115c7b38d919eee9c28f5af2c969aca5d",
+    "local_cache": "irc_eda\\outputs\\alternatives\\sources\\aimall_registration.html"
+  },
+  {
+    "id": "qchem_solv",
+    "url": "https://manual.q-chem.com/6.3/sect_eda2_sol.html",
+    "retrieved_date_jst": "2026-10-29",
+    "sha256": "80378ff496899826849548d26934bc60caa2fabc0ca51ddfaaf8f5b49d89840b",
+    "local_cache": "irc_eda\\outputs\\alternatives\\sources\\qchem_solv.html"
+  },
+  {
+    "id": "qchem_job",
+    "url": "https://manual.q-chem.com/6.3/sect_eda2_job.html",
+    "retrieved_date_jst": "2026-10-29",
+    "sha256": "a5092a960b5593c6b09672e2bbfaf05743bfd5e732258b26b4b89df3b31b5624",
+    "local_cache": "irc_eda\\outputs\\alternatives\\sources\\qchem_job.html"
+  },
+  {
+    "id": "bdf",
+    "url": "https://bdf-manual.readthedocs.io/zh-cn/latest/User%20Guide.html",
+    "error": "HTTP Error 403: Forbidden",
+    "web_tool_content_verified": true,
+    "retrieved_date_jst": "2026-10-29"
+  },
+  {
+    "id": "qchem_eda_paper",
+    "url": "https://doi.org/10.1039/D0SC05327A",
+    "retrieved_date_jst": "2026-10-29",
+    "evidence": "Referenced in research report; no local content hash recorded"
+  },
+  {
+    "id": "qchem_installation",
+    "url": "https://manual.q-chem.com/6.1/Ch2.S1.SS2.html",
+    "retrieved_date_jst": "2026-10-29",
+    "evidence": "Referenced in research report; no local content hash recorded"
+  },
+  {
+    "id": "bdf_input",
+    "url": "https://bdf-manual.readthedocs.io/zh-cn/latest/Input%20Library.html",
+    "retrieved_date_jst": "2026-10-29",
+    "evidence": "Referenced in research report; no local content hash recorded"
+  },
+  {
+    "id": "bdf_installation",
+    "url": "https://bdf-manual.readthedocs.io/zh-cn/latest/Installation.html",
+    "retrieved_date_jst": "2026-10-29",
+    "evidence": "Referenced in research report; no local content hash recorded"
+  },
+  {
+    "id": "cosmo_iqa_paper",
+    "url": "https://chemistry-europe.onlinelibrary.wiley.com/doi/10.1002/cphc.201800733",
+    "retrieved_date_jst": "2026-10-29",
+    "evidence": "Referenced in research report; no local content hash recorded"
+  },
+  {
+    "id": "cosmo_iqa_author_manuscript",
+    "url": "https://digibuo.uniovi.es/dspace/bitstream/handle/10651/50641/Interacting.pdf?sequence=1",
+    "retrieved_date_jst": "2026-10-29",
+    "evidence": "Referenced in research report; no local content hash recorded"
+  }
+]

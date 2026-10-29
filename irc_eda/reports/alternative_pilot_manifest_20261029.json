@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-29",
+  "status": "PREPARED_NOT_EXECUTED",
+  "official_sample_success_count": 0,
+  "target_iqa_success_count": 0,
+  "target_eda_success_count": 0,
+  "additional_target_converged_sp_count": 0,
+  "blockers": [
+    "AIMAll executable unavailable; official distribution requires registration authentication",
+    "Q-Chem executable and usable license unavailable in searched locations"
+  ],
+  "files": [
+    {
+      "path": "irc_eda\\outputs\\alternatives\\aimall\\RAFA14_TS2_NBO.fchk",
+      "sha256": "4ed68dff6db48b22543aaffd1a15a65836c9ca7ad3c6a7387cedb44ee56eb909",
+      "bytes": 32587747
+    },
+    {
+      "path": "irc_eda\\outputs\\alternatives\\qchem\\official_example_12_18.in",
+      "sha256": "9f804e90be1a07f7948058cfd5ddabfa5326236f4dd2dead017589add15d1d27",
+      "bytes": 544
+    },
+    {
+      "path": "irc_eda\\outputs\\alternatives\\qchem\\RAFA14_TS_candidate.in",
+      "sha256": "f038662bc63c463ad6aa7808b11eb16ea882bac02bd30796166dd53be6c19ad3",
+      "bytes": 3275
+    },
+    {
+      "path": "irc_eda\\outputs\\alternatives\\qchem\\atom_order.json",
+      "sha256": "9ab063acb9287c7a456b4c6516ad178822a4cf92c8a3e4494275dbcd039fe68a",
+      "bytes": 763
+    }
+  ],
+  "prepared_geometry_max_difference_angstrom": 4.956035581926699e-13,
+  "prepared_atom_indices_cover_exactly_1_to_57": true,
+  "prepared_element_order_matches": true
+}
