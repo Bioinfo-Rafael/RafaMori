@@ -349,7 +349,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\r_substrate_mem2_retry_manual\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/MoriPF/r_substrate_mem2_retry_manual/fragment.out"
     }
   },
   {
@@ -481,7 +481,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\r_lys\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/MoriPF/r_lys/fragment.out"
     }
   },
   {
@@ -830,7 +830,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\T_substrate\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/MoriPF/T_substrate/fragment.out"
     }
   },
   {
@@ -962,7 +962,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\T_lys\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/MoriPF/T_lys/fragment.out"
     }
   },
   {
@@ -1311,7 +1311,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\p_substrate\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/MoriPF/p_substrate/fragment.out"
     }
   },
   {
@@ -1443,7 +1443,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\p_lys\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/MoriPF/p_lys/fragment.out"
     }
   }
 ]

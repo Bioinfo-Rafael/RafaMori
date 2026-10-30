@@ -350,7 +350,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\r_substrate_manual_4c4g\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/RAFA14/r_substrate_manual_4c4g/fragment.out"
     }
   },
   {
@@ -483,7 +483,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\r_lys\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/RAFA14/r_lys/fragment.out"
     }
   },
   {
@@ -833,7 +833,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\T_substrate\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/RAFA14/T_substrate/fragment.out"
     }
   },
   {
@@ -963,7 +963,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_distortion_interaction\\RAFA14\\TS\\lys\\fragment.out"
+      "output": "irc_eda/outputs/smd_distortion_interaction/RAFA14/TS/lys/fragment.out"
     }
   },
   {
@@ -1313,7 +1313,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\p_substrate\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/RAFA14/p_substrate/fragment.out"
     }
   },
   {
@@ -1446,7 +1446,7 @@
         ]
       },
       "scf_stability": "not tested; restricted neutral singlet",
-      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\p_lys\\fragment.out"
+      "output": "irc_eda/outputs/smd_di_jobs/RAFA14/p_lys/fragment.out"
     }
   }
 ]

@@ -1,0 +1,270 @@
+{
+  "format_version": 1,
+  "successful_jobs": 24,
+  "entries": [
+    {
+      "system": "RAFA14",
+      "role": "reactant_side",
+      "fragment": "substrate",
+      "input": "RAFA14/reactant_side_substrate/fragment.gjf",
+      "output_gzip": "RAFA14/reactant_side_substrate/fragment.out.gz",
+      "input_sha256": "38cf0c86f37a86b415c902213174de21a342484cf028f34e067022f61c08181b",
+      "uncompressed_output_sha256": "810b129e816c03199ba79e9cb7222b05678baef81a8f0dd392ff03cb1cc17819",
+      "gzip_sha256": "c4e4c694c557fedf8d38f2041ac0cb58f7b8b7b27026c75447670c81a848dfd4",
+      "uncompressed_output_bytes": 94764
+    },
+    {
+      "system": "RAFA14",
+      "role": "reactant_side",
+      "fragment": "lys",
+      "input": "RAFA14/reactant_side_lys/fragment.gjf",
+      "output_gzip": "RAFA14/reactant_side_lys/fragment.out.gz",
+      "input_sha256": "0c3c4fa8deaa4845cb78528ece4bea0917f17d69755892606a9e8d57ac08065a",
+      "uncompressed_output_sha256": "121ef0edc644f311e19f32847e90d3867d5a18862fd1debec400f0622be8fb5a",
+      "gzip_sha256": "4962e365bcfd899b1bde75367e7c2fc59b366cd04f7ca3018c168c01160c1724",
+      "uncompressed_output_bytes": 35268
+    },
+    {
+      "system": "RAFA14",
+      "role": "TS",
+      "fragment": "substrate",
+      "input": "RAFA14/TS_substrate/fragment.gjf",
+      "output_gzip": "RAFA14/TS_substrate/fragment.out.gz",
+      "input_sha256": "28c15983f2c23e1eb2ab69b8df61e4c5b413f1849e854e00b692b088675a88ad",
+      "uncompressed_output_sha256": "4e33c63cdf3924dabf8807ab7a41aa15fc5806c73b10fafcc5f2e5f787105106",
+      "gzip_sha256": "810563596d5cb3bb7a022e14ecf7b69a5e40eda99d838eb49510220fdbc4f099",
+      "uncompressed_output_bytes": 94706
+    },
+    {
+      "system": "RAFA14",
+      "role": "TS",
+      "fragment": "lys",
+      "input": "RAFA14/TS_lys/fragment.gjf",
+      "output_gzip": "RAFA14/TS_lys/fragment.out.gz",
+      "input_sha256": "173c41d21224fb59da7fb7ac9e886fa3849c8f186123876b275c6901c73c99ea",
+      "uncompressed_output_sha256": "419f1e9508e28dd9bb7ea4c10f91d9dda3b195eb356d8b4398f75359a5a85dea",
+      "gzip_sha256": "b8ceaebe1b4290da6a333b60e12eed223e367595cf7fbe487847bde492602b80",
+      "uncompressed_output_bytes": 37038
+    },
+    {
+      "system": "RAFA14",
+      "role": "product_side",
+      "fragment": "substrate",
+      "input": "RAFA14/product_side_substrate/fragment.gjf",
+      "output_gzip": "RAFA14/product_side_substrate/fragment.out.gz",
+      "input_sha256": "e597785800f21195a0b4b9ae46e455725675eff03fc359731e73311dfbe637d4",
+      "uncompressed_output_sha256": "daa7a4b029570cd3e37501d6bff04b181356568b7c490b19877b3eb188c8daa6",
+      "gzip_sha256": "a459c7d2ae905f93e03b213ec6c93c449e094f9c142285cac875eddecaa90cee",
+      "uncompressed_output_bytes": 94686
+    },
+    {
+      "system": "RAFA14",
+      "role": "product_side",
+      "fragment": "lys",
+      "input": "RAFA14/product_side_lys/fragment.gjf",
+      "output_gzip": "RAFA14/product_side_lys/fragment.out.gz",
+      "input_sha256": "4f6ad28e70bd74797b54d78d646651d3cb7f8edcd3d28d9ae10b58b553df4669",
+      "uncompressed_output_sha256": "dd24078fe83d4ecf7dc120dcd7f164f7916f7bf4281980f7ab7f0946dd145a48",
+      "gzip_sha256": "5e4ada0a308c6cc825dcd6fc135c270acb547e9e94032a005db769b66787fdc1",
+      "uncompressed_output_bytes": 35372
+    },
+    {
+      "system": "MoriPF",
+      "role": "reactant_side",
+      "fragment": "substrate",
+      "input": "MoriPF/reactant_side_substrate/fragment.gjf",
+      "output_gzip": "MoriPF/reactant_side_substrate/fragment.out.gz",
+      "input_sha256": "af692074a5559a11b3f6047d0d41d9aa9a3e19fd25333ec0d19a6d3b3c145914",
+      "uncompressed_output_sha256": "38d750f990e0fb1bd93a44316de5e2140a747505baf176010563b86939d0b4ea",
+      "gzip_sha256": "40901674e039cc7a360856c6c86048d11c64b2e75ca301126a8fb2a5a75ab65d",
+      "uncompressed_output_bytes": 95142
+    },
+    {
+      "system": "MoriPF",
+      "role": "reactant_side",
+      "fragment": "lys",
+      "input": "MoriPF/reactant_side_lys/fragment.gjf",
+      "output_gzip": "MoriPF/reactant_side_lys/fragment.out.gz",
+      "input_sha256": "7585f39cb280403c980d224cf57e121d4128887ddf5979295191873296378a32",
+      "uncompressed_output_sha256": "51fa1c0bd6832193e063fce6d76970dca603c3bd8d1a4bad3ef10b1ff5944b08",
+      "gzip_sha256": "16c66b8f7ffbe4cbcbf8f8e64a5a2a5fd7aebb8357542d91a16356f76f5ab928",
+      "uncompressed_output_bytes": 35297
+    },
+    {
+      "system": "MoriPF",
+      "role": "TS",
+      "fragment": "substrate",
+      "input": "MoriPF/TS_substrate/fragment.gjf",
+      "output_gzip": "MoriPF/TS_substrate/fragment.out.gz",
+      "input_sha256": "f7f82f567a97c4abb6980dff97d7d9f2c2849087151ef4128b11d3637e54a1d9",
+      "uncompressed_output_sha256": "052c38d3fe1b5f080305979aa89e9b1035cbaba6c13ab6905150d85b1c2de56d",
+      "gzip_sha256": "fb90ca776d1931d22a232a61de299cadabd7863226ccf8ceeba79d4982fdf2a8",
+      "uncompressed_output_bytes": 95210
+    },
+    {
+      "system": "MoriPF",
+      "role": "TS",
+      "fragment": "lys",
+      "input": "MoriPF/TS_lys/fragment.gjf",
+      "output_gzip": "MoriPF/TS_lys/fragment.out.gz",
+      "input_sha256": "01c1f88219161d951c0d984efbd251698aacfd8360cf9ac908b4700c20530511",
+      "uncompressed_output_sha256": "f52409ae59b5e3081f172b2a12b4ffb398f61b109fd0050a08f7431daa9c3edd",
+      "gzip_sha256": "9d1ccd902a7d3c97a877c6be4cc4cc8a541d0e15fa9f0730427dbe9cc7b26b9b",
+      "uncompressed_output_bytes": 35336
+    },
+    {
+      "system": "MoriPF",
+      "role": "product_side",
+      "fragment": "substrate",
+      "input": "MoriPF/product_side_substrate/fragment.gjf",
+      "output_gzip": "MoriPF/product_side_substrate/fragment.out.gz",
+      "input_sha256": "8d721098df7406fb373a78e43f363ab5c8c3c7d0a3277f4c8f2e0640ef7ef886",
+      "uncompressed_output_sha256": "c38987e0e5ef969a390ff989a8e35f9bbeb5a9d6562225ccee899e22ac2e4a10",
+      "gzip_sha256": "7354742a90b7261ce877dd6155c7e5baab78ebb851d457efe5f79b5cccaae052",
+      "uncompressed_output_bytes": 95179
+    },
+    {
+      "system": "MoriPF",
+      "role": "product_side",
+      "fragment": "lys",
+      "input": "MoriPF/product_side_lys/fragment.gjf",
+      "output_gzip": "MoriPF/product_side_lys/fragment.out.gz",
+      "input_sha256": "fd3304394465a7b9495639ff44261579af6dbc38d28d7135e6c6ad78f30ab997",
+      "uncompressed_output_sha256": "3458500b7eec5aa996066b7f5dbdd317a508c016ce9e22ff10d4a159e98abe24",
+      "gzip_sha256": "9436d1f5fdffc02e2633e061af30ff730a7418b0816ef79e8654b74f6cccdbf8",
+      "uncompressed_output_bytes": 35350
+    },
+    {
+      "system": "RAFA15",
+      "role": "reactant_side",
+      "fragment": "substrate",
+      "input": "RAFA15/reactant_side_substrate/fragment.gjf",
+      "output_gzip": "RAFA15/reactant_side_substrate/fragment.out.gz",
+      "input_sha256": "cf4e92e0e86781bc84f5ce2f8126367ce01d27fe216c3d25ff4a2f274e40b414",
+      "uncompressed_output_sha256": "44cc8824af6280fc3eb18cbe7ab2a0834bec7d364fd289f703ed5f82faad3596",
+      "gzip_sha256": "2c81d5d5a16dd2bd5d2ef568fa37b36561ff73ed09e57b8e761573c11020d107",
+      "uncompressed_output_bytes": 93763
+    },
+    {
+      "system": "RAFA15",
+      "role": "reactant_side",
+      "fragment": "lys",
+      "input": "RAFA15/reactant_side_lys/fragment.gjf",
+      "output_gzip": "RAFA15/reactant_side_lys/fragment.out.gz",
+      "input_sha256": "568514ed725ce4106b9188fb4af137106024a9911b1a57e4422902c89fd765ad",
+      "uncompressed_output_sha256": "e1c14d9e404e07da9f4c686ab8358a20caa73167cab04d25cf1773c293800ea5",
+      "gzip_sha256": "80f54ddc5308f65e4f144bcbe88d07b2bf26b07a9ccfaa11bab9763a791135c6",
+      "uncompressed_output_bytes": 35305
+    },
+    {
+      "system": "RAFA15",
+      "role": "TS",
+      "fragment": "substrate",
+      "input": "RAFA15/TS_substrate/fragment.gjf",
+      "output_gzip": "RAFA15/TS_substrate/fragment.out.gz",
+      "input_sha256": "fbedf7755b5ae3194229e4263451afd88afbf71abfc933d1c7d336fdc7bad654",
+      "uncompressed_output_sha256": "c3603d36505d58034c420ab8c46e791e701c2cee51ddcf5bc7e9518e7278ed0e",
+      "gzip_sha256": "7bf01f1634b7aa4ee41dbdf7d639c23f5efcf1361c73535c2a3d4896fcb8f80e",
+      "uncompressed_output_bytes": 94553
+    },
+    {
+      "system": "RAFA15",
+      "role": "TS",
+      "fragment": "lys",
+      "input": "RAFA15/TS_lys/fragment.gjf",
+      "output_gzip": "RAFA15/TS_lys/fragment.out.gz",
+      "input_sha256": "89f8b308c3876957f603d88f6e50fb1c79c9bcb6fa131766bdae761a35398200",
+      "uncompressed_output_sha256": "e3d082b7b26c3cb463b1ac3d1ba1c0b77c6f1a1d06c5292ffc6dd377373b7da7",
+      "gzip_sha256": "5765e5075edbaaecdeeefdb3c0a42502ab9cecfae913e035127a8822ed944b21",
+      "uncompressed_output_bytes": 35276
+    },
+    {
+      "system": "RAFA15",
+      "role": "product_side",
+      "fragment": "substrate",
+      "input": "RAFA15/product_side_substrate/fragment.gjf",
+      "output_gzip": "RAFA15/product_side_substrate/fragment.out.gz",
+      "input_sha256": "ea622a78c2c0d739f961325a152e26b4f71d505cc0a456a9cd12072ebdbf71e1",
+      "uncompressed_output_sha256": "26c6e741e5166c37d88e82dad556b128e6d673d31463949447a6d31b7abb970d",
+      "gzip_sha256": "2b2db7416fd54d51f2c5dbb031e29f09d20cf809f20d0d59b4aa4ae45a72fe7a",
+      "uncompressed_output_bytes": 95885
+    },
+    {
+      "system": "RAFA15",
+      "role": "product_side",
+      "fragment": "lys",
+      "input": "RAFA15/product_side_lys/fragment.gjf",
+      "output_gzip": "RAFA15/product_side_lys/fragment.out.gz",
+      "input_sha256": "514dce9a2c7e2c691fb2b8daaac8fd9851f1aaecc5fe620ea39f3da56009ea3f",
+      "uncompressed_output_sha256": "c7b215101b0c960d2f9de0f63c05cfa13569aa803c9f210eaed25795b01363ab",
+      "gzip_sha256": "f352ba10272719e6c4883083245d73a7b4a079589d0f9fbf57f8e58331afcc19",
+      "uncompressed_output_bytes": 35480
+    },
+    {
+      "system": "RAFA16",
+      "role": "reactant_side",
+      "fragment": "substrate",
+      "input": "RAFA16/reactant_side_substrate/fragment.gjf",
+      "output_gzip": "RAFA16/reactant_side_substrate/fragment.out.gz",
+      "input_sha256": "0a0fa74d017c9f8e6ac2f0918556f605720cdddb547d7901bc38a7d5078888e1",
+      "uncompressed_output_sha256": "52c469843e6d398fa3296ea3d5db30323e13a4d693e53402123ffc0ae1b1e45b",
+      "gzip_sha256": "f4200e5b5ec5da08029ef91f697dcb064b62021a29e87a0d09c600e75cb69724",
+      "uncompressed_output_bytes": 94736
+    },
+    {
+      "system": "RAFA16",
+      "role": "reactant_side",
+      "fragment": "lys",
+      "input": "RAFA16/reactant_side_lys/fragment.gjf",
+      "output_gzip": "RAFA16/reactant_side_lys/fragment.out.gz",
+      "input_sha256": "b586de270011b50032ea944d84dc0c26ffa06e12314c85238a71dd216265e4b6",
+      "uncompressed_output_sha256": "8860f7da54d45cd6eb68fe5fa3bdab4d7cfe5380b890d46acac131b03a909050",
+      "gzip_sha256": "c22ee04d8aa30460d32a06bcca4b4944f8540497bfe701f2961aaa8a149b3507",
+      "uncompressed_output_bytes": 36462
+    },
+    {
+      "system": "RAFA16",
+      "role": "TS",
+      "fragment": "substrate",
+      "input": "RAFA16/TS_substrate/fragment.gjf",
+      "output_gzip": "RAFA16/TS_substrate/fragment.out.gz",
+      "input_sha256": "48637b4c85abf794e50a65532f37a2cbc545ee070c02e862e0a5178fe207432a",
+      "uncompressed_output_sha256": "21e963c4641cce977817a3c328307e8f64c88648b8ba6014e41d4423becda928",
+      "gzip_sha256": "8988cd6da2a10b0fa34b137d18808ce81b0d8f8f9921b0816a09c7028113f5a2",
+      "uncompressed_output_bytes": 95462
+    },
+    {
+      "system": "RAFA16",
+      "role": "TS",
+      "fragment": "lys",
+      "input": "RAFA16/TS_lys/fragment.gjf",
+      "output_gzip": "RAFA16/TS_lys/fragment.out.gz",
+      "input_sha256": "672336c562dce22646682192ceeee98fc9ec06221847caa54cbf952aab6a0694",
+      "uncompressed_output_sha256": "0de13980e0488927d49d89ced78c671d6968e4383e8f2d3908c4099e3bf86b32",
+      "gzip_sha256": "7d55bd5a7843e6bd94a173285d2eed67eb51045c1138e1b4f542fb20c43c2c7e",
+      "uncompressed_output_bytes": 35466
+    },
+    {
+      "system": "RAFA16",
+      "role": "product_side",
+      "fragment": "substrate",
+      "input": "RAFA16/product_side_substrate/fragment.gjf",
+      "output_gzip": "RAFA16/product_side_substrate/fragment.out.gz",
+      "input_sha256": "3be8a8fe0819583184d9f3e82673af6c08c826a840e8d2e7466a4ff87f52d4ff",
+      "uncompressed_output_sha256": "224231660ceaa6a260996003db0c3711dc1b51131ca53a98c6966aadda4cf39c",
+      "gzip_sha256": "fb111be688e9438effcb7266dda3a62b75800a175968dafdf254f0e66c092a37",
+      "uncompressed_output_bytes": 94646
+    },
+    {
+      "system": "RAFA16",
+      "role": "product_side",
+      "fragment": "lys",
+      "input": "RAFA16/product_side_lys/fragment.gjf",
+      "output_gzip": "RAFA16/product_side_lys/fragment.out.gz",
+      "input_sha256": "d72206ebeba16a085c9f465043ff268ac5acd193680aab2af4ea2163503d38b1",
+      "uncompressed_output_sha256": "707863d057319ab9e4ea65d7a8442a935ea604d0a94b4b66203faf7aa2fc591c",
+      "gzip_sha256": "651de1ebb55eb74cb4a91fb2ff01b87099774b048dcacc9b3e16f29c556b7748",
+      "uncompressed_output_bytes": 35450
+    }
+  ]
+}
