@@ -1,0 +1,320 @@
+{
+  "successful_fragment_outputs": 12,
+  "checks": [
+    {
+      "system": "RAFA14",
+      "role": "reactant_side",
+      "fragment": "substrate",
+      "status": "SUCCESS",
+      "energy_hartree": -1426.79208044,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "810b129e816c03199ba79e9cb7222b05678baef81a8f0dd392ff03cb1cc17819",
+      "input_sha256": "38cf0c86f37a86b415c902213174de21a342484cf028f34e067022f61c08181b",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\r_substrate_manual_4c4g\\fragment.out"
+    },
+    {
+      "system": "RAFA14",
+      "role": "reactant_side",
+      "fragment": "lys",
+      "status": "SUCCESS",
+      "energy_hartree": -174.451397286,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "121ef0edc644f311e19f32847e90d3867d5a18862fd1debec400f0622be8fb5a",
+      "input_sha256": "0c3c4fa8deaa4845cb78528ece4bea0917f17d69755892606a9e8d57ac08065a",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\r_lys\\fragment.out"
+    },
+    {
+      "system": "RAFA14",
+      "role": "TS",
+      "fragment": "substrate",
+      "status": "SUCCESS",
+      "energy_hartree": -1426.77127671,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "4e33c63cdf3924dabf8807ab7a41aa15fc5806c73b10fafcc5f2e5f787105106",
+      "input_sha256": "28c15983f2c23e1eb2ab69b8df61e4c5b413f1849e854e00b692b088675a88ad",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\T_substrate\\fragment.out"
+    },
+    {
+      "system": "RAFA14",
+      "role": "TS",
+      "fragment": "lys",
+      "status": "SUCCESS",
+      "energy_hartree": -174.450965764,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "419f1e9508e28dd9bb7ea4c10f91d9dda3b195eb356d8b4398f75359a5a85dea",
+      "input_sha256": "173c41d21224fb59da7fb7ac9e886fa3849c8f186123876b275c6901c73c99ea",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_distortion_interaction\\RAFA14\\TS\\lys\\fragment.out"
+    },
+    {
+      "system": "RAFA14",
+      "role": "product_side",
+      "fragment": "substrate",
+      "status": "SUCCESS",
+      "energy_hartree": -1426.7398584,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "daa7a4b029570cd3e37501d6bff04b181356568b7c490b19877b3eb188c8daa6",
+      "input_sha256": "e597785800f21195a0b4b9ae46e455725675eff03fc359731e73311dfbe637d4",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\p_substrate\\fragment.out"
+    },
+    {
+      "system": "RAFA14",
+      "role": "product_side",
+      "fragment": "lys",
+      "status": "SUCCESS",
+      "energy_hartree": -174.449947637,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "dd24078fe83d4ecf7dc120dcd7f164f7916f7bf4281980f7ab7f0946dd145a48",
+      "input_sha256": "4f6ad28e70bd74797b54d78d646651d3cb7f8edcd3d28d9ae10b58b553df4669",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\RAFA14\\p_lys\\fragment.out"
+    },
+    {
+      "system": "MoriPF",
+      "role": "reactant_side",
+      "fragment": "substrate",
+      "status": "SUCCESS",
+      "energy_hartree": -1625.24299124,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "38d750f990e0fb1bd93a44316de5e2140a747505baf176010563b86939d0b4ea",
+      "input_sha256": "af692074a5559a11b3f6047d0d41d9aa9a3e19fd25333ec0d19a6d3b3c145914",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\r_substrate_mem2_retry_manual\\fragment.out"
+    },
+    {
+      "system": "MoriPF",
+      "role": "reactant_side",
+      "fragment": "lys",
+      "status": "SUCCESS",
+      "energy_hartree": -174.45137024,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "51fa1c0bd6832193e063fce6d76970dca603c3bd8d1a4bad3ef10b1ff5944b08",
+      "input_sha256": "7585f39cb280403c980d224cf57e121d4128887ddf5979295191873296378a32",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\r_lys\\fragment.out"
+    },
+    {
+      "system": "MoriPF",
+      "role": "TS",
+      "fragment": "substrate",
+      "status": "SUCCESS",
+      "energy_hartree": -1625.22601961,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "052c38d3fe1b5f080305979aa89e9b1035cbaba6c13ab6905150d85b1c2de56d",
+      "input_sha256": "f7f82f567a97c4abb6980dff97d7d9f2c2849087151ef4128b11d3637e54a1d9",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\T_substrate\\fragment.out"
+    },
+    {
+      "system": "MoriPF",
+      "role": "TS",
+      "fragment": "lys",
+      "status": "SUCCESS",
+      "energy_hartree": -174.450954495,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "f52409ae59b5e3081f172b2a12b4ffb398f61b109fd0050a08f7431daa9c3edd",
+      "input_sha256": "01c1f88219161d951c0d984efbd251698aacfd8360cf9ac908b4700c20530511",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\T_lys\\fragment.out"
+    },
+    {
+      "system": "MoriPF",
+      "role": "product_side",
+      "fragment": "substrate",
+      "status": "SUCCESS",
+      "energy_hartree": -1625.1901151,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "c38987e0e5ef969a390ff989a8e35f9bbeb5a9d6562225ccee899e22ac2e4a10",
+      "input_sha256": "8d721098df7406fb373a78e43f363ab5c8c3c7d0a3277f4c8f2e0640ef7ef886",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\p_substrate\\fragment.out"
+    },
+    {
+      "system": "MoriPF",
+      "role": "product_side",
+      "fragment": "lys",
+      "status": "SUCCESS",
+      "energy_hartree": -174.449887371,
+      "max_coordinate_difference_A": 0.0,
+      "output_sha256": "3458500b7eec5aa996066b7f5dbdd317a508c016ce9e22ff10d4a159e98abe24",
+      "input_sha256": "fd3304394465a7b9495639ff44261579af6dbc38d28d7135e6c6ad78f30ab997",
+      "scf_done_count": 1,
+      "normal_termination": true,
+      "conditions": {
+        "route": "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine",
+        "method": "M062X",
+        "basis": "6-311++G(d,p)",
+        "charge": 0,
+        "multiplicity": 1,
+        "solvent": "scrf=(smd,solvent=water)",
+        "is_irc": false,
+        "routes": [
+          "#p M062X/6-311++G(d,p) 5D 7F SCRF=(SMD,Solvent=Water) NoSymm SCF=(Tight,MaxCycle=200) Integral=UltraFine"
+        ]
+      },
+      "scf_stability": "not tested; restricted neutral singlet",
+      "output": "irc_eda\\outputs\\smd_di_jobs\\MoriPF\\p_lys\\fragment.out"
+    }
+  ],
+  "decimal_identity": "exactly zero for all 6 points using decimal representations",
+  "fragment_distortion_sum_tolerance_kcal_mol": 1e-06,
+  "gaussian_calculations_launched_by_this_script": 0
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "role": "reactant_side",
+    "point_id": "RAFA14_p2_0035",
+    "coordinate": -4.3522,
+    "full_energy_hartree": -1601.25042104,
+    "C20_N_distance_A": 2.5811749006142533,
+    "substrate_hartree": -1426.79208044,
+    "lys_hartree": -174.451397286,
+    "reference_sum_hartree": -1601.2447200289998,
+    "distortion_kcal_mol": 0.7795569020308784,
+    "interaction_difference_kcal_mol": -4.356995316366486,
+    "total_relative_kcal_mol": -3.577438414335608,
+    "identity_residual_hartree": 0.0,
+    "substrate_distortion_kcal_mol": 0.6795927603353406,
+    "lys_distortion_kcal_mol": 0.09996414174904242
+  },
+  {
+    "role": "TS",
+    "point_id": "RAFA14_p0_0000",
+    "coordinate": 0.0,
+    "full_energy_hartree": -1601.24396164,
+    "C20_N_distance_A": 1.9784384921816496,
+    "substrate_hartree": -1426.77127671,
+    "lys_hartree": -174.450965764,
+    "reference_sum_hartree": -1601.2447200289998,
+    "distortion_kcal_mol": 14.104878716288919,
+    "interaction_difference_kcal_mol": -13.628982433836395,
+    "total_relative_kcal_mol": 0.47589628245252374,
+    "identity_residual_hartree": 0.0,
+    "substrate_distortion_kcal_mol": 13.734130431264605,
+    "lys_distortion_kcal_mol": 0.3707482850243144
+  },
+  {
+    "role": "product_side",
+    "point_id": "RAFA14_p1_0024",
+    "coordinate": 2.98246,
+    "full_energy_hartree": -1601.24626998,
+    "C20_N_distance_A": 1.651826946575821,
+    "substrate_hartree": -1426.7398584,
+    "lys_hartree": -174.449947637,
+    "reference_sum_hartree": -1601.2447200289998,
+    "distortion_kcal_mol": 34.45905023856921,
+    "interaction_difference_kcal_mol": -35.43165917555515,
+    "total_relative_kcal_mol": -0.972608936985935,
+    "identity_residual_hartree": 0.0,
+    "substrate_distortion_kcal_mol": 33.44941761527553,
+    "lys_distortion_kcal_mol": 1.009632623311517
+  }
+]
